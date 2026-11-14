@@ -14,13 +14,13 @@ const products = [
     name: 'Foxit PDF Editor+',
     text: 'Everything in PDF Editor, plus mobile apps for iOS & Android, Smart Redact and Foxit eSign with 150 envelopes per year.',
     tone: 'violet',
-    platforms: ['Desktop', 'Web', 'iOS', 'Android'],
+    platforms: ['Windows', 'macOS', 'Web', 'iOS', 'Android'],
   },
   {
     name: 'Foxit eSign',
-    text: 'Send, sign and manage agreements through secure eSignature workflows.',
+    text: 'Standalone eSignature for teams — reusable templates, bulk sending, audit trails and signature certificates. ESIGN, UETA and eIDAS aligned. Essentials: 250 envelopes/year · Business: unlimited.',
     tone: 'blue',
-    platforms: ['Cloud'],
+    platforms: ['Web', 'Mobile app'],
   },
 ]
 

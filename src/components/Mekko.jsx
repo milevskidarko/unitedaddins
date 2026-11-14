@@ -55,9 +55,10 @@ export default function Mekko({ onAddToQuote }) {
             Create compelling charts with <span className="grad-text">Mekko Graphics</span>
           </h2>
           <p className="section-lead" data-reveal style={{ '--d': '0.12s' }}>
-            Present your analysis with powerful charts and analytical enhancements — built right
-            inside PowerPoint and Excel. Spend less time editing slides and keep every chart
-            consistent with saved preferences.
+            An add-in for PowerPoint and Excel that builds the charts consultants rely on —
+            Marimekko, Bar Mekko, waterfall and more — to show market size and share in a single
+            view. Spend less time editing slides and keep every chart consistent with saved
+            preferences.
           </p>
 
           <ul className="mekko__types" data-reveal style={{ '--d': '0.18s' }}>

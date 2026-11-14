@@ -14,8 +14,8 @@ const ENDPOINT = `https://formsubmit.co/ajax/${FORM_EMAIL}`
 const PRODUCTS = [
   { name: 'Foxit PDF Editor', note: 'Windows, macOS, Web', tone: 'orange' },
   { name: 'Foxit PDF Editor+', note: '+ mobile, Smart Redact, eSign', tone: 'violet' },
-  { name: 'Foxit eSign', note: 'eSignature workflows', tone: 'blue' },
-  { name: 'Mekko Graphics', note: 'Charts in PowerPoint & Excel', tone: 'navy' },
+  { name: 'Foxit eSign', note: 'Templates, bulk send, audit trails', tone: 'blue' },
+  { name: 'Mekko Graphics', note: 'Add-in for PowerPoint & Excel', tone: 'navy' },
 ]
 // Each request type changes the wording and the extra fields of the form.
 const TYPES = {
