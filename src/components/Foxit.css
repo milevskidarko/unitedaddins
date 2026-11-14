@@ -162,27 +162,30 @@
   border: 26px solid rgba(96, 165, 250, 0.25);
 }
 .stats h3 { font-size: 24px; font-weight: 700; max-width: 240px; position: relative; z-index: 1; }
-/* Narrow 4th column: one stat per row (number + label side by side). */
+/* Three stats side by side, label under each number. Units ("<", "%", "mo") are smaller
+   so "2001" and "<6mo" fit in the narrow 4th column. */
 .stats__list {
   position: relative;
   z-index: 1;
-  margin: 22px 0 0;
+  margin: 24px 0 0;
   display: grid;
-  align-content: start;
-  flex: 1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
 }
-.stats__list div {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  padding-block: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
+.stats__list div + div { border-left: 1px solid rgba(255, 255, 255, 0.15); padding-left: 10px; }
+.stats__list dt {
+  font-size: clamp(24px, 2vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
-.stats__list dt { font-size: clamp(28px, 2.4vw, 34px); font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.stats__list dd { margin: 0; font-size: 13px; color: #b6c4ec; line-height: 1.35; text-align: right; }
+.count__unit { font-size: 0.62em; font-weight: 700; letter-spacing: 0; color: #c7d4ff; }
+.stats__list dd { margin: 4px 0 0; font-size: 13px; color: #b6c4ec; line-height: 1.35; }
 .stats__foot {
-  margin-top: 24px;
+  margin-top: auto;
+  padding-top: 24px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -195,11 +198,6 @@
   .foxit__grid { grid-template-columns: repeat(3, 1fr); }
   .stats { grid-column: 1 / -1; }
   .stats h3 { max-width: none; }
-  /* Full-width card: back to three columns. */
-  .stats__list { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .stats__list div { display: block; padding: 0; border-top: 0; }
-  .stats__list div + div { border-left: 1px solid rgba(255, 255, 255, 0.15); padding-left: 12px; }
-  .stats__list dd { margin-top: 4px; text-align: left; }
 }
 @media (max-width: 900px) {
   .foxit__head { grid-template-columns: 1fr; gap: 24px; }

@@ -43,7 +43,11 @@ export default function CountUp({ to, from = 0, duration = 1400, prefix = '', su
 
   return (
     <span ref={ref}>
-      <span aria-hidden="true">{prefix}{value}{suffix}</span>
+      <span aria-hidden="true">
+        {prefix && <small className="count__unit">{prefix}</small>}
+        {value}
+        {suffix && <small className="count__unit">{suffix}</small>}
+      </span>
       <span style={srOnly}>{prefix}{to}{suffix}</span>
     </span>
   )
