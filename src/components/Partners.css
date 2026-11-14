@@ -109,3 +109,34 @@
 .need { --spot: rgba(36, 73, 232, 0.07); }
 .partners__title .accent { font-size: 1.25em; }
 .partners__card { box-shadow: 0 40px 80px -40px rgba(6, 11, 36, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.6) inset; }
+
+/* Credential line next to the partner logos */
+.partners__cred {
+  margin-left: auto;
+  max-width: 260px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  background: #f3f6ff;
+  border: 1px solid #e0e7fb;
+}
+.partners__cred svg {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  stroke-width: 3;
+}
+.partners__cred strong { color: var(--ink); }
+@media (max-width: 1100px) {
+  .partners__brands { flex-wrap: wrap; }
+  .partners__cred { margin-left: 0; max-width: none; flex-basis: 100%; }
+}

@@ -120,3 +120,53 @@
   transition-delay: calc(var(--d, 0s) + 0.3s);
 }
 .step.is-visible::before { width: calc(100% - 24px); }
+
+/* Case studies (published by Foxit) */
+.cases { margin-top: clamp(48px, 6vw, 80px); }
+.cases__label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7fb0ff;
+}
+.cases__grid { margin-top: 18px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.case {
+  --spot: rgba(96, 165, 250, 0.16);
+  --spot-edge: rgba(143, 188, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.case__stat {
+  align-self: flex-start;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(30px, 3vw, 40px);
+  line-height: 1;
+  background: var(--grad-vivid);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-right: 0.08em;
+}
+.case h3 { margin-top: 14px; font-size: 20px; font-weight: 700; }
+.case p { margin-top: 8px; font-size: 15px; color: #b6c4ec; flex: 1; }
+.case__link {
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #8fbcff;
+}
+.case__link svg { width: 16px; height: 16px; transition: transform 0.25s ease; }
+.case__link:hover { color: #fff; }
+.case__link:hover svg { transform: translateX(4px); }
+@media (max-width: 760px) {
+  .cases__grid { grid-template-columns: 1fr; }
+}

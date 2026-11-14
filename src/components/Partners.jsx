@@ -1,4 +1,4 @@
-import { Arrow, Doc, Chart, Cubes } from './Icons.jsx'
+import { Arrow, Doc, Chart, Cubes, Check } from './Icons.jsx'
 import './Partners.css'
 
 const needs = [
@@ -21,6 +21,14 @@ export default function Partners() {
                 <span>Graphics</span>
               </a>
             </div>
+            {/* Confirmed by United Addins (Nov 2026); "since 2016" per Foxit's Motor Presse Stuttgart
+                case study. Partner tier (Gold/Platinum) is intentionally not stated until Foxit confirms it. */}
+            <p className="partners__cred">
+              <Check />
+              <span>
+                Authorized distributor for <strong>Foxit</strong> (since 2016) and <strong>Mekko Graphics</strong>
+              </span>
+            </p>
           </div>
 
           <div className="partners__needs">
