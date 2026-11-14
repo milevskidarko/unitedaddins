@@ -109,7 +109,7 @@
 }
 .footer__social a:hover { background: var(--blue); border-color: var(--blue); color: #fff; transform: translateY(-2px); }
 .footer__social svg { width: 18px; height: 18px; }
-.footer__col h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #7f90c2; }
+.footer__col h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #7f90c2; }
 .footer__col ul { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 12px; }
 .footer__col a {
   font-weight: 500;

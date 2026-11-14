@@ -140,3 +140,7 @@
   .partners__brands { flex-wrap: wrap; }
   .partners__cred { margin-left: 0; max-width: none; flex-basis: 100%; }
 }
+/* Phones: the brands block is a column, so flex-basis would set the HEIGHT. Use width instead. */
+@media (max-width: 760px) {
+  .partners__cred { flex-basis: auto; width: 100%; max-width: 100%; min-width: 0; }
+}
