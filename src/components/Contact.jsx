@@ -3,8 +3,10 @@ import { Arrow, Check, Mail } from './Icons.jsx'
 import './Contact.css'
 
 const SALES_EMAIL = 'sales@unitedaddins.com'
-// FormSubmit forwards the form to SALES_EMAIL (first submission sends a one-time activation email).
-const ENDPOINT = `https://formsubmit.co/ajax/${SALES_EMAIL}`
+// Where quote requests are delivered. Override locally in .env.local (VITE_FORM_EMAIL=you@example.com)
+// to test without emailing sales. FormSubmit sends a one-time activation email to each new address.
+const FORM_EMAIL = import.meta.env.VITE_FORM_EMAIL || SALES_EMAIL
+const ENDPOINT = `https://formsubmit.co/ajax/${FORM_EMAIL}`
 
 const PRODUCTS = [
   { name: 'Foxit PDF Editor', note: 'Windows, macOS, Web', tone: 'orange' },
