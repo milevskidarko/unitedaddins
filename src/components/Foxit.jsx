@@ -30,7 +30,7 @@ const features = [
   { icon: Sign, label: 'eSign workflows' },
 ]
 
-export default function Foxit() {
+export default function Foxit({ onAddToQuote }) {
   return (
     <section className="section foxit" id="foxit">
       <div className="container">
@@ -46,11 +46,14 @@ export default function Foxit() {
               by United Addins.
             </p>
           </div>
-          <ul className="foxit__features" data-reveal style={{ '--d': '0.1s' }}>
-            {features.map((f) => (
-              <li key={f.label}><f.icon /> {f.label}</li>
-            ))}
-          </ul>
+          <div className="foxit__side" data-reveal style={{ '--d': '0.1s' }}>
+            <ul className="foxit__features">
+              {features.map((f) => (
+                <li key={f.label}><f.icon /> {f.label}</li>
+              ))}
+            </ul>
+            <a href="#plan" className="foxit__finder">Not sure which plan? Take the 3-question quiz <Arrow /></a>
+          </div>
         </div>
 
         <div className="foxit__grid">
@@ -68,7 +71,13 @@ export default function Foxit() {
               <ul className="product__platforms">
                 {p.platforms.map((pl) => <li key={pl}>{pl}</li>)}
               </ul>
-              <a href="#contact" className="product__link">Get a quote <Arrow /></a>
+              <a
+                href="#contact"
+                className="product__link"
+                onClick={(e) => { e.preventDefault(); onAddToQuote([p.name]) }}
+              >
+                Add to quote <Arrow />
+              </a>
               <span className="product__glow" aria-hidden="true" />
             </article>
           ))}

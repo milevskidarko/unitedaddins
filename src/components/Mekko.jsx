@@ -15,7 +15,7 @@ const columns = [
   { w: 18, label: 'LATAM', parts: [36, 20, 24, 20] },
 ]
 
-export default function Mekko() {
+export default function Mekko({ onAddToQuote }) {
   return (
     <section className="section mekko" id="mekko">
       <div className="container mekko__inner">
@@ -70,7 +70,13 @@ export default function Mekko() {
           </ul>
 
           <div data-reveal style={{ '--d': '0.3s' }}>
-            <a href="#contact" className="btn btn-primary">Get Mekko Graphics <Arrow /></a>
+            <a
+              href="#contact"
+              className="btn btn-primary"
+              onClick={(e) => { e.preventDefault(); onAddToQuote(['Mekko Graphics']) }}
+            >
+              Add Mekko Graphics to quote <Arrow />
+            </a>
           </div>
         </div>
       </div>

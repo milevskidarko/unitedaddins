@@ -17,7 +17,7 @@ const NAV = [
     items: [
       { icon: Doc, title: 'PDF & eSign', text: 'Paperless, secure workflows', href: '#foxit' },
       { icon: Chart, title: 'Data visualization', text: 'Consulting-grade charts', href: '#mekko' },
-      { icon: Key, title: 'Volume licensing', text: 'Flexible plans for any size', href: '#why' },
+      { icon: Key, title: 'Find your plan', text: '3 questions, the right Foxit plan', href: '#plan' },
     ],
   },
   {

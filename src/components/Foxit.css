@@ -19,6 +19,17 @@
   gap: 10px;
   justify-content: flex-end;
 }
+.foxit__side { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
+.foxit__finder {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--blue);
+}
+.foxit__finder svg { width: 16px; height: 16px; transition: transform 0.25s ease; }
+.foxit__finder:hover svg { transform: translateX(4px); }
 .foxit__features li {
   display: inline-flex;
   align-items: center;
@@ -179,6 +190,7 @@
 @media (max-width: 900px) {
   .foxit__head { grid-template-columns: 1fr; gap: 24px; }
   .foxit__features { justify-content: flex-start; }
+  .foxit__side { align-items: flex-start; }
   .foxit__grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
