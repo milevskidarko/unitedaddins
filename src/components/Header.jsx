@@ -65,7 +65,7 @@ export default function Header() {
 
   return (
     <>
-    <header className={`header ${scrolled ? 'header--scrolled' : ''} ${open ? 'header--open' : ''}`} id="top">
+    <header className={`header ${scrolled ? 'header--scrolled' : ''} ${open ? 'header--open' : ''}`}>
       <div className="container header__inner">
         <Logo />
 

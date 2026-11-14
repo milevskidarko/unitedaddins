@@ -66,6 +66,12 @@ const FIELD_LABELS = {
   currentSeats: 'Licenses they have now',
 }
 const MAX_SEATS = 9999
+// No response times promised on purpose — add one only if the team commits to it.
+const NEXT_STEPS = [
+  ['We review your request', 'A licensing specialist checks your products, seats and current setup.'],
+  ['You get a tailored quote', 'Clear pricing for your team, with options if there is a better fit.'],
+  ['Licensing & onboarding', 'We deliver your licenses and help you get up and running.'],
+]
 
 export default function Contact({ quote, setQuote }) {
   const [sent, setSent] = useState(false)
@@ -157,13 +163,28 @@ export default function Contact({ quote, setQuote }) {
               Pick your products and number of licenses — we&apos;ll come back with a tailored quote.
             </p>
             <ul className="contact__list">
-              <li><Check /> Subscription licensing for any team size</li>
+              <li><Check /> Subscription and perpetual licensing for any team size</li>
               <li><Check /> Renewals, upgrades and added seats</li>
               <li><Check /> Advice on the right plan for your needs</li>
             </ul>
             <a className="contact__mail" href={`mailto:${SALES_EMAIL}`}>
               <Mail /> {SALES_EMAIL}
             </a>
+
+            <div className="next">
+              <p className="next__label">What happens next</p>
+              <ol className="next__steps">
+                {NEXT_STEPS.map(([title, text], i) => (
+                  <li key={title}>
+                    <span className="next__n">{i + 1}</span>
+                    <span>
+                      <strong>{title}</strong>
+                      <small>{text}</small>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
 
           <form className="form" onSubmit={onSubmit}>

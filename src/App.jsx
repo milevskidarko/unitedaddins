@@ -35,6 +35,9 @@ export default function App() {
 
   return (
     <>
+      {/* Scroll target for the logo and the footer “back to top” button. It cannot be the
+          header itself: the header is position: fixed, so browsers never scroll to it. */}
+      <span id="top" aria-hidden="true" />
       <Header />
       <main>
         <Hero />

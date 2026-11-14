@@ -12,21 +12,24 @@ const products = [
     preview: 'editor',
     platforms: ['Windows', 'macOS', 'Web'],
     // PDF Editor is the only Foxit plan also sold as a one-time license.
-    perpetual: 'Also as a one-time perpetual license — Windows & macOS, without AI Assistant.',
+    perpetual: true,
+    note: { icon: Key, text: 'Also as a one-time perpetual license — Windows & macOS, without AI Assistant.' },
   },
   {
     name: 'Foxit PDF Editor+',
-    text: 'Everything in PDF Editor, plus mobile apps for iOS & Android, Smart Redact and Foxit eSign with 150 envelopes per year.',
+    text: 'Everything in PDF Editor, plus mobile apps for iOS & Android and Smart Redact for removing sensitive data.',
     tone: 'violet',
     preview: 'editorPlus',
     platforms: ['Windows', 'macOS', 'Web', 'iOS', 'Android'],
+    note: { icon: Sign, text: 'Includes Foxit eSign with 150 envelopes per year.' },
   },
   {
     name: 'Foxit eSign',
-    text: 'Standalone eSignature for teams — reusable templates, bulk sending, audit trails and signature certificates. ESIGN, UETA and eIDAS aligned. Essentials: 250 envelopes/year · Business: unlimited.',
+    text: 'Standalone eSignature for teams — reusable templates, bulk sending, audit trails and signature certificates. ESIGN, UETA and eIDAS aligned.',
     tone: 'blue',
     preview: 'esign',
     platforms: ['Web', 'Mobile app'],
+    note: { icon: Sign, text: 'Essentials: 250 envelopes per year · Business: unlimited.' },
   },
 ]
 
@@ -72,9 +75,9 @@ export default function Foxit({ onAddToQuote }) {
               <ul className="product__platforms">
                 {p.platforms.map((pl) => <li key={pl}>{pl}</li>)}
               </ul>
-              {p.perpetual && (
+              {p.note && (
                 <p className="product__perpetual">
-                  <Key /> <span>{p.perpetual}</span>
+                  <p.note.icon /> <span>{p.note.text}</span>
                 </p>
               )}
               <div className="product__links">
@@ -101,6 +104,7 @@ export default function Foxit({ onAddToQuote }) {
 
           <aside className="stats" data-reveal style={{ '--d': '0.24s' }}>
             <h3>Proven business value</h3>
+            <p className="stats__sub">Foxit PDF Editor, per Forrester</p>
             <dl className="stats__list">
               <div><dt><CountUp to={284} suffix="%" /></dt><dd>ROI</dd></div>
               <div><dt><CountUp to={6} from={24} prefix="<" suffix="mo" duration={1100} /></dt><dd>Payback period</dd></div>
