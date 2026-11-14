@@ -1,9 +1,10 @@
 .partners { position: relative; z-index: 2; margin-top: clamp(-60px, -5vw, -30px); }
+/* Two rows on every screen: partners on top, "explore by need" below.
+   (Side-by-side could not fit the three cards at common laptop widths.) */
 .partners__card {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: clamp(24px, 4vw, 56px);
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(22px, 3vw, 32px);
   padding: clamp(24px, 3.5vw, 40px);
   border-radius: var(--radius-lg);
   background: var(--surface);
@@ -57,8 +58,9 @@
 .brand--mekko span:first-child { font-weight: 700; }
 .brand--mekko span:last-child { font-weight: 400; }
 
+.partners__needs { padding-top: clamp(22px, 3vw, 32px); border-top: 1px solid var(--line); }
 .partners__label { font-weight: 700; font-size: 15px; margin-bottom: 14px; }
-.needs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.needs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .need {
   display: flex;
   align-items: center;
@@ -92,12 +94,10 @@
 .need__arrow { width: 18px; height: 18px; flex-shrink: 0; color: var(--muted); transition: transform 0.25s ease, color 0.25s ease; }
 .need:hover .need__arrow { transform: translateX(4px); color: var(--blue); }
 
-@media (max-width: 1180px) {
-  .partners__card { grid-template-columns: 1fr; }
-  .partners__brands { justify-content: space-between; flex-wrap: wrap; }
+@media (max-width: 900px) {
+  .needs { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 760px) {
-  .needs { grid-template-columns: 1fr; }
   .partners__brands { flex-direction: column; align-items: flex-start; gap: 20px; }
   .partners__logos { width: 100%; }
   .brand { flex: 1; justify-content: center; }
