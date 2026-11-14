@@ -1,0 +1,131 @@
+.mekko {
+  background: linear-gradient(180deg, #f7f9ff 0%, #eef3ff 100%);
+  overflow: hidden;
+}
+.mekko__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 88px);
+  align-items: center;
+}
+
+/* Visual */
+.mekko__visual { position: relative; }
+.mekko__frame {
+  border-radius: var(--radius-lg);
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.mekko__bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  background: #fafbff;
+}
+.mekko__bar span { width: 11px; height: 11px; border-radius: 50%; background: #dde3f2; }
+.mekko__bar span:first-child { background: #ff6b6b; }
+.mekko__bar span:nth-child(2) { background: #ffc145; }
+.mekko__bar span:nth-child(3) { background: #36cf7a; }
+.mekko__bar em {
+  margin-left: 12px;
+  font-style: normal;
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mekko__chart {
+  display: flex;
+  gap: 4px;
+  height: clamp(260px, 30vw, 360px);
+  padding: 24px 24px 16px;
+}
+.mk-col { display: flex; flex-direction: column; min-width: 0; flex-basis: 0; }
+.mk-col small {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.mk-stack { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.mk-seg {
+  flex-basis: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 12px;
+  transform-origin: bottom;
+  opacity: 0;
+  transform: scaleY(0.4);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--delay);
+}
+.mk-seg b { font-weight: 700; opacity: 0.95; }
+.mk-seg--0 { background: #1b2f8f; }
+.mk-seg--1 { background: #2449e8; }
+.mk-seg--2 { background: #3b82f6; }
+.mk-seg--3 { background: #93c0ff; color: #0b1640; }
+.is-visible .mk-seg { opacity: 1; transform: none; }
+
+.mekko__badge {
+  position: absolute;
+  right: -14px;
+  bottom: -18px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: var(--navy);
+  color: #c9d5f7;
+  font-size: 14px;
+  box-shadow: var(--shadow);
+}
+.mekko__badge strong { color: #fff; }
+
+/* Copy */
+.mekko__types {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.mekko__types li {
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 600;
+  background: #fff;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.mekko__types li:hover { border-color: var(--blue); color: var(--blue); }
+.mekko__points { list-style: none; padding: 0; margin: 26px 0 32px; display: grid; gap: 12px; }
+.mekko__points li { display: flex; align-items: center; gap: 12px; font-weight: 500; }
+.mekko__points svg {
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  border-radius: 50%;
+  background: #e3ebff;
+  color: var(--blue);
+  stroke-width: 2.6;
+  flex-shrink: 0;
+}
+
+@media (max-width: 960px) {
+  .mekko__inner { grid-template-columns: 1fr; }
+  .mekko__visual { order: 2; max-width: 640px; width: 100%; margin-inline: auto; }
+}
+@media (max-width: 560px) {
+  .mekko__chart { padding: 16px 12px 12px; }
+  .mk-seg { font-size: 10px; }
+  .mekko__badge { right: 8px; bottom: -16px; font-size: 13px; }
+}
