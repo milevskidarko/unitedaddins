@@ -77,6 +77,29 @@
   box-shadow: 0 0 0 4px rgba(36, 73, 232, 0.15);
 }
 .form__submit { width: 100%; margin-top: 6px; }
+.form__submit:disabled { opacity: 0.7; cursor: wait; transform: none; }
+.form__hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form__error {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fff1f1;
+  color: #c62828;
+  font-size: 14px;
+}
+.contact__mail {
+  margin-top: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+.contact__mail:hover { background: rgba(255, 255, 255, 0.24); }
+.contact__mail svg { width: 20px; height: 20px; }
 
 .form__done {
   min-height: 420px;

@@ -19,7 +19,7 @@ export default function Footer() {
             <div className="footer__social">
               <a href="#" aria-label="LinkedIn"><LinkedIn /></a>
               <a href="#" aria-label="YouTube"><YouTube /></a>
-              <a href="#contact" aria-label="Email"><Mail /></a>
+              <a href="mailto:sales@unitedaddins.com" aria-label="Email sales@unitedaddins.com"><Mail /></a>
             </div>
           </div>
           {cols.map((c) => (

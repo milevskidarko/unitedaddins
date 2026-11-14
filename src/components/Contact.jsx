@@ -1,16 +1,53 @@
 import { useState } from 'react'
-import { Arrow, Check } from './Icons.jsx'
+import { Arrow, Check, Mail } from './Icons.jsx'
 import './Contact.css'
+
+const SALES_EMAIL = 'sales@unitedaddins.com'
+// FormSubmit forwards the form to SALES_EMAIL (first submission sends a one-time activation email).
+const ENDPOINT = `https://formsubmit.co/ajax/${SALES_EMAIL}`
 
 const products = ['Foxit PDF Editor', 'Foxit PDF Editor+', 'Foxit eSign', 'Mekko Graphics', 'Not sure yet']
 
 export default function Contact() {
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
-    // TODO: connect to a form backend / email service.
-    setSent(true)
+    const form = e.currentTarget
+    const data = Object.fromEntries(new FormData(form))
+    if (data._honey) return // spam bot
+
+    setSending(true)
+    setError('')
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `New quote request — ${data.product || 'General'} (${data.company || data.email})`,
+          _replyto: data.email,
+          _template: 'table',
+          _captcha: 'false',
+          'First name': data.firstName,
+          'Last name': data.lastName,
+          Email: data.email,
+          Company: data.company,
+          'Number of licenses': data.licenses,
+          Product: data.product,
+          Message: data.message,
+        }),
+      })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok || json.success === 'false' || json.success === false) throw new Error(json.message)
+      form.reset()
+      setSent(true)
+    } catch {
+      setError(`Something went wrong. Please try again or email us at ${SALES_EMAIL}.`)
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -29,6 +66,9 @@ export default function Contact() {
               <li><Check /> Trials and product demos</li>
               <li><Check /> Renewals and upgrades handled for you</li>
             </ul>
+            <a className="contact__mail" href={`mailto:${SALES_EMAIL}`}>
+              <Mail /> {SALES_EMAIL}
+            </a>
           </div>
 
           <form className="form" onSubmit={onSubmit}>
@@ -78,8 +118,10 @@ export default function Contact() {
                   <span>Message</span>
                   <textarea name="message" rows="3" />
                 </label>
-                <button type="submit" className="btn btn-primary form__submit">
-                  Request a quote <Arrow />
+                <input type="text" name="_honey" tabIndex="-1" autoComplete="off" className="form__hp" aria-hidden="true" />
+                {error && <p className="form__error" role="alert">{error}</p>}
+                <button type="submit" className="btn btn-primary form__submit" disabled={sending}>
+                  {sending ? 'Sending…' : <>Request a quote <Arrow /></>}
                 </button>
               </>
             )}
