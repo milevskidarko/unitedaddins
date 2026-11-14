@@ -1,5 +1,6 @@
 import { Arrow, Shield, Pen, Sign, Bolt, Check } from './Icons.jsx'
 import CountUp from './CountUp.jsx'
+import ProductPreview from './ProductPreview.jsx'
 import './Foxit.css'
 
 // Product copy verified against foxit.com (Nov 2026).
@@ -8,18 +9,21 @@ const products = [
     name: 'Foxit PDF Editor',
     text: 'Professional PDF editing for Windows, macOS and Web — create, edit, convert, fill & sign and securely manage PDFs, with AI Assistant included.',
     tone: 'orange',
+    preview: 'editor',
     platforms: ['Windows', 'macOS', 'Web'],
   },
   {
     name: 'Foxit PDF Editor+',
     text: 'Everything in PDF Editor, plus mobile apps for iOS & Android, Smart Redact and Foxit eSign with 150 envelopes per year.',
     tone: 'violet',
+    preview: 'editorPlus',
     platforms: ['Windows', 'macOS', 'Web', 'iOS', 'Android'],
   },
   {
     name: 'Foxit eSign',
     text: 'Standalone eSignature for teams — reusable templates, bulk sending, audit trails and signature certificates. ESIGN, UETA and eIDAS aligned. Essentials: 250 envelopes/year · Business: unlimited.',
     tone: 'blue',
+    preview: 'esign',
     platforms: ['Web', 'Mobile app'],
   },
 ]
@@ -60,13 +64,7 @@ export default function Foxit({ onAddToQuote }) {
         <div className="foxit__grid">
           {products.map((p, i) => (
             <article key={p.name} className={`product product--${p.tone}`} data-reveal style={{ '--d': `${i * 0.08}s` }}>
-              <span className="product__icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="currentColor" opacity=".25" />
-                  <path d="M14 2v6h6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-                  <text x="12" y="17.5" textAnchor="middle" fontSize="6" fontWeight="800" fill="currentColor" fontFamily="inherit">PDF</text>
-                </svg>
-              </span>
+              <ProductPreview kind={p.preview} />
               <h3>{p.name}</h3>
               <p>{p.text}</p>
               <ul className="product__platforms">

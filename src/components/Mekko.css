@@ -54,6 +54,8 @@
   color: var(--muted);
 }
 .mk-stack { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+/* Segments animate in with a keyframe (not a transition) so the animation also
+   replays when the user switches chart type and the chart re-mounts. */
 .mk-seg {
   flex-basis: 0;
   display: grid;
@@ -62,17 +64,61 @@
   color: #fff;
   font-size: 12px;
   transform-origin: bottom;
-  opacity: 0;
-  transform: scaleY(0.4);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
-  transition-delay: var(--delay);
 }
+.mekko__visual:not(.is-visible) .mk-seg { opacity: 0; }
+.mekko__visual.is-visible .mk-seg { animation: mkIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: var(--delay); }
+@keyframes mkIn { from { opacity: 0; transform: scaleY(0.4); } }
 .mk-seg b { font-weight: 700; opacity: 0.95; }
 .mk-seg--0 { background: #1b2f8f; }
 .mk-seg--1 { background: #2449e8; }
 .mk-seg--2 { background: #3b82f6; }
 .mk-seg--3 { background: #93c0ff; color: #0b1640; }
-.is-visible .mk-seg { opacity: 1; transform: none; }
+.mk-seg--up { background: #3b82f6; }
+.mk-seg--down { background: #93c0ff; color: #0b1640; }
+
+/* Chart-type tabs */
+.mekko__tabs {
+  display: flex;
+  gap: 4px;
+  margin: 14px 18px 0;
+  padding: 4px;
+  border-radius: 12px;
+  background: #f1f4fc;
+  width: fit-content;
+  max-width: calc(100% - 36px);
+}
+.mekko__tabs button {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 7px 14px;
+  border-radius: 9px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+.mekko__tabs button:hover { color: var(--ink); }
+.mekko__tabs button.is-active { background: #fff; color: var(--blue); box-shadow: var(--shadow-sm); }
+.mekko__caption {
+  margin: 0;
+  padding: 0 24px 36px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Bar Mekko: one bar per column, bottom-aligned */
+.mk-stack--bottom { justify-content: flex-end; }
+.mk-stack--bottom .mk-seg { flex: none; min-height: 28px; }
+.mk-col small i { display: block; font-style: normal; font-weight: 500; opacity: 0.8; }
+
+/* Waterfall: floating bars positioned on a shared scale */
+.mekko__chart--wf { gap: 8px; }
+.mk-stack--wf { position: relative; }
+.mk-stack--wf .mk-seg { position: absolute; left: 0; right: 0; min-height: 22px; }
 
 .mekko__badge {
   position: absolute;
@@ -127,5 +173,10 @@
 @media (max-width: 560px) {
   .mekko__chart { padding: 16px 12px 12px; }
   .mk-seg { font-size: 10px; }
+  .mekko__tabs { margin: 12px 12px 0; max-width: calc(100% - 24px); }
+  .mekko__tabs button { padding: 6px 10px; font-size: 12px; }
+  .mekko__chart--wf { gap: 4px; }
+  .mk-col small { font-size: 10px; }
+  .mekko__caption { padding: 0 12px 36px; font-size: 12px; }
   .mekko__badge { right: 8px; bottom: -16px; font-size: 13px; }
 }
