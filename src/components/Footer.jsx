@@ -11,11 +11,13 @@ const cols = [
 export default function Footer() {
   return (
     <footer className="footer">
+      <span className="footer__arc" aria-hidden="true" />
       <div className="container">
         <div className="footer__top">
           <div className="footer__brand">
-            <Logo tagline />
-            <p>The right software. The right partnership.</p>            <div className="footer__social">
+            <Logo tagline light />
+            <p>The right software. The right partnership.</p>
+            <div className="footer__social">
               <a
                 href="https://www.linkedin.com/company/united-addins/"
                 target="_blank"

@@ -74,7 +74,9 @@ export default function Contact({ quote, setQuote }) {
   const items = quote.items
   const type = TYPES[quote.type]
   const selected = PRODUCTS.filter((p) => items[p.name])
-  const summary = selected.map((p) => `${p.name} × ${items[p.name]} ${type.unit}`).join(', ')
+  // "licenses to renew" → "license to renew" when there is exactly one.
+  const unitFor = (n) => (n === 1 ? type.unit.replace('licenses', 'license') : type.unit)
+  const summary = selected.map((p) => `${p.name} × ${items[p.name]} ${unitFor(items[p.name])}`).join(', ')
 
   const toggle = (name) =>
     setQuote((q) => {

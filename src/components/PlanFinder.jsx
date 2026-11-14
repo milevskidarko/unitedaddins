@@ -3,8 +3,8 @@ import { Arrow, Check, Sign, Phone, Shield } from './Icons.jsx'
 import './PlanFinder.css'
 
 // Recommendation rules are based on verified Foxit plan contents (foxit.com, Nov 2026):
-// PDF Editor   = Windows, macOS, Web; fill-and-sign only
-// PDF Editor+  = + iOS & Android apps, AI Smart Redact, Foxit eSign with 150 envelopes/year
+// PDF Editor   = Windows, macOS, Web; fill-and-sign only; AI Assistant (300 credits/month)
+// PDF Editor+  = + iOS & Android apps, Smart Redact, Foxit eSign with 150 envelopes/year
 // Foxit eSign  = dedicated eSignature workflows for higher volumes
 const QUESTIONS = [
   {
@@ -45,7 +45,25 @@ const QUESTIONS = [
 
 function recommend(a) {
   const reasons = []
-  const plus = a.esign !== 'no' || a.mobile === 'yes' || a.sensitive === 'yes'
+  const lots = a.esign === 'lots'
+  // Mobile or Smart Redact always need Editor+. Occasional signing is covered by
+  // the 150 envelopes in Editor+. High-volume signing is covered by standalone
+  // Foxit eSign, so it does not require Editor+ by itself.
+  const plus = a.mobile === 'yes' || a.sensitive === 'yes' || a.esign === 'some'
+
+  if (!plus && lots) {
+    return {
+      products: ['Foxit PDF Editor', 'Foxit eSign'],
+      title: 'Foxit PDF Editor & Foxit eSign',
+      tone: 'blue',
+      text: 'PDF Editor for desktop & web editing, plus Foxit eSign for team-wide, high-volume signature workflows.',
+      reasons: [
+        'Foxit eSign for team-wide, high-volume signing',
+        'Desktop & web editing on Windows, macOS & Web',
+        'AI Assistant with 300 free credits per month',
+      ],
+    }
+  }
 
   if (!plus) {
     return {
@@ -53,16 +71,21 @@ function recommend(a) {
       title: 'Foxit PDF Editor',
       tone: 'orange',
       text: 'Professional PDF editing for Windows, macOS and Web — everything you need to create, edit, convert and fill & sign PDFs.',
-      reasons: ['Desktop & web editing covers your workflow', 'Fill & sign included', 'Simple per-user subscription'],
+      reasons: [
+        'Desktop & web editing covers your workflow',
+        'Fill & sign included',
+        'AI Assistant with 300 free credits per month',
+        'Simple per-user subscription',
+      ],
     }
   }
 
   if (a.esign === 'some') reasons.push('Includes Foxit eSign with 150 envelopes per year')
   if (a.mobile === 'yes') reasons.push('Mobile apps for iOS & Android')
-  if (a.sensitive === 'yes') reasons.push('AI Smart Redact for removing sensitive data')
+  if (a.sensitive === 'yes') reasons.push('Smart Redact for removing sensitive data')
   reasons.push('Everything in PDF Editor on Windows, macOS & Web')
 
-  if (a.esign === 'lots') {
+  if (lots) {
     return {
       products: ['Foxit PDF Editor+', 'Foxit eSign'],
       title: 'Foxit PDF Editor+ & Foxit eSign',

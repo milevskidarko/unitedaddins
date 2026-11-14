@@ -108,6 +108,7 @@
 
 .finder__result { --tone: var(--orange); display: flex; flex-direction: column; }
 .finder__result--violet { --tone: var(--violet); }
+.finder__result--blue { --tone: var(--blue); }
 .finder__result small {
   align-self: flex-start;
   font-size: 12px;

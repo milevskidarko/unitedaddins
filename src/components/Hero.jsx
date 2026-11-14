@@ -1,7 +1,13 @@
-import { Arrow, Shield, Bolt, Headset, Check, Sign } from './Icons.jsx'
+import { Arrow, Shield, Bolt, Headset, Check, Sign, Key } from './Icons.jsx'
 import './Hero.css'
 
-const bars = [38, 52, 46, 64, 58, 78, 72, 92]
+// Illustrative Marimekko for the Mekko Graphics window: column width = segment size.
+const mekko = [
+  { w: 34, parts: [40, 30, 18, 12] },
+  { w: 26, parts: [28, 34, 24, 14] },
+  { w: 22, parts: [22, 26, 34, 18] },
+  { w: 18, parts: [34, 22, 24, 20] },
+]
 
 export default function Hero() {
   return (
@@ -39,68 +45,68 @@ export default function Hero() {
           </ul>
         </div>
 
+        {/* Stylized, illustrative product windows: a PDF being redacted & signed, and a Mekko chart. */}
         <div className="hero__visual" aria-hidden="true">
-          <div className="glass card-doc float-a">
-            <div className="card-doc__head">
-              <span className="sq" />
-              <span className="ln ln--w60" />
+          <div className="glass win win--pdf float-a">
+            <div className="win__bar">
+              <span className="win__app win__app--pdf">PDF</span>
+              <em>Service agreement.pdf</em>
             </div>
-            <span className="ln ln--w90" />
-            <span className="ln ln--w75" />
-            <span className="ln ln--w80" />
-            <svg className="wave" viewBox="0 0 300 110" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="wv1" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stopColor="#3b82f6" stopOpacity=".55" />
-                  <stop offset="1" stopColor="#3b82f6" stopOpacity=".05" />
-                </linearGradient>
-                <linearGradient id="wv2" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stopColor="#2449e8" stopOpacity=".8" />
-                  <stop offset="1" stopColor="#2449e8" stopOpacity=".2" />
-                </linearGradient>
-              </defs>
-              <path d="M0 70 C50 30 90 40 140 55 S230 20 300 35 V110 H0Z" fill="url(#wv1)" />
-              <path d="M0 90 C60 60 110 85 160 72 S250 50 300 62 V110 H0Z" fill="url(#wv2)" />
-            </svg>
+            <div className="win__page">
+              <span className="ln ln--h ln--w60" />
+              <span className="ln ln--w90" />
+              <span className="ln ln--w75" />
+              <span className="redact-row">
+                <span className="ln ln--w30" />
+                <span className="redact" />
+                <span className="ln ln--w20" />
+              </span>
+              <span className="ln ln--w80" />
+              <span className="ln ln--w60" />
+              <div className="sig">
+                <svg viewBox="0 0 160 44">
+                  <path d="M6 30c10-14 18-22 22-18s-8 22-2 22 14-26 22-24-4 20 2 20 10-12 16-12 4 10 10 10 12-8 20-10 16 2 26-2 14-6 26-6" />
+                </svg>
+                <small>Signed</small>
+              </div>
+            </div>
           </div>
 
-          <div className="glass card-bars float-b">
-            <div className="card-bars__top">
-              <span>
-                <small>License usage</small>
-                <strong>+128%</strong>
-              </span>
-              <em>Q4</em>
+          <div className="glass win win--mekko float-b">
+            <div className="win__bar">
+              <span className="win__app win__app--mekko">M</span>
+              <em>Market share.pptx</em>
             </div>
-            <div className="bars">
-              {bars.map((h, i) => (
-                <span key={i} style={{ '--h': `${h}%`, '--i': i }} />
+            <div className="mini-mekko">
+              {mekko.map((c, ci) => (
+                <span key={ci} className="mini-mekko__col" style={{ flexGrow: c.w }}>
+                  {c.parts.map((p, pi) => (
+                    <span
+                      key={pi}
+                      className={`mini-mekko__seg mini-mekko__seg--${pi}`}
+                      style={{ flexGrow: p, '--delay': `${0.5 + 0.12 * ci + 0.06 * pi}s` }}
+                    />
+                  ))}
+                </span>
               ))}
             </div>
           </div>
 
-          <div className="glass card-donut float-c">
-            <svg viewBox="0 0 42 42" className="donut">
-              <circle cx="21" cy="21" r="15.9" fill="none" stroke="#e3e9ff" strokeWidth="6" />
-              <circle cx="21" cy="21" r="15.9" fill="none" stroke="url(#dg)" strokeWidth="6"
-                strokeDasharray="72 28" strokeDashoffset="25" strokeLinecap="round" className="donut__ring" />
-              <defs>
-                <linearGradient id="dg"><stop offset="0" stopColor="#2449e8" /><stop offset="1" stopColor="#60a5fa" /></linearGradient>
-              </defs>
-            </svg>
-            <div>
-              <strong>72%</strong>
-              <small>Seats active</small>
-            </div>
+          <div className="glass chip chip--quote float-c">
+            <span className="chip__ic chip__ic--blue"><Key /></span>
+            <span>
+              <strong>Quote request sent</strong>
+              <small>Foxit PDF Editor+ × 25 licenses</small>
+            </span>
           </div>
 
-          <div className="glass chip-sign float-d">
-            <span className="chip-sign__ic"><Sign /></span>
+          <div className="glass chip chip--sign float-d">
+            <span className="chip__ic chip__ic--orange"><Sign /></span>
             <span>
               <strong>Contract signed</strong>
               <small>via Foxit eSign · just now</small>
             </span>
-            <Check className="chip-sign__ok" />
+            <Check className="chip__ok" />
           </div>
         </div>
       </div>

@@ -107,7 +107,7 @@ export default function Header() {
 
       {/* Mobile drawer — rendered outside <header>: the header's backdrop-filter
           would otherwise become the containing block of this fixed element. */}
-      <div className={`drawer ${open ? 'is-open' : ''}`} aria-hidden={!open}>
+      <div className={`drawer ${open ? 'is-open' : ''}`} aria-hidden={!open} inert={open ? undefined : ''}>
         <div className="drawer__body">
           {NAV.map((n, i) => (
             <div key={n.label} className={`drawer__group ${expanded === i ? 'is-open' : ''}`}>

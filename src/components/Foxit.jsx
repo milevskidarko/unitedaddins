@@ -1,17 +1,18 @@
 import { Arrow, Shield, Pen, Sign, Bolt, Check } from './Icons.jsx'
+import CountUp from './CountUp.jsx'
 import './Foxit.css'
 
 // Product copy verified against foxit.com (Nov 2026).
 const products = [
   {
     name: 'Foxit PDF Editor',
-    text: 'Professional PDF editing for Windows, macOS and Web — create, edit, convert, sign and securely manage PDFs.',
+    text: 'Professional PDF editing for Windows, macOS and Web — create, edit, convert, fill & sign and securely manage PDFs, with AI Assistant included.',
     tone: 'orange',
     platforms: ['Windows', 'macOS', 'Web'],
   },
   {
     name: 'Foxit PDF Editor+',
-    text: 'Everything in PDF Editor, plus mobile apps for iOS & Android, AI Smart Redact and Foxit eSign with 150 envelopes per year.',
+    text: 'Everything in PDF Editor, plus mobile apps for iOS & Android, Smart Redact and Foxit eSign with 150 envelopes per year.',
     tone: 'violet',
     platforms: ['Desktop', 'Web', 'iOS', 'Android'],
   },
@@ -25,8 +26,8 @@ const products = [
 
 const features = [
   { icon: Pen, label: 'Create, edit & convert' },
-  { icon: Shield, label: 'AI Smart Redact' },
-  { icon: Bolt, label: 'PDF AI Assistant' },
+  { icon: Shield, label: 'Smart Redact (Editor+)' },
+  { icon: Bolt, label: 'AI Assistant' },
   { icon: Sign, label: 'eSign workflows' },
 ]
 
@@ -85,11 +86,11 @@ export default function Foxit({ onAddToQuote }) {
           <aside className="stats" data-reveal style={{ '--d': '0.24s' }}>
             <h3>Proven business value</h3>
             <dl className="stats__list">
-              <div><dt>284%</dt><dd>ROI</dd></div>
-              <div><dt>&lt;6 mo</dt><dd>Payback period</dd></div>
-              <div><dt>2001</dt><dd>Innovating since</dd></div>
+              <div><dt><CountUp to={284} suffix="%" /></dt><dd>ROI</dd></div>
+              <div><dt><CountUp to={6} from={24} prefix="<" suffix=" mo" duration={1100} /></dt><dd>Payback period</dd></div>
+              <div><dt><CountUp to={2001} from={1980} duration={1200} /></dt><dd>Innovating since</dd></div>
             </dl>
-            <p className="stats__foot"><Check /> Validated by a Forrester Total Economic Impact™ study</p>
+            <p className="stats__foot"><Check /> Forrester Total Economic Impact™ study commissioned by Foxit (2022)</p>
           </aside>
         </div>
       </div>
