@@ -9,6 +9,13 @@
   gap: 40px;
 }
 .footer__brand p { margin-top: 18px; color: var(--muted); max-width: 300px; }
+.footer__email {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 600;
+  color: var(--blue);
+}
+.footer__email:hover { text-decoration: underline; }
 .footer__social { display: flex; gap: 10px; margin-top: 22px; }
 .footer__social a {
   width: 42px;

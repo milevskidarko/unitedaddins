@@ -1,5 +1,5 @@
 import Logo from './Logo.jsx'
-import { LinkedIn, YouTube, Mail } from './Icons.jsx'
+import { LinkedIn, Mail } from './Icons.jsx'
 import './Footer.css'
 
 const cols = [
@@ -16,9 +16,16 @@ export default function Footer() {
           <div className="footer__brand">
             <Logo tagline />
             <p>The right software. The right partnership.</p>
+            <a className="footer__email" href="mailto:sales@unitedaddins.com">sales@unitedaddins.com</a>
             <div className="footer__social">
-              <a href="#" aria-label="LinkedIn"><LinkedIn /></a>
-              <a href="#" aria-label="YouTube"><YouTube /></a>
+              <a
+                href="https://www.linkedin.com/company/united-addins/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="United Addins on LinkedIn"
+              >
+                <LinkedIn />
+              </a>
               <a href="mailto:sales@unitedaddins.com" aria-label="Email sales@unitedaddins.com"><Mail /></a>
             </div>
           </div>
