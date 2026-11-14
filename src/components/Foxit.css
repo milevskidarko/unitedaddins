@@ -441,3 +441,28 @@
   .stats__list dt { font-size: 42px; }
   .stats__list dd { margin: 0; text-align: right; font-size: 13.5px; }
 }
+
+/* Editor+ highlighted as the most complete package */
+.product--featured {
+  border-color: transparent;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    linear-gradient(140deg, #a78bfa, #7c5cff 40%, #3b82f6) border-box;
+  border: 1.5px solid transparent;
+  box-shadow: 0 24px 50px -28px rgba(124, 92, 255, 0.6);
+}
+.product__badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(120deg, #7c5cff, #3b5bff);
+  box-shadow: 0 8px 18px -8px rgba(124, 92, 255, 0.8);
+}

@@ -7,29 +7,30 @@ import './Foxit.css'
 const products = [
   {
     name: 'Foxit PDF Editor',
-    text: 'Professional PDF editing for Windows, macOS and Web — create, edit, convert, fill & sign and securely manage PDFs, with AI Assistant included.',
+    text: 'Professional PDF editing for Windows, macOS and Web. Create, edit, convert, organize, fill and sign PDFs — with built-in AI Assistant.',
     tone: 'orange',
     preview: 'editor',
     platforms: ['Windows', 'macOS', 'Web'],
-    // PDF Editor is the only Foxit plan also sold as a one-time license.
+    // PDF Editor is the only Foxit plan also sold as a one-time license. Exclusions as worded by Foxit.
     perpetual: true,
-    note: { icon: Key, text: 'Also as a one-time perpetual license — Windows & macOS, without AI Assistant.' },
+    note: { icon: Key, text: 'Perpetual license available: one-time purchase for Windows & macOS, without AI Assistant, DMS or cloud features.' },
   },
   {
     name: 'Foxit PDF Editor+',
-    text: 'Everything in PDF Editor, plus mobile apps for iOS & Android and Smart Redact for removing sensitive data.',
+    text: 'The complete package: everything in PDF Editor, plus AI-powered Smart Redact and mobile apps for iOS & Android.',
     tone: 'violet',
     preview: 'editorPlus',
     platforms: ['Windows', 'macOS', 'Web', 'iOS', 'Android'],
     note: { icon: Sign, text: 'Includes Foxit eSign with 150 envelopes per year.' },
+    badge: 'Most complete',
   },
   {
     name: 'Foxit eSign',
-    text: 'Standalone eSignature for teams — reusable templates, bulk sending, audit trails and signature certificates. ESIGN, UETA and eIDAS aligned.',
+    text: 'Standalone electronic signatures for individuals and teams — reusable templates, signing workflows, audit trails and signature certificates. ESIGN, UETA and eIDAS aligned.',
     tone: 'blue',
     preview: 'esign',
     platforms: ['Web', 'Mobile app'],
-    note: { icon: Sign, text: 'Essentials: 250 envelopes per year · Business: unlimited.' },
+    note: { icon: Sign, text: 'Essentials: 250 envelopes/year, 10 templates · Business: unlimited envelopes & templates (5+ users).' },
   },
 ]
 
@@ -68,7 +69,13 @@ export default function Foxit({ onAddToQuote }) {
 
         <div className="foxit__grid">
           {products.map((p, i) => (
-            <article key={p.name} className={`product product--${p.tone} spot`} data-reveal style={{ '--d': `${i * 0.08}s` }}>
+            <article
+              key={p.name}
+              className={`product product--${p.tone} spot ${p.badge ? 'product--featured' : ''}`}
+              data-reveal
+              style={{ '--d': `${i * 0.08}s` }}
+            >
+              {p.badge && <span className="product__badge">{p.badge}</span>}
               <ProductPreview kind={p.preview} />
               <h3>{p.name}</h3>
               <p>{p.text}</p>
@@ -104,17 +111,17 @@ export default function Foxit({ onAddToQuote }) {
 
           <aside className="stats" data-reveal style={{ '--d': '0.24s' }}>
             <h3>Proven business value</h3>
-            <p className="stats__sub">Foxit PDF Editor, per Forrester</p>
+            <p className="stats__sub">Forrester Total Economic Impact™ study of Foxit PDF Editor</p>
             <dl className="stats__list">
               <div><dt><CountUp to={284} suffix="%" /></dt><dd>ROI</dd></div>
               <div><dt><CountUp to={6} from={24} prefix="<" suffix="mo" duration={1100} /></dt><dd>Payback period</dd></div>
-              <div><dt><CountUp to={2001} from={1980} duration={1200} /></dt><dd>Innovating since</dd></div>
+              <div><dt><CountUp to={2001} from={1980} duration={1200} /></dt><dd>Foxit founded</dd></div>
             </dl>
             <p className="stats__foot">
               <Check />
               <span>
-                Forrester Total Economic Impact™ study commissioned by Foxit (2022). Results are
-                for a modeled composite organization; your results may vary.{' '}
+                Study commissioned by Foxit (2022). Results are based on a modeled composite
+                organization and are not a guarantee of individual results.{' '}
                 <a
                   href="https://cdn01.foxitsoftware.com/pub/foxit/whitepaper/general/en_us/tei-of-foxit-pdf-editor.pdf"
                   target="_blank"

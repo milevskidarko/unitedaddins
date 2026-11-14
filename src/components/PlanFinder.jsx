@@ -71,7 +71,7 @@ function recommend(a) {
     'Create, edit, convert and fill & sign PDFs',
   ]
   const perpetualNote =
-    'The perpetual license does not include AI Assistant or cloud features, and updates cover the version you buy.'
+    'The perpetual license does not include AI Assistant, Smart Redact, DMS or cloud features.'
 
   if (!plus && lots) {
     return {
