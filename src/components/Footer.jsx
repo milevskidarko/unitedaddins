@@ -15,9 +15,7 @@ export default function Footer() {
         <div className="footer__top">
           <div className="footer__brand">
             <Logo tagline />
-            <p>The right software. The right partnership.</p>
-            <a className="footer__email" href="mailto:sales@unitedaddins.com">sales@unitedaddins.com</a>
-            <div className="footer__social">
+            <p>The right software. The right partnership.</p>            <div className="footer__social">
               <a
                 href="https://www.linkedin.com/company/united-addins/"
                 target="_blank"
