@@ -90,7 +90,20 @@ export default function Foxit({ onAddToQuote }) {
               <div><dt><CountUp to={6} from={24} prefix="<" suffix="mo" duration={1100} /></dt><dd>Payback period</dd></div>
               <div><dt><CountUp to={2001} from={1980} duration={1200} /></dt><dd>Innovating since</dd></div>
             </dl>
-            <p className="stats__foot"><Check /> Forrester Total Economic Impact™ study commissioned by Foxit (2022)</p>
+            <p className="stats__foot">
+              <Check />
+              <span>
+                Forrester Total Economic Impact™ study commissioned by Foxit (2022). Results are
+                for a modeled composite organization; your results may vary.{' '}
+                <a
+                  href="https://cdn01.foxitsoftware.com/pub/foxit/whitepaper/general/en_us/tei-of-foxit-pdf-editor.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Read the study
+                </a>
+              </span>
+            </p>
           </aside>
         </div>
       </div>

@@ -187,12 +187,15 @@
   margin-top: auto;
   padding-top: 24px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 1.45;
   color: #d5defa;
 }
-.stats__foot svg { width: 22px; height: 22px; padding: 4px; border-radius: 50%; border: 1.5px solid #8fb2ff; stroke-width: 2.5; }
+.stats__foot svg { flex-shrink: 0; width: 22px; height: 22px; padding: 4px; border-radius: 50%; border: 1.5px solid #8fb2ff; stroke-width: 2.5; }
+.stats__foot a { color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.stats__foot a:hover { color: var(--sky); }
 
 @media (max-width: 1180px) {
   .foxit__grid { grid-template-columns: repeat(3, 1fr); }

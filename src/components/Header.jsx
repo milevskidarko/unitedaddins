@@ -24,10 +24,15 @@ const NAV = [
     label: 'Partners',
     items: [
       { icon: Handshake, title: 'Our vendors', text: 'Foxit, Mekko Graphics & more', href: '#partners' },
-      { icon: Cubes, title: 'Become a partner', text: 'Grow with United Addins', href: '#contact' },
+      // The quote form requires a product, so partnership inquiries go by email instead.
+      {
+        icon: Cubes,
+        title: 'Become a partner',
+        text: 'Grow with United Addins',
+        href: 'mailto:sales@unitedaddins.com?subject=Partnership%20inquiry',
+      },
     ],
   },
-  { label: 'Resources', href: '#why' },
   { label: 'About', href: '#why' },
 ]
 
