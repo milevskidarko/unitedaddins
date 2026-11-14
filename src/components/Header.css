@@ -21,6 +21,33 @@
 }
 .header--scrolled .header__inner { height: 68px; }
 
+.logo__text strong { transition: color 0.3s ease; }
+
+/* Reading progress */
+.header__progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--grad-vivid);
+  transform-origin: left;
+  transform: scaleX(var(--p, 0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.header--scrolled .header__progress { opacity: 1; }
+
+/* Logo mark draws itself once on load */
+.header .logo__mark path {
+  stroke-dasharray: 1;
+  animation: logoDraw 1.2s var(--ease) both;
+}
+.header .logo__mark path + path { animation-delay: 0.25s; }
+@keyframes logoDraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.logo:hover .logo__mark { transform: rotate(-4deg) scale(1.04); }
+.logo__mark { transition: transform 0.4s var(--ease); }
+
 /* Logo */
 .logo { display: inline-flex; align-items: center; gap: 12px; flex-shrink: 0; }
 .logo__mark { width: 48px; height: auto; }

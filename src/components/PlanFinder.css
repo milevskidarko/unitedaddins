@@ -145,3 +145,14 @@
   .finder__card { min-height: 0; padding: 20px 16px; }
   .finder__actions .btn { width: 100%; }
 }
+
+.finder__note {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  background: color-mix(in srgb, var(--tone) 7%, #fff);
+  border: 1px solid color-mix(in srgb, var(--tone) 18%, #fff);
+}

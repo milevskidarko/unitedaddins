@@ -13,7 +13,7 @@ export default function Partners() {
       <div className="container">
         <div className="partners__card" data-reveal>
           <div className="partners__brands">
-            <h2 className="partners__title">Our trusted<br />partners</h2>
+            <h2 className="partners__title">Our trusted<br /><span className="accent grad-text">partners</span></h2>
             <div className="partners__logos">
               <a href="#foxit" className="brand brand--foxit" aria-label="Foxit">Foxit</a>
               <a href="#mekko" className="brand brand--mekko" aria-label="Mekko Graphics">
@@ -27,7 +27,7 @@ export default function Partners() {
             <p className="partners__label">Explore by need</p>
             <div className="needs">
               {needs.map((n, i) => (
-                <a key={n.title} href={n.href} className="need" data-reveal style={{ '--d': `${0.1 + i * 0.08}s` }}>
+                <a key={n.title} href={n.href} className="need spot" data-reveal style={{ '--d': `${0.1 + i * 0.08}s` }}>
                   <span className="need__icon"><n.icon /></span>
                   <span className="need__body">
                     <strong>{n.title}</strong>

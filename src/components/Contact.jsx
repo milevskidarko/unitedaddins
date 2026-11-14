@@ -12,7 +12,8 @@ const FORM_EMAIL = import.meta.env.VITE_FORM_EMAIL || DELIVERY_EMAIL
 const ENDPOINT = `https://formsubmit.co/ajax/${FORM_EMAIL}`
 
 const PRODUCTS = [
-  { name: 'Foxit PDF Editor', note: 'Windows, macOS, Web', tone: 'orange' },
+  // perpetual: also sold as a one-time license (Windows & macOS). Prices are quoted individually.
+  { name: 'Foxit PDF Editor', note: 'Windows, macOS, Web', tone: 'orange', perpetual: true },
   { name: 'Foxit PDF Editor+', note: '+ mobile, Smart Redact, eSign', tone: 'violet' },
   { name: 'Foxit eSign', note: 'Templates, bulk send, audit trails', tone: 'blue' },
   { name: 'Mekko Graphics', note: 'Add-in for PowerPoint & Excel', tone: 'navy' },
@@ -76,7 +77,11 @@ export default function Contact({ quote, setQuote }) {
   const selected = PRODUCTS.filter((p) => items[p.name])
   // "licenses to renew" → "license to renew" when there is exactly one.
   const unitFor = (n) => (n === 1 ? type.unit.replace('licenses', 'license') : type.unit)
-  const summary = selected.map((p) => `${p.name} × ${items[p.name]} ${unitFor(items[p.name])}`).join(', ')
+  const isPerpetual = (p) => p.perpetual && quote.perpetual
+  const summary = selected
+    .map((p) => `${p.name}${isPerpetual(p) ? ' (perpetual)' : ''} × ${items[p.name]} ${unitFor(items[p.name])}`)
+    .join(', ')
+  const perpetualProduct = selected.find((p) => p.perpetual)
 
   const toggle = (name) =>
     setQuote((q) => {
@@ -114,6 +119,9 @@ export default function Contact({ quote, setQuote }) {
           _captcha: 'false',
           'Request type': quote.type,
           Products: summary,
+          ...(perpetualProduct && {
+            [`${perpetualProduct.name} license`]: quote.perpetual ? 'Perpetual (one-time purchase)' : 'Subscription',
+          }),
           ...Object.fromEntries(
             type.fields
               .filter((f) => data[f.name])
@@ -129,7 +137,7 @@ export default function Contact({ quote, setQuote }) {
       const json = await res.json().catch(() => ({}))
       if (!res.ok || json.success === 'false' || json.success === false) throw new Error(json.message)
       form.reset()
-      setQuote({ items: {}, type: 'New purchase' })
+      setQuote({ items: {}, type: 'New purchase', perpetual: false })
       setSent(true)
     } catch {
       setError(`Something went wrong. Please try again or email us at ${SALES_EMAIL}.`)
@@ -144,7 +152,7 @@ export default function Contact({ quote, setQuote }) {
         <div className="contact__card" data-reveal>
           <div className="contact__copy">
             <span className="eyebrow eyebrow--light">Build your quote</span>
-            <h2 className="section-title">Let&apos;s find the right software for your team.</h2>
+            <h2 className="section-title">Let&apos;s find the right software for <span className="accent">your team.</span></h2>
             <p className="contact__lead">
               Pick your products and number of licenses — we&apos;ll come back with a tailored quote.
             </p>
@@ -227,9 +235,25 @@ export default function Contact({ quote, setQuote }) {
                             <span className="qb__check">{on && <Check />}</span>
                             <span className="qb__name">
                               <strong>{p.name}</strong>
-                              <small>{p.note}</small>
+                              <small>{isPerpetual(p) ? 'Windows & macOS · one-time license' : p.note}</small>
                             </span>
                           </button>
+                          {on && p.perpetual && (
+                            <div className="qb__license" role="radiogroup" aria-label={`${p.name} license type`}>
+                              {[['Subscription', false], ['Perpetual (one-time)', true]].map(([label, value]) => (
+                                <button
+                                  key={label}
+                                  type="button"
+                                  role="radio"
+                                  aria-checked={quote.perpetual === value}
+                                  className={quote.perpetual === value ? 'is-active' : ''}
+                                  onClick={() => setQuote((q) => ({ ...q, perpetual: value }))}
+                                >
+                                  {label}
+                                </button>
+                              ))}
+                            </div>
+                          )}
                           {on && (
                             <div className="qb__seats" aria-label={`${p.name} ${type.unit}`} title={type.unit}>
                               <button type="button" onClick={() => setSeats(p.name, items[p.name] - 1)} aria-label="Fewer licenses">−</button>

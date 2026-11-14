@@ -19,13 +19,14 @@ export default function WhyUs() {
     <section className="section why" id="why">
       <div className="why__bg" aria-hidden="true">
         <span /><span />
+        <i className="noise" />
       </div>
       <div className="container why__inner">
         <div className="why__head">
           <div data-reveal>
             <span className="eyebrow eyebrow--light">Why United Addins</span>
             <h2 className="section-title">
-              Software distribution built around <span className="why__accent">your business</span>
+              Software distribution built around <span className="accent grad-text why__accent">your business</span>
             </h2>
           </div>
           <p className="section-lead why__lead" data-reveal style={{ '--d': '0.1s' }}>
@@ -36,7 +37,7 @@ export default function WhyUs() {
 
         <div className="why__grid">
           {items.map((it, i) => (
-            <article key={it.title} className="why-card" data-reveal style={{ '--d': `${i * 0.08}s` }}>
+            <article key={it.title} className="why-card spot" data-reveal style={{ '--d': `${i * 0.08}s` }}>
               <span className="why-card__icon"><it.icon /></span>
               <h3>{it.title}</h3>
               <p>{it.text}</p>

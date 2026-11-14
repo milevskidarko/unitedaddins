@@ -45,6 +45,8 @@ export default function Footer() {
           </p>
         </div>
       </div>
+      <div className="footer__mega" aria-hidden="true">United Addins</div>
+      <span className="noise" aria-hidden="true" />
     </footer>
   )
 }

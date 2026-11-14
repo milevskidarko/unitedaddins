@@ -63,3 +63,22 @@
   .footer__top { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
   .footer__arc { width: 420px; height: 420px; right: -220px; top: -240px; border-width: 30px; }
 }
+
+/* Oversized wordmark that fades into the bottom edge */
+.footer__mega {
+  position: relative;
+  margin-top: -0.12em;
+  font-size: clamp(64px, 15.5vw, 236px);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.8;
+  text-align: center;
+  white-space: nowrap;
+  color: transparent;
+  background: linear-gradient(180deg, rgba(143, 188, 255, 0.35) 0%, rgba(143, 188, 255, 0.04) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  user-select: none;
+  pointer-events: none;
+  translate: 0 0.14em;
+}

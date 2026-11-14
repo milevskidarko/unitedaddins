@@ -9,21 +9,26 @@ import WhyUs from './components/WhyUs.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 import useReveal from './useReveal.js'
+import useSpotlight from './useSpotlight.js'
+import Marquee from './components/Marquee.jsx'
 
 export default function App() {
   useReveal()
+  useSpotlight()
 
   // Quote builder state, shared by the plan finder and the contact form.
   // items: { [productName]: seats }
-  const [quote, setQuote] = useState({ items: {}, type: 'New purchase' })
+  // perpetual: Foxit PDF Editor as a one-time (perpetual) license instead of a subscription
+  const [quote, setQuote] = useState({ items: {}, type: 'New purchase', perpetual: false })
 
-  const addToQuote = (products) => {
+  const addToQuote = (products, opts = {}) => {
     setQuote((q) => {
       const items = { ...q.items }
       products.forEach((p) => {
         if (!items[p]) items[p] = 1
       })
-      return { ...q, items }
+      const perpetual = opts.perpetual === undefined ? q.perpetual : opts.perpetual
+      return { ...q, items, perpetual }
     })
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -34,6 +39,7 @@ export default function App() {
       <main>
         <Hero />
         <Partners />
+        <Marquee />
         <Foxit onAddToQuote={addToQuote} />
         <PlanFinder onAddToQuote={addToQuote} />
         <Mekko onAddToQuote={addToQuote} />

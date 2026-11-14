@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Arrow, Check, Sign, Phone, Shield } from './Icons.jsx'
+import { Arrow, Check, Sign, Phone, Shield, Key } from './Icons.jsx'
 import './PlanFinder.css'
 
 // Recommendation rules are based on verified Foxit plan contents (foxit.com, Nov 2026):
@@ -41,31 +41,70 @@ const QUESTIONS = [
       { value: 'yes', label: 'Yes, regularly' },
     ],
   },
+  {
+    id: 'payment',
+    short: 'How you prefer to pay',
+    icon: Key,
+    title: 'How would you prefer to license it?',
+    hint: 'A perpetual license is a one-time purchase for Windows & macOS.',
+    options: [
+      { value: 'sub', label: 'Subscription — always the latest version' },
+      { value: 'once', label: 'One-time purchase (perpetual license)' },
+    ],
+  },
 ]
 
+// Perpetual licenses exist for PDF Editor only (Windows & macOS, no AI Assistant or
+// cloud features). PDF Editor+ and Foxit eSign are subscription-only.
 function recommend(a) {
   const reasons = []
   const lots = a.esign === 'lots'
+  const once = a.payment === 'once'
   // Mobile or Smart Redact always need Editor+. Occasional signing is covered by
   // the 150 envelopes in Editor+. High-volume signing is covered by standalone
   // Foxit eSign, so it does not require Editor+ by itself.
   const plus = a.mobile === 'yes' || a.sensitive === 'yes' || a.esign === 'some'
 
+  const perpetualReasons = [
+    'One-time purchase — no yearly renewal',
+    'Desktop editing on Windows & macOS',
+    'Create, edit, convert and fill & sign PDFs',
+  ]
+  const perpetualNote =
+    'The perpetual license does not include AI Assistant or cloud features, and updates cover the version you buy.'
+
   if (!plus && lots) {
     return {
       products: ['Foxit PDF Editor', 'Foxit eSign'],
-      title: 'Foxit PDF Editor & Foxit eSign',
+      perpetual: once,
+      title: once ? 'Foxit PDF Editor (perpetual) & Foxit eSign' : 'Foxit PDF Editor & Foxit eSign',
       tone: 'blue',
-      text: 'PDF Editor for desktop & web editing, plus Foxit eSign for team-wide, high-volume signature workflows.',
-      reasons: [
-        'Foxit eSign for team-wide, high-volume signing',
-        'Desktop & web editing on Windows, macOS & Web',
-        'AI Assistant with 300 free credits per month',
-      ],
+      text: once
+        ? 'A one-time PDF Editor license for desktop editing, plus a Foxit eSign subscription for team-wide, high-volume signature workflows.'
+        : 'PDF Editor for desktop & web editing, plus Foxit eSign for team-wide, high-volume signature workflows.',
+      reasons: once
+        ? ['Foxit eSign for team-wide, high-volume signing', ...perpetualReasons.slice(0, 2)]
+        : [
+            'Foxit eSign for team-wide, high-volume signing',
+            'Desktop & web editing on Windows, macOS & Web',
+            'AI Assistant with 300 free credits per month',
+          ],
+      note: once ? `${perpetualNote} Foxit eSign is available as a subscription only.` : null,
     }
   }
 
   if (!plus) {
+    if (once) {
+      return {
+        products: ['Foxit PDF Editor'],
+        perpetual: true,
+        title: 'Foxit PDF Editor — perpetual license',
+        tone: 'orange',
+        text: 'Buy once and keep it — professional PDF editing on Windows and macOS without a yearly subscription.',
+        reasons: perpetualReasons,
+        note: perpetualNote,
+      }
+    }
     return {
       products: ['Foxit PDF Editor'],
       title: 'Foxit PDF Editor',
@@ -80,6 +119,10 @@ function recommend(a) {
     }
   }
 
+  const plusNote = once
+    ? 'PDF Editor+ is available as a subscription only — your answers need features (mobile apps, Smart Redact or eSign) that the perpetual license does not include.'
+    : null
+
   if (a.esign === 'some') reasons.push('Includes Foxit eSign with 150 envelopes per year')
   if (a.mobile === 'yes') reasons.push('Mobile apps for iOS & Android')
   if (a.sensitive === 'yes') reasons.push('Smart Redact for removing sensitive data')
@@ -92,6 +135,7 @@ function recommend(a) {
       tone: 'violet',
       text: 'PDF Editor+ for your team, plus Foxit eSign for high-volume signature workflows beyond the 150 envelopes included with Editor+.',
       reasons: ['Foxit eSign for team-wide, high-volume signing', ...reasons.filter((r) => !r.startsWith('Includes Foxit eSign'))],
+      note: plusNote,
     }
   }
 
@@ -101,6 +145,7 @@ function recommend(a) {
     tone: 'violet',
     text: 'Everything in PDF Editor, plus the extras your answers call for.',
     reasons,
+    note: plusNote,
   }
 }
 
@@ -127,7 +172,7 @@ export default function PlanFinder({ onAddToQuote }) {
         <div className="finder__copy">
           <span className="eyebrow" data-reveal>Find your plan</span>
           <h2 className="section-title" data-reveal style={{ '--d': '0.06s' }}>
-            Not sure which Foxit plan fits? <span className="grad-text">Answer 3 questions.</span>
+            Not sure which Foxit plan fits? <span className="accent grad-text">Answer 4 questions.</span>
           </h2>
           <p className="section-lead" data-reveal style={{ '--d': '0.12s' }}>
             We&apos;ll recommend the right subscription and add it to your quote request — no need
@@ -181,8 +226,13 @@ export default function PlanFinder({ onAddToQuote }) {
               <ul>
                 {result.reasons.map((r) => <li key={r}><Check /> {r}</li>)}
               </ul>
+              {result.note && <p className="finder__note">{result.note}</p>}
               <div className="finder__actions">
-                <button type="button" className="btn btn-primary" onClick={() => onAddToQuote(result.products)}>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => onAddToQuote(result.products, { perpetual: Boolean(result.perpetual) })}
+                >
                   Add to my quote <Arrow />
                 </button>
                 <button type="button" className="btn btn-ghost" onClick={restart}>Start over</button>

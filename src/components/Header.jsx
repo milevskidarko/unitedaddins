@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Logo from './Logo.jsx'
 import { Arrow, Chevron, Menu, Close, Doc, Chart, Cubes, Key, Headset, Handshake } from './Icons.jsx'
 import './Header.css'
@@ -17,7 +17,7 @@ const NAV = [
     items: [
       { icon: Doc, title: 'PDF & eSign', text: 'Paperless, secure workflows', href: '#foxit' },
       { icon: Chart, title: 'Data visualization', text: 'Consulting-grade charts', href: '#mekko' },
-      { icon: Key, title: 'Find your plan', text: '3 questions, the right Foxit plan', href: '#plan' },
+      { icon: Key, title: 'Find your plan', text: '4 questions, the right Foxit plan', href: '#plan' },
     ],
   },
   {
@@ -40,9 +40,15 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [expanded, setExpanded] = useState(null)
+  const progress = useRef(null)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12)
+    const onScroll = () => {
+      setScrolled(window.scrollY > 12)
+      // Reading-progress line under the header (set directly, no re-render).
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      progress.current?.style.setProperty('--p', max > 0 ? (window.scrollY / max).toFixed(4) : '0')
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -108,6 +114,7 @@ export default function Header() {
           </button>
         </div>
       </div>
+      <span className="header__progress" ref={progress} aria-hidden="true" />
     </header>
 
       {/* Mobile drawer — rendered outside <header>: the header's backdrop-filter

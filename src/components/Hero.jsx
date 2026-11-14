@@ -1,3 +1,4 @@
+import { Fragment, useEffect, useRef } from 'react'
 import { Arrow, Shield, Bolt, Headset, Check, Sign, Key } from './Icons.jsx'
 import './Hero.css'
 
@@ -9,15 +10,49 @@ const mekko = [
   { w: 18, parts: [34, 22, 24, 20] },
 ]
 
+// Headline, split into words so each one can rise in on load.
+const TITLE = [
+  ['The', 'right', 'software.'],
+  ['The', 'right', { accent: 'partnership.' }],
+]
+
 export default function Hero() {
+  const ref = useRef(null)
+
+  // Cursor light + gentle parallax of the product windows (mouse/trackpad only).
+  useEffect(() => {
+    const el = ref.current
+    if (!el || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    let raf = 0
+    const onMove = (e) => {
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(() => {
+        const r = el.getBoundingClientRect()
+        el.style.setProperty('--hx', `${e.clientX - r.left}px`)
+        el.style.setProperty('--hy', `${e.clientY - r.top}px`)
+        el.style.setProperty('--px', ((e.clientX - r.left) / r.width - 0.5).toFixed(3))
+        el.style.setProperty('--py', ((e.clientY - r.top) / r.height - 0.5).toFixed(3))
+      })
+    }
+    el.addEventListener('pointermove', onMove)
+    return () => {
+      el.removeEventListener('pointermove', onMove)
+      cancelAnimationFrame(raf)
+    }
+  }, [])
+
+  let wi = 0
   return (
-    <section className="hero">
+    <section className="hero" ref={ref}>
       <div className="hero__bg" aria-hidden="true">
+        <span className="aurora aurora--1" />
+        <span className="aurora aurora--2" />
+        <span className="aurora aurora--3" />
         <span className="ribbon ribbon--1" />
         <span className="ribbon ribbon--2" />
-        <span className="blob blob--1" />
-        <span className="blob blob--2" />
         <span className="hero__grid" />
+        <span className="hero__spot" />
       </div>
 
       <div className="container hero__inner">
@@ -25,20 +60,37 @@ export default function Hero() {
           <span className="pill" data-reveal>
             <span className="pill__dot" /> Software licensing &amp; distribution partner
           </span>
-          <h1 className="hero__title" data-reveal style={{ '--d': '0.08s' }}>
-            The right software.
-            <br />
-            The right <span className="grad-text">partnership.</span>
+          <h1 className="hero__title">
+            {TITLE.map((line, li) => (
+              <span key={li} className="hero__line">
+                {line.map((w) => {
+                  const i = wi++
+                  const text = typeof w === 'string' ? w : w.accent
+                  return (
+                    <Fragment key={i}>
+                      <span className="hero__word">
+                        <span
+                          className={typeof w === 'string' ? '' : 'accent grad-text'}
+                          style={{ '--i': i }}
+                        >
+                          {text}
+                        </span>
+                      </span>{' '}
+                    </Fragment>
+                  )
+                })}
+              </span>
+            ))}
           </h1>
-          <p className="hero__lead" data-reveal style={{ '--d': '0.16s' }}>
+          <p className="hero__lead" data-reveal style={{ '--d': '0.5s' }}>
             We help organizations find, license and get the most from trusted software
             solutions — from PDF &amp; eSign to consulting-grade data visualization.
           </p>
-          <div className="hero__ctas" data-reveal style={{ '--d': '0.24s' }}>
+          <div className="hero__ctas" data-reveal style={{ '--d': '0.6s' }}>
             <a href="#partners" className="btn btn-primary">Explore our solutions <Arrow /></a>
             <a href="#contact" className="btn btn-ghost">Talk to our team</a>
           </div>
-          <ul className="hero__trust" data-reveal style={{ '--d': '0.32s' }}>
+          <ul className="hero__trust" data-reveal style={{ '--d': '0.7s' }}>
             <li><Shield /><span><strong>Secure &amp; reliable</strong><small>Enterprise-grade</small></span></li>
             <li><Bolt /><span><strong>Flexible licensing</strong><small>For any team size</small></span></li>
             <li><Headset /><span><strong>Expert support</strong><small>When you need us</small></span></li>
@@ -47,6 +99,7 @@ export default function Hero() {
 
         {/* Stylized, illustrative product windows: a PDF being redacted & signed, and a Mekko chart. */}
         <div className="hero__visual" aria-hidden="true">
+          <span className="hero__halo" />
           <div className="glass win win--pdf float-a">
             <div className="win__bar">
               <span className="win__app win__app--pdf">PDF</span>

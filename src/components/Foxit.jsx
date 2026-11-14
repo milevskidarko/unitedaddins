@@ -1,4 +1,4 @@
-import { Arrow, Shield, Pen, Sign, Bolt, Check } from './Icons.jsx'
+import { Arrow, Shield, Pen, Sign, Bolt, Check, Key } from './Icons.jsx'
 import CountUp from './CountUp.jsx'
 import ProductPreview from './ProductPreview.jsx'
 import './Foxit.css'
@@ -11,6 +11,8 @@ const products = [
     tone: 'orange',
     preview: 'editor',
     platforms: ['Windows', 'macOS', 'Web'],
+    // PDF Editor is the only Foxit plan also sold as a one-time license.
+    perpetual: 'Also as a one-time perpetual license — Windows & macOS, without AI Assistant.',
   },
   {
     name: 'Foxit PDF Editor+',
@@ -57,26 +59,42 @@ export default function Foxit({ onAddToQuote }) {
                 <li key={f.label}><f.icon /> {f.label}</li>
               ))}
             </ul>
-            <a href="#plan" className="foxit__finder">Not sure which plan? Take the 3-question quiz <Arrow /></a>
+            <a href="#plan" className="foxit__finder">Not sure which plan? Take the 4-question quiz <Arrow /></a>
           </div>
         </div>
 
         <div className="foxit__grid">
           {products.map((p, i) => (
-            <article key={p.name} className={`product product--${p.tone}`} data-reveal style={{ '--d': `${i * 0.08}s` }}>
+            <article key={p.name} className={`product product--${p.tone} spot`} data-reveal style={{ '--d': `${i * 0.08}s` }}>
               <ProductPreview kind={p.preview} />
               <h3>{p.name}</h3>
               <p>{p.text}</p>
               <ul className="product__platforms">
                 {p.platforms.map((pl) => <li key={pl}>{pl}</li>)}
               </ul>
-              <a
-                href="#contact"
-                className="product__link"
-                onClick={(e) => { e.preventDefault(); onAddToQuote([p.name]) }}
-              >
-                Add to quote <Arrow />
-              </a>
+              {p.perpetual && (
+                <p className="product__perpetual">
+                  <Key /> <span>{p.perpetual}</span>
+                </p>
+              )}
+              <div className="product__links">
+                <a
+                  href="#contact"
+                  className="product__link"
+                  onClick={(e) => { e.preventDefault(); onAddToQuote([p.name], p.perpetual ? { perpetual: false } : {}) }}
+                >
+                  Add to quote <Arrow />
+                </a>
+                {p.perpetual && (
+                  <a
+                    href="#contact"
+                    className="product__link product__link--alt"
+                    onClick={(e) => { e.preventDefault(); onAddToQuote([p.name], { perpetual: true }) }}
+                  >
+                    Add perpetual <Arrow />
+                  </a>
+                )}
+              </div>
               <span className="product__glow" aria-hidden="true" />
             </article>
           ))}
