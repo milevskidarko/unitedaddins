@@ -12,7 +12,53 @@ const PRODUCTS = [
   { name: 'Foxit eSign', note: 'eSignature workflows', tone: 'blue' },
   { name: 'Mekko Graphics', note: 'Charts in PowerPoint & Excel', tone: 'navy' },
 ]
-const TYPES = ['New purchase', 'Renewal', 'Upgrade', 'Add seats']
+// Each request type changes the wording and the extra fields of the form.
+const TYPES = {
+  'New purchase': {
+    hint: 'Buying licenses for the first time.',
+    productsLegend: 'Products & licenses',
+    unit: 'licenses',
+    fields: [],
+  },
+  Renewal: {
+    hint: 'Renew your existing subscription — we will review your current terms.',
+    productsLegend: 'Products to renew',
+    unit: 'licenses to renew',
+    fields: [
+      { name: 'expiryDate', label: 'Current subscription expires', type: 'date' },
+      { name: 'reference', label: 'Order or license reference (optional)', type: 'text' },
+    ],
+  },
+  Upgrade: {
+    hint: 'Move to a higher plan, for example from PDF Editor to PDF Editor+.',
+    productsLegend: 'Upgrade to',
+    unit: 'licenses to upgrade',
+    fields: [
+      {
+        name: 'currentPlan',
+        label: 'Current plan',
+        type: 'select',
+        options: ['Foxit PDF Editor', 'Foxit PDF Editor+', 'Foxit eSign', 'Mekko Graphics', 'Other / not sure'],
+      },
+      { name: 'reference', label: 'Order or license reference (optional)', type: 'text' },
+    ],
+  },
+  'Add seats': {
+    hint: 'Add licenses to the subscription you already have.',
+    productsLegend: 'Products & additional licenses',
+    unit: 'additional licenses',
+    fields: [
+      { name: 'currentSeats', label: 'Licenses you have now', type: 'number' },
+      { name: 'reference', label: 'Order or license reference (optional)', type: 'text' },
+    ],
+  },
+}
+const FIELD_LABELS = {
+  expiryDate: 'Current subscription expires',
+  reference: 'Order / license reference',
+  currentPlan: 'Current plan',
+  currentSeats: 'Licenses they have now',
+}
 const MAX_SEATS = 9999
 
 export default function Contact({ quote, setQuote }) {
@@ -21,8 +67,9 @@ export default function Contact({ quote, setQuote }) {
   const [error, setError] = useState('')
 
   const items = quote.items
+  const type = TYPES[quote.type]
   const selected = PRODUCTS.filter((p) => items[p.name])
-  const summary = selected.map((p) => `${p.name} × ${items[p.name]}`).join(', ')
+  const summary = selected.map((p) => `${p.name} × ${items[p.name]} ${type.unit}`).join(', ')
 
   const toggle = (name) =>
     setQuote((q) => {
@@ -60,6 +107,11 @@ export default function Contact({ quote, setQuote }) {
           _captcha: 'false',
           'Request type': quote.type,
           Products: summary,
+          ...Object.fromEntries(
+            type.fields
+              .filter((f) => data[f.name])
+              .map((f) => [FIELD_LABELS[f.name], data[f.name]])
+          ),
           'First name': data.firstName,
           'Last name': data.lastName,
           Email: data.email,
@@ -114,7 +166,7 @@ export default function Contact({ quote, setQuote }) {
                 <fieldset className="qb">
                   <legend>1. Request type</legend>
                   <div className="qb__types" role="radiogroup">
-                    {TYPES.map((t) => (
+                    {Object.keys(TYPES).map((t) => (
                       <button
                         key={t}
                         type="button"
@@ -127,10 +179,33 @@ export default function Contact({ quote, setQuote }) {
                       </button>
                     ))}
                   </div>
+                  <p className="qb__hint" key={quote.type}>{type.hint}</p>
+                  {type.fields.length > 0 && (
+                    <div className="qb__extra form__row" key={`f-${quote.type}`}>
+                      {type.fields.map((f) => (
+                        <label key={f.name}>
+                          <span>{f.label}</span>
+                          {f.type === 'select' ? (
+                            <select name={f.name} defaultValue="">
+                              <option value="" disabled>Select</option>
+                              {f.options.map((o) => <option key={o}>{o}</option>)}
+                            </select>
+                          ) : (
+                            <input
+                              name={f.name}
+                              type={f.type}
+                              min={f.type === 'number' ? 1 : undefined}
+                              inputMode={f.type === 'number' ? 'numeric' : undefined}
+                            />
+                          )}
+                        </label>
+                      ))}
+                    </div>
+                  )}
                 </fieldset>
 
                 <fieldset className="qb">
-                  <legend>2. Products &amp; licenses</legend>
+                  <legend>2. {type.productsLegend}</legend>
                   <div className="qb__products">
                     {PRODUCTS.map((p) => {
                       const on = Boolean(items[p.name])
@@ -149,7 +224,7 @@ export default function Contact({ quote, setQuote }) {
                             </span>
                           </button>
                           {on && (
-                            <div className="qb__seats" aria-label={`${p.name} licenses`}>
+                            <div className="qb__seats" aria-label={`${p.name} ${type.unit}`} title={type.unit}>
                               <button type="button" onClick={() => setSeats(p.name, items[p.name] - 1)} aria-label="Fewer licenses">−</button>
                               <input
                                 type="number"

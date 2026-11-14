@@ -78,7 +78,8 @@
 }
 /* Quote builder */
 .qb { border: 0; margin: 0; padding: 0; min-width: 0; }
-.qb legend { padding: 0; margin-bottom: 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+/* float + width stops the legend from sitting inside the fieldset's top border */
+.qb legend { float: left; width: 100%; padding: 0; margin-bottom: 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
 .qb + .qb { padding-top: 16px; border-top: 1px solid var(--line); }
 .qb__types { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 4px; border-radius: 14px; background: #f1f4fb; }
 .qb__type {
@@ -96,6 +97,11 @@
 .qb__type:hover { color: var(--blue); }
 .qb__type.is-active { background: #fff; color: var(--blue); box-shadow: 0 2px 8px rgba(16, 32, 90, 0.12); }
 
+.qb__types, .qb__products, .qb__fields { clear: both; }
+.qb__hint { margin-top: 10px; font-size: 13.5px; color: var(--muted); animation: finderIn 0.3s ease; }
+.qb__extra { margin-top: 12px; align-items: end; animation: finderIn 0.3s ease; }
+.qb__extra input[type='date'] { padding-right: 10px; }
+@keyframes finderIn { from { opacity: 0; transform: translateX(10px); } }
 .qb__products { display: grid; gap: 8px; }
 .qb__item {
   --tone: var(--orange);
