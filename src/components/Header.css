@@ -115,7 +115,8 @@
 /* Drawer */
 .drawer {
   position: fixed;
-  inset: 68px 0 0 0;
+  z-index: 49;
+  inset: calc(68px + env(safe-area-inset-top, 0px)) 0 0 0;
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(20px);
   opacity: 0;
@@ -124,7 +125,7 @@
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
   overflow-y: auto;
 }
-.header--open .drawer { opacity: 1; visibility: visible; transform: none; }
+.drawer.is-open { opacity: 1; visibility: visible; transform: none; }
 .drawer__body { padding: 16px clamp(18px, 4vw, 40px) 40px; display: flex; flex-direction: column; }
 .drawer__group { border-bottom: 1px solid var(--line); }
 .drawer__link {
@@ -168,7 +169,7 @@
   .header__inner { height: 68px; }
 }
 @media (max-width: 560px) {
-  .header__cta { display: none; }
+  .header .header__cta { display: none; }
   .logo__mark { width: 40px; }
   .logo__text strong { font-size: 18px; }
 }

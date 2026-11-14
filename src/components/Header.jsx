@@ -53,6 +53,7 @@ export default function Header() {
   const close = () => setOpen(false)
 
   return (
+    <>
     <header className={`header ${scrolled ? 'header--scrolled' : ''} ${open ? 'header--open' : ''}`} id="top">
       <div className="container header__inner">
         <Logo />
@@ -102,9 +103,11 @@ export default function Header() {
           </button>
         </div>
       </div>
+    </header>
 
-      {/* Mobile drawer */}
-      <div className="drawer" aria-hidden={!open}>
+      {/* Mobile drawer — rendered outside <header>: the header's backdrop-filter
+          would otherwise become the containing block of this fixed element. */}
+      <div className={`drawer ${open ? 'is-open' : ''}`} aria-hidden={!open}>
         <div className="drawer__body">
           {NAV.map((n, i) => (
             <div key={n.label} className={`drawer__group ${expanded === i ? 'is-open' : ''}`}>
@@ -140,6 +143,6 @@ export default function Header() {
           </a>
         </div>
       </div>
-    </header>
+    </>
   )
 }
