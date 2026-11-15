@@ -373,7 +373,8 @@
   .chip small { font-size: 11px; }
   .chip--quote { right: 0; bottom: 20%; }
   .chip--sign { left: 0; bottom: 0; }
-  .ribbon--1 { opacity: 0.5; }
+  /* Push the arc to the top-right corner so it never runs behind the headline */
+  .ribbon--1 { opacity: 0.45; right: -640px; top: -560px; }
 }
 
 /* Desktop: headline on exactly two lines (it is ~8.6× the font size wide) */

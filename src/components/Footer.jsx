@@ -30,9 +30,9 @@ export default function Footer() {
         {/* Statement + direct contact */}
         <div className="footer__cta">
           <p className="footer__statement">
-            The right software.
+            Ready when you are.
             <br />
-            The right <span className="accent grad-text">partnership.</span>
+            Let&apos;s build <a href="#contact" className="accent grad-text">your quote.</a>
           </p>
           <div className="footer__cta-actions">
             <a href={`mailto:${SALES_EMAIL}`} className="footer__mail">

@@ -98,7 +98,16 @@
   .steps { grid-template-columns: 1fr; }
   .step { padding: 22px 0 0; }
 }
+/* Phones: keep two compact columns instead of four tall stacked cards */
 @media (max-width: 560px) {
+  .why__grid { gap: 12px; }
+  .why-card { padding: 18px 14px; }
+  .why-card__icon { width: 40px; height: 40px; border-radius: 12px; }
+  .why-card__icon svg { width: 20px; height: 20px; }
+  .why-card h3 { margin-top: 14px; font-size: 16px; line-height: 1.25; }
+  .why-card p { margin-top: 6px; font-size: 13.5px; line-height: 1.5; }
+}
+@media (max-width: 340px) {
   .why__grid { grid-template-columns: 1fr; }
 }
 

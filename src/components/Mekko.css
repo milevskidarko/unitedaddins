@@ -1,6 +1,8 @@
 .mekko {
   background: linear-gradient(180deg, #f7f9ff 0%, #eef3ff 100%);
   overflow: hidden;
+  /* The plan finder above already ends with a full section gap */
+  padding-top: clamp(32px, 5vw, 64px);
 }
 .mekko__inner {
   display: grid;
