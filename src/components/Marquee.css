@@ -10,7 +10,10 @@
   width: max-content;
   animation: marquee 48s linear infinite;
 }
-.marquee:hover .marquee__track { animation-play-state: paused; }
+/* Pause on hover only with a real mouse; on touch screens a tap would leave it stuck paused. */
+@media (hover: hover) and (pointer: fine) {
+  .marquee:hover .marquee__track { animation-play-state: paused; }
+}
 .marquee__row {
   list-style: none;
   margin: 0;
@@ -48,3 +51,9 @@
   -webkit-text-fill-color: var(--blue-2);
 }
 @keyframes marquee { to { transform: translateX(-50%); } }
+
+/* The global reduced-motion rule stops every animation (many phones turn it on with battery saver).
+   Keep the marquee moving, just slower, so the strip never looks frozen. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee .marquee__track { animation: marquee 90s linear infinite !important; }
+}
