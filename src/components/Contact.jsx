@@ -3,12 +3,11 @@ import { Arrow, Check, Mail } from './Icons.jsx'
 import './Contact.css'
 
 const SALES_EMAIL = 'sales@unitedaddins.com'
-// TEMPORARY: until the site is approved for go-live, quote requests are delivered to the developer's
-// inbox. The UI still shows SALES_EMAIL. Before going live, set this back to SALES_EMAIL.
-const DELIVERY_EMAIL = 'milevskidarko89@gmail.com'
-// Where quote requests are delivered. Can also be overridden in .env.local (VITE_FORM_EMAIL=you@example.com).
-// FormSubmit sends a one-time activation email to each new address.
-const FORM_EMAIL = import.meta.env.VITE_FORM_EMAIL || DELIVERY_EMAIL
+// Quote requests go to SALES_EMAIL through FormSubmit. This is the already-activated FormSubmit alias
+// for sales@unitedaddins.com, so the real address is not exposed in the page source.
+// Can be overridden in .env.local (VITE_FORM_EMAIL=you@example.com) for local testing.
+const SALES_FORM_ID = '29844412a6c351d632bd7d014687a485'
+const FORM_EMAIL = import.meta.env.VITE_FORM_EMAIL || SALES_FORM_ID
 const ENDPOINT = `https://formsubmit.co/ajax/${FORM_EMAIL}`
 
 const PRODUCTS = [
