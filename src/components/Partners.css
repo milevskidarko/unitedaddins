@@ -73,7 +73,7 @@
 }
 .need:hover {
   border-color: #b9c8f5;
-  background: #fff;
+  background: var(--surface);
   transform: translateY(-3px);
   box-shadow: var(--shadow-sm), 0 14px 30px -18px rgba(36, 73, 232, 0.45);
 }

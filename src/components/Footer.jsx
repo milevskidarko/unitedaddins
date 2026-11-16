@@ -1,17 +1,48 @@
 import { useRef } from 'react'
 import Logo from './Logo.jsx'
+import { L, useT } from '../i18n.jsx'
 import { LinkedIn, Mail, Arrow, Check } from './Icons.jsx'
 import './Footer.css'
 
 const SALES_EMAIL = 'sales@unitedaddins.com'
 
-const cols = [
-  { title: 'Products', links: [['Foxit PDF Editor', '#foxit'], ['Foxit PDF Editor+', '#foxit'], ['Foxit eSign', '#foxit'], ['Mekko Graphics', '#mekko']] },
-  { title: 'Solutions', links: [['PDF & eSign', '#foxit'], ['Data visualization', '#mekko'], ['Find your plan', '#plan'], ['Volume licensing', '#why']] },
-  { title: 'Company', links: [['About', '#why'], ['Partners', '#partners'], ['Request a quote', '#contact']] },
-]
+const T = {
+  en: {
+    ready: 'Ready when you are.',
+    build: 'Let’s build',
+    quote: 'your quote.',
+    talk: 'Talk to our team',
+    badge: 'Authorized Foxit & Mekko Graphics distributor',
+    cols: [
+      { title: 'Products', links: [['Foxit PDF Editor', '/foxit'], ['Foxit PDF Editor+', '/foxit'], ['Foxit eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics']] },
+      { title: 'Solutions', links: [['PDF & eSign', '/foxit'], ['Data visualization', '/mekko-graphics'], ['Find your plan', '/foxit#plan'], ['Volume licensing', '/contact']] },
+      { title: 'Company', links: [['About', '/about'], ['Partners', '/#partners'], ['Request a quote', '/contact']] },
+    ],
+    rights: 'All rights reserved.',
+    legal: 'Foxit and Mekko Graphics are trademarks of their respective owners.',
+    top: 'Back to top',
+    linkedin: 'United Addins on LinkedIn',
+  },
+  de: {
+    ready: 'Bereit, wenn Sie es sind.',
+    build: 'Stellen wir',
+    quote: 'Ihr Angebot zusammen.',
+    talk: 'Sprechen Sie mit uns',
+    badge: 'Autorisierter Foxit- & Mekko-Graphics-Distributor',
+    cols: [
+      { title: 'Produkte', links: [['Foxit PDF Editor', '/foxit'], ['Foxit PDF Editor+', '/foxit'], ['Foxit eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics']] },
+      { title: 'Lösungen', links: [['PDF & eSign', '/foxit'], ['Datenvisualisierung', '/mekko-graphics'], ['Plan finden', '/foxit#plan'], ['Volumenlizenzen', '/contact']] },
+      { title: 'Unternehmen', links: [['Über uns', '/about'], ['Partner', '/#partners'], ['Angebot anfordern', '/contact']] },
+    ],
+    rights: 'Alle Rechte vorbehalten.',
+    legal: 'Foxit und Mekko Graphics sind Marken ihrer jeweiligen Inhaber.',
+    top: 'Nach oben',
+    linkedin: 'United Addins auf LinkedIn',
+  },
+}
 
 export default function Footer() {
+  const t = useT(T)
   const mega = useRef(null)
 
   // The giant wordmark lights up under the cursor.
@@ -30,15 +61,15 @@ export default function Footer() {
         {/* Statement + direct contact */}
         <div className="footer__cta">
           <p className="footer__statement">
-            Ready when you are.
+            {t.ready}
             <br />
-            Let&apos;s build <a href="#contact" className="accent grad-text">your quote.</a>
+            {t.build} <L to="/contact#quote" className="accent grad-text">{t.quote}</L>
           </p>
           <div className="footer__cta-actions">
             <a href={`mailto:${SALES_EMAIL}`} className="footer__mail">
               <span className="footer__mail-ic"><Mail /></span>
               <span>
-                <small>Talk to our team</small>
+                <small>{t.talk}</small>
                 <strong>{SALES_EMAIL}</strong>
               </span>
               <Arrow className="footer__mail-arrow" />
@@ -50,27 +81,27 @@ export default function Footer() {
           <div className="footer__brand">
             <Logo tagline light />
             <p className="footer__badge">
-              <Check /> Authorized Foxit &amp; Mekko Graphics distributor
+              <Check /> {t.badge}
             </p>
             <div className="footer__social">
               <a
                 href="https://www.linkedin.com/company/united-addins/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="United Addins on LinkedIn"
+                aria-label={t.linkedin}
               >
                 <LinkedIn />
               </a>
               <a href={`mailto:${SALES_EMAIL}`} aria-label={`Email ${SALES_EMAIL}`}><Mail /></a>
             </div>
           </div>
-          {cols.map((c) => (
+          {t.cols.map((c) => (
             <nav key={c.title} className="footer__col" aria-label={c.title}>
               <h3>{c.title}</h3>
               <ul>
                 {c.links.map(([l, h]) => (
                   <li key={l}>
-                    <a href={h}><span>{l}</span></a>
+                    <L to={h}><span>{l}</span></L>
                   </li>
                 ))}
               </ul>
@@ -79,11 +110,16 @@ export default function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <p>© {new Date().getFullYear()} United Addins. All rights reserved.</p>
-          <p className="footer__legal">Foxit and Mekko Graphics are trademarks of their respective owners.</p>
-          <a href="#top" className="footer__top-btn" aria-label="Back to top">
+          <p>© {new Date().getFullYear()} United Addins. {t.rights}</p>
+          <p className="footer__legal">{t.legal}</p>
+          <button
+            type="button"
+            className="footer__top-btn"
+            aria-label={t.top}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
             <Arrow />
-          </a>
+          </button>
         </div>
       </div>
       <div className="footer__mega" ref={mega} aria-hidden="true">United Addins</div>
