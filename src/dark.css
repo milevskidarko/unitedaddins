@@ -74,7 +74,6 @@
 
 /* ---------- Partners ---------- */
 [data-theme='dark'] .partners__card { box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.04) inset; }
-[data-theme='dark'] .brand--mekko { color: var(--ink); }
 [data-theme='dark'] .need { background: var(--surface-2); }
 [data-theme='dark'] .need:hover { background: #18244f; border-color: #33468a; }
 [data-theme='dark'] .need__icon { background: #1a2656; }

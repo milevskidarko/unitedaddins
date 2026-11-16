@@ -4,8 +4,8 @@ import Leader from './Leader.jsx'
 import { L, useT } from '../i18n.jsx'
 import './WhyUs.css'
 
-// Only verified facts in the numbers: Foxit distributor since 2016 and ~650 users at
-// Motor Presse Stuttgart (both from Foxit's case study), two vendors, one contact.
+// Only verified facts in the numbers: Foxit distributor since 2012 (confirmed by owner) and ~650 users at
+// Motor Presse Stuttgart (from Foxit's case study), two vendors, one contact.
 const T = {
   en: {
     eyebrow: 'Why United Addins',
@@ -145,7 +145,7 @@ export default function WhyUs({ compact = false }) {
             </div>
             <div className="bento__stat">
               <small>{t.expertise.statLabel}</small>
-              <strong className="bento__num"><CountUp to={2016} from={2000} duration={1300} /></strong>
+              <strong className="bento__num"><CountUp to={2012} from={2000} duration={1300} /></strong>
             </div>
             <Hc>{t.expertise.title}</Hc>
             <p>{t.expertise.text}</p>

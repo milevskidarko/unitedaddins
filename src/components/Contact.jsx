@@ -10,10 +10,10 @@ const SALES_EMAIL = 'sales@unitedaddins.com'
 // `npm run dev` without functions), requests fall back to FormSubmit as before.
 const API_ENDPOINT = '/api/quote'
 const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || ''
-// Already-activated FormSubmit alias for sales@unitedaddins.com (real address not exposed).
+// FormSubmit sends straight to sales@ (the address is public on the site anyway). The old
+// alias '29844412…' was most likely the developer's test inbox (a test landed there, Nov 2026).
 // Can be overridden in .env.local (VITE_FORM_EMAIL=you@example.com) for local testing.
-const SALES_FORM_ID = '29844412a6c351d632bd7d014687a485'
-const FALLBACK_ENDPOINT = `https://formsubmit.co/ajax/${import.meta.env.VITE_FORM_EMAIL || SALES_FORM_ID}`
+const FALLBACK_ENDPOINT = `https://formsubmit.co/ajax/${import.meta.env.VITE_FORM_EMAIL || SALES_EMAIL}`
 
 // Product names are the same in every language (they are also the keys of the quote).
 const PRODUCTS = [

@@ -9,9 +9,9 @@ const T = {
   en: {
     title: 'Our trusted',
     accent: 'partners',
-    // Confirmed by United Addins (Nov 2026); "since 2016" per Foxit's Motor Presse Stuttgart
+    // Confirmed by United Addins (Nov 2026): Foxit distributor since 2012.
     // case study. Partner tier (Gold/Platinum) is intentionally not stated until Foxit confirms it.
-    cred: <>Authorized distributor for <strong>Foxit</strong> (since 2016) and <strong>Mekko Graphics</strong></>,
+    cred: <>Authorized distributor for <strong>Foxit</strong> (since 2012) and <strong>Mekko Graphics</strong></>,
     label: 'Explore by need',
     needs: [
       ['PDF & eSign', 'Create, edit, protect and sign documents.'],
@@ -22,7 +22,7 @@ const T = {
   de: {
     title: 'Unsere starken',
     accent: 'Partner',
-    cred: <>Autorisierter Distributor für <strong>Foxit</strong> (seit 2016) und <strong>Mekko Graphics</strong></>,
+    cred: <>Autorisierter Distributor für <strong>Foxit</strong> (seit 2012) und <strong>Mekko Graphics</strong></>,
     label: 'Nach Bedarf entdecken',
     needs: [
       ['PDF & eSign', 'Dokumente erstellen, bearbeiten, schützen und signieren.'],
@@ -41,10 +41,13 @@ export default function Partners() {
           <div className="partners__brands">
             <h2 className="partners__title">{t.title}<br /><span className="accent grad-text">{t.accent}</span></h2>
             <div className="partners__logos">
-              <L to="/foxit" className="brand brand--foxit" aria-label="Foxit">Foxit</L>
-              <L to="/mekko-graphics" className="brand brand--mekko" aria-label="Mekko Graphics">
-                <span>Mekko</span>
-                <span>Graphics</span>
+              {/* Official logos as published on foxit.com and mekkographics.com (Nov 2026). Mekko: main
+                  lockup only, without the "an insightsoftware company" tagline. */}
+              <L to="/foxit" className="brand brand--foxit">
+                <img src="/partners/foxit.svg" alt="Foxit" width="125" height="52" />
+              </L>
+              <L to="/mekko-graphics" className="brand brand--mekko">
+                <img src="/partners/mekko-graphics.svg" alt="Mekko Graphics" width="326" height="68" />
               </L>
             </div>
             <p className="partners__cred">

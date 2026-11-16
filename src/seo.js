@@ -51,12 +51,12 @@ export const PAGES = {
     en: {
       title: 'About United Addins — Software distribution built around your business',
       description:
-        'Authorized Foxit distributor since 2016 and Mekko Graphics partner. Product expertise, licensing support and one trusted contact for multiple vendors.',
+        'Authorized Foxit distributor since 2012 and Mekko Graphics partner. Product expertise, licensing support and one trusted contact for multiple vendors.',
     },
     de: {
       title: 'Über United Addins — Softwarevertrieb, der sich nach Ihrem Unternehmen richtet',
       description:
-        'Autorisierter Foxit-Distributor seit 2016 und Mekko-Graphics-Partner. Produktexpertise, Lizenzberatung und ein Ansprechpartner für mehrere Hersteller.',
+        'Autorisierter Foxit-Distributor seit 2012 und Mekko-Graphics-Partner. Produktexpertise, Lizenzberatung und ein Ansprechpartner für mehrere Hersteller.',
     },
   },
   contact: {
