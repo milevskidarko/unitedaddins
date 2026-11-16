@@ -3,11 +3,10 @@ import { Arrow, Check, Mail } from './Icons.jsx'
 import './Contact.css'
 
 const SALES_EMAIL = 'sales@unitedaddins.com'
-// Quote requests go to SALES_EMAIL through FormSubmit. This is the already-activated FormSubmit alias
-// for sales@unitedaddins.com, so the real address is not exposed in the page source.
+// Quote requests go straight to SALES_EMAIL through FormSubmit (the address is public on the site
+// anyway). The old alias '29844412…' delivered to the developer's test inbox, not to sales@.
 // Can be overridden in .env.local (VITE_FORM_EMAIL=you@example.com) for local testing.
-const SALES_FORM_ID = '29844412a6c351d632bd7d014687a485'
-const FORM_EMAIL = import.meta.env.VITE_FORM_EMAIL || SALES_FORM_ID
+const FORM_EMAIL = import.meta.env.VITE_FORM_EMAIL || SALES_EMAIL
 const ENDPOINT = `https://formsubmit.co/ajax/${FORM_EMAIL}`
 
 const PRODUCTS = [
