@@ -1,5 +1,6 @@
 import { Award, Key, Headset, Handshake, Arrow } from './Icons.jsx'
 import CountUp from './CountUp.jsx'
+import Leader from './Leader.jsx'
 import { L, useT } from '../i18n.jsx'
 import './WhyUs.css'
 
@@ -202,6 +203,8 @@ export default function WhyUs({ compact = false }) {
           </div>
         ) : (
           <>
+            <Leader />
+
             <ol className="steps">
               {t.steps.map(([title, text], i) => (
                 <li key={title} className="step" data-reveal style={{ '--d': `${i * 0.1}s` }}>
