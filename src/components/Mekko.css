@@ -70,12 +70,12 @@
 .mekko__visual:not(.is-visible) .mk-seg { opacity: 0; }
 .mekko__visual.is-visible .mk-seg { animation: mkIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: var(--delay); }
 @keyframes mkIn { from { opacity: 0; transform: scaleY(0.4); } }
-.mk-seg b { font-weight: 700; opacity: 0.95; }
+.mk-seg b { font-weight: 700; }
 .mk-seg--0 { background: #1b2f8f; }
 .mk-seg--1 { background: #2449e8; }
-.mk-seg--2 { background: #3b82f6; }
+.mk-seg--2 { background: #2f6fe0; }
 .mk-seg--3 { background: #93c0ff; color: #0b1640; }
-.mk-seg--up { background: #3b82f6; }
+.mk-seg--up { background: #2f6fe0; }
 .mk-seg--down { background: #93c0ff; color: #0b1640; }
 
 /* Chart-type tabs */

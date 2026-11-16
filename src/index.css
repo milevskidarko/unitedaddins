@@ -1,7 +1,7 @@
 :root {
   --ink: #0b1640;
   --ink-2: #33406b;
-  --muted: #64708f;
+  --muted: #5a6684;
   --line: #e3e8f4;
   --bg: #f7f9ff;
   --surface: #ffffff;
@@ -10,6 +10,7 @@
   --sky: #60a5fa;
   --violet: #7c5cff;
   --orange: #ff5f1f;
+  --orange-text: #d9480f; /* darker orange for text on light bg (WCAG contrast) */
   --navy: #0a1336;
   --navy-2: #121e4d;
   --grad: linear-gradient(120deg, #2449e8 0%, #3b82f6 55%, #60a5fa 100%);

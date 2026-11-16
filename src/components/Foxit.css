@@ -7,7 +7,7 @@
 }
 .foxit__word {
   font-style: italic;
-  color: var(--orange);
+  color: var(--orange-text);
   letter-spacing: -0.04em;
 }
 .foxit__features {
