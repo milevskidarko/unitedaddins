@@ -40,7 +40,25 @@ function ScrollManager() {
   return null
 }
 
+// Email links (mailto:) open the mail app, which can take a few seconds to appear — and every
+// extra click meanwhile opens another new message. Ignore repeat clicks for 3 seconds.
+function useMailtoGuard() {
+  useEffect(() => {
+    let last = 0
+    const onClick = (e) => {
+      const a = e.target.closest?.('a[href^="mailto:"]')
+      if (!a) return
+      const now = Date.now()
+      if (now - last < 3000) e.preventDefault()
+      else last = now
+    }
+    document.addEventListener('click', onClick, true)
+    return () => document.removeEventListener('click', onClick, true)
+  }, [])
+}
+
 function Layout() {
+  useMailtoGuard()
   useReveal()
   useSpotlight()
   usePageMeta()
