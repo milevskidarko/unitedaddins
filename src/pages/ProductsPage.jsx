@@ -32,7 +32,7 @@ const T = {
   fr: {
     eyebrow: 'Produits',
     title: 'Les logiciels que nous',
-    accent: 'licencions et accompagnons',
+    accent: 'proposons et accompagnons',
     lead: 'Du PDF et de la signature électronique à la CAO, aux diagrammes et à la gestion de projets — un seul partenaire pour les licences, les renouvellements et le conseil.',
     featured: 'Nos partenaires principaux',
     foxit: 'PDF Editor, PDF Editor+ et eSign — distributeur depuis 2012.',

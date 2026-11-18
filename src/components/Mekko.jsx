@@ -78,7 +78,7 @@ const T = {
     eyebrow: 'Partner für Datenvisualisierung',
     title: 'Überzeugende Diagramme mit',
     lead: 'Ein Add-in für PowerPoint und Excel, das die Diagramme erstellt, auf die sich Berater verlassen — Marimekko, Bar Mekko, Wasserfall und mehr —, um Marktgröße und Marktanteil in einer Ansicht zu zeigen. Weniger Zeit für die Folienbearbeitung und einheitliche Diagramme dank gespeicherter Voreinstellungen.',
-    types: ['Marimekko', 'Bar Mekko', 'Wasserfall', 'Blasen', 'Gantt', 'Balken', 'Linie', 'Fläche', 'Streuung', 'Kreis / Ring', 'Tabelle', 'Dashboard'],
+    types: ['Marimekko', 'Bar Mekko', 'Wasserfall', 'Blasen', 'Gantt', 'Balken', 'Linie', 'Fläche', 'Streudiagramm', 'Kreis / Ring', 'Tabelle', 'Dashboard'],
     points: ['Entwickelt für Strategie-, Marketing- und Finanzprofis', 'Diagrammautomatisierung und zentrale Lizenzverwaltung'],
     add: 'Mekko Graphics zum Angebot hinzufügen',
     tablist: 'Beispiel-Diagrammtyp',

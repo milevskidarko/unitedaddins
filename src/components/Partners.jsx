@@ -29,7 +29,7 @@ const T = {
       ['PDF & eSign', 'Dokumente erstellen, bearbeiten, schützen und signieren.'],
       ['Datenvisualisierung', 'Marimekko, Bar Mekko, Wasserfall und mehr.'],
       ['Weitere Software', 'PDF-XChange, Bluebeam, SketchUp, progeCAD, MindManager und mehr.'],
-      ['Lizenzen & Verlängerungen', 'Neue Lizenzen, Verlängerungen, Upgrades und zusätzliche Plätze.'],
+      ['Lizenzen & Verlängerungen', 'Neue Lizenzen, Verlängerungen, Upgrades und Lizenzerweiterungen.'],
     ],
   },
   fr: {

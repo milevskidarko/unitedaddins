@@ -59,7 +59,7 @@ const T = {
     products: [
       {
         text: 'Professionelle PDF-Bearbeitung für Windows, macOS und Web. PDFs erstellen, bearbeiten, konvertieren, organisieren, ausfüllen und signieren — mit integriertem KI-Assistenten.',
-        note: 'Dauerlizenz verfügbar: Einmalkauf für Windows & macOS, ohne KI-Assistent, DMS- und Cloud-Funktionen.',
+        note: 'Dauerlizenz verfügbar: Einmalkauf für Windows & macOS, ohne KI-Assistenten, DMS- und Cloud-Funktionen.',
       },
       {
         text: 'Das Komplettpaket: alles aus PDF Editor, dazu KI-gestütztes Smart Redact und mobile Apps für iOS & Android.',
@@ -108,7 +108,7 @@ const T = {
     statsTitle: 'Une valeur prouvée',
     statsSub: 'Étude Forrester Total Economic Impact™ de Foxit PDF Editor',
     roi: 'ROI',
-    payback: 'Retour sur investissement',
+    payback: 'Délai d’amortissement',
     founded: 'Création de Foxit',
     mo: 'mois',
     disclaimer: 'Étude commandée par Foxit (2022). Les résultats reposent sur une organisation composite modélisée et ne garantissent pas des résultats individuels.',

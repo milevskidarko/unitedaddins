@@ -103,14 +103,14 @@ const T = {
     eyebrow: 'Pourquoi United Addins',
     title: 'Une distribution de logiciels pensée pour',
     accent: 'votre entreprise',
-    lead: 'Grâce à une connaissance approfondie des produits et une approche centrée sur le partenariat, United Addins vous aide à tirer le meilleur des logiciels en qui vous avez confiance.',
+    lead: 'Grâce à une connaissance approfondie des produits et une approche centrée sur le partenariat, United Addins vous aide à tirer le meilleur des logiciels auxquels vous faites confiance.',
     expertise: {
       title: 'Expertise produit',
       text: 'Des conseils fiables sur les meilleures solutions pour vos besoins — avant et après l’achat.',
       statLabel: 'Distributeur agréé Foxit depuis',
     },
     licensing: {
-      title: 'Accompagnement licences',
+      title: 'Accompagnement sur les licences',
       text: 'Des licences flexibles pour les organisations de toute taille, d’un seul poste à l’entreprise entière.',
       statLabel: 'utilisateurs passés à Foxit chez Motor Presse Stuttgart',
     },

@@ -13,6 +13,7 @@ const T = {
     by: 'by',
     featuresTitle: 'What you get',
     whyTitle: 'Why buy through',
+    whyEnd: '?',
     why: [
       [Key, 'The right license', 'We help you pick the edition and license type that fits — and nothing you don’t need.'],
       [Handshake, 'One contact, many vendors', 'Foxit, Mekko Graphics and more from one partner, on one quote.'],
@@ -29,12 +30,13 @@ const T = {
     by: 'von',
     featuresTitle: 'Das bekommen Sie',
     whyTitle: 'Warum über',
+    whyEnd: ' kaufen?',
     why: [
       [Key, 'Die richtige Lizenz', 'Wir helfen bei der Wahl von Edition und Lizenzart — ohne Überflüssiges.'],
       [Handshake, 'Ein Kontakt, viele Hersteller', 'Foxit, Mekko Graphics und mehr von einem Partner, in einem Angebot.'],
       [Headset, 'Verlängerungen & Lizenzen', 'Wir behalten Verlängerungen im Blick und erweitern Lizenzen, wenn Ihr Team wächst.'],
     ],
-    more: 'Mehr in',
+    more: 'Weitere Produkte:',
     all: 'Alle Produkte',
     trademark: (name, vendor) => `${name} ist eine Marke von ${vendor}.`,
   },
@@ -45,12 +47,13 @@ const T = {
     by: 'par',
     featuresTitle: 'Ce que vous obtenez',
     whyTitle: 'Pourquoi acheter via',
+    whyEnd: ' ?',
     why: [
       [Key, 'La bonne licence', 'Nous vous aidons à choisir l’édition et le type de licence adaptés — sans rien de superflu.'],
       [Handshake, 'Un interlocuteur, plusieurs éditeurs', 'Foxit, Mekko Graphics et d’autres auprès d’un seul partenaire, sur un seul devis.'],
       [Headset, 'Renouvellements et postes', 'Nous suivons vos renouvellements et ajoutons des licences quand votre équipe grandit.'],
     ],
-    more: 'Plus dans',
+    more: 'Autres produits :',
     all: 'Tous les produits',
     trademark: (name, vendor) => `${name} est une marque de ${vendor}.`,
   },
@@ -114,7 +117,7 @@ export default function ProductPage({ slug }) {
           </div>
 
           <div className="prod__why" data-reveal>
-            <h2 className="prod__h2">{t.whyTitle} <span className="grad-text">United Addins</span>?</h2>
+            <h2 className="prod__h2">{t.whyTitle} <span className="grad-text">United Addins</span>{t.whyEnd}</h2>
             <div className="prod__why-grid">
               {t.why.map(([Icon, title, text]) => (
                 <div key={title} className="why-item">

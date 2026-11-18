@@ -107,7 +107,7 @@ const T = {
       {
         short: 'Sensible Daten',
         title: 'Verarbeiten Sie sensible Daten, die entfernt werden müssen?',
-        hint: 'Personenbezogene, finanzielle oder rechtliche Informationen, die geschwärzt werden.',
+        hint: 'Personenbezogene, finanzielle oder rechtliche Informationen, die geschwärzt werden müssen.',
         options: ['Selten oder nie', 'Ja, regelmäßig'],
       },
       {
@@ -126,7 +126,7 @@ const T = {
       perpetualNote: 'Die Dauerlizenz enthält keinen KI-Assistenten, kein Smart Redact und keine DMS- oder Cloud-Funktionen.',
       eSignOnlySub: 'Foxit eSign ist nur als Abonnement erhältlich.',
       eSignHighVolume: 'Foxit eSign für teamweites Signieren in großem Umfang',
-      desktopWeb: 'Desktop- & Web-Bearbeitung unter Windows, macOS & Web',
+      desktopWeb: 'Desktop- & Web-Bearbeitung für Windows, macOS & Web',
       ai: 'KI-Assistent mit 300 kostenlosen Credits pro Monat',
       editorEsignTitlePerp: 'Foxit PDF Editor (Dauerlizenz) & Foxit eSign',
       editorEsignTitle: 'Foxit PDF Editor & Foxit eSign',
@@ -140,7 +140,7 @@ const T = {
       plusEsign: 'Inklusive Foxit eSign mit 150 Umschlägen pro Jahr',
       plusMobile: 'Mobile Apps für iOS & Android',
       plusRedact: 'Smart Redact zum Entfernen sensibler Daten',
-      plusAll: 'Alles aus PDF Editor unter Windows, macOS & Web',
+      plusAll: 'Alles aus PDF Editor für Windows, macOS & Web',
       plusEsignText: 'PDF Editor+ für Ihr Team, dazu Foxit eSign für Signatur-Workflows in großem Umfang über die 150 Umschläge von Editor+ hinaus.',
       plusText: 'Alles aus PDF Editor, plus die Extras, die Ihre Antworten erfordern.',
     },

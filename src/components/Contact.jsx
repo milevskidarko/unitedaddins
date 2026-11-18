@@ -155,7 +155,7 @@ const T = {
     perpetual: 'Dauerlizenz (einmalig)',
     fewer: 'Weniger Lizenzen',
     more: 'Mehr Lizenzen',
-    number: (p) => `Anzahl ${p}-Lizenzen`,
+    number: (p) => `Anzahl der Lizenzen für ${p}`,
     step1: '1. Art der Anfrage',
     step3: '3. Ihre Angaben',
     none: 'Noch keine Produkte ausgewählt.',
