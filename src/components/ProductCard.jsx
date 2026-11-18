@@ -2,8 +2,15 @@ import { L } from '../i18n.jsx'
 import { Arrow } from './Icons.jsx'
 import './Products.css'
 
-// Monogram tile in the product's colour (we don't use vendor logos we haven't been given).
+// The vendor's product icon on a white tile; initials in the product's colour when we have none.
 export function Mark({ product, size = 'md' }) {
+  if (product.logo) {
+    return (
+      <span className={`pmark pmark--${size} pmark--logo`} style={{ '--tone': product.tone }} aria-hidden="true">
+        <img src={product.logo} alt="" loading="lazy" />
+      </span>
+    )
+  }
   return (
     <span className={`pmark pmark--${size}`} style={{ '--tone': product.tone }} aria-hidden="true">
       {product.mark}
