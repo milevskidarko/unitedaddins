@@ -11,6 +11,8 @@ import '@fontsource/instrument-serif/latin-400-italic.css'
 // Global styles first, so component styles can override them.
 import './index.css'
 import App from './App.jsx'
+// Dark theme overrides last, so they win over the component styles.
+import './dark.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

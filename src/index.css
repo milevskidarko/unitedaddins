@@ -200,3 +200,27 @@ p { margin: 0; }
 }
 
 :focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; border-radius: 8px; }
+
+/* ---------- Pages ---------- */
+/* Every page except home starts under the fixed header. */
+.page > .section:first-child { padding-top: calc(80px + clamp(40px, 6vw, 88px)); }
+.page--dark { background: var(--navy); }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.notfound { text-align: center; min-height: 70vh; }
+.notfound .section-lead { margin-inline: auto; }
+.notfound__code { font-size: clamp(96px, 18vw, 180px); font-weight: 800; letter-spacing: -0.06em; line-height: 1; }
+.notfound__actions { margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }

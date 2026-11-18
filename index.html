@@ -4,10 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="United Addins helps organizations find, license and get the most from trusted software — Foxit PDF & eSign, Mekko Graphics and more." />
-    <meta name="theme-color" content="#0b1640" />
+    <meta name="theme-color" content="#f7f9ff" />
+    <meta name="color-scheme" content="light dark" />
+    <!-- Theme before first paint: the saved choice, otherwise the operating system's setting. -->
+    <script>
+      (function () {
+        var t = null
+        try { t = localStorage.getItem('theme') } catch (e) {}
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        document.documentElement.dataset.theme = t
+        if (t === 'dark') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#070c22')
+      })()
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>United Addins — The right software. The right partnership.</title>
     <link rel="canonical" href="https://www.unitedaddins.com/" />
+    <link rel="alternate" hreflang="en" href="https://www.unitedaddins.com/" />
+    <link rel="alternate" hreflang="de" href="https://www.unitedaddins.com/de" />
+    <link rel="alternate" hreflang="x-default" href="https://www.unitedaddins.com/" />
 
     <!-- Structured data: lets search engines show the company name, logo and contact -->
     <script type="application/ld+json">
@@ -30,6 +44,7 @@
     <!-- Link previews (LinkedIn, Facebook, WhatsApp, Viber, Slack, X). og:image must be an absolute URL. -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="United Addins" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:url" content="https://www.unitedaddins.com/" />
     <meta property="og:title" content="United Addins — The right software. The right partnership." />
     <meta property="og:description" content="Licensing, renewals and support for Foxit PDF Editor, Foxit eSign and Mekko Graphics. Build your quote online." />

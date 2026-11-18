@@ -1,0 +1,138 @@
+/* ==========================================================================
+   Dark theme. <html data-theme="dark"> is set before first paint by the script in
+   index.html (system setting or the visitor's choice) and by the toggle in the header.
+   Tokens first; then the few places that use fixed light colours.
+   ========================================================================== */
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --ink: #e8edff;
+  --ink-2: #b9c4e8;
+  --muted: #95a2c8;
+  --line: #233061;
+  --bg: #070c22;
+  --surface: #0f1733;
+  --surface-2: #141f45;
+  --blue: #7b9bff;
+  --orange-text: #ff7a3d;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow: 0 18px 50px -18px rgba(0, 0, 0, 0.7);
+}
+
+/* Smooth cross-fade only while switching */
+.theme-anim,
+.theme-anim *,
+.theme-anim *::before,
+.theme-anim *::after {
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, fill 0.4s ease, stroke 0.4s ease !important;
+}
+
+/* ---------- Global ---------- */
+[data-theme='dark'] .btn-ghost { background: rgba(255, 255, 255, 0.05); border-color: #2c3a70; color: var(--ink); }
+[data-theme='dark'] .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+[data-theme='dark'] .btn-ghost--dark { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.22); color: #fff; }
+[data-theme='dark'] .skip-link { background: #2449e8; }
+
+/* ---------- Header ---------- */
+[data-theme='dark'] .header--scrolled,
+[data-theme='dark'] .header--open {
+  background: rgba(7, 12, 34, 0.78);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 10px 30px -20px rgba(0, 0, 0, 0.8);
+}
+[data-theme='dark'] .logo__u { stroke: #4f7cff; }
+[data-theme='dark'] .nav__link:hover,
+[data-theme='dark'] .has-drop:hover > .nav__link,
+[data-theme='dark'] .has-drop:focus-within > .nav__link { background: rgba(123, 155, 255, 0.12); }
+[data-theme='dark'] .drop__panel { background: rgba(15, 23, 51, 0.97); }
+[data-theme='dark'] .drop__item:hover { background: var(--surface-2); }
+[data-theme='dark'] .drop__icon { background: linear-gradient(135deg, #1a2656, #202f6a); }
+[data-theme='dark'] .drawer { background: rgba(7, 12, 34, 0.97); }
+
+/* ---------- Hero ---------- */
+[data-theme='dark'] .hero {
+  background: radial-gradient(1200px 600px at 85% 10%, #16245e 0%, transparent 60%),
+    linear-gradient(180deg, #0a1030 0%, var(--bg) 100%);
+}
+[data-theme='dark'] .aurora { opacity: 0.35; }
+[data-theme='dark'] .hero__grid {
+  background-image: linear-gradient(rgba(123, 155, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(123, 155, 255, 0.07) 1px, transparent 1px);
+}
+[data-theme='dark'] .pill { background: rgba(15, 23, 51, 0.75); border-color: #26336a; }
+[data-theme='dark'] .glass {
+  background: linear-gradient(160deg, rgba(22, 32, 72, 0.96), rgba(13, 20, 48, 0.9));
+  border-color: rgba(143, 178, 255, 0.16);
+  box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+[data-theme='dark'] .win__bar { background: rgba(255, 255, 255, 0.03); border-bottom-color: rgba(255, 255, 255, 0.08); }
+[data-theme='dark'] .ln { background: #26315c; }
+[data-theme='dark'] .ln--h { background: #36447a; }
+[data-theme='dark'] .redact { background: #000; box-shadow: 0 0 0 1px rgba(143, 178, 255, 0.25); }
+[data-theme='dark'] .sig { border-top-color: #36447a; }
+[data-theme='dark'] .sig path { stroke: #8fb2ff; }
+[data-theme='dark'] .sig small { color: #4ade80; }
+
+/* ---------- Partners ---------- */
+[data-theme='dark'] .partners__card { box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.04) inset; }
+[data-theme='dark'] .need { background: var(--surface-2); }
+[data-theme='dark'] .need:hover { background: #18244f; border-color: #33468a; }
+[data-theme='dark'] .need__icon { background: #1a2656; }
+[data-theme='dark'] .partners__cred { background: var(--surface-2); border-color: var(--line); }
+[data-theme='dark'] .partners__cred svg { background: #2449e8; }
+
+/* ---------- Foxit ---------- */
+[data-theme='dark'] .product { --tone-soft: color-mix(in srgb, var(--tone) 16%, var(--surface)); }
+[data-theme='dark'] .product--blue { --tone: #5b9bff; }
+[data-theme='dark'] .product--violet { --tone: #9d85ff; }
+[data-theme='dark'] .pv__doc,
+[data-theme='dark'] .pv__phone,
+[data-theme='dark'] .pv__sig,
+[data-theme='dark'] .pv__toolbar span:not(.is-active),
+[data-theme='dark'] .pv__steps span { background: #0b1230; }
+[data-theme='dark'] .pv__ln { background: #26315c; }
+[data-theme='dark'] .pv__ln--h { background: #36447a; }
+[data-theme='dark'] .pv__redact { background: #000; box-shadow: 0 0 0 1px rgba(143, 178, 255, 0.25); }
+[data-theme='dark'] .pv__sig path { stroke: #8fb2ff; }
+[data-theme='dark'] .product.is-visible .pv__steps span { background: var(--tone); }
+
+/* ---------- Plan finder ---------- */
+[data-theme='dark'] .finder__inner { background: radial-gradient(500px 300px at 100% 0%, #18245a, transparent 70%), var(--surface); }
+[data-theme='dark'] .finder__card { background: linear-gradient(160deg, #121c42, #0d1534); border-color: var(--line); }
+[data-theme='dark'] .finder__opt { border-color: #2a3768; }
+[data-theme='dark'] .finder__opt:hover { border-color: #4a62b8; }
+[data-theme='dark'] .finder__opt.is-selected { background: #16224f; border-color: var(--blue); }
+[data-theme='dark'] .finder__radio { border-color: #3a4a85; }
+[data-theme='dark'] .finder__progress .is-done span { background: #2449e8; border-color: #2449e8; }
+
+/* ---------- Mekko ---------- */
+[data-theme='dark'] .mekko { background: linear-gradient(180deg, var(--bg) 0%, #0a1130 100%); }
+[data-theme='dark'] .mekko__bar { background: rgba(255, 255, 255, 0.03); }
+[data-theme='dark'] .mekko__bar span { background: #2a3768; }
+[data-theme='dark'] .mekko__tabs { background: var(--surface-2); }
+[data-theme='dark'] .mekko__points svg { background: #1a2656; }
+[data-theme='dark'] .mk-seg--0 { background: #3049c4; }
+[data-theme='dark'] .mekko__badge { background: #1a2656; }
+[data-theme='dark'] .mk-tools__toggle:hover { color: #0b1640; }
+
+/* ---------- Contact form ---------- */
+[data-theme='dark'] .contact__card { box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.9); }
+[data-theme='dark'] .form { box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9); }
+[data-theme='dark'] .form input,
+[data-theme='dark'] .form select,
+[data-theme='dark'] .form textarea { background: var(--bg); border-color: #2a3768; }
+[data-theme='dark'] .form input:focus,
+[data-theme='dark'] .form select:focus,
+[data-theme='dark'] .form textarea:focus { background: var(--bg); box-shadow: 0 0 0 4px rgba(123, 155, 255, 0.2); }
+[data-theme='dark'] .qb__types { background: var(--bg); }
+[data-theme='dark'] .qb__type.is-active { background: var(--surface-2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); }
+[data-theme='dark'] .qb__item { background: var(--surface-2); border-color: #26336a; }
+[data-theme='dark'] .qb__item--navy { --tone: #8fa6ff; }
+[data-theme='dark'] .qb__item--blue { --tone: #5b9bff; }
+[data-theme='dark'] .qb__item--violet { --tone: #9d85ff; }
+[data-theme='dark'] .qb__check { border-color: #3a4a85; color: #0b1640; }
+[data-theme='dark'] .qb__seats { border-color: #2a3768; }
+[data-theme='dark'] .qb__seats button:hover { background: var(--surface-2); }
+[data-theme='dark'] .form .qb__seats input { background: none; }
+[data-theme='dark'] .form .qb__seats input:focus { background: var(--surface-2); }
+[data-theme='dark'] .qb__license { border-color: #2a3768; }
+[data-theme='dark'] .form__error { background: rgba(239, 68, 68, 0.14); color: #ff9b9b; }

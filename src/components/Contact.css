@@ -45,7 +45,7 @@
   gap: 14px;
   padding: clamp(20px, 3vw, 32px);
   border-radius: 24px;
-  background: #fff;
+  background: var(--surface);
   color: var(--ink);
   box-shadow: 0 30px 60px -30px rgba(7, 13, 38, 0.6);
 }
@@ -73,7 +73,7 @@
 .form textarea:focus {
   outline: none;
   border-color: var(--blue);
-  background: #fff;
+  background: var(--surface);
   box-shadow: 0 0 0 4px rgba(36, 73, 232, 0.15);
 }
 /* Quote builder */
@@ -95,7 +95,7 @@
   transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 .qb__type:hover { color: var(--blue); }
-.qb__type.is-active { background: #fff; color: var(--blue); box-shadow: 0 2px 8px rgba(16, 32, 90, 0.12); }
+.qb__type.is-active { background: var(--surface); color: var(--blue); box-shadow: 0 2px 8px rgba(16, 32, 90, 0.12); }
 
 .qb__types, .qb__products, .qb__fields { clear: both; }
 .qb__hint { margin-top: 10px; font-size: 13.5px; color: var(--muted); animation: finderIn 0.3s ease; }
@@ -117,7 +117,7 @@
 .qb__item--violet { --tone: var(--violet); }
 .qb__item--blue { --tone: #2f7cf6; }
 .qb__item--navy { --tone: var(--navy-2); }
-.qb__item.is-on { border-color: var(--tone); background: color-mix(in srgb, var(--tone) 6%, #fff); }
+.qb__item.is-on { border-color: var(--tone); background: color-mix(in srgb, var(--tone) 6%, var(--surface)); }
 .qb__toggle {
   flex: 1;
   min-width: 0;
@@ -152,7 +152,7 @@
   flex-shrink: 0;
   border-radius: 10px;
   border: 1px solid #d7deef;
-  background: #fff;
+  background: var(--surface);
   overflow: hidden;
   animation: pop 0.25s ease;
 }
@@ -220,19 +220,67 @@
   text-align: center;
   gap: 12px;
 }
-.form__done > span {
-  width: 64px;
-  height: 64px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #22c55e;
-  color: #fff;
-  animation: pop 0.5s cubic-bezier(0.2, 1.4, 0.4, 1);
+/* Success: a check that draws itself inside a circle, with a burst of confetti */
+.form__done-badge { position: relative; width: 84px; height: 84px; display: grid; place-items: center; }
+.form__done-badge svg { position: relative; width: 84px; height: 84px; animation: pop 0.5s cubic-bezier(0.2, 1.4, 0.4, 1); }
+.form__done-circle {
+  fill: #22c55e;
+  fill-opacity: 0;
+  stroke: #22c55e;
+  stroke-width: 2;
+  stroke-dasharray: 160;
+  stroke-dashoffset: 160;
+  animation: drawCircle 0.6s var(--ease) forwards, fillIn 0.3s 0.45s ease forwards;
 }
-.form__done > span svg { width: 32px; height: 32px; stroke-width: 2.6; }
-.form__done h3 { font-size: 26px; }
-.form__done p { color: var(--muted); max-width: 300px; margin-bottom: 8px; }
+.form__done-check {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: drawCircle 0.4s 0.55s var(--ease) forwards;
+}
+@keyframes drawCircle { to { stroke-dashoffset: 0; } }
+@keyframes fillIn { to { fill-opacity: 1; } }
+.confetti { position: absolute; left: 50%; top: 50%; pointer-events: none; }
+.confetti i {
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  border-radius: 2px;
+  background: var(--c);
+  opacity: 0;
+  animation: confetti 1.3s cubic-bezier(0.15, 0.7, 0.3, 1) forwards;
+  animation-delay: calc(0.35s + var(--delay));
+}
+@keyframes confetti {
+  0% { opacity: 1; transform: translate(-50%, -50%) rotate(0) scale(0.6); }
+  70% { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y) + 60px)) rotate(var(--r)) scale(1); }
+}
+.form__done h2 { font-size: 28px; margin-top: 6px; }
+.form__done p { color: var(--muted); max-width: 340px; }
+.form__done-summary {
+  width: 100%;
+  max-width: 380px;
+  margin-top: 6px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  text-align: left;
+  background: color-mix(in srgb, #22c55e 8%, var(--surface));
+  border: 1px solid color-mix(in srgb, #22c55e 30%, var(--surface));
+}
+.form__done-summary small { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.form__done-summary strong { display: block; margin-top: 4px; font-size: 14.5px; line-height: 1.45; }
+.form__done-actions { margin-top: 10px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.form__turnstile:empty { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .form__done-circle { stroke-dashoffset: 0; fill-opacity: 1; }
+  .form__done-check { stroke-dashoffset: 0; }
+  .confetti { display: none; }
+}
 @keyframes pop { from { transform: scale(0.4); opacity: 0; } }
 
 @media (max-width: 960px) {
@@ -258,7 +306,7 @@
   margin: 0 0 4px 40px;
   padding: 3px;
   border-radius: 10px;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid #e3e8f4;
   animation: finderIn 0.3s ease;
 }
@@ -274,7 +322,7 @@
   transition: background 0.2s ease, color 0.2s ease;
 }
 .qb__license button:hover { color: var(--tone); }
-.qb__license button.is-active { background: color-mix(in srgb, var(--tone) 12%, #fff); color: var(--tone); }
+.qb__license button.is-active { background: color-mix(in srgb, var(--tone) 12%, var(--surface)); color: var(--tone); }
 @media (max-width: 480px) {
   .qb__license { margin-left: 0; }
 }
@@ -290,7 +338,7 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
-.next__label { font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #c8dcff; }
+.next__label { margin: 0; line-height: 1.6; font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #c8dcff; }
 .next__steps { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 18px; position: relative; }
 /* Connecting line between the step numbers */
 .next__steps::before {
@@ -312,8 +360,8 @@
   border-radius: 50%;
   font-size: 14px;
   font-weight: 800;
-  color: var(--blue);
   background: #fff;
+  color: #2449e8;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.15);
 }
 .next__steps strong { display: block; font-size: 15.5px; }

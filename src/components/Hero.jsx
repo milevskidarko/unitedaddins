@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useRef } from 'react'
 import { Arrow, Shield, Bolt, Headset, Check, Sign, Key } from './Icons.jsx'
+import { L, useT, useLang } from '../i18n.jsx'
 import './Hero.css'
 
 // Illustrative Marimekko for the Mekko Graphics window: column width = segment size.
@@ -11,12 +12,57 @@ const mekko = [
 ]
 
 // Headline, split into words so each one can rise in on load.
-const TITLE = [
-  ['The', 'right', 'software.'],
-  ['The', 'right', { accent: 'partnership.' }],
-]
+const T = {
+  en: {
+    title: [
+      ['The', 'right', 'software.'],
+      ['The', 'right', { accent: 'partnership.' }],
+    ],
+    pill: 'Software licensing & distribution partner',
+    lead: 'We help organizations find, license and get the most from trusted software solutions — from PDF & eSign to consulting-grade data visualization.',
+    explore: 'Explore our solutions',
+    talk: 'Talk to our team',
+    trust: [
+      ['Secure & reliable', 'Enterprise-grade'],
+      ['Flexible licensing', 'For any team size'],
+      ['Expert support', 'When you need us'],
+    ],
+    contract: 'Service agreement.pdf',
+    signed: 'Signed',
+    market: 'Market share.pptx',
+    quoteSent: 'Quote request sent',
+    quoteText: 'Foxit PDF Editor+ × 25 licenses',
+    contractSigned: 'Contract signed',
+    via: 'via Foxit eSign · just now',
+  },
+  de: {
+    title: [
+      ['Die', 'richtige', 'Software.'],
+      ['Die', 'richtige', { accent: 'Partnerschaft.' }],
+    ],
+    pill: 'Partner für Softwarelizenzierung & -vertrieb',
+    lead: 'Wir helfen Unternehmen, bewährte Softwarelösungen zu finden, zu lizenzieren und optimal zu nutzen — von PDF & eSign bis zur Datenvisualisierung auf Beratungsniveau.',
+    explore: 'Lösungen entdecken',
+    talk: 'Mit unserem Team sprechen',
+    trust: [
+      ['Sicher & zuverlässig', 'Für Unternehmen'],
+      ['Flexible Lizenzen', 'Für jede Teamgröße'],
+      ['Expertensupport', 'Wenn Sie uns brauchen'],
+    ],
+    contract: 'Dienstleistungsvertrag.pdf',
+    signed: 'Signiert',
+    market: 'Marktanteile.pptx',
+    quoteSent: 'Angebotsanfrage gesendet',
+    quoteText: 'Foxit PDF Editor+ × 25 Lizenzen',
+    contractSigned: 'Vertrag signiert',
+    via: 'mit Foxit eSign · gerade eben',
+  },
+}
+const TRUST_ICONS = [Shield, Bolt, Headset]
 
 export default function Hero() {
+  const t = useT(T)
+  const lang = useLang()
   const ref = useRef(null)
 
   // Cursor light + gentle parallax of the product windows (mouse/trackpad only).
@@ -58,10 +104,10 @@ export default function Hero() {
       <div className="container hero__inner">
         <div className="hero__copy">
           <span className="pill" data-reveal>
-            <span className="pill__dot" /> Software licensing &amp; distribution partner
+            <span className="pill__dot" /> {t.pill}
           </span>
-          <h1 className="hero__title">
-            {TITLE.map((line, li) => (
+          <h1 className={`hero__title hero__title--${lang}`} key={lang}>
+            {t.title.map((line, li) => (
               <span key={li} className="hero__line">
                 {line.map((w) => {
                   const i = wi++
@@ -82,18 +128,16 @@ export default function Hero() {
               </span>
             ))}
           </h1>
-          <p className="hero__lead" data-reveal style={{ '--d': '0.5s' }}>
-            We help organizations find, license and get the most from trusted software
-            solutions — from PDF &amp; eSign to consulting-grade data visualization.
-          </p>
+          <p className="hero__lead" data-reveal style={{ '--d': '0.5s' }}>{t.lead}</p>
           <div className="hero__ctas" data-reveal style={{ '--d': '0.6s' }}>
-            <a href="#partners" className="btn btn-primary">Explore our solutions <Arrow /></a>
-            <a href="#contact" className="btn btn-ghost">Talk to our team</a>
+            <a href="#partners" className="btn btn-primary">{t.explore} <Arrow /></a>
+            <L to="/contact" className="btn btn-ghost">{t.talk}</L>
           </div>
           <ul className="hero__trust" data-reveal style={{ '--d': '0.7s' }}>
-            <li><Shield /><span><strong>Secure &amp; reliable</strong><small>Enterprise-grade</small></span></li>
-            <li><Bolt /><span><strong>Flexible licensing</strong><small>For any team size</small></span></li>
-            <li><Headset /><span><strong>Expert support</strong><small>When you need us</small></span></li>
+            {t.trust.map(([title, sub], i) => {
+              const Icon = TRUST_ICONS[i]
+              return <li key={i}><Icon /><span><strong>{title}</strong><small>{sub}</small></span></li>
+            })}
           </ul>
         </div>
 
@@ -103,7 +147,7 @@ export default function Hero() {
           <div className="glass win win--pdf float-a">
             <div className="win__bar">
               <span className="win__app win__app--pdf">PDF</span>
-              <em>Service agreement.pdf</em>
+              <em>{t.contract}</em>
             </div>
             <div className="win__page">
               <span className="ln ln--h ln--w60" />
@@ -120,7 +164,7 @@ export default function Hero() {
                 <svg viewBox="0 0 160 44">
                   <path d="M6 30c10-14 18-22 22-18s-8 22-2 22 14-26 22-24-4 20 2 20 10-12 16-12 4 10 10 10 12-8 20-10 16 2 26-2 14-6 26-6" />
                 </svg>
-                <small>Signed</small>
+                <small>{t.signed}</small>
               </div>
             </div>
           </div>
@@ -128,7 +172,7 @@ export default function Hero() {
           <div className="glass win win--mekko float-b">
             <div className="win__bar">
               <span className="win__app win__app--mekko">M</span>
-              <em>Market share.pptx</em>
+              <em>{t.market}</em>
             </div>
             <div className="mini-mekko">
               {mekko.map((c, ci) => (
@@ -148,16 +192,16 @@ export default function Hero() {
           <div className="glass chip chip--quote float-c">
             <span className="chip__ic chip__ic--blue"><Key /></span>
             <span>
-              <strong>Quote request sent</strong>
-              <small>Foxit PDF Editor+ × 25 licenses</small>
+              <strong>{t.quoteSent}</strong>
+              <small>{t.quoteText}</small>
             </span>
           </div>
 
           <div className="glass chip chip--sign float-d">
             <span className="chip__ic chip__ic--orange"><Sign /></span>
             <span>
-              <strong>Contract signed</strong>
-              <small>via Foxit eSign · just now</small>
+              <strong>{t.contractSigned}</strong>
+              <small>{t.via}</small>
             </span>
             <Check className="chip__ok" />
           </div>

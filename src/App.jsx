@@ -1,24 +1,48 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { QuoteContext } from './quote.js'
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import Header from './components/Header.jsx'
-import Hero from './components/Hero.jsx'
-import Partners from './components/Partners.jsx'
-import Foxit from './components/Foxit.jsx'
-import PlanFinder from './components/PlanFinder.jsx'
-import Mekko from './components/Mekko.jsx'
-import WhyUs from './components/WhyUs.jsx'
-import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
+import Home from './pages/Home.jsx'
+import FoxitPage from './pages/FoxitPage.jsx'
+import MekkoPage from './pages/MekkoPage.jsx'
+import AboutPage from './pages/AboutPage.jsx'
+import ContactPage from './pages/ContactPage.jsx'
+import NotFound from './pages/NotFound.jsx'
 import useReveal from './useReveal.js'
 import useSpotlight from './useSpotlight.js'
-import Marquee from './components/Marquee.jsx'
+import { LangProvider, useLang, usePageMeta } from './i18n.jsx'
+import { localize } from './seo.js'
 
-export default function App() {
+
+// Scrolls to #section after navigation (also across pages), otherwise to the top.
+function ScrollManager() {
+  const { pathname, hash } = useLocation()
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0)
+      return
+    }
+    // The target may not be rendered yet right after a page change: retry briefly.
+    let tries = 0
+    let timer
+    const go = () => {
+      const el = document.getElementById(decodeURIComponent(hash.slice(1)))
+      if (el) el.scrollIntoView({ behavior: tries ? 'auto' : 'smooth' })
+      else if (tries++ < 20) timer = setTimeout(go, 50)
+    }
+    go()
+    return () => clearTimeout(timer)
+  }, [pathname, hash])
+  return null
+}
+
+function Layout() {
   useReveal()
   useSpotlight()
-
-  // Quote builder state, shared by the plan finder and the contact form.
-  // items: { [productName]: seats }
-  // perpetual: Foxit PDF Editor as a one-time (perpetual) license instead of a subscription
+  usePageMeta()
+  const lang = useLang()
+  const navigate = useNavigate()
   const [quote, setQuote] = useState({ items: {}, type: 'New purchase', perpetual: false })
 
   const addToQuote = (products, opts = {}) => {
@@ -30,26 +54,45 @@ export default function App() {
       const perpetual = opts.perpetual === undefined ? q.perpetual : opts.perpetual
       return { ...q, items, perpetual }
     })
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+    navigate(localize('/contact', lang) + '#quote')
   }
 
   return (
-    <>
-      {/* Scroll target for the logo and the footer “back to top” button. It cannot be the
-          header itself: the header is position: fixed, so browsers never scroll to it. */}
-      <span id="top" aria-hidden="true" />
+    <QuoteContext.Provider value={{ quote, setQuote, addToQuote }}>
+      <ScrollManager />
       <Header />
-      <main>
-        <Hero />
-        <Partners />
-        <Marquee />
-        <Foxit onAddToQuote={addToQuote} />
-        <PlanFinder onAddToQuote={addToQuote} />
-        <Mekko onAddToQuote={addToQuote} />
-        <WhyUs />
-        <Contact quote={quote} setQuote={setQuote} />
+      <main id="main">
+        <Routes>
+          <Route path="/de/*" element={<PageRoutes />} />
+          <Route path="/*" element={<PageRoutes />} />
+        </Routes>
       </main>
       <Footer />
-    </>
+    </QuoteContext.Provider>
+  )
+}
+
+// Same pages under / (English) and /de (German). The layout stays mounted when the
+// language changes, so a quote in progress is kept.
+function PageRoutes() {
+  return (
+    <Routes>
+      <Route index element={<Home />} />
+      <Route path="foxit" element={<FoxitPage />} />
+      <Route path="mekko-graphics" element={<MekkoPage />} />
+      <Route path="about" element={<AboutPage />} />
+      <Route path="contact" element={<ContactPage />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <LangProvider>
+        <Layout />
+      </LangProvider>
+    </BrowserRouter>
   )
 }

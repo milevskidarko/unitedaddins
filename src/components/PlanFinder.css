@@ -32,7 +32,7 @@
   font-size: 13px;
   font-weight: 700;
   border: 1.5px solid var(--line);
-  background: #fff;
+  background: var(--surface);
   transition: all 0.3s ease;
 }
 .finder__progress span svg { width: 16px; height: 16px; stroke-width: 3; }
@@ -77,7 +77,7 @@
   padding: 16px 18px;
   border-radius: 16px;
   border: 1.5px solid #dbe2f5;
-  background: #fff;
+  background: var(--surface);
   color: var(--ink);
   font-weight: 600;
   font-size: 15px;
@@ -116,7 +116,7 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--tone);
-  background: color-mix(in srgb, var(--tone) 12%, #fff);
+  background: color-mix(in srgb, var(--tone) 12%, var(--surface));
   padding: 6px 12px;
   border-radius: 999px;
 }
@@ -130,7 +130,7 @@
   flex-shrink: 0;
   padding: 4px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--tone) 14%, #fff);
+  background: color-mix(in srgb, var(--tone) 14%, var(--surface));
   color: var(--tone);
   stroke-width: 2.8;
 }
@@ -153,6 +153,6 @@
   font-size: 13.5px;
   line-height: 1.5;
   color: var(--ink-2);
-  background: color-mix(in srgb, var(--tone) 7%, #fff);
-  border: 1px solid color-mix(in srgb, var(--tone) 18%, #fff);
+  background: color-mix(in srgb, var(--tone) 7%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--tone) 18%, var(--surface));
 }

@@ -1,62 +1,46 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Arrow, Check, Mail } from './Icons.jsx'
+import { L, useT, useLang } from '../i18n.jsx'
 import './Contact.css'
 
 const SALES_EMAIL = 'sales@unitedaddins.com'
-// Quote requests go straight to SALES_EMAIL through FormSubmit (the address is public on the site
-// anyway). The old alias '29844412…' delivered to the developer's test inbox, not to sales@.
-// Can be overridden in .env.local (VITE_FORM_EMAIL=you@example.com) for local testing.
-const FORM_EMAIL = import.meta.env.VITE_FORM_EMAIL || SALES_EMAIL
-const ENDPOINT = `https://formsubmit.co/ajax/${FORM_EMAIL}`
 
+// Quote requests go to our own Vercel function (/api/quote → Resend e-mail, protected by
+// Cloudflare Turnstile). Until that is configured (no RESEND_API_KEY on Vercel, or local
+// `npm run dev` without functions), requests fall back to FormSubmit as before.
+const API_ENDPOINT = '/api/quote'
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || ''
+// FormSubmit sends straight to sales@ (the address is public on the site anyway). The old
+// alias '29844412…' was most likely the developer's test inbox (a test landed there, Nov 2026).
+// Can be overridden in .env.local (VITE_FORM_EMAIL=you@example.com) for local testing.
+const FALLBACK_ENDPOINT = `https://formsubmit.co/ajax/${import.meta.env.VITE_FORM_EMAIL || SALES_EMAIL}`
+
+// Product names are the same in every language (they are also the keys of the quote).
 const PRODUCTS = [
   // perpetual: also sold as a one-time license (Windows & macOS). Prices are quoted individually.
-  { name: 'Foxit PDF Editor', note: 'Windows, macOS, Web', tone: 'orange', perpetual: true },
-  { name: 'Foxit PDF Editor+', note: '+ mobile, Smart Redact, eSign', tone: 'violet' },
-  { name: 'Foxit eSign', note: 'Templates, bulk send, audit trails', tone: 'blue' },
-  { name: 'Mekko Graphics', note: 'Add-in for PowerPoint & Excel', tone: 'navy' },
+  { name: 'Foxit PDF Editor', tone: 'orange', perpetual: true },
+  { name: 'Foxit PDF Editor+', tone: 'violet' },
+  { name: 'Foxit eSign', tone: 'blue' },
+  { name: 'Mekko Graphics', tone: 'navy' },
 ]
-// Each request type changes the wording and the extra fields of the form.
-const TYPES = {
-  'New purchase': {
-    hint: 'Buying licenses for the first time.',
-    productsLegend: 'Products & licenses',
-    unit: 'licenses',
-    fields: [],
-  },
-  Renewal: {
-    hint: 'Renew your existing subscription — we will review your current terms.',
-    productsLegend: 'Products to renew',
-    unit: 'licenses to renew',
-    fields: [
-      { name: 'expiryDate', label: 'Current subscription expires', type: 'date' },
-      { name: 'reference', label: 'Order or license reference (optional)', type: 'text' },
-    ],
-  },
-  Upgrade: {
-    hint: 'Move to a higher plan, for example from PDF Editor to PDF Editor+.',
-    productsLegend: 'Upgrade to',
-    unit: 'licenses to upgrade',
-    fields: [
-      {
-        name: 'currentPlan',
-        label: 'Current plan',
-        type: 'select',
-        options: ['Foxit PDF Editor', 'Foxit PDF Editor+', 'Foxit eSign', 'Mekko Graphics', 'Other / not sure'],
-      },
-      { name: 'reference', label: 'Order or license reference (optional)', type: 'text' },
-    ],
-  },
-  'Add seats': {
-    hint: 'Add licenses to the subscription you already have.',
-    productsLegend: 'Products & additional licenses',
-    unit: 'additional licenses',
-    fields: [
-      { name: 'currentSeats', label: 'Licenses you have now', type: 'number' },
-      { name: 'reference', label: 'Order or license reference (optional)', type: 'text' },
-    ],
-  },
+// Request types: the key is what the sales team receives (always English).
+const TYPE_KEYS = ['New purchase', 'Renewal', 'Upgrade', 'Add seats']
+const TYPE_FIELDS = {
+  'New purchase': [],
+  Renewal: [
+    { name: 'expiryDate', type: 'date' },
+    { name: 'reference', type: 'text' },
+  ],
+  Upgrade: [
+    { name: 'currentPlan', type: 'select', options: ['Foxit PDF Editor', 'Foxit PDF Editor+', 'Foxit eSign', 'Mekko Graphics', 'other'] },
+    { name: 'reference', type: 'text' },
+  ],
+  'Add seats': [
+    { name: 'currentSeats', type: 'number' },
+    { name: 'reference', type: 'text' },
+  ],
 }
+// Labels in the e-mail to the sales team (English).
 const FIELD_LABELS = {
   expiryDate: 'Current subscription expires',
   reference: 'Order / license reference',
@@ -64,26 +48,216 @@ const FIELD_LABELS = {
   currentSeats: 'Licenses they have now',
 }
 const MAX_SEATS = 9999
-// No response times promised on purpose — add one only if the team commits to it.
-const NEXT_STEPS = [
-  ['We review your request', 'A licensing specialist checks your products, seats and current setup.'],
-  ['You get a tailored quote', 'Clear pricing for your team, with options if there is a better fit.'],
-  ['Licensing & onboarding', 'We deliver your licenses and help you get up and running.'],
-]
+
+const T = {
+  en: {
+    eyebrow: 'Build your quote',
+    title: 'Let’s find the right software for',
+    accent: 'your team.',
+    lead: 'Pick your products and number of licenses — we’ll come back with a tailored quote.',
+    list: ['Subscription and perpetual licensing for any team size', 'Renewals, upgrades and added seats', 'Advice on the right plan for your needs'],
+    nextLabel: 'What happens next',
+    // No response times promised on purpose — add one only if the team commits to it.
+    next: [
+      ['We review your request', 'A licensing specialist checks your products, seats and current setup.'],
+      ['You get a tailored quote', 'Clear pricing for your team, with options if there is a better fit.'],
+      ['Licensing & onboarding', 'We deliver your licenses and help you get up and running.'],
+    ],
+    types: {
+      'New purchase': { label: 'New purchase', hint: 'Buying licenses for the first time.', legend: 'Products & licenses', unit: ['license', 'licenses'] },
+      Renewal: { label: 'Renewal', hint: 'Renew your existing subscription — we will review your current terms.', legend: 'Products to renew', unit: ['license to renew', 'licenses to renew'] },
+      Upgrade: { label: 'Upgrade', hint: 'Move to a higher plan, for example from PDF Editor to PDF Editor+.', legend: 'Upgrade to', unit: ['license to upgrade', 'licenses to upgrade'] },
+      'Add seats': { label: 'Add seats', hint: 'Add licenses to the subscription you already have.', legend: 'Products & additional licenses', unit: ['additional license', 'additional licenses'] },
+    },
+    fields: {
+      expiryDate: 'Current subscription expires',
+      reference: 'Order or license reference (optional)',
+      currentPlan: 'Current plan',
+      currentSeats: 'Licenses you have now',
+      other: 'Other / not sure',
+      select: 'Select',
+    },
+    notes: {
+      'Foxit PDF Editor': 'Windows, macOS, Web',
+      'Foxit PDF Editor+': '+ mobile, Smart Redact, eSign',
+      'Foxit eSign': 'Templates, bulk send, audit trails',
+      'Mekko Graphics': 'Add-in for PowerPoint & Excel',
+    },
+    perpetualNote: 'Windows & macOS · one-time license',
+    licenseType: 'license type',
+    subscription: 'Subscription',
+    perpetual: 'Perpetual (one-time)',
+    fewer: 'Fewer licenses',
+    more: 'More licenses',
+    number: (p) => `Number of ${p} licenses`,
+    step1: '1. Request type',
+    step3: '3. Your details',
+    none: 'No products selected yet.',
+    notSure: 'Not sure? Find your plan →',
+    firstName: 'First name',
+    lastName: 'Last name',
+    email: 'Work email',
+    company: 'Company',
+    message: 'Message (optional)',
+    submit: 'Request a quote',
+    sending: 'Sending…',
+    pickProduct: 'Please select at least one product for your quote.',
+    verify: 'Please wait a moment — we are checking that you are not a robot.',
+    error: `Something went wrong. Please try again or email us at ${SALES_EMAIL}.`,
+    doneTitle: 'Thank you!',
+    doneText: 'Your quote request has been received. A licensing specialist will get back to you by e-mail.',
+    doneSummary: 'Your request',
+    again: 'Send another request',
+    explore: 'Back to home',
+  },
+  de: {
+    eyebrow: 'Angebot zusammenstellen',
+    title: 'Finden wir die richtige Software für',
+    accent: 'Ihr Team.',
+    lead: 'Wählen Sie Produkte und Anzahl der Lizenzen — wir melden uns mit einem individuellen Angebot.',
+    list: ['Abonnement- und Dauerlizenzen für jede Teamgröße', 'Verlängerungen, Upgrades und zusätzliche Lizenzen', 'Beratung zum passenden Plan für Ihren Bedarf'],
+    nextLabel: 'So geht es weiter',
+    next: [
+      ['Wir prüfen Ihre Anfrage', 'Ein Lizenzspezialist prüft Produkte, Lizenzanzahl und Ihre aktuelle Umgebung.'],
+      ['Sie erhalten ein individuelles Angebot', 'Klare Preise für Ihr Team — mit Alternativen, falls es eine bessere Lösung gibt.'],
+      ['Lizenzierung & Einführung', 'Wir liefern Ihre Lizenzen und helfen Ihnen beim Start.'],
+    ],
+    types: {
+      'New purchase': { label: 'Neukauf', hint: 'Sie kaufen zum ersten Mal Lizenzen.', legend: 'Produkte & Lizenzen', unit: ['Lizenz', 'Lizenzen'] },
+      Renewal: { label: 'Verlängerung', hint: 'Verlängern Sie Ihr bestehendes Abonnement — wir prüfen Ihre aktuellen Konditionen.', legend: 'Zu verlängernde Produkte', unit: ['Lizenz zu verlängern', 'Lizenzen zu verlängern'] },
+      Upgrade: { label: 'Upgrade', hint: 'Wechsel in einen höheren Plan, z. B. von PDF Editor zu PDF Editor+.', legend: 'Upgrade auf', unit: ['Lizenz für Upgrade', 'Lizenzen für Upgrade'] },
+      'Add seats': { label: 'Mehr Lizenzen', hint: 'Fügen Sie Ihrem bestehenden Abonnement Lizenzen hinzu.', legend: 'Produkte & zusätzliche Lizenzen', unit: ['zusätzliche Lizenz', 'zusätzliche Lizenzen'] },
+    },
+    fields: {
+      expiryDate: 'Aktuelles Abonnement läuft ab am',
+      reference: 'Bestell- oder Lizenznummer (optional)',
+      currentPlan: 'Aktueller Plan',
+      currentSeats: 'Aktuelle Anzahl Lizenzen',
+      other: 'Anderer / unsicher',
+      select: 'Auswählen',
+    },
+    notes: {
+      'Foxit PDF Editor': 'Windows, macOS, Web',
+      'Foxit PDF Editor+': '+ Mobil, Smart Redact, eSign',
+      'Foxit eSign': 'Vorlagen, Massenversand, Prüfprotokolle',
+      'Mekko Graphics': 'Add-in für PowerPoint & Excel',
+    },
+    perpetualNote: 'Windows & macOS · Einmallizenz',
+    licenseType: 'Lizenztyp',
+    subscription: 'Abonnement',
+    perpetual: 'Dauerlizenz (einmalig)',
+    fewer: 'Weniger Lizenzen',
+    more: 'Mehr Lizenzen',
+    number: (p) => `Anzahl ${p}-Lizenzen`,
+    step1: '1. Art der Anfrage',
+    step3: '3. Ihre Angaben',
+    none: 'Noch keine Produkte ausgewählt.',
+    notSure: 'Unsicher? Plan finden →',
+    firstName: 'Vorname',
+    lastName: 'Nachname',
+    email: 'Geschäftliche E-Mail',
+    company: 'Unternehmen',
+    message: 'Nachricht (optional)',
+    submit: 'Angebot anfordern',
+    sending: 'Wird gesendet…',
+    pickProduct: 'Bitte wählen Sie mindestens ein Produkt für Ihr Angebot aus.',
+    verify: 'Einen Moment bitte — wir prüfen, dass Sie kein Roboter sind.',
+    error: `Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie uns an ${SALES_EMAIL}.`,
+    doneTitle: 'Vielen Dank!',
+    doneText: 'Ihre Angebotsanfrage ist eingegangen. Ein Lizenzspezialist meldet sich per E-Mail bei Ihnen.',
+    doneSummary: 'Ihre Anfrage',
+    again: 'Weitere Anfrage senden',
+    explore: 'Zur Startseite',
+  },
+}
+
+// Loads Cloudflare Turnstile once and renders the (mostly invisible) check into `el`.
+let turnstileScript
+function useTurnstile(enabled, lang) {
+  const ref = useRef(null)
+  const widget = useRef(null)
+  const [token, setToken] = useState('')
+  useEffect(() => {
+    if (!enabled || !TURNSTILE_SITE_KEY || !ref.current) return
+    let cancelled = false
+    turnstileScript ||= new Promise((resolve, reject) => {
+      const s = document.createElement('script')
+      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
+      s.async = true
+      s.onload = resolve
+      s.onerror = reject
+      document.head.appendChild(s)
+    })
+    turnstileScript
+      .then(() => {
+        if (cancelled || !ref.current || !window.turnstile) return
+        widget.current = window.turnstile.render(ref.current, {
+          sitekey: TURNSTILE_SITE_KEY,
+          theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light',
+          language: lang,
+          appearance: 'interaction-only',
+          callback: setToken,
+          'expired-callback': () => setToken(''),
+          'error-callback': () => setToken(''),
+        })
+      })
+      .catch(() => { /* blocked by an extension: the server decides */ })
+    return () => {
+      cancelled = true
+      if (widget.current != null && window.turnstile) window.turnstile.remove(widget.current)
+      widget.current = null
+      setToken('')
+    }
+  }, [enabled, lang])
+  const reset = () => {
+    setToken('')
+    if (widget.current != null && window.turnstile) window.turnstile.reset(widget.current)
+  }
+  return { ref, token, reset }
+}
+
+// A short burst of confetti behind the success check (skipped with reduced motion via CSS).
+function Confetti() {
+  const pieces = Array.from({ length: 28 }, (_, i) => {
+    const angle = (i / 28) * Math.PI * 2
+    const dist = 90 + ((i * 37) % 70)
+    return {
+      '--x': `${Math.cos(angle) * dist}px`,
+      '--y': `${Math.sin(angle) * dist - 30}px`,
+      '--r': `${(i * 67) % 360}deg`,
+      '--c': ['#2449e8', '#60a5fa', '#7c5cff', '#22c55e', '#ff5f1f', '#ffc145'][i % 6],
+      '--delay': `${(i % 5) * 0.03}s`,
+    }
+  })
+  return (
+    <span className="confetti" aria-hidden="true">
+      {pieces.map((style, i) => <i key={i} style={style} />)}
+    </span>
+  )
+}
 
 export default function Contact({ quote, setQuote }) {
-  const [sent, setSent] = useState(false)
+  const t = useT(T)
+  const lang = useLang()
+  const [sent, setSent] = useState(null) // summary of the sent request
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
+  const turnstile = useTurnstile(!sent, lang)
 
   const items = quote.items
-  const type = TYPES[quote.type]
+  const typeKey = quote.type
+  const type = t.types[typeKey]
+  const fields = TYPE_FIELDS[typeKey]
   const selected = PRODUCTS.filter((p) => items[p.name])
-  // "licenses to renew" → "license to renew" when there is exactly one.
-  const unitFor = (n) => (n === 1 ? type.unit.replace('licenses', 'license') : type.unit)
   const isPerpetual = (p) => p.perpetual && quote.perpetual
+  const unitFor = (n) => type.unit[n === 1 ? 0 : 1]
   const summary = selected
-    .map((p) => `${p.name}${isPerpetual(p) ? ' (perpetual)' : ''} × ${items[p.name]} ${unitFor(items[p.name])}`)
+    .map((p) => `${p.name}${isPerpetual(p) ? ` (${t.perpetual})` : ''} × ${items[p.name]} ${unitFor(items[p.name])}`)
+    .join(', ')
+  // The sales team always gets the request in English.
+  const enType = T.en.types[typeKey]
+  const summaryEn = selected
+    .map((p) => `${p.name}${isPerpetual(p) ? ' (perpetual)' : ''} × ${items[p.name]} ${enType.unit[items[p.name] === 1 ? 0 : 1]}`)
     .join(', ')
   const perpetualProduct = selected.find((p) => p.perpetual)
 
@@ -106,45 +280,62 @@ export default function Contact({ quote, setQuote }) {
     const data = Object.fromEntries(new FormData(form))
     if (data._honey) return // spam bot
     if (!selected.length) {
-      setError('Please select at least one product for your quote.')
+      setError(t.pickProduct)
       return
     }
+    if (TURNSTILE_SITE_KEY && window.turnstile && !turnstile.token) {
+      setError(t.verify)
+      return
+    }
+
+    const details = {
+      'Request type': typeKey,
+      Products: summaryEn,
+      ...(perpetualProduct && {
+        [`${perpetualProduct.name} license`]: quote.perpetual ? 'Perpetual (one-time purchase)' : 'Subscription',
+      }),
+      ...Object.fromEntries(
+        fields
+          .filter((f) => data[f.name])
+          .map((f) => [FIELD_LABELS[f.name], data[f.name] === 'other' ? 'Other / not sure' : data[f.name]])
+      ),
+      'First name': data.firstName,
+      'Last name': data.lastName,
+      Email: data.email,
+      Company: data.company,
+      Message: data.message,
+      Language: lang.toUpperCase(),
+    }
+    const subject = `${typeKey} — ${summaryEn} (${data.company || data.email})`
 
     setSending(true)
     setError('')
     try {
-      const res = await fetch(ENDPOINT, {
+      let res = await fetch(API_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          _subject: `${quote.type} — ${summary} (${data.company || data.email})`,
-          _replyto: data.email,
-          _template: 'table',
-          _captcha: 'false',
-          'Request type': quote.type,
-          Products: summary,
-          ...(perpetualProduct && {
-            [`${perpetualProduct.name} license`]: quote.perpetual ? 'Perpetual (one-time purchase)' : 'Subscription',
-          }),
-          ...Object.fromEntries(
-            type.fields
-              .filter((f) => data[f.name])
-              .map((f) => [FIELD_LABELS[f.name], data[f.name]])
-          ),
-          'First name': data.firstName,
-          'Last name': data.lastName,
-          Email: data.email,
-          Company: data.company,
-          Message: data.message,
-        }),
-      })
-      const json = await res.json().catch(() => ({}))
-      if (!res.ok || json.success === 'false' || json.success === false) throw new Error(json.message)
+        body: JSON.stringify({ subject, replyTo: data.email, details, turnstileToken: turnstile.token, website: data._honey }),
+      }).catch(() => null)
+      const isJson = res?.headers.get('content-type')?.includes('application/json')
+      let json = isJson ? await res.json().catch(() => ({})) : {}
+
+      // Our function is not deployed/configured yet → send through FormSubmit instead.
+      if (!res || !isJson || json.fallback) {
+        res = await fetch(FALLBACK_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ _subject: subject, _replyto: data.email, _template: 'table', _captcha: 'false', ...details }),
+        })
+        json = await res.json().catch(() => ({}))
+      }
+      if (!res.ok || json.success === 'false' || json.success === false || json.ok === false) throw new Error(json.message)
+
       form.reset()
+      setSent({ type: type.label, summary })
       setQuote({ items: {}, type: 'New purchase', perpetual: false })
-      setSent(true)
     } catch {
-      setError(`Something went wrong. Please try again or email us at ${SALES_EMAIL}.`)
+      setError(t.error)
+      turnstile.reset()
     } finally {
       setSending(false)
     }
@@ -155,24 +346,20 @@ export default function Contact({ quote, setQuote }) {
       <div className="container">
         <div className="contact__card" data-reveal>
           <div className="contact__copy">
-            <span className="eyebrow eyebrow--light">Build your quote</span>
-            <h2 className="section-title">Let&apos;s find the right software for <span className="accent">your team.</span></h2>
-            <p className="contact__lead">
-              Pick your products and number of licenses — we&apos;ll come back with a tailored quote.
-            </p>
+            <span className="eyebrow eyebrow--light">{t.eyebrow}</span>
+            <h1 className="section-title">{t.title} <span className="accent">{t.accent}</span></h1>
+            <p className="contact__lead">{t.lead}</p>
             <ul className="contact__list">
-              <li><Check /> Subscription and perpetual licensing for any team size</li>
-              <li><Check /> Renewals, upgrades and added seats</li>
-              <li><Check /> Advice on the right plan for your needs</li>
+              {t.list.map((x) => <li key={x}><Check /> {x}</li>)}
             </ul>
             <a className="contact__mail" href={`mailto:${SALES_EMAIL}`}>
               <Mail /> {SALES_EMAIL}
             </a>
 
             <div className="next">
-              <p className="next__label">What happens next</p>
+              <h2 className="next__label">{t.nextLabel}</h2>
               <ol className="next__steps">
-                {NEXT_STEPS.map(([title, text], i) => (
+                {t.next.map(([title, text], i) => (
                   <li key={title}>
                     <span className="next__n">{i + 1}</span>
                     <span>
@@ -185,44 +372,59 @@ export default function Contact({ quote, setQuote }) {
             </div>
           </div>
 
-          <form className="form" onSubmit={onSubmit}>
+          <form className="form" id="quote" onSubmit={onSubmit} noValidate={false}>
             {sent ? (
-              <div className="form__done" role="status">
-                <span><Check /></span>
-                <h3>Thank you!</h3>
-                <p>Your quote request has been received. Our team will get back to you shortly.</p>
-                <button type="button" className="btn btn-ghost btn-sm" onClick={() => setSent(false)}>
-                  Send another request
-                </button>
+              <div className="form__done" role="status" aria-live="polite">
+                <span className="form__done-badge">
+                  <Confetti />
+                  <svg viewBox="0 0 52 52" aria-hidden="true">
+                    <circle className="form__done-circle" cx="26" cy="26" r="24" />
+                    <path className="form__done-check" d="M15 27l7 7 15-16" />
+                  </svg>
+                </span>
+                <h2>{t.doneTitle}</h2>
+                <p>{t.doneText}</p>
+                {sent.summary && (
+                  <div className="form__done-summary">
+                    <small>{t.doneSummary} · {sent.type}</small>
+                    <strong>{sent.summary}</strong>
+                  </div>
+                )}
+                <div className="form__done-actions">
+                  <button type="button" className="btn btn-ghost btn-sm" onClick={() => setSent(null)}>
+                    {t.again}
+                  </button>
+                  <L to="/" className="btn btn-primary btn-sm">{t.explore} <Arrow /></L>
+                </div>
               </div>
             ) : (
               <>
                 <fieldset className="qb">
-                  <legend>1. Request type</legend>
-                  <div className="qb__types" role="radiogroup">
-                    {Object.keys(TYPES).map((t) => (
+                  <legend>{t.step1}</legend>
+                  <div className="qb__types" role="radiogroup" aria-label={t.step1}>
+                    {TYPE_KEYS.map((k) => (
                       <button
-                        key={t}
+                        key={k}
                         type="button"
                         role="radio"
-                        aria-checked={quote.type === t}
-                        className={`qb__type ${quote.type === t ? 'is-active' : ''}`}
-                        onClick={() => setQuote((q) => ({ ...q, type: t }))}
+                        aria-checked={typeKey === k}
+                        className={`qb__type ${typeKey === k ? 'is-active' : ''}`}
+                        onClick={() => setQuote((q) => ({ ...q, type: k }))}
                       >
-                        {t}
+                        {t.types[k].label}
                       </button>
                     ))}
                   </div>
-                  <p className="qb__hint" key={quote.type}>{type.hint}</p>
-                  {type.fields.length > 0 && (
-                    <div className="qb__extra form__row" key={`f-${quote.type}`}>
-                      {type.fields.map((f) => (
+                  <p className="qb__hint" key={typeKey}>{type.hint}</p>
+                  {fields.length > 0 && (
+                    <div className="qb__extra form__row" key={`f-${typeKey}`}>
+                      {fields.map((f) => (
                         <label key={f.name}>
-                          <span>{f.label}</span>
+                          <span>{t.fields[f.name]}</span>
                           {f.type === 'select' ? (
                             <select name={f.name} defaultValue="">
-                              <option value="" disabled>Select</option>
-                              {f.options.map((o) => <option key={o}>{o}</option>)}
+                              <option value="" disabled>{t.fields.select}</option>
+                              {f.options.map((o) => <option key={o} value={o}>{o === 'other' ? t.fields.other : o}</option>)}
                             </select>
                           ) : (
                             <input
@@ -239,7 +441,7 @@ export default function Contact({ quote, setQuote }) {
                 </fieldset>
 
                 <fieldset className="qb">
-                  <legend>2. {type.productsLegend}</legend>
+                  <legend>2. {type.legend}</legend>
                   <div className="qb__products">
                     {PRODUCTS.map((p) => {
                       const on = Boolean(items[p.name])
@@ -254,12 +456,12 @@ export default function Contact({ quote, setQuote }) {
                             <span className="qb__check">{on && <Check />}</span>
                             <span className="qb__name">
                               <strong>{p.name}</strong>
-                              <small>{isPerpetual(p) ? 'Windows & macOS · one-time license' : p.note}</small>
+                              <small>{isPerpetual(p) ? t.perpetualNote : t.notes[p.name]}</small>
                             </span>
                           </button>
                           {on && p.perpetual && (
-                            <div className="qb__license" role="radiogroup" aria-label={`${p.name} license type`}>
-                              {[['Subscription', false], ['Perpetual (one-time)', true]].map(([label, value]) => (
+                            <div className="qb__license" role="radiogroup" aria-label={`${p.name} ${t.licenseType}`}>
+                              {[[t.subscription, false], [t.perpetual, true]].map(([label, value]) => (
                                 <button
                                   key={label}
                                   type="button"
@@ -274,8 +476,8 @@ export default function Contact({ quote, setQuote }) {
                             </div>
                           )}
                           {on && (
-                            <div className="qb__seats" aria-label={`${p.name} ${type.unit}`} title={type.unit}>
-                              <button type="button" onClick={() => setSeats(p.name, items[p.name] - 1)} aria-label="Fewer licenses">−</button>
+                            <div className="qb__seats" title={type.unit[1]}>
+                              <button type="button" onClick={() => setSeats(p.name, items[p.name] - 1)} aria-label={t.fewer}>−</button>
                               <input
                                 type="number"
                                 inputMode="numeric"
@@ -284,9 +486,9 @@ export default function Contact({ quote, setQuote }) {
                                 value={items[p.name]}
                                 onFocus={(e) => e.target.select()}
                                 onChange={(e) => setSeats(p.name, e.target.value)}
-                                aria-label={`Number of ${p.name} licenses`}
+                                aria-label={t.number(p.name)}
                               />
-                              <button type="button" onClick={() => setSeats(p.name, items[p.name] + 1)} aria-label="More licenses">+</button>
+                              <button type="button" onClick={() => setSeats(p.name, items[p.name] + 1)} aria-label={t.more}>+</button>
                             </div>
                           )}
                         </div>
@@ -294,45 +496,47 @@ export default function Contact({ quote, setQuote }) {
                     })}
                   </div>
                   <p className={`qb__summary ${summary ? 'has-items' : ''}`}>
-                    {summary ? <><strong>{quote.type}:</strong> {summary}</> : 'No products selected yet.'}
-                    {' '}<a href="#plan">Not sure? Find your plan →</a>
+                    {summary ? <><strong>{type.label}:</strong> {summary}</> : t.none}
+                    {' '}<L to="/foxit#plan">{t.notSure}</L>
                   </p>
                 </fieldset>
 
                 <fieldset className="qb">
-                  <legend>3. Your details</legend>
+                  <legend>{t.step3}</legend>
                   <div className="qb__fields">
                     <div className="form__row">
                       <label>
-                        <span>First name</span>
+                        <span>{t.firstName}</span>
                         <input name="firstName" required autoComplete="given-name" />
                       </label>
                       <label>
-                        <span>Last name</span>
+                        <span>{t.lastName}</span>
                         <input name="lastName" required autoComplete="family-name" />
                       </label>
                     </div>
                     <div className="form__row">
                       <label>
-                        <span>Work email</span>
+                        <span>{t.email}</span>
                         <input type="email" name="email" required autoComplete="email" />
                       </label>
                       <label>
-                        <span>Company</span>
+                        <span>{t.company}</span>
                         <input name="company" autoComplete="organization" />
                       </label>
                     </div>
                     <label>
-                      <span>Message (optional)</span>
+                      <span>{t.message}</span>
                       <textarea name="message" rows="2" />
                     </label>
                   </div>
                 </fieldset>
 
+                {/* Spam trap: hidden from people, bots fill it in. */}
                 <input type="text" name="_honey" tabIndex="-1" autoComplete="off" className="form__hp" aria-hidden="true" />
+                {TURNSTILE_SITE_KEY && <div className="form__turnstile" ref={turnstile.ref} />}
                 {error && <p className="form__error" role="alert">{error}</p>}
                 <button type="submit" className="btn btn-primary form__submit" disabled={sending}>
-                  {sending ? 'Sending…' : <>Request a quote <Arrow /></>}
+                  {sending ? t.sending : <>{t.submit} <Arrow /></>}
                 </button>
               </>
             )}

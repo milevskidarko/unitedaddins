@@ -172,7 +172,7 @@
   padding: 9px;
   border-radius: 12px;
   color: var(--blue);
-  background: #fff;
+  background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
 .hero__trust strong { display: block; font-size: 14px; }
