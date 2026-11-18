@@ -171,7 +171,17 @@
   white-space: nowrap;
 }
 .count__unit { font-size: 0.62em; font-weight: 700; letter-spacing: 0; color: #c7d4ff; }
-.stats__list dd { margin: 4px 0 0; font-size: 13px; color: #b6c4ec; line-height: 1.35; }
+.stats__list dd {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #b6c4ec;
+  line-height: 1.35;
+  /* Long German/French labels ("Amortisationszeit", "d’amortissement") break with a hyphen
+     instead of running into the next column on phones. */
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: break-word;
+}
 .stats__foot {
   margin-top: auto;
   padding-top: 24px;

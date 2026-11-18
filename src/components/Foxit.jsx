@@ -75,7 +75,7 @@ const T = {
     statsTitle: 'Nachgewiesener Geschäftswert',
     statsSub: 'Forrester Total Economic Impact™-Studie zu Foxit PDF Editor',
     roi: 'ROI',
-    payback: 'Amortisationszeit',
+    payback: 'Amortisation', // short: "Amortisationszeit" does not fit the column on phones
     founded: 'Gründung von Foxit',
     mo: 'Mon.',
     disclaimer: 'Von Foxit beauftragte Studie (2022). Die Ergebnisse beruhen auf einer modellierten Referenzorganisation und sind keine Garantie für individuelle Ergebnisse.',
@@ -108,7 +108,7 @@ const T = {
     statsTitle: 'Une valeur prouvée',
     statsSub: 'Étude Forrester Total Economic Impact™ de Foxit PDF Editor',
     roi: 'ROI',
-    payback: 'Délai d’amortissement',
+    payback: 'Délai d’amortis­sement',
     founded: 'Création de Foxit',
     mo: 'mois',
     disclaimer: 'Étude commandée par Foxit (2022). Les résultats reposent sur une organisation composite modélisée et ne garantissent pas des résultats individuels.',
