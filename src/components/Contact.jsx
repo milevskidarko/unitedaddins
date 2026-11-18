@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Arrow, Check, Mail } from './Icons.jsx'
 import { L, useT, useLang } from '../i18n.jsx'
+import { PRODUCTS as MORE_PRODUCTS } from '../products.js'
 import './Contact.css'
 
 const SALES_EMAIL = 'sales@unitedaddins.com'
@@ -22,6 +23,8 @@ const PRODUCTS = [
   { name: 'Foxit PDF Editor+', tone: 'violet' },
   { name: 'Foxit eSign', tone: 'blue' },
   { name: 'Mekko Graphics', tone: 'navy' },
+  // Further products (products.js): listed under "More products" so the core ones stay up front.
+  ...MORE_PRODUCTS.map((p) => ({ name: p.name, color: p.tone, more: true, notes: { en: p.en.note, de: p.de.note, fr: p.fr.note } })),
 ]
 // Request types: the key is what the sales team receives (always English).
 const TYPE_KEYS = ['New purchase', 'Renewal', 'Upgrade', 'Add seats']
@@ -32,7 +35,7 @@ const TYPE_FIELDS = {
     { name: 'reference', type: 'text' },
   ],
   Upgrade: [
-    { name: 'currentPlan', type: 'select', options: ['Foxit PDF Editor', 'Foxit PDF Editor+', 'Foxit eSign', 'Mekko Graphics', 'other'] },
+    { name: 'currentPlan', type: 'select', options: ['Foxit PDF Editor', 'Foxit PDF Editor+', 'Foxit eSign', 'Mekko Graphics', ...MORE_PRODUCTS.map((p) => p.name), 'other'] },
     { name: 'reference', type: 'text' },
   ],
   'Add seats': [
@@ -84,6 +87,8 @@ const T = {
       'Mekko Graphics': 'Add-in for PowerPoint & Excel',
     },
     perpetualNote: 'Windows & macOS · one-time license',
+    moreProducts: (n) => `More products (${n})`,
+    fewerProducts: 'Fewer products',
     licenseType: 'license type',
     subscription: 'Subscription',
     perpetual: 'Perpetual (one-time)',
@@ -143,6 +148,8 @@ const T = {
       'Mekko Graphics': 'Add-in für PowerPoint & Excel',
     },
     perpetualNote: 'Windows & macOS · Einmallizenz',
+    moreProducts: (n) => `Weitere Produkte (${n})`,
+    fewerProducts: 'Weniger Produkte',
     licenseType: 'Lizenztyp',
     subscription: 'Abonnement',
     perpetual: 'Dauerlizenz (einmalig)',
@@ -168,6 +175,67 @@ const T = {
     doneSummary: 'Ihre Anfrage',
     again: 'Weitere Anfrage senden',
     explore: 'Zur Startseite',
+  },
+  fr: {
+    eyebrow: 'Composez votre devis',
+    title: 'Trouvons le bon logiciel pour',
+    accent: 'votre équipe.',
+    lead: 'Choisissez vos produits et le nombre de licences — nous revenons vers vous avec un devis sur mesure.',
+    list: ['Abonnements et licences perpétuelles pour toutes les tailles d’équipe', 'Renouvellements, mises à niveau et postes supplémentaires', 'Conseils sur l’offre adaptée à vos besoins'],
+    nextLabel: 'Les étapes suivantes',
+    next: [
+      ['Nous étudions votre demande', 'Un spécialiste des licences vérifie vos produits, le nombre de postes et votre configuration actuelle.'],
+      ['Vous recevez un devis sur mesure', 'Des prix clairs pour votre équipe, avec des alternatives s’il existe une meilleure option.'],
+      ['Licences et mise en route', 'Nous livrons vos licences et vous aidons à démarrer.'],
+    ],
+    types: {
+      'New purchase': { label: 'Nouvel achat', hint: 'Vous achetez des licences pour la première fois.', legend: 'Produits et licences', unit: ['licence', 'licences'] },
+      Renewal: { label: 'Renouvellement', hint: 'Renouvelez votre abonnement existant — nous examinerons vos conditions actuelles.', legend: 'Produits à renouveler', unit: ['licence à renouveler', 'licences à renouveler'] },
+      Upgrade: { label: 'Mise à niveau', hint: 'Passez à une offre supérieure, par exemple de PDF Editor à PDF Editor+.', legend: 'Mise à niveau vers', unit: ['licence à mettre à niveau', 'licences à mettre à niveau'] },
+      'Add seats': { label: 'Postes supplémentaires', hint: 'Ajoutez des licences à votre abonnement existant.', legend: 'Produits et licences supplémentaires', unit: ['licence supplémentaire', 'licences supplémentaires'] },
+    },
+    fields: {
+      expiryDate: 'Expiration de l’abonnement actuel',
+      reference: 'Référence de commande ou de licence (facultatif)',
+      currentPlan: 'Offre actuelle',
+      currentSeats: 'Nombre de licences actuel',
+      other: 'Autre / je ne sais pas',
+      select: 'Choisir',
+    },
+    notes: {
+      'Foxit PDF Editor': 'Windows, macOS, Web',
+      'Foxit PDF Editor+': '+ mobile, Smart Redact, eSign',
+      'Foxit eSign': 'Modèles, envoi en masse, pistes d’audit',
+      'Mekko Graphics': 'Complément pour PowerPoint et Excel',
+    },
+    perpetualNote: 'Windows et macOS · licence à achat unique',
+    moreProducts: (n) => `Autres produits (${n})`,
+    fewerProducts: 'Moins de produits',
+    licenseType: 'type de licence',
+    subscription: 'Abonnement',
+    perpetual: 'Perpétuelle (achat unique)',
+    fewer: 'Moins de licences',
+    more: 'Plus de licences',
+    number: (p) => `Nombre de licences ${p}`,
+    step1: '1. Type de demande',
+    step3: '3. Vos coordonnées',
+    none: 'Aucun produit sélectionné.',
+    notSure: 'Vous hésitez ? Trouver votre offre →',
+    firstName: 'Prénom',
+    lastName: 'Nom',
+    email: 'E-mail professionnel',
+    company: 'Entreprise',
+    message: 'Message (facultatif)',
+    submit: 'Demander un devis',
+    sending: 'Envoi…',
+    pickProduct: 'Veuillez sélectionner au moins un produit pour votre devis.',
+    verify: 'Un instant — nous vérifions que vous n’êtes pas un robot.',
+    error: `Une erreur s’est produite. Veuillez réessayer ou nous écrire à ${SALES_EMAIL}.`,
+    doneTitle: 'Merci !',
+    doneText: 'Votre demande de devis a bien été reçue. Un spécialiste des licences vous répondra par e-mail.',
+    doneSummary: 'Votre demande',
+    again: 'Envoyer une autre demande',
+    explore: 'Retour à l’accueil',
   },
 }
 
@@ -242,6 +310,7 @@ export default function Contact({ quote, setQuote }) {
   const [sent, setSent] = useState(null) // summary of the sent request
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
+  const [showMore, setShowMore] = useState(false)
   const turnstile = useTurnstile(!sent, lang)
 
   const items = quote.items
@@ -249,6 +318,10 @@ export default function Contact({ quote, setQuote }) {
   const type = t.types[typeKey]
   const fields = TYPE_FIELDS[typeKey]
   const selected = PRODUCTS.filter((p) => items[p.name])
+  // Extra products are folded away unless opened or already picked (e.g. from a product page).
+  const moreCount = PRODUCTS.filter((p) => p.more).length
+  const visibleProducts = PRODUCTS.filter((p) => !p.more || showMore || items[p.name])
+  const noteFor = (p) => (p.notes ? p.notes[lang] || p.notes.en : t.notes[p.name])
   const isPerpetual = (p) => p.perpetual && quote.perpetual
   const unitFor = (n) => type.unit[n === 1 ? 0 : 1]
   const summary = selected
@@ -443,10 +516,14 @@ export default function Contact({ quote, setQuote }) {
                 <fieldset className="qb">
                   <legend>2. {type.legend}</legend>
                   <div className="qb__products">
-                    {PRODUCTS.map((p) => {
+                    {visibleProducts.map((p) => {
                       const on = Boolean(items[p.name])
                       return (
-                        <div key={p.name} className={`qb__item qb__item--${p.tone} ${on ? 'is-on' : ''}`}>
+                        <div
+                          key={p.name}
+                          className={`qb__item ${p.tone ? `qb__item--${p.tone}` : ''} ${on ? 'is-on' : ''}`}
+                          style={p.color ? { '--tone': p.color } : undefined}
+                        >
                           <button
                             type="button"
                             className="qb__toggle"
@@ -456,7 +533,7 @@ export default function Contact({ quote, setQuote }) {
                             <span className="qb__check">{on && <Check />}</span>
                             <span className="qb__name">
                               <strong>{p.name}</strong>
-                              <small>{isPerpetual(p) ? t.perpetualNote : t.notes[p.name]}</small>
+                              <small>{isPerpetual(p) ? t.perpetualNote : noteFor(p)}</small>
                             </span>
                           </button>
                           {on && p.perpetual && (
@@ -495,6 +572,14 @@ export default function Contact({ quote, setQuote }) {
                       )
                     })}
                   </div>
+                  <button
+                    type="button"
+                    className="qb__more"
+                    aria-expanded={showMore}
+                    onClick={() => setShowMore((v) => !v)}
+                  >
+                    {showMore ? t.fewerProducts : t.moreProducts(moreCount)}
+                  </button>
                   <p className={`qb__summary ${summary ? 'has-items' : ''}`}>
                     {summary ? <><strong>{type.label}:</strong> {summary}</> : t.none}
                     {' '}<L to="/foxit#plan">{t.notSure}</L>

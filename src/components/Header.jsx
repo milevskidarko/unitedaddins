@@ -4,6 +4,7 @@ import Logo from './Logo.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
 import LangSwitch from './LangSwitch.jsx'
 import { L, useT } from '../i18n.jsx'
+import { stripLang } from '../seo.js'
 import { Arrow, Chevron, Menu, Close, Doc, Chart, Key, Headset, Handshake, Cubes } from './Icons.jsx'
 import './Header.css'
 
@@ -15,13 +16,14 @@ const T = {
         items: [
           { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'Edit, protect and sign PDFs', href: '/foxit' },
           { icon: Chart, title: 'Mekko Graphics', text: 'Charts in PowerPoint & Excel', href: '/mekko-graphics' },
+          { icon: Cubes, title: 'All products', text: 'PDF-XChange, Bluebeam, SketchUp & more', href: '/products' },
           { icon: Key, title: 'Find your plan', text: '4 questions, the right Foxit plan', href: '/foxit#plan' },
         ],
       },
       {
         label: 'Partners',
         items: [
-          { icon: Handshake, title: 'Our vendors', text: 'Foxit and Mekko Graphics', href: '/#partners' },
+          { icon: Handshake, title: 'Our vendors', text: 'Foxit, Mekko Graphics and more', href: '/products' },
           // The quote form requires a product, so partnership inquiries go by email instead.
           {
             icon: Cubes,
@@ -48,13 +50,14 @@ const T = {
         items: [
           { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'PDFs bearbeiten, schützen und signieren', href: '/foxit' },
           { icon: Chart, title: 'Mekko Graphics', text: 'Diagramme in PowerPoint & Excel', href: '/mekko-graphics' },
+          { icon: Cubes, title: 'Alle Produkte', text: 'PDF-XChange, Bluebeam, SketchUp & mehr', href: '/products' },
           { icon: Key, title: 'Plan finden', text: '4 Fragen, der passende Foxit-Plan', href: '/foxit#plan' },
         ],
       },
       {
         label: 'Partner',
         items: [
-          { icon: Handshake, title: 'Unsere Hersteller', text: 'Foxit und Mekko Graphics', href: '/#partners' },
+          { icon: Handshake, title: 'Unsere Hersteller', text: 'Foxit, Mekko Graphics und mehr', href: '/products' },
           {
             icon: Cubes,
             title: 'Partner werden',
@@ -72,6 +75,39 @@ const T = {
     help: 'Fragen? Sprechen Sie mit unserem Team',
     main: 'Hauptmenü',
     skip: 'Zum Inhalt springen',
+  },
+  fr: {
+    nav: [
+      {
+        label: 'Produits',
+        items: [
+          { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'Modifier, protéger et signer des PDF', href: '/foxit' },
+          { icon: Chart, title: 'Mekko Graphics', text: 'Graphiques dans PowerPoint et Excel', href: '/mekko-graphics' },
+          { icon: Cubes, title: 'Tous les produits', text: 'PDF-XChange, Bluebeam, SketchUp et plus', href: '/products' },
+          { icon: Key, title: 'Trouver votre offre', text: '4 questions, la bonne offre Foxit', href: '/foxit#plan' },
+        ],
+      },
+      {
+        label: 'Partenaires',
+        items: [
+          { icon: Handshake, title: 'Nos éditeurs', text: 'Foxit, Mekko Graphics et plus', href: '/products' },
+          {
+            icon: Cubes,
+            title: 'Devenir partenaire',
+            text: 'Grandir avec United Addins',
+            href: 'mailto:sales@unitedaddins.com?subject=Demande%20de%20partenariat',
+          },
+        ],
+      },
+      { label: 'À propos', href: '/about' },
+      { label: 'Contact', href: '/contact' },
+    ],
+    cta: 'Contacter les ventes',
+    open: 'Ouvrir le menu',
+    close: 'Fermer le menu',
+    help: 'Besoin d’aide ? Parlez à notre équipe',
+    main: 'Menu principal',
+    skip: 'Aller au contenu',
   },
 }
 
@@ -110,8 +146,8 @@ export default function Header() {
 
   const close = () => setOpen(false)
   // The About page starts with a dark section: light menu text until the header gets its background.
-  const onDark = /^\/(de\/)?about\/?$/.test(pathname)
-  const isCurrent = (href) => !href.includes('#') && !href.startsWith('mailto:') && pathname.replace(/^\/de/, '') === href.replace(/^\/$/, '')
+  const onDark = /^\/((de|fr)\/)?about\/?$/.test(pathname)
+  const isCurrent = (href) => !href.includes('#') && !href.startsWith('mailto:') && stripLang(pathname) === href
 
   return (
     <>

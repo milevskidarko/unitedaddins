@@ -10,6 +10,10 @@ const T = {
     label: 'Was wir abdecken',
     words: ['Bearbeiten', 'Konvertieren', 'Schwärzen', 'eSign', 'Marimekko', 'Bar Mekko', 'Wasserfall', 'Lizenzen', 'Verlängerungen', 'Upgrades', 'Support'],
   },
+  fr: {
+    label: 'Ce que nous couvrons',
+    words: ['Modifier', 'Convertir', 'Caviarder', 'eSign', 'Marimekko', 'Bar Mekko', 'Cascade', 'Licences', 'Renouvellements', 'Mises à niveau', 'Support'],
+  },
 }
 
 // Endless, slowly scrolling band of what we cover. The list is rendered twice so the

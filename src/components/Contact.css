@@ -181,6 +181,18 @@
 .form .qb__seats input:focus { box-shadow: none; background: #f4f7ff; }
 .qb__seats input::-webkit-outer-spin-button,
 .qb__seats input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.qb__more {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border: 1.5px dashed #c3cde8;
+  border-radius: 12px;
+  background: none;
+  width: 100%;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 700;
+}
+.qb__more:hover { border-color: var(--blue); }
 .qb__summary { margin-top: 10px; font-size: 13.5px; color: var(--muted); }
 .qb__summary.has-items { color: var(--ink-2); }
 .qb__summary a { color: var(--blue); font-weight: 600; white-space: nowrap; }

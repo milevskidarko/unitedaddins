@@ -1,0 +1,111 @@
+// French copy for the products in products.js, keyed by slug. Same shape as `en` there.
+export const PRODUCTS_FR = {
+  'pdf-xchange': {
+    tagline: 'Édition PDF rapide et légère pour Windows',
+    lead: 'PDF-XChange Editor est un éditeur PDF rapide et complet qui reste fluide même sur de gros documents. Modifiez textes et images, annotez et relisez, appliquez l’OCR aux documents numérisés et travaillez avec des formulaires — en éditions Editor, Editor Plus et PRO selon les besoins de votre équipe.',
+    features: [
+      ['Modifier des PDF', 'Changez textes, images et pages directement dans le PDF.'],
+      ['Relecture et annotations', 'Commentaires, surlignages, tampons et outils de mesure.'],
+      ['OCR', 'Transformez les documents numérisés en texte consultable.'],
+      ['Formulaires', 'Remplissez, créez et modifiez des formulaires PDF interactifs.'],
+    ],
+    platforms: 'Windows',
+    note: 'Éditeur PDF pour Windows',
+  },
+  bluebeam: {
+    tagline: 'Annotation PDF et collaboration pour la construction',
+    lead: 'Bluebeam Revu est l’espace de travail PDF des architectes, ingénieurs et entreprises de construction. Annotez les plans, mesurez et réalisez des métrés, comparez les révisions et travaillez en temps réel sur le même jeu de plans avec Studio Sessions.',
+    features: [
+      ['Annotations et jeux d’outils', 'Annotez les plans avec des jeux d’outils personnalisés et réutilisables.'],
+      ['Mesures et métrés', 'Mesurez longueurs, surfaces et quantités directement sur les plans.'],
+      ['Collaboration en temps réel', 'Relisez les mêmes documents ensemble dans Studio Sessions.'],
+      ['Comparer les révisions', 'Repérez ce qui a changé entre deux versions d’un plan.'],
+    ],
+    platforms: 'Windows, web et iPad',
+    note: 'Annotation PDF pour le BTP',
+  },
+  nxpowerlite: {
+    tagline: 'Réduisez la taille des fichiers Office, PDF et images',
+    lead: 'NXPowerLite Desktop compresse les fichiers PowerPoint, Word, Excel, PDF et JPEG — souvent de façon spectaculaire — tout en conservant leur format d’origine : ils s’ouvrent exactement comme avant. Des fichiers plus légers s’envoient, se partagent et se stockent plus vite.',
+    features: [
+      ['Même format, fichier plus léger', 'Les fichiers restent en .pptx, .docx, .xlsx, .pdf ou .jpg — sans zip.'],
+      ['Compression par lots', 'Réduisez des dossiers entiers de documents en une fois.'],
+      ['Pièces jointes', 'Compressez les pièces jointes à l’envoi depuis Outlook.'],
+      ['Simple à utiliser', 'Glisser, déposer, c’est fait — sans formation.'],
+    ],
+    platforms: 'Windows et macOS',
+    note: 'Compression de fichiers Office et PDF',
+  },
+  progecad: {
+    tagline: 'CAO 2D/3D compatible AutoCAD®',
+    lead: 'progeCAD est un logiciel de CAO DWG professionnel avec une interface et des commandes familières : les utilisateurs d’AutoCAD sont productifs dès le premier jour. Dessinez en 2D, modélisez en 3D et échangez des fichiers DWG avec vos partenaires — avec des licences perpétuelles disponibles.',
+    features: [
+      ['DWG natif', 'Ouvrez, modifiez et enregistrez directement des fichiers DWG.'],
+      ['Prise en main immédiate', 'Commandes, menus et raccourcis comme dans AutoCAD.'],
+      ['2D et 3D', 'Dessin, annotation et modélisation 3D dans un seul outil.'],
+      ['Licences perpétuelles', 'Achetez une fois au lieu d’un abonnement annuel.'],
+    ],
+    platforms: 'Windows et macOS',
+    note: 'CAO DWG, compatible AutoCAD',
+  },
+  sketchup: {
+    tagline: 'Modélisation 3D pour l’architecture, l’aménagement intérieur et la construction',
+    lead: 'SketchUp rend la conception 3D intuitive : esquissez vos idées, modélisez bâtiments et espaces, puis transformez-les en plans de présentation. Les offres vont de SketchUp Go à Pro et Studio, pour les indépendants comme pour des équipes de conception entières.',
+    features: [
+      ['Modélisation 3D intuitive', 'Poussez, tirez et façonnez vos modèles rapidement.'],
+      ['LayOut', 'Créez des plans 2D et des documents de présentation à partir du modèle.'],
+      ['3D Warehouse', 'Une immense bibliothèque de modèles et composants prêts à l’emploi.'],
+      ['Ordinateur, web et iPad', 'Travaillez où que votre projet vous mène.'],
+    ],
+    platforms: 'Windows, macOS, web et iPad',
+    note: 'Modélisation 3D — Go, Pro, Studio',
+  },
+  mydraw: {
+    tagline: 'Diagrammes, organigrammes et cartes mentales — une alternative à Visio®',
+    lead: 'MyDraw est un logiciel de diagrammes simple à utiliser pour les logigrammes, organigrammes, cartes mentales, plans d’étage, schémas réseau et plus. Il ouvre et enregistre les fichiers Visio : vous continuez à travailler avec vos diagrammes existants.',
+    features: [
+      ['Nombreux types de diagrammes', 'Logigrammes, organigrammes, cartes mentales, plans d’étage et plus.'],
+      ['Fichiers Visio', 'Ouvrez et enregistrez des dessins Visio (VSDX).'],
+      ['Modèles et formes', 'Démarrez vite avec des modèles et bibliothèques de formes prêts à l’emploi.'],
+      ['Export flexible', 'Partagez en PDF, en image et dans d’autres formats courants.'],
+    ],
+    platforms: 'Windows et macOS',
+    note: 'Diagrammes, compatible Visio',
+  },
+  mindmanager: {
+    tagline: 'Cartes mentales, plans et espaces de travail visuels',
+    lead: 'MindManager transforme idées, informations et plans en cartes visuelles claires. Faites du brainstorming, structurez vos projets, créez des chronologies et des logigrammes — en lien avec les outils Microsoft 365 que votre équipe utilise déjà.',
+    features: [
+      ['Cartes mentales et conceptuelles', 'Capturez vos idées et organisez l’information visuellement.'],
+      ['Planification de projets', 'Chronologies, diagrammes de Gantt et suivi des tâches dans une seule vue.'],
+      ['Logigrammes et diagrammes', 'Représentez clairement processus et décisions.'],
+      ['Microsoft 365', 'Fonctionne avec Word, Excel, Outlook et Teams.'],
+    ],
+    platforms: 'Windows, macOS et web',
+    note: 'Cartes mentales et planification visuelle',
+  },
+  'project-plan-365': {
+    tagline: 'Ouvrez, modifiez et partagez des fichiers Microsoft Project — sur tous vos appareils',
+    lead: 'Project Plan 365 ouvre, modifie et enregistre des fichiers Microsoft Project (.mpp) sans Microsoft Project. Planifiez avec des diagrammes de Gantt, gérez tâches et ressources et partagez les plannings avec tous les intervenants — sur ordinateur, mobile ou navigateur.',
+    features: [
+      ['Fichiers Microsoft Project', 'Ouvrez, modifiez et enregistrez nativement des fichiers .mpp.'],
+      ['Planification complète', 'Diagrammes de Gantt, tâches, ressources, planifications de référence et rapports.'],
+      ['Tous les appareils', 'Windows, Mac, iPhone, iPad, Android et web.'],
+      ['Partage avec l’équipe', 'Tout le monde voit le même planning à jour.'],
+    ],
+    platforms: 'Windows, macOS, iOS, Android et web',
+    note: 'Modifier des fichiers MS Project partout',
+  },
+  'steelray-project-viewer': {
+    tagline: 'Consultez des fichiers Microsoft Project sans Microsoft Project',
+    lead: 'Steelray Project Viewer permet à ceux qui doivent seulement lire un planning d’ouvrir des fichiers Microsoft Project (.mpp) — sans licence Microsoft Project complète pour chacun. Des vues familières aident les membres de l’équipe et les parties prenantes à suivre le projet.',
+    features: [
+      ['Ouvrir des fichiers .mpp', 'Consultez les plannings Microsoft Project tels qu’ils ont été créés.'],
+      ['Vues familières', 'Vues Gantt, tâches et ressources comme dans Project.'],
+      ['Imprimer et exporter', 'Imprimez les plannings ou exportez-les pour les partager.'],
+      ['Économie de licences', 'Les lecteurs n’ont pas besoin de licence Microsoft Project.'],
+    ],
+    platforms: 'Windows et macOS',
+    note: 'Visionneuse de fichiers MS Project',
+  },
+}

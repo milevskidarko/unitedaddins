@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { PAGES, SITE, LANGS, localize, langFromPath, pageKeyFromPath } from './seo.js'
+import { PAGES, SITE, LANGS, OG_LOCALES, localize, langFromPath, pageKeyFromPath } from './seo.js'
 
-// Language comes from the URL: /de/... is German, everything else English.
+// Language comes from the URL: /de/... is German, /fr/... French, everything else English.
 // Each component keeps its own strings next to its markup: const T = { en: {...}, de: {...} }
 
 const LangContext = createContext('en')
@@ -58,7 +58,7 @@ export function usePageMeta() {
     set('meta[property="og:url"]', 'content', url)
     set('meta[property="og:title"]', 'content', meta.title)
     set('meta[property="og:description"]', 'content', meta.description)
-    set('meta[property="og:locale"]', 'content', lang === 'de' ? 'de_DE' : 'en_US')
+    set('meta[property="og:locale"]', 'content', OG_LOCALES[lang])
     LANGS.forEach((l) => set(`link[rel="alternate"][hreflang="${l}"]`, 'href', SITE + localize(page.path, l)))
     set('link[rel="alternate"][hreflang="x-default"]', 'href', SITE + page.path)
   }, [key, lang])

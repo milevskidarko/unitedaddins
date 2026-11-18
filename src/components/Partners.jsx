@@ -1,9 +1,9 @@
-import { Arrow, Doc, Chart, Key, Check } from './Icons.jsx'
+import { Arrow, Doc, Chart, Key, Check, Cubes } from './Icons.jsx'
 import { L, useT } from '../i18n.jsx'
 import './Partners.css'
 
-const ICONS = [Doc, Chart, Key]
-const HREFS = ['/foxit', '/mekko-graphics', '/contact']
+const ICONS = [Doc, Chart, Cubes, Key]
+const HREFS = ['/foxit', '/mekko-graphics', '/products', '/contact']
 
 const T = {
   en: {
@@ -16,6 +16,7 @@ const T = {
     needs: [
       ['PDF & eSign', 'Create, edit, protect and sign documents.'],
       ['Data visualization', 'Marimekko, Bar Mekko, waterfall and more.'],
+      ['More software', 'PDF-XChange, Bluebeam, SketchUp, progeCAD, MindManager and more.'],
       ['Licensing & renewals', 'New licenses, renewals, upgrades and added seats.'],
     ],
   },
@@ -27,7 +28,20 @@ const T = {
     needs: [
       ['PDF & eSign', 'Dokumente erstellen, bearbeiten, schützen und signieren.'],
       ['Datenvisualisierung', 'Marimekko, Bar Mekko, Wasserfall und mehr.'],
+      ['Weitere Software', 'PDF-XChange, Bluebeam, SketchUp, progeCAD, MindManager und mehr.'],
       ['Lizenzen & Verlängerungen', 'Neue Lizenzen, Verlängerungen, Upgrades und zusätzliche Plätze.'],
+    ],
+  },
+  fr: {
+    title: 'Nos partenaires',
+    accent: 'de confiance',
+    cred: <>Distributeur agréé <strong>Foxit</strong> (depuis 2012) et <strong>Mekko Graphics</strong></>,
+    label: 'Explorer par besoin',
+    needs: [
+      ['PDF et eSign', 'Créer, modifier, protéger et signer des documents.'],
+      ['Visualisation de données', 'Marimekko, Bar Mekko, cascade et plus.'],
+      ['Autres logiciels', 'PDF-XChange, Bluebeam, SketchUp, progeCAD, MindManager et plus.'],
+      ['Licences et renouvellements', 'Nouvelles licences, renouvellements, mises à niveau et postes supplémentaires.'],
     ],
   },
 }

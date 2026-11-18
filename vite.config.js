@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import fs from 'node:fs'
 import path from 'node:path'
-import { PAGES, LANGS, SITE, localize } from './src/seo.js'
+import { PAGES, LANGS, SITE, OG_LOCALES, localize } from './src/seo.js'
 
 const escape = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;')
 
@@ -35,7 +35,7 @@ function prerenderMeta() {
             .replace(/(<meta property="og:url" content=")[^"]*"/, `$1${url}"`)
             .replace(/(<meta property="og:title" content=")[^"]*"/, `$1${escape(meta.title)}"`)
             .replace(/(<meta property="og:description" content=")[^"]*"/, `$1${escape(meta.description)}"`)
-            .replace(/(<meta property="og:locale" content=")[^"]*"/, `$1${lang === 'de' ? 'de_DE' : 'en_US'}"`)
+            .replace(/(<meta property="og:locale" content=")[^"]*"/, `$1${OG_LOCALES[lang]}"`)
           for (const l of LANGS) {
             html = html.replace(
               new RegExp(`(<link rel="alternate" hreflang="${l}" href=")[^"]*"`),

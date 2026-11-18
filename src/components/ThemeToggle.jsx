@@ -6,6 +6,7 @@ import { useT } from '../i18n.jsx'
 const T = {
   en: { toDark: 'Switch to dark mode', toLight: 'Switch to light mode' },
   de: { toDark: 'Dunkles Design aktivieren', toLight: 'Helles Design aktivieren' },
+  fr: { toDark: 'Activer le mode sombre', toLight: 'Activer le mode clair' },
 }
 
 const current = () => document.documentElement.dataset.theme || 'light'

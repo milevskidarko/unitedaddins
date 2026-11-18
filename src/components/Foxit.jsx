@@ -81,6 +81,39 @@ const T = {
     disclaimer: 'Von Foxit beauftragte Studie (2022). Die Ergebnisse beruhen auf einer modellierten Referenzorganisation und sind keine Garantie für individuelle Ergebnisse.',
     study: 'Zur Studie',
   },
+  fr: {
+    eyebrow: 'Partenaire principal',
+    title: 'Boostez votre activité avec',
+    lead: 'L’alternative de référence à Adobe Acrobat pour créer, modifier, convertir, signer et gérer vos PDF en toute sécurité sur ordinateur, mobile et web — licences et support assurés par United Addins.',
+    features: ['Créer, modifier et convertir', 'Smart Redact (Editor+)', 'Assistant IA', 'Flux de signature eSign'],
+    finder: 'Vous hésitez ? Répondez à 4 questions',
+    badge: 'Le plus complet',
+    mobile: 'Application mobile',
+    products: [
+      {
+        text: 'Édition PDF professionnelle pour Windows, macOS et Web. Créez, modifiez, convertissez, organisez, remplissez et signez vos PDF — avec Assistant IA intégré.',
+        note: 'Licence perpétuelle disponible : achat unique pour Windows et macOS, sans Assistant IA, DMS ni fonctions cloud.',
+      },
+      {
+        text: 'L’offre complète : tout PDF Editor, plus Smart Redact basé sur l’IA et les applications mobiles pour iOS et Android.',
+        note: 'Inclut Foxit eSign avec 150 enveloppes par an.',
+      },
+      {
+        text: 'Signature électronique autonome pour particuliers et équipes — modèles réutilisables, circuits de signature, pistes d’audit et certificats de signature. Conforme ESIGN, UETA et eIDAS.',
+        note: 'Essentials : 250 enveloppes/an, 10 modèles · Business : enveloppes et modèles illimités (5 utilisateurs et plus).',
+      },
+    ],
+    add: 'Ajouter au devis',
+    addPerpetual: 'Ajouter en perpétuel',
+    statsTitle: 'Une valeur prouvée',
+    statsSub: 'Étude Forrester Total Economic Impact™ de Foxit PDF Editor',
+    roi: 'ROI',
+    payback: 'Retour sur investissement',
+    founded: 'Création de Foxit',
+    mo: 'mois',
+    disclaimer: 'Étude commandée par Foxit (2022). Les résultats reposent sur une organisation composite modélisée et ne garantissent pas des résultats individuels.',
+    study: 'Lire l’étude',
+  },
 }
 
 export default function Foxit({ onAddToQuote }) {

@@ -10,6 +10,7 @@ const A = 'M26 38 40 6h4l14 32'
 const T = {
   en: { tagline: 'The right software. The right partnership.', home: 'United Addins home' },
   de: { tagline: 'Die richtige Software. Die richtige Partnerschaft.', home: 'United Addins Startseite' },
+  fr: { tagline: 'Le bon logiciel. Le bon partenaire.', home: 'Accueil United Addins' },
 }
 
 export default function Logo({ light = false, tagline = false }) {

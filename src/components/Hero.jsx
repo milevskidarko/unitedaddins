@@ -57,6 +57,28 @@ const T = {
     contractSigned: 'Vertrag signiert',
     via: 'mit Foxit eSign · gerade eben',
   },
+  fr: {
+    title: [
+      ['Le', 'bon', 'logiciel.'],
+      ['Le', 'bon', { accent: 'partenaire.' }],
+    ],
+    pill: 'Partenaire en licences et distribution de logiciels',
+    lead: 'Nous aidons les organisations à trouver, acquérir et exploiter pleinement des solutions logicielles fiables — du PDF et de la signature électronique à la visualisation de données de niveau conseil.',
+    explore: 'Découvrir nos solutions',
+    talk: 'Parler à notre équipe',
+    trust: [
+      ['Sûr et fiable', 'Niveau entreprise'],
+      ['Licences flexibles', 'Pour toutes les tailles d’équipe'],
+      ['Support expert', 'Quand vous en avez besoin'],
+    ],
+    contract: 'Contrat de service.pdf',
+    signed: 'Signé',
+    market: 'Parts de marché.pptx',
+    quoteSent: 'Demande de devis envoyée',
+    quoteText: 'Foxit PDF Editor+ × 25 licences',
+    contractSigned: 'Contrat signé',
+    via: 'via Foxit eSign · à l’instant',
+  },
 }
 const TRUST_ICONS = [Shield, Bolt, Headset]
 

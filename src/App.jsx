@@ -8,6 +8,9 @@ import FoxitPage from './pages/FoxitPage.jsx'
 import MekkoPage from './pages/MekkoPage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
+import ProductsPage from './pages/ProductsPage.jsx'
+import ProductPage from './pages/ProductPage.jsx'
+import { PRODUCTS } from './products.js'
 import NotFound from './pages/NotFound.jsx'
 import useReveal from './useReveal.js'
 import useSpotlight from './useSpotlight.js'
@@ -64,6 +67,7 @@ function Layout() {
       <main id="main">
         <Routes>
           <Route path="/de/*" element={<PageRoutes />} />
+          <Route path="/fr/*" element={<PageRoutes />} />
           <Route path="/*" element={<PageRoutes />} />
         </Routes>
       </main>
@@ -72,7 +76,7 @@ function Layout() {
   )
 }
 
-// Same pages under / (English) and /de (German). The layout stays mounted when the
+// Same pages under / (English), /de (German) and /fr (French). The layout stays mounted when the
 // language changes, so a quote in progress is kept.
 function PageRoutes() {
   return (
@@ -80,6 +84,10 @@ function PageRoutes() {
       <Route index element={<Home />} />
       <Route path="foxit" element={<FoxitPage />} />
       <Route path="mekko-graphics" element={<MekkoPage />} />
+      <Route path="products" element={<ProductsPage />} />
+      {PRODUCTS.map((p) => (
+        <Route key={p.slug} path={p.slug} element={<ProductPage key={p.slug} slug={p.slug} />} />
+      ))}
       <Route path="about" element={<AboutPage />} />
       <Route path="contact" element={<ContactPage />} />
       <Route path="*" element={<NotFound />} />

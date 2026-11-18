@@ -1,52 +1,67 @@
-import { useState } from 'react'
 import { LinkedIn, Arrow } from './Icons.jsx'
 import { L, useT } from '../i18n.jsx'
 
-// The person behind United Addins (About page).
-// Photo: public/team/borivoje-bogatinov.png (replace with a larger, square photo when available).
-// Until it exists, the card shows the initials instead.
-const LEADER = {
-  name: 'Borivoje Bogatinov',
-  initials: 'BB',
-  photo: '/team/borivoje-bogatinov.png',
-  linkedin: 'https://www.linkedin.com/in/borivoje-bogatinov-2232b34',
-}
+// Company message on the About page (United Addins as a company, not one person).
+const LINKEDIN = 'https://www.linkedin.com/company/united-addins/'
 
 const T = {
   en: {
-    eyebrow: 'The team behind United Addins',
-    role: 'Owner & CEO, United Addins',
-    // Statement provided by United Addins (Nov 2026).
-    text: 'At United Addins, we believe that strong business relationships are built on trust, transparency and personal commitment. Our goal is to make software licensing straightforward and reliable, while ensuring every customer receives the attention and support they deserve. We value every partnership and take personal responsibility for delivering on our promises.',
-    linkedin: 'Connect on LinkedIn',
+    eyebrow: 'Who we are',
+    name: 'United Addins',
+    role: 'Our promise to every customer',
+    // Statement provided by United Addins (Nov 2026), in the company's voice.
+    text: 'At United Addins, we believe that strong business relationships are built on trust, transparency and commitment. Our goal is to make software licensing straightforward and reliable, while ensuring every customer receives the attention and support they deserve. We value every partnership and take responsibility for delivering on our promises.',
+    linkedin: 'Follow us on LinkedIn',
     team: 'Talk to our sales team',
     newTab: '(opens in a new tab)',
   },
   de: {
-    eyebrow: 'Das Team hinter United Addins',
-    role: 'Inhaber & CEO, United Addins',
-    text: 'Bei United Addins sind wir überzeugt, dass starke Geschäftsbeziehungen auf Vertrauen, Transparenz und persönlichem Engagement beruhen. Unser Ziel ist es, Softwarelizenzierung einfach und zuverlässig zu gestalten und dabei sicherzustellen, dass jeder Kunde die Aufmerksamkeit und Unterstützung erhält, die er verdient. Wir schätzen jede Partnerschaft und übernehmen persönlich Verantwortung dafür, unsere Versprechen einzuhalten.',
-    linkedin: 'Auf LinkedIn vernetzen',
+    eyebrow: 'Wer wir sind',
+    name: 'United Addins',
+    role: 'Unser Versprechen an jeden Kunden',
+    text: 'Bei United Addins sind wir überzeugt, dass starke Geschäftsbeziehungen auf Vertrauen, Transparenz und Engagement beruhen. Unser Ziel ist es, Softwarelizenzierung einfach und zuverlässig zu gestalten und dabei sicherzustellen, dass jeder Kunde die Aufmerksamkeit und Unterstützung erhält, die er verdient. Wir schätzen jede Partnerschaft und übernehmen Verantwortung dafür, unsere Versprechen einzuhalten.',
+    linkedin: 'Folgen Sie uns auf LinkedIn',
     team: 'Mit unserem Vertriebsteam sprechen',
     newTab: '(öffnet in neuem Tab)',
+  },
+  fr: {
+    eyebrow: 'Qui sommes-nous',
+    name: 'United Addins',
+    role: 'Notre engagement envers chaque client',
+    text: 'Chez United Addins, nous sommes convaincus que les relations d’affaires solides reposent sur la confiance, la transparence et l’engagement. Notre objectif est de rendre l’achat de licences logicielles simple et fiable, tout en veillant à ce que chaque client reçoive l’attention et le soutien qu’il mérite. Nous accordons de la valeur à chaque partenariat et assumons la responsabilité de tenir nos promesses.',
+    linkedin: 'Suivez-nous sur LinkedIn',
+    team: 'Parler à notre équipe commerciale',
+    newTab: '(s’ouvre dans un nouvel onglet)',
   },
 }
 
 export default function Leader() {
   const t = useT(T)
-  const [photoOk, setPhotoOk] = useState(true)
   return (
     <div className="leader" data-reveal>
-      <div className="leader__photo">
-        {photoOk ? (
-          <img src={LEADER.photo} alt={LEADER.name} width="160" height="160" loading="lazy" onError={() => setPhotoOk(false)} />
-        ) : (
-          <span aria-hidden="true">{LEADER.initials}</span>
-        )}
+      <div className="leader__photo leader__photo--mark" aria-hidden="true">
+        {/* Same mark as the logo (Logo.jsx), on the dark disc. */}
+        <span>
+          <svg viewBox="-4 -4 72 52">
+            <defs>
+              <linearGradient id="leaderMarkG" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stopColor="#60a5fa" />
+                <stop offset="0.5" stopColor="#3b5bff" />
+                <stop offset="1" stopColor="#7c5cff" />
+              </linearGradient>
+              <mask id="leaderMarkM" maskUnits="userSpaceOnUse" x="-10" y="-10" width="90" height="70">
+                <rect x="-10" y="-10" width="90" height="70" fill="#fff" />
+                <path d="M26 38 40 6h4l14 32" fill="none" stroke="#000" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round" />
+              </mask>
+            </defs>
+            <path d="M6 6v16a12 12 0 0 0 24 0V6" fill="none" stroke="#4f7cff" strokeWidth="9" strokeLinecap="round" mask="url(#leaderMarkM)" />
+            <path d="M26 38 40 6h4l14 32" fill="none" stroke="url(#leaderMarkG)" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
       </div>
       <div className="leader__body">
         <p className="leader__eyebrow">{t.eyebrow}</p>
-        <h2 className="leader__name">{LEADER.name}</h2>
+        <h2 className="leader__name">{t.name}</h2>
         <p className="leader__role">{t.role}</p>
         <blockquote className="leader__quote">
           <p>{t.text}</p>
@@ -55,7 +70,7 @@ export default function Leader() {
           <L to="/contact#quote" className="leader__link leader__link--primary">
             {t.team} <Arrow />
           </L>
-          <a className="leader__link" href={LEADER.linkedin} target="_blank" rel="noopener noreferrer">
+          <a className="leader__link" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
             <LinkedIn /> {t.linkedin}<span className="sr-only"> {t.newTab}</span>
           </a>
         </div>

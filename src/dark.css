@@ -136,3 +136,8 @@
 [data-theme='dark'] .form .qb__seats input:focus { background: var(--surface-2); }
 [data-theme='dark'] .qb__license { border-color: #2a3768; }
 [data-theme='dark'] .form__error { background: rgba(239, 68, 68, 0.14); color: #ff9b9b; }
+
+/* ---------- Product pages ---------- */
+[data-theme='dark'] .prod__why { background: var(--surface); border: 1px solid var(--line); }
+[data-theme='dark'] .pcard:hover { border-color: color-mix(in srgb, var(--tone) 55%, var(--line)); }
+[data-theme='dark'] .qb__more { border-color: #2c3a70; }

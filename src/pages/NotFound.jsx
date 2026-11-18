@@ -4,6 +4,7 @@ import { Arrow } from '../components/Icons.jsx'
 const T = {
   en: { title: 'Page not found', text: 'The page you are looking for does not exist or has moved.', home: 'Back to home', contact: 'Contact us' },
   de: { title: 'Seite nicht gefunden', text: 'Die gesuchte Seite existiert nicht oder wurde verschoben.', home: 'Zur Startseite', contact: 'Kontakt' },
+  fr: { title: 'Page introuvable', text: 'La page que vous cherchez n’existe pas ou a été déplacée.', home: 'Retour à l’accueil', contact: 'Nous contacter' },
 }
 
 export default function NotFound() {

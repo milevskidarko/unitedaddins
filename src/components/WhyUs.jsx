@@ -99,6 +99,52 @@ const T = {
     ],
     newTab: '(öffnet in neuem Tab)',
   },
+  fr: {
+    eyebrow: 'Pourquoi United Addins',
+    title: 'Une distribution de logiciels pensée pour',
+    accent: 'votre entreprise',
+    lead: 'Grâce à une connaissance approfondie des produits et une approche centrée sur le partenariat, United Addins vous aide à tirer le meilleur des logiciels en qui vous avez confiance.',
+    expertise: {
+      title: 'Expertise produit',
+      text: 'Des conseils fiables sur les meilleures solutions pour vos besoins — avant et après l’achat.',
+      statLabel: 'Distributeur agréé Foxit depuis',
+    },
+    licensing: {
+      title: 'Accompagnement licences',
+      text: 'Des licences flexibles pour les organisations de toute taille, d’un seul poste à l’entreprise entière.',
+      statLabel: 'utilisateurs passés à Foxit chez Motor Presse Stuttgart',
+    },
+    service: {
+      title: 'Un service orienté partenaire',
+      text: 'Un support réactif à chaque étape — mise en route, renouvellements et mises à niveau.',
+      cycle: ['Nouvel achat', 'Mise en route', 'Renouvellement', 'Mise à niveau', 'Postes supplémentaires'],
+    },
+    contact: {
+      title: 'Un interlocuteur de confiance',
+      text: 'Plusieurs éditeurs, un seul partenaire. Simplifiez vos achats et gardez tout au même endroit.',
+      statLabel: 'éditeurs · un interlocuteur',
+    },
+    more: 'En savoir plus sur United Addins',
+    steps: [
+      ['Exprimez vos besoins', 'Taille de l’équipe, processus et objectifs.'],
+      ['La bonne solution', 'Nous recommandons les produits et licences adaptés.'],
+      ['Déployer et évoluer', 'Licences rapides, mise en route et support continu.'],
+    ],
+    casesLabel: 'Présent dans les études de cas Foxit',
+    cases: [
+      {
+        stat: '~650 utilisateurs',
+        text: 'L’éditeur de certains des magazines les plus connus d’Allemagne a remplacé Adobe Acrobat par Foxit — sur recommandation de United Addins.',
+        linkLabel: 'Lire l’étude de cas Foxit',
+      },
+      {
+        stat: 'Sélection et déploiement',
+        text: 'United Addins a aidé Miele à définir ses besoins PDF, à choisir la bonne solution et à intégrer Foxit à son infrastructure informatique.',
+        linkLabel: 'Lire l’article sur foxit.com',
+      },
+    ],
+    newTab: '(s’ouvre dans un nouvel onglet)',
+  },
 }
 
 // Verified against the Foxit-hosted sources linked below (Nov 2026).
