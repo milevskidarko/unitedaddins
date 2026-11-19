@@ -1,4 +1,5 @@
 import Mekko from '../components/Mekko.jsx'
+import MekkoMore from '../components/MekkoMore.jsx'
 import { useQuote } from '../quote.js'
 
 export default function MekkoPage() {
@@ -6,6 +7,7 @@ export default function MekkoPage() {
   return (
     <div className="page">
       <Mekko onAddToQuote={addToQuote} />
+      <MekkoMore />
     </div>
   )
 }

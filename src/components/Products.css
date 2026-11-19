@@ -193,3 +193,6 @@
 
 /* Products page: section headings ("Our core partners", "Documents & PDF" …) in capitals. */
 .prod--list .prod__h2 { text-transform: uppercase; letter-spacing: 0.02em; }
+
+/* Long German/Dutch words in product cards break instead of running out of the card. */
+.pcard__body { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }

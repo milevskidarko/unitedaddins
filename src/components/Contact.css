@@ -378,3 +378,9 @@
 }
 .next__steps strong { display: block; font-size: 15.5px; }
 .next__steps small { display: block; margin-top: 2px; font-size: 13.5px; line-height: 1.45; color: #dbe5ff; }
+
+/* Small phones: the seat counter gets its own row so the product name keeps its width. */
+@media (max-width: 400px) {
+  .qb__toggle { flex-basis: 100%; }
+  .qb__seats { order: 2; margin: 0 0 4px 40px; }
+}

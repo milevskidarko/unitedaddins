@@ -1,0 +1,80 @@
+/* Extra info under the Foxit and Mekko Graphics sections (FoxitCompare, MekkoMore). */
+.xtra { padding-top: clamp(16px, 3vw, 40px); }
+.xtra__title { font-size: clamp(28px, 3.6vw, 44px); }
+.xtra__label { margin-top: clamp(32px, 4vw, 48px); margin-bottom: 14px; font-weight: 700; font-size: 15px; }
+.xtra__foot { margin-top: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
+.xtra__source { font-size: 12.5px; color: var(--muted); max-width: 720px; }
+.xtra__customers { margin-top: 18px; color: var(--ink-2, var(--ink)); font-size: 15px; }
+.xtra > .container > .xtra__source { margin-top: 10px; }
+
+/* Comparison table */
+.cmp {
+  margin-top: clamp(24px, 3vw, 36px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.cmp table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.cmp th, .cmp td { padding: 14px 18px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+.cmp tbody tr:last-child th, .cmp tbody tr:last-child td { border-bottom: 0; }
+.cmp thead th { font-size: 13px; font-weight: 700; color: var(--muted); }
+.cmp tbody th { font-weight: 500; }
+.cmp thead th:not(:first-child), .cmp td { width: 22%; text-align: center; }
+.cmp .cmp__foxit { background: color-mix(in srgb, var(--orange, #ff5f1f) 7%, transparent); }
+.cmp thead .cmp__foxit { color: var(--orange-text, #e14e12); }
+.cmp__yes, .cmp__no { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; }
+.cmp__yes { background: rgba(34, 197, 94, 0.14); color: #16a34a; }
+.cmp__no { background: rgba(148, 163, 184, 0.16); color: var(--muted); }
+.cmp__yes svg, .cmp__no svg { width: 16px; height: 16px; }
+
+/* Chart type cards */
+.ctypes {
+  margin-top: clamp(24px, 3vw, 36px);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+.ctype {
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.ctype strong { display: flex; align-items: center; gap: 8px; font-size: 15px; }
+.ctype strong::before { content: ''; width: 10px; height: 10px; border-radius: 3px; background: var(--c); flex-shrink: 0; }
+.ctype p { margin-top: 8px; font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+
+.xchips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.xchips li {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.xstats { margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.xstats div { padding: 18px; border-radius: 16px; border: 1px solid var(--line); background: var(--surface); }
+.xstats dt { font-size: clamp(32px, 3.4vw, 44px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+.xstats dd { margin: 6px 0 0; font-size: 14px; color: var(--muted); line-height: 1.4; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+
+@media (max-width: 1100px) {
+  .ctypes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .xstats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .ctypes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .cmp table { font-size: 13.5px; }
+  .cmp th, .cmp td { padding: 11px 10px; }
+  .cmp thead th { font-size: 11.5px; }
+  .cmp thead th:not(:first-child), .cmp td { width: 25%; }
+  .ctypes { grid-template-columns: minmax(0, 1fr); }
+  .xtra__foot .btn { width: 100%; height: auto; min-height: 44px; padding-block: 10px; white-space: normal; text-align: center; }
+}

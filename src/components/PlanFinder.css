@@ -141,7 +141,8 @@
   .finder__progress { display: none; }
 }
 @media (max-width: 480px) {
-  .finder__inner { margin-inline: -6px; padding: 24px 16px; }
+  /* .finder__inner is also the .container (width 100%): a negative margin pushed it off-screen. */
+  .finder__inner { width: auto; margin-inline: 10px; padding: 24px 16px; }
   .finder__card { min-height: 0; padding: 20px 16px; }
   .finder__actions .btn { width: 100%; }
 }

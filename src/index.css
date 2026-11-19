@@ -183,6 +183,11 @@ p { margin: 0; }
 }
 .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
 .btn-sm { height: 44px; padding-inline: 20px; font-size: 14px; }
+/* Phones: long button labels (German, Spanish, Dutch…) wrap onto two lines instead of being cut off. */
+@media (max-width: 600px) {
+  .btn { white-space: normal; height: auto; min-height: 52px; padding-block: 10px; line-height: 1.25; text-align: center; }
+  .btn-sm { min-height: 44px; }
+}
 
 /* Scroll reveal: rise and fade. (No blur: animating filter on many elements is costly on phones.) */
 [data-reveal] {

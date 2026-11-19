@@ -12,7 +12,8 @@
 }
 
 /* Visual */
-.mekko__visual { position: relative; }
+/* min-width 0: the open data sheet scrolls inside instead of widening the chart past the screen. */
+.mekko__visual { position: relative; min-width: 0; }
 .mekko__frame {
   border-radius: var(--radius-lg);
   background: var(--surface);
@@ -265,3 +266,11 @@
 .mk-sheet input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 20%, transparent); }
 .mk-sheet__total th, .mk-sheet__total output { font-weight: 800; color: var(--ink); }
 @keyframes finderIn { from { opacity: 0; transform: translateY(6px); } }
+
+/* Long labels ("Mekko Graphics zum Angebot hinzufügen") wrap instead of being cut off. */
+.mekko .btn { white-space: normal; height: auto; min-height: 52px; padding-block: 10px; line-height: 1.25; text-align: center; }
+
+/* 320px phones: waterfall step labels ("Volumen", "Währung") are wider than their column. */
+@media (max-width: 360px) {
+  .mekko__chart--wf .mk-col small { font-size: 9px; letter-spacing: -0.01em; }
+}
