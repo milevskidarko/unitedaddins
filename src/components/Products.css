@@ -187,3 +187,9 @@
   .prod__actions .btn { flex: 1 1 100%; justify-content: center; }
   .prod__glow { width: 420px; height: 420px; right: -220px; }
 }
+
+/* Category anchors (/products#docs …) land below the fixed header. */
+.pcat { scroll-margin-top: 96px; }
+
+/* Products page: section headings ("Our core partners", "Documents & PDF" …) in capitals. */
+.prod--list .prod__h2 { text-transform: uppercase; letter-spacing: 0.02em; }

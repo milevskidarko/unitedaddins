@@ -93,7 +93,7 @@ export default function ProductsPage() {
           </div>
 
           {Object.entries(CATEGORIES).map(([key, label]) => (
-            <div key={key} className="pcat">
+            <div key={key} id={key} className="pcat">
               <h2 className="prod__h2" data-reveal>{label[lang] || label.en}</h2>
               <div className="pgrid">
                 {PRODUCTS.filter((p) => p.category === key).map((p, i) => (

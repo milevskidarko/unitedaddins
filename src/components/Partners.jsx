@@ -1,9 +1,11 @@
-import { Arrow, Doc, Chart, Key, Check, Cubes } from './Icons.jsx'
-import { L, useT } from '../i18n.jsx'
+import { Arrow, Doc, Chart, Key, Check, Files, Ruler, Calendar } from './Icons.jsx'
+import { L, useLang, useT } from '../i18n.jsx'
+import { CATEGORIES, PRODUCTS } from '../products.js'
 import './Partners.css'
 
-const ICONS = [Doc, Chart, Cubes, Key]
-const HREFS = ['/foxit', '/mekko-graphics', '/products', '/contact']
+// `needs` in T: PDF & eSign, data visualization, licensing. The product categories
+// (Documents & PDF, Design, Planning) go in between and link to their section on /products.
+const CAT_ICONS = { docs: Files, design: Ruler, plan: Calendar }
 
 const T = {
   en: {
@@ -16,7 +18,6 @@ const T = {
     needs: [
       ['PDF & eSign', 'Create, edit, protect and sign documents.'],
       ['Data visualization', 'Marimekko, Bar Mekko, waterfall and more.'],
-      ['More software', 'PDF-XChange, Bluebeam, SketchUp, progeCAD, MindManager and more.'],
       ['Licensing & renewals', 'New licenses, renewals, upgrades and added seats.'],
     ],
   },
@@ -28,7 +29,6 @@ const T = {
     needs: [
       ['PDF & eSign', 'Dokumente erstellen, bearbeiten, schützen und signieren.'],
       ['Datenvisualisierung', 'Marimekko, Bar Mekko, Wasserfall und mehr.'],
-      ['Weitere Software', 'PDF-XChange, Bluebeam, SketchUp, progeCAD, MindManager und mehr.'],
       ['Lizenzen & Verlängerungen', 'Neue Lizenzen, Verlängerungen, Upgrades und Lizenzerweiterungen.'],
     ],
   },
@@ -40,7 +40,6 @@ const T = {
     needs: [
       ['PDF et eSign', 'Créer, modifier, protéger et signer des documents.'],
       ['Visualisation de données', 'Marimekko, Bar Mekko, cascade et plus.'],
-      ['Autres logiciels', 'PDF-XChange, Bluebeam, SketchUp, progeCAD, MindManager et plus.'],
       ['Licences et renouvellements', 'Nouvelles licences, renouvellements, mises à niveau et postes supplémentaires.'],
     ],
   },
@@ -52,7 +51,6 @@ const T = {
     needs: [
       ['PDF y eSign', 'Cree, edite, proteja y firme documentos.'],
       ['Visualización de datos', 'Marimekko, Bar Mekko, cascada y más.'],
-      ['Más software', 'PDF-XChange, Bluebeam, SketchUp, progeCAD, MindManager y más.'],
       ['Licencias y renovaciones', 'Nuevas licencias, renovaciones, actualizaciones y puestos adicionales.'],
     ],
   },
@@ -64,7 +62,6 @@ const T = {
     needs: [
       ['PDF en eSign', 'Documenten maken, bewerken, beveiligen en ondertekenen.'],
       ['Datavisualisatie', 'Marimekko, Bar Mekko, watervaldiagrammen en meer.'],
-      ['Meer software', 'PDF-XChange, Bluebeam, SketchUp, progeCAD, MindManager en meer.'],
       ['Licenties en verlengingen', 'Nieuwe licenties, verlengingen, upgrades en extra gebruikers.'],
     ],
   },
@@ -72,6 +69,19 @@ const T = {
 
 export default function Partners() {
   const t = useT(T)
+  const lang = useLang()
+  const [pdf, dataviz, licensing] = t.needs
+  const cards = [
+    [Doc, '/foxit', ...pdf],
+    [Chart, '/mekko-graphics', ...dataviz],
+    ...Object.entries(CATEGORIES).map(([key, label]) => [
+      CAT_ICONS[key],
+      `/products#${key}`,
+      label[lang] || label.en,
+      PRODUCTS.filter((p) => p.category === key).map((p) => p.name).join(', '),
+    ]),
+    [Key, '/contact', ...licensing],
+  ]
   return (
     <section className="partners" id="partners">
       <div className="container">
@@ -97,10 +107,9 @@ export default function Partners() {
           <div className="partners__needs">
             <p className="partners__label">{t.label}</p>
             <div className="needs">
-              {t.needs.map(([title, text], i) => {
-                const Icon = ICONS[i]
+              {cards.map(([Icon, href, title, text], i) => {
                 return (
-                  <L key={i} to={HREFS[i]} className="need spot" data-reveal style={{ '--d': `${0.1 + i * 0.08}s` }}>
+                  <L key={href} to={href} className="need spot" data-reveal style={{ '--d': `${0.1 + i * 0.06}s` }}>
                     <span className="need__icon"><Icon /></span>
                     <span className="need__body">
                       <strong>{title}</strong>

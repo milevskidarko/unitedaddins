@@ -200,7 +200,7 @@
 .bento__a .bento__stat { padding-top: 12px; }
 .bento__a .orbit { flex: 1; min-height: 300px; }
 
-/* Orbit: the products we know inside out circle around the expertise badge */
+/* Orbit: the areas we cover (Foxit, Mekko, product categories) circle around the expertise badge */
 .orbit {
   position: relative;
   height: clamp(200px, 22vw, 260px);
@@ -244,11 +244,16 @@
   top: 0;
   translate: -50% -50%;
   rotate: calc(-1 * var(--a));
+  /* Full names ("Foxit PDF Editor & eSign", "Design, CAD & diagrams") wrap onto two lines
+     so the chips stay inside the card on phones. */
+  width: max-content;
+  max-width: 128px;
   padding: 6px 12px;
-  border-radius: 999px;
+  border-radius: 14px;
   font-size: 12.5px;
   font-weight: 700;
-  white-space: nowrap;
+  line-height: 1.25;
+  text-align: center;
   color: #e6ecff;
   background: rgba(18, 30, 77, 0.92);
   border: 1px solid rgba(143, 188, 255, 0.35);
@@ -302,23 +307,63 @@
   4%, 18% { background: rgba(96, 165, 250, 0.22); color: #fff; border-color: rgba(143, 188, 255, 0.7); }
 }
 
-/* Two vendors → one contact */
-.merge { width: 100%; max-width: 260px; height: auto; display: block; margin-bottom: 14px; overflow: visible; }
+/* All vendors → one contact: a column of labels, lines into the UA hub.
+   Rows have equal height, so each line starts at the middle of its row. */
+.merge {
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(24px, 1fr) 44px;
+  align-items: stretch;
+  max-width: 300px;
+  margin-bottom: 14px;
+}
+.merge__list {
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.merge__list li { display: flex; align-items: center; }
+.merge__node {
+  max-width: 150px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(143, 188, 255, 0.4);
+  background: rgba(18, 30, 77, 0.95);
+  font-size: 11.5px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #e6ecff;
+}
+.merge__node--foxit { color: #ff8a5c; font-style: italic; }
+.merge__node--cat { color: #b6c4ec; font-weight: 600; }
+.merge__lines { width: 100%; height: 100%; overflow: visible; }
 .merge__line {
   fill: none;
   stroke: #60a5fa;
   stroke-width: 2;
   stroke-dasharray: 5 6;
+  vector-effect: non-scaling-stroke;
   opacity: 0.8;
   animation: flow 1.2s linear infinite;
 }
 .merge__line--2 { stroke: #a78bfa; }
 @keyframes flow { to { stroke-dashoffset: -22; } }
-.merge__node rect { fill: rgba(18, 30, 77, 0.95); stroke: rgba(143, 188, 255, 0.4); }
-.merge__node text, .merge__hub text { font: 700 12.5px var(--font); text-anchor: middle; fill: #e6ecff; }
-.merge__node--foxit text { fill: #ff8a5c; font-style: italic; }
-.merge__hub circle { fill: #3b5bff; stroke: rgba(255, 255, 255, 0.25); stroke-width: 6; stroke-opacity: 0.2; }
-.merge__hub { animation: hub 2.4s ease-in-out infinite; transform-origin: 190px 48px; }
+.merge__hub {
+  align-self: center;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #3b5bff;
+  box-shadow: 0 0 0 6px rgba(59, 91, 255, 0.2);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #e6ecff;
+  animation: hub 2.4s ease-in-out infinite;
+}
 @keyframes hub { 50% { transform: scale(1.08); } }
 
 .why__more { margin-top: clamp(32px, 4vw, 48px); display: flex; justify-content: center; }
@@ -340,7 +385,7 @@
 @media (max-width: 700px) {
   .bento { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'a' 'b' 'c' 'd'; gap: 14px; }
   .why-card { padding: 22px 18px; }
-  .orbit__chip b { font-size: 11.5px; padding: 5px 10px; }
+  .orbit__chip b { font-size: 11.5px; padding: 5px 10px; max-width: 108px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .why-card.is-visible .seats span:nth-child(-n + 30) { background: linear-gradient(135deg, #60a5fa, #7c5cff); }

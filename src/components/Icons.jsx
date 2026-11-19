@@ -17,6 +17,16 @@ export const Chevron = (p) => (
 export const Doc = (p) => (
   <svg {...base} {...p}><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" /><path d="M14 3v5h5M9 13h6M9 17h4" /></svg>
 )
+// Product categories (Documents & PDF, Design & CAD, Planning).
+export const Files = (p) => (
+  <svg {...base} {...p}><path d="M15 2H9a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7z" /><path d="M15 2v5h5M4 7v13a2 2 0 0 0 2 2h9" /></svg>
+)
+export const Ruler = (p) => (
+  <svg {...base} {...p}><path d="m3 17 14-14 4 4L7 21z" /><path d="m7 13 2 2M10 10l2 2M13 7l2 2" /></svg>
+)
+export const Calendar = (p) => (
+  <svg {...base} {...p}><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4M7 14h4M7 17h7" /></svg>
+)
 export const Chart = (p) => (
   <svg {...base} {...p}><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg>
 )

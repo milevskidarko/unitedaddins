@@ -1,11 +1,15 @@
 import { Award, Key, Headset, Handshake, Arrow } from './Icons.jsx'
 import CountUp from './CountUp.jsx'
 import Leader from './Leader.jsx'
-import { L, useT } from '../i18n.jsx'
+import { L, useLang, useT } from '../i18n.jsx'
+import { CATEGORIES, PRODUCTS } from '../products.js'
+
+// "N → 1": Foxit + Mekko Graphics + every other vendor in products.js.
+const VENDOR_COUNT = 2 + new Set(PRODUCTS.map((p) => p.vendor)).size
 import './WhyUs.css'
 
 // Only verified facts in the numbers: Foxit distributor since 2012 (confirmed by owner) and ~650 users at
-// Motor Presse Stuttgart (from Foxit's case study), two vendors, one contact.
+// Motor Presse Stuttgart (from Foxit's case study), all vendors (Foxit, Mekko + products.js), one contact.
 const T = {
   en: {
     eyebrow: 'Why United Addins',
@@ -244,10 +248,14 @@ const CASES = [
   { company: 'Motor Presse Stuttgart', href: 'https://cdn01.foxitsoftware.com/pub/foxit/casestudy/en_us/MotorPresseStuttgart.pdf' },
   { company: 'Miele', href: 'https://www.foxit.com/blog/if-you-need-pdf-software-find-out-why-miele-made-the-move-to-phantompdf/' },
 ]
-const ORBIT = ['PDF Editor', 'Editor+', 'eSign', 'Mekko Graphics']
-
 export default function WhyUs({ compact = false }) {
   const t = useT(T)
+  const lang = useLang()
+  // Orbit chips: the same entries as the Products menu — Foxit, Mekko Graphics and the
+  // product categories (full names, wrapping onto two lines where needed).
+  const categories = Object.values(CATEGORIES).map((c) => c[lang] || c.en)
+  const orbit = ['Foxit PDF Editor & eSign', 'Mekko Graphics', ...categories]
+  const merge = [['Foxit', 'foxit'], ['Mekko Graphics'], ...categories.map((c) => [c, 'cat'])]
   const H = compact ? 'h2' : 'h1'
   const Hc = compact ? 'h3' : 'h2'
 
@@ -269,15 +277,15 @@ export default function WhyUs({ compact = false }) {
         </div>
 
         <div className="bento">
-          {/* Big tile: expertise + orbit of the products we know inside out */}
+          {/* Big tile: expertise + orbit of the areas we cover */}
           <article className="why-card bento__a spot" data-reveal>
             <div className="orbit" aria-hidden="true">
               <span className="orbit__ring" />
               <span className="orbit__ring orbit__ring--2" />
               <span className="orbit__core"><Award /></span>
               <div className="orbit__spin">
-                {ORBIT.map((p, i) => (
-                  <span key={p} className="orbit__chip" style={{ '--a': `${i * 90}deg` }}><b>{p}</b></span>
+                {orbit.map((p, i) => (
+                  <span key={p} className="orbit__chip" style={{ '--a': `${(i * 360) / orbit.length}deg` }}><b>{p}</b></span>
                 ))}
               </div>
             </div>
@@ -317,17 +325,25 @@ export default function WhyUs({ compact = false }) {
             </ol>
           </article>
 
-          {/* Two vendors → one contact */}
+          {/* All vendors (Foxit, Mekko and the product categories) → one contact */}
           <article className="why-card bento__d spot" data-reveal style={{ '--d': '0.24s' }}>
-            <svg className="merge" viewBox="0 0 220 96" aria-hidden="true">
-              <path className="merge__line" d="M44 22 C110 22 110 48 176 48" />
-              <path className="merge__line merge__line--2" d="M44 74 C110 74 110 48 176 48" />
-              <g className="merge__node merge__node--foxit"><rect x="4" y="8" width="72" height="28" rx="14" /><text x="40" y="26.5">Foxit</text></g>
-              <g className="merge__node merge__node--mekko"><rect x="4" y="60" width="72" height="28" rx="14" /><text x="40" y="78.5">Mekko</text></g>
-              <g className="merge__hub"><circle cx="190" cy="48" r="22" /><text x="190" y="52.5">UA</text></g>
-            </svg>
+            <div className="merge" aria-hidden="true" style={{ '--n': merge.length }}>
+              <ul className="merge__list">
+                {merge.map(([label, mod]) => (
+                  <li key={label}><span className={`merge__node ${mod ? `merge__node--${mod}` : ''}`}>{label}</span></li>
+                ))}
+              </ul>
+              {/* Lines from the middle of each row to the hub; stretched to fit, stroke width kept. */}
+              <svg className="merge__lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                {merge.map(([label], i) => {
+                  const y = ((i + 0.5) / merge.length) * 100
+                  return <path key={label} className={`merge__line ${i % 2 ? 'merge__line--2' : ''}`} d={`M0 ${y} C50 ${y} 50 50 100 50`} />
+                })}
+              </svg>
+              <span className="merge__hub">UA</span>
+            </div>
             <div className="bento__stat">
-              <strong className="bento__num bento__num--sm">2 → 1</strong>
+              <strong className="bento__num bento__num--sm">{VENDOR_COUNT} → 1</strong>
               <small>{t.contact.statLabel}</small>
             </div>
             <Hc><Handshake className="bento__inline-ic" /> {t.contact.title}</Hc>

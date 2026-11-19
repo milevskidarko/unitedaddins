@@ -45,7 +45,8 @@
 
 .partners__needs { padding-top: clamp(22px, 3vw, 32px); border-top: 1px solid var(--line); }
 .partners__label { font-weight: 700; font-size: 15px; margin-bottom: 14px; }
-.needs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+/* 6 cards: 3 × 2 on desktop, 2 × 3 on tablet, one column on phones. */
+.needs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .need {
   display: flex;
   align-items: center;

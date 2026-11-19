@@ -5,8 +5,19 @@ import ThemeToggle from './ThemeToggle.jsx'
 import LangSwitch from './LangSwitch.jsx'
 import { L, useT } from '../i18n.jsx'
 import { stripLang } from '../seo.js'
-import { Arrow, Chevron, Menu, Close, Doc, Chart, Key, Headset, Handshake, Cubes } from './Icons.jsx'
+import { Arrow, Chevron, Menu, Close, Doc, Chart, Key, Headset, Handshake, Cubes, Files, Ruler, Calendar } from './Icons.jsx'
+import { CATEGORIES, PRODUCTS } from '../products.js'
 import './Header.css'
+
+// Products menu: one entry per category (Documents & PDF, Design, Planning) → its section on /products.
+const CAT_ICONS = { docs: Files, design: Ruler, plan: Calendar }
+const catItems = (lang) =>
+  Object.entries(CATEGORIES).map(([key, label]) => ({
+    icon: CAT_ICONS[key],
+    title: label[lang],
+    text: PRODUCTS.filter((p) => p.category === key).map((p) => p.name).join(', '),
+    href: `/products#${key}`,
+  }))
 
 const T = {
   en: {
@@ -16,7 +27,8 @@ const T = {
         items: [
           { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'Edit, protect and sign PDFs', href: '/foxit' },
           { icon: Chart, title: 'Mekko Graphics', text: 'Charts in PowerPoint & Excel', href: '/mekko-graphics' },
-          { icon: Cubes, title: 'All products', text: 'PDF-XChange, Bluebeam, SketchUp & more', href: '/products' },
+          ...catItems('en'),
+          { icon: Cubes, title: 'All products', text: 'Everything we license, on one page', href: '/products' },
           { icon: Key, title: 'Find your plan', text: '4 questions, the right Foxit plan', href: '/foxit#plan' },
         ],
       },
@@ -50,7 +62,8 @@ const T = {
         items: [
           { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'PDFs bearbeiten, schützen und signieren', href: '/foxit' },
           { icon: Chart, title: 'Mekko Graphics', text: 'Diagramme in PowerPoint & Excel', href: '/mekko-graphics' },
-          { icon: Cubes, title: 'Alle Produkte', text: 'PDF-XChange, Bluebeam, SketchUp & mehr', href: '/products' },
+          ...catItems('de'),
+          { icon: Cubes, title: 'Alle Produkte', text: 'Unser gesamtes Angebot auf einer Seite', href: '/products' },
           { icon: Key, title: 'Plan finden', text: '4 Fragen, der passende Foxit-Plan', href: '/foxit#plan' },
         ],
       },
@@ -83,7 +96,8 @@ const T = {
         items: [
           { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'Modifier, protéger et signer des PDF', href: '/foxit' },
           { icon: Chart, title: 'Mekko Graphics', text: 'Graphiques dans PowerPoint et Excel', href: '/mekko-graphics' },
-          { icon: Cubes, title: 'Tous les produits', text: 'PDF-XChange, Bluebeam, SketchUp et plus', href: '/products' },
+          ...catItems('fr'),
+          { icon: Cubes, title: 'Tous les produits', text: 'Toute notre offre sur une seule page', href: '/products' },
           { icon: Key, title: 'Trouver votre offre', text: '4 questions, la bonne offre Foxit', href: '/foxit#plan' },
         ],
       },
@@ -116,7 +130,8 @@ const T = {
         items: [
           { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'Edite, proteja y firme PDF', href: '/foxit' },
           { icon: Chart, title: 'Mekko Graphics', text: 'Gráficos en PowerPoint y Excel', href: '/mekko-graphics' },
-          { icon: Cubes, title: 'Todos los productos', text: 'PDF-XChange, Bluebeam, SketchUp y más', href: '/products' },
+          ...catItems('es'),
+          { icon: Cubes, title: 'Todos los productos', text: 'Toda nuestra oferta en una sola página', href: '/products' },
           { icon: Key, title: 'Encuentre su plan', text: '4 preguntas, el plan Foxit adecuado', href: '/foxit#plan' },
         ],
       },
@@ -149,7 +164,8 @@ const T = {
         items: [
           { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'PDF’s bewerken, beveiligen en ondertekenen', href: '/foxit' },
           { icon: Chart, title: 'Mekko Graphics', text: 'Grafieken in PowerPoint en Excel', href: '/mekko-graphics' },
-          { icon: Cubes, title: 'Alle producten', text: 'PDF-XChange, Bluebeam, SketchUp en meer', href: '/products' },
+          ...catItems('nl'),
+          { icon: Cubes, title: 'Alle producten', text: 'Ons volledige aanbod op één pagina', href: '/products' },
           { icon: Key, title: 'Vind uw abonnement', text: '4 vragen, het juiste Foxit-abonnement', href: '/foxit#plan' },
         ],
       },
