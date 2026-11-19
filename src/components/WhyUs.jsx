@@ -145,6 +145,98 @@ const T = {
     ],
     newTab: '(s’ouvre dans un nouvel onglet)',
   },
+  es: {
+    eyebrow: 'Por qué United Addins',
+    title: 'Distribución de software pensada para',
+    accent: 'su empresa',
+    lead: 'Con un profundo conocimiento de los productos y un enfoque centrado en la colaboración, United Addins le ayuda a sacar más partido al software en el que confía.',
+    expertise: {
+      title: 'Experiencia en producto',
+      text: 'Asesoramiento fiable sobre las mejores soluciones para sus necesidades — antes y después de la compra.',
+      statLabel: 'Distribuidor autorizado de Foxit desde',
+    },
+    licensing: {
+      title: 'Asesoramiento en licencias',
+      text: 'Licencias flexibles para organizaciones de cualquier tamaño, desde un solo puesto hasta toda la empresa.',
+      statLabel: 'usuarios migrados a Foxit en Motor Presse Stuttgart',
+    },
+    service: {
+      title: 'Servicio centrado en el cliente',
+      text: 'Soporte ágil en cada paso — puesta en marcha, renovaciones y actualizaciones.',
+      cycle: ['Nueva compra', 'Puesta en marcha', 'Renovación', 'Actualización', 'Más puestos'],
+    },
+    contact: {
+      title: 'Un único contacto de confianza',
+      text: 'Varios fabricantes, un solo socio. Simplifique las compras y tenga todo en un mismo lugar.',
+      statLabel: 'fabricantes · un contacto',
+    },
+    more: 'Más sobre United Addins',
+    steps: [
+      ['Cuéntenos qué necesita', 'Tamaño del equipo, flujos de trabajo y objetivos.'],
+      ['La solución adecuada', 'Le recomendamos los productos y licencias que encajan.'],
+      ['Implantar y crecer', 'Licencias rápidas, puesta en marcha y soporte continuo.'],
+    ],
+    casesLabel: 'Presentes en casos de éxito de Foxit',
+    cases: [
+      {
+        stat: '~650 usuarios',
+        text: 'La editorial de algunas de las revistas más conocidas de Alemania sustituyó Adobe Acrobat por Foxit, que conoció a través de United Addins.',
+        linkLabel: 'Leer el caso de éxito de Foxit (EN)',
+      },
+      {
+        stat: 'Selección e implantación',
+        text: 'United Addins ayudó a Miele a definir sus requisitos de PDF, elegir la solución adecuada e integrar Foxit en su infraestructura de TI.',
+        linkLabel: 'Leer la historia en foxit.com (EN)',
+      },
+    ],
+    newTab: '(se abre en una pestaña nueva)',
+  },
+  nl: {
+    eyebrow: 'Waarom United Addins',
+    title: 'Softwaredistributie rond',
+    accent: 'uw organisatie',
+    lead: 'Met diepgaande productkennis en een partnergerichte aanpak helpt United Addins u meer te halen uit de software die u vertrouwt.',
+    expertise: {
+      title: 'Productkennis',
+      text: 'Betrouwbaar advies over de beste oplossingen voor uw behoeften — voor en na de aankoop.',
+      statLabel: 'Geautoriseerd Foxit-distributeur sinds',
+    },
+    licensing: {
+      title: 'Licentieadvies',
+      text: 'Flexibele licenties voor organisaties van elke omvang, van één gebruiker tot de hele onderneming.',
+      statLabel: 'gebruikers overgestapt op Foxit bij Motor Presse Stuttgart',
+    },
+    service: {
+      title: 'Partnergerichte service',
+      text: 'Snelle ondersteuning bij elke stap — implementatie, verlengingen en upgrades.',
+      cycle: ['Nieuwe aankoop', 'Implementatie', 'Verlenging', 'Upgrade', 'Extra gebruikers'],
+    },
+    contact: {
+      title: 'Eén vertrouwd aanspreekpunt',
+      text: 'Meerdere leveranciers, één partner. Vereenvoudig de inkoop en houd alles op één plek.',
+      statLabel: 'leveranciers · één aanspreekpunt',
+    },
+    more: 'Meer over United Addins',
+    steps: [
+      ['Vertel ons wat u nodig hebt', 'Teamgrootte, werkprocessen en doelen.'],
+      ['De juiste oplossing', 'Wij adviseren de producten en licenties die passen.'],
+      ['Implementeren en groeien', 'Snelle licenties, implementatie en doorlopende support.'],
+    ],
+    casesLabel: 'Uitgelicht in Foxit-casestudy’s',
+    cases: [
+      {
+        stat: '~650 gebruikers',
+        text: 'De uitgever van enkele van de bekendste tijdschriften van Duitsland verving Adobe Acrobat door Foxit, dat ze via United Addins leerden kennen.',
+        linkLabel: 'Lees de Foxit-casestudy (EN)',
+      },
+      {
+        stat: 'Selectie en uitrol',
+        text: 'United Addins hielp Miele de PDF-eisen te bepalen, de juiste oplossing te kiezen en Foxit te integreren in de IT-infrastructuur.',
+        linkLabel: 'Lees het verhaal op foxit.com (EN)',
+      },
+    ],
+    newTab: '(opent in een nieuw tabblad)',
+  },
 }
 
 // Verified against the Foxit-hosted sources linked below (Nov 2026).

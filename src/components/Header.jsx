@@ -29,7 +29,7 @@ const T = {
             icon: Cubes,
             title: 'Become a partner',
             text: 'Grow with United Addins',
-            href: 'mailto:sales@unitedaddins.com?subject=Partnership%20inquiry',
+            href: 'mailto:salesemea@unitedaddins.com?subject=Partnership%20inquiry',
           },
         ],
       },
@@ -62,7 +62,7 @@ const T = {
             icon: Cubes,
             title: 'Partner werden',
             text: 'Wachsen Sie mit United Addins',
-            href: 'mailto:sales@unitedaddins.com?subject=Partneranfrage',
+            href: 'mailto:salesemea@unitedaddins.com?subject=Partneranfrage',
           },
         ],
       },
@@ -95,7 +95,7 @@ const T = {
             icon: Cubes,
             title: 'Devenir partenaire',
             text: 'Grandir avec United Addins',
-            href: 'mailto:sales@unitedaddins.com?subject=Demande%20de%20partenariat',
+            href: 'mailto:salesemea@unitedaddins.com?subject=Demande%20de%20partenariat',
           },
         ],
       },
@@ -108,6 +108,72 @@ const T = {
     help: 'Besoin d’aide ? Parlez à notre équipe',
     main: 'Menu principal',
     skip: 'Aller au contenu',
+  },
+  es: {
+    nav: [
+      {
+        label: 'Productos',
+        items: [
+          { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'Edite, proteja y firme PDF', href: '/foxit' },
+          { icon: Chart, title: 'Mekko Graphics', text: 'Gráficos en PowerPoint y Excel', href: '/mekko-graphics' },
+          { icon: Cubes, title: 'Todos los productos', text: 'PDF-XChange, Bluebeam, SketchUp y más', href: '/products' },
+          { icon: Key, title: 'Encuentre su plan', text: '4 preguntas, el plan Foxit adecuado', href: '/foxit#plan' },
+        ],
+      },
+      {
+        label: 'Socios',
+        items: [
+          { icon: Handshake, title: 'Nuestros fabricantes', text: 'Foxit, Mekko Graphics y más', href: '/products' },
+          {
+            icon: Cubes,
+            title: 'Conviértase en socio',
+            text: 'Crezca con United Addins',
+            href: 'mailto:salesemea@unitedaddins.com?subject=Solicitud%20de%20colaboraci%C3%B3n',
+          },
+        ],
+      },
+      { label: 'Sobre nosotros', href: '/about' },
+      { label: 'Contacto', href: '/contact' },
+    ],
+    cta: 'Contactar con ventas',
+    open: 'Abrir menú',
+    close: 'Cerrar menú',
+    help: '¿Necesita ayuda? Hable con nuestro equipo',
+    main: 'Menú principal',
+    skip: 'Ir al contenido',
+  },
+  nl: {
+    nav: [
+      {
+        label: 'Producten',
+        items: [
+          { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'PDF’s bewerken, beveiligen en ondertekenen', href: '/foxit' },
+          { icon: Chart, title: 'Mekko Graphics', text: 'Grafieken in PowerPoint en Excel', href: '/mekko-graphics' },
+          { icon: Cubes, title: 'Alle producten', text: 'PDF-XChange, Bluebeam, SketchUp en meer', href: '/products' },
+          { icon: Key, title: 'Vind uw abonnement', text: '4 vragen, het juiste Foxit-abonnement', href: '/foxit#plan' },
+        ],
+      },
+      {
+        label: 'Partners',
+        items: [
+          { icon: Handshake, title: 'Onze leveranciers', text: 'Foxit, Mekko Graphics en meer', href: '/products' },
+          {
+            icon: Cubes,
+            title: 'Partner worden',
+            text: 'Groei met United Addins',
+            href: 'mailto:salesemea@unitedaddins.com?subject=Partnerschapsaanvraag',
+          },
+        ],
+      },
+      { label: 'Over ons', href: '/about' },
+      { label: 'Contact', href: '/contact' },
+    ],
+    cta: 'Contact met sales',
+    open: 'Menu openen',
+    close: 'Menu sluiten',
+    help: 'Hulp nodig? Spreek met ons team',
+    main: 'Hoofdmenu',
+    skip: 'Naar de inhoud',
   },
 }
 
@@ -146,7 +212,7 @@ export default function Header() {
 
   const close = () => setOpen(false)
   // The About page starts with a dark section: light menu text until the header gets its background.
-  const onDark = /^\/((de|fr)\/)?about\/?$/.test(pathname)
+  const onDark = /^\/((de|fr|es|nl)\/)?about\/?$/.test(pathname)
   const isCurrent = (href) => !href.includes('#') && !href.startsWith('mailto:') && stripLang(pathname) === href
 
   return (

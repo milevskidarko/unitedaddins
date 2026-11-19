@@ -222,7 +222,7 @@
 }
 .skip-link:focus { top: 12px; }
 
-/* Language switch: EN | DE */
+/* Language switch: EN | DE | FR | ES | NL */
 .lang-switch {
   display: inline-flex;
   padding: 3px;
@@ -231,9 +231,9 @@
   background: color-mix(in srgb, var(--surface) 70%, transparent);
 }
 .lang-switch a {
-  min-width: 36px;
+  min-width: 34px;
   height: 32px;
-  padding: 0 8px;
+  padding: 0 7px;
   display: grid;
   place-items: center;
   border-radius: 999px;
@@ -246,7 +246,8 @@
 .lang-switch a:hover { color: var(--ink); }
 .lang-switch a.is-active { background: var(--ink); color: var(--bg); }
 .drawer__lang { align-self: center; margin-top: 24px; }
-.drawer__lang a { min-width: 56px; height: 40px; font-size: 14px; }
+/* 5 languages: 48px each still fits a 320px-wide phone. */
+.drawer__lang a { min-width: 48px; height: 40px; font-size: 14px; }
 
 /* Theme toggle: sun ↔ moon */
 .theme-toggle {

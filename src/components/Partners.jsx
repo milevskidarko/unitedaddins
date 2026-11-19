@@ -44,6 +44,30 @@ const T = {
       ['Licences et renouvellements', 'Nouvelles licences, renouvellements, mises à niveau et postes supplémentaires.'],
     ],
   },
+  es: {
+    title: 'Nuestros socios',
+    accent: 'de confianza',
+    cred: <>Distribuidor autorizado de <strong>Foxit</strong> (desde 2012) y <strong>Mekko Graphics</strong></>,
+    label: 'Explorar por necesidad',
+    needs: [
+      ['PDF y eSign', 'Cree, edite, proteja y firme documentos.'],
+      ['Visualización de datos', 'Marimekko, Bar Mekko, cascada y más.'],
+      ['Más software', 'PDF-XChange, Bluebeam, SketchUp, progeCAD, MindManager y más.'],
+      ['Licencias y renovaciones', 'Nuevas licencias, renovaciones, actualizaciones y puestos adicionales.'],
+    ],
+  },
+  nl: {
+    title: 'Onze vertrouwde',
+    accent: 'partners',
+    cred: <>Geautoriseerd distributeur van <strong>Foxit</strong> (sinds 2012) en <strong>Mekko Graphics</strong></>,
+    label: 'Ontdek per behoefte',
+    needs: [
+      ['PDF en eSign', 'Documenten maken, bewerken, beveiligen en ondertekenen.'],
+      ['Datavisualisatie', 'Marimekko, Bar Mekko, watervaldiagrammen en meer.'],
+      ['Meer software', 'PDF-XChange, Bluebeam, SketchUp, progeCAD, MindManager en meer.'],
+      ['Licenties en verlengingen', 'Nieuwe licenties, verlengingen, upgrades en extra gebruikers.'],
+    ],
+  },
 }
 
 export default function Partners() {

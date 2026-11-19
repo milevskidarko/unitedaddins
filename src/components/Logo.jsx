@@ -11,6 +11,8 @@ const T = {
   en: { tagline: 'The right software. The right partnership.', home: 'United Addins home' },
   de: { tagline: 'Die richtige Software. Die richtige Partnerschaft.', home: 'United Addins Startseite' },
   fr: { tagline: 'Le bon logiciel. Le bon partenaire.', home: 'Accueil United Addins' },
+  es: { tagline: 'El software adecuado. El socio adecuado.', home: 'Inicio de United Addins' },
+  nl: { tagline: 'De juiste software. De juiste partner.', home: 'United Addins startpagina' },
 }
 
 export default function Logo({ light = false, tagline = false }) {

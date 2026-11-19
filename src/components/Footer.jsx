@@ -4,7 +4,7 @@ import { L, useT } from '../i18n.jsx'
 import { LinkedIn, Mail, Arrow, Check } from './Icons.jsx'
 import './Footer.css'
 
-const SALES_EMAIL = 'sales@unitedaddins.com'
+const SALES_EMAIL = 'salesemea@unitedaddins.com'
 
 const T = {
   en: {
@@ -54,6 +54,38 @@ const T = {
     legal: 'Tous les noms de produits sont des marques de leurs propriétaires respectifs.',
     top: 'Retour en haut',
     linkedin: 'United Addins sur LinkedIn',
+  },
+  es: {
+    ready: 'Listos cuando usted lo esté.',
+    build: 'Preparemos',
+    quote: 'su presupuesto.',
+    talk: 'Hable con nuestro equipo',
+    badge: 'Distribuidor autorizado de Foxit y Mekko Graphics',
+    cols: [
+      { title: 'Productos', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Bluebeam Revu', '/bluebeam'], ['SketchUp', '/sketchup'], ['Todos los productos', '/products']] },
+      { title: 'Soluciones', links: [['PDF y eSign', '/foxit'], ['Visualización de datos', '/mekko-graphics'], ['Encuentre su plan', '/foxit#plan'], ['Licencias por volumen', '/contact']] },
+      { title: 'Empresa', links: [['Sobre nosotros', '/about'], ['Socios', '/#partners'], ['Solicitar presupuesto', '/contact']] },
+    ],
+    rights: 'Todos los derechos reservados.',
+    legal: 'Todos los nombres de productos son marcas comerciales de sus respectivos propietarios.',
+    top: 'Volver arriba',
+    linkedin: 'United Addins en LinkedIn',
+  },
+  nl: {
+    ready: 'Klaar wanneer u dat bent.',
+    build: 'Laten we',
+    quote: 'uw offerte opstellen.',
+    talk: 'Spreek met ons team',
+    badge: 'Geautoriseerd distributeur van Foxit en Mekko Graphics',
+    cols: [
+      { title: 'Producten', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Bluebeam Revu', '/bluebeam'], ['SketchUp', '/sketchup'], ['Alle producten', '/products']] },
+      { title: 'Oplossingen', links: [['PDF en eSign', '/foxit'], ['Datavisualisatie', '/mekko-graphics'], ['Vind uw abonnement', '/foxit#plan'], ['Volumelicenties', '/contact']] },
+      { title: 'Bedrijf', links: [['Over ons', '/about'], ['Partners', '/#partners'], ['Offerte aanvragen', '/contact']] },
+    ],
+    rights: 'Alle rechten voorbehouden.',
+    legal: 'Alle productnamen zijn handelsmerken van hun respectieve eigenaars.',
+    top: 'Terug naar boven',
+    linkedin: 'United Addins op LinkedIn',
   },
 }
 

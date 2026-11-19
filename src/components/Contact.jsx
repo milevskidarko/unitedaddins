@@ -4,14 +4,14 @@ import { L, useT, useLang } from '../i18n.jsx'
 import { PRODUCTS as MORE_PRODUCTS } from '../products.js'
 import './Contact.css'
 
-const SALES_EMAIL = 'sales@unitedaddins.com'
+const SALES_EMAIL = 'salesemea@unitedaddins.com'
 
 // Quote requests go to our own Vercel function (/api/quote → Resend e-mail, protected by
 // Cloudflare Turnstile). Until that is configured (no RESEND_API_KEY on Vercel, or local
 // `npm run dev` without functions), requests fall back to FormSubmit as before.
 const API_ENDPOINT = '/api/quote'
 const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || ''
-// FormSubmit sends straight to sales@ (the address is public on the site anyway). The old
+// FormSubmit sends straight to salesemea@ (the address is public on the site anyway). The old
 // alias '29844412…' was most likely the developer's test inbox (a test landed there, Nov 2026).
 // Can be overridden in .env.local (VITE_FORM_EMAIL=you@example.com) for local testing.
 const FALLBACK_ENDPOINT = `https://formsubmit.co/ajax/${import.meta.env.VITE_FORM_EMAIL || SALES_EMAIL}`
@@ -24,7 +24,7 @@ const PRODUCTS = [
   { name: 'Foxit eSign', tone: 'blue' },
   { name: 'Mekko Graphics', tone: 'navy' },
   // Further products (products.js): listed under "More products" so the core ones stay up front.
-  ...MORE_PRODUCTS.map((p) => ({ name: p.name, color: p.tone, more: true, notes: { en: p.en.note, de: p.de.note, fr: p.fr.note } })),
+  ...MORE_PRODUCTS.map((p) => ({ name: p.name, color: p.tone, more: true, notes: { en: p.en.note, de: p.de.note, fr: p.fr.note, es: p.es.note, nl: p.nl.note } })),
 ]
 // Request types: the key is what the sales team receives (always English).
 const TYPE_KEYS = ['New purchase', 'Renewal', 'Upgrade', 'Add seats']
@@ -236,6 +236,128 @@ const T = {
     doneSummary: 'Votre demande',
     again: 'Envoyer une autre demande',
     explore: 'Retour à l’accueil',
+  },
+  es: {
+    eyebrow: 'Prepare su presupuesto',
+    title: 'Encontremos el software adecuado para',
+    accent: 'su equipo.',
+    lead: 'Elija sus productos y el número de licencias — le enviaremos un presupuesto a medida.',
+    list: ['Licencias por suscripción y perpetuas para equipos de cualquier tamaño', 'Renovaciones, actualizaciones y puestos adicionales', 'Asesoramiento sobre el plan adecuado para sus necesidades'],
+    nextLabel: 'Próximos pasos',
+    next: [
+      ['Revisamos su solicitud', 'Un especialista en licencias comprueba sus productos, puestos y configuración actual.'],
+      ['Recibe un presupuesto a medida', 'Precios claros para su equipo, con alternativas si hay una opción mejor.'],
+      ['Licencias y puesta en marcha', 'Le entregamos las licencias y le ayudamos a empezar.'],
+    ],
+    types: {
+      'New purchase': { label: 'Nueva compra', hint: 'Compra licencias por primera vez.', legend: 'Productos y licencias', unit: ['licencia', 'licencias'] },
+      Renewal: { label: 'Renovación', hint: 'Renueve su suscripción actual — revisaremos sus condiciones vigentes.', legend: 'Productos a renovar', unit: ['licencia a renovar', 'licencias a renovar'] },
+      Upgrade: { label: 'Actualización', hint: 'Pase a un plan superior, por ejemplo de PDF Editor a PDF Editor+.', legend: 'Actualizar a', unit: ['licencia a actualizar', 'licencias a actualizar'] },
+      'Add seats': { label: 'Más puestos', hint: 'Añada licencias a la suscripción que ya tiene.', legend: 'Productos y licencias adicionales', unit: ['licencia adicional', 'licencias adicionales'] },
+    },
+    fields: {
+      expiryDate: 'Vencimiento de la suscripción actual',
+      reference: 'Referencia de pedido o licencia (opcional)',
+      currentPlan: 'Plan actual',
+      currentSeats: 'Licencias que tiene ahora',
+      other: 'Otro / no estoy seguro',
+      select: 'Seleccionar',
+    },
+    notes: {
+      'Foxit PDF Editor': 'Windows, macOS, Web',
+      'Foxit PDF Editor+': '+ móvil, Smart Redact, eSign',
+      'Foxit eSign': 'Plantillas, envío masivo, registros de auditoría',
+      'Mekko Graphics': 'Complemento para PowerPoint y Excel',
+    },
+    perpetualNote: 'Windows y macOS · licencia de pago único',
+    moreProducts: (n) => `Más productos (${n})`,
+    fewerProducts: 'Menos productos',
+    licenseType: 'tipo de licencia',
+    subscription: 'Suscripción',
+    perpetual: 'Perpetua (pago único)',
+    fewer: 'Menos licencias',
+    more: 'Más licencias',
+    number: (p) => `Número de licencias de ${p}`,
+    step1: '1. Tipo de solicitud',
+    step3: '3. Sus datos',
+    none: 'Aún no ha seleccionado productos.',
+    notSure: '¿No está seguro? Encuentre su plan →',
+    firstName: 'Nombre',
+    lastName: 'Apellidos',
+    email: 'Correo electrónico de empresa',
+    company: 'Empresa',
+    message: 'Mensaje (opcional)',
+    submit: 'Solicitar presupuesto',
+    sending: 'Enviando…',
+    pickProduct: 'Seleccione al menos un producto para su presupuesto.',
+    verify: 'Un momento — estamos comprobando que no es un robot.',
+    error: `Algo ha fallado. Inténtelo de nuevo o escríbanos a ${SALES_EMAIL}.`,
+    doneTitle: '¡Gracias!',
+    doneText: 'Hemos recibido su solicitud de presupuesto. Un especialista en licencias le responderá por correo electrónico.',
+    doneSummary: 'Su solicitud',
+    again: 'Enviar otra solicitud',
+    explore: 'Volver al inicio',
+  },
+  nl: {
+    eyebrow: 'Stel uw offerte samen',
+    title: 'Laten we de juiste software vinden voor',
+    accent: 'uw team.',
+    lead: 'Kies uw producten en het aantal licenties — wij komen terug met een offerte op maat.',
+    list: ['Abonnementen en eeuwigdurende licenties voor elke teamgrootte', 'Verlengingen, upgrades en extra gebruikers', 'Advies over het juiste abonnement voor uw behoeften'],
+    nextLabel: 'Zo gaat het verder',
+    next: [
+      ['Wij bekijken uw aanvraag', 'Een licentiespecialist controleert uw producten, aantal gebruikers en huidige situatie.'],
+      ['U ontvangt een offerte op maat', 'Duidelijke prijzen voor uw team, met alternatieven als er een betere optie is.'],
+      ['Licenties en implementatie', 'Wij leveren uw licenties en helpen u op weg.'],
+    ],
+    types: {
+      'New purchase': { label: 'Nieuwe aankoop', hint: 'U koopt voor het eerst licenties.', legend: 'Producten en licenties', unit: ['licentie', 'licenties'] },
+      Renewal: { label: 'Verlenging', hint: 'Verleng uw bestaande abonnement — wij bekijken uw huidige voorwaarden.', legend: 'Te verlengen producten', unit: ['licentie te verlengen', 'licenties te verlengen'] },
+      Upgrade: { label: 'Upgrade', hint: 'Stap over naar een hoger abonnement, bijvoorbeeld van PDF Editor naar PDF Editor+.', legend: 'Upgrade naar', unit: ['licentie te upgraden', 'licenties te upgraden'] },
+      'Add seats': { label: 'Extra gebruikers', hint: 'Voeg licenties toe aan uw bestaande abonnement.', legend: 'Producten en extra licenties', unit: ['extra licentie', 'extra licenties'] },
+    },
+    fields: {
+      expiryDate: 'Huidig abonnement verloopt op',
+      reference: 'Order- of licentienummer (optioneel)',
+      currentPlan: 'Huidig abonnement',
+      currentSeats: 'Huidig aantal licenties',
+      other: 'Anders / weet ik niet',
+      select: 'Kiezen',
+    },
+    notes: {
+      'Foxit PDF Editor': 'Windows, macOS, Web',
+      'Foxit PDF Editor+': '+ mobiel, Smart Redact, eSign',
+      'Foxit eSign': 'Sjablonen, bulkverzending, audittrails',
+      'Mekko Graphics': 'Invoegtoepassing voor PowerPoint en Excel',
+    },
+    perpetualNote: 'Windows en macOS · eenmalige licentie',
+    moreProducts: (n) => `Meer producten (${n})`,
+    fewerProducts: 'Minder producten',
+    licenseType: 'licentietype',
+    subscription: 'Abonnement',
+    perpetual: 'Eeuwigdurend (eenmalig)',
+    fewer: 'Minder licenties',
+    more: 'Meer licenties',
+    number: (p) => `Aantal licenties voor ${p}`,
+    step1: '1. Soort aanvraag',
+    step3: '3. Uw gegevens',
+    none: 'Nog geen producten geselecteerd.',
+    notSure: 'Twijfelt u? Vind uw abonnement →',
+    firstName: 'Voornaam',
+    lastName: 'Achternaam',
+    email: 'Zakelijk e-mailadres',
+    company: 'Bedrijf',
+    message: 'Bericht (optioneel)',
+    submit: 'Offerte aanvragen',
+    sending: 'Verzenden…',
+    pickProduct: 'Selecteer ten minste één product voor uw offerte.',
+    verify: 'Een ogenblik — we controleren of u geen robot bent.',
+    error: `Er is iets misgegaan. Probeer het opnieuw of mail ons via ${SALES_EMAIL}.`,
+    doneTitle: 'Bedankt!',
+    doneText: 'Uw offerteaanvraag is ontvangen. Een licentiespecialist neemt per e-mail contact met u op.',
+    doneSummary: 'Uw aanvraag',
+    again: 'Nog een aanvraag versturen',
+    explore: 'Terug naar de startpagina',
   },
 }
 

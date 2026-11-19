@@ -6,8 +6,8 @@
 import { PRODUCTS } from './products.js'
 
 export const SITE = 'https://www.unitedaddins.com'
-export const LANGS = ['en', 'de', 'fr']
-export const OG_LOCALES = { en: 'en_US', de: 'de_DE', fr: 'fr_FR' }
+export const LANGS = ['en', 'de', 'fr', 'es', 'nl']
+export const OG_LOCALES = { en: 'en_US', de: 'de_DE', fr: 'fr_FR', es: 'es_ES', nl: 'nl_NL' }
 
 export const PAGES = {
   home: {
@@ -27,6 +27,16 @@ export const PAGES = {
       description:
         'United Addins aide les organisations à trouver, acquérir et exploiter pleinement des logiciels fiables — Foxit PDF & eSign, Mekko Graphics et plus.',
     },
+    es: {
+      title: 'United Addins — El software adecuado. El socio adecuado.',
+      description:
+        'United Addins ayuda a las organizaciones a encontrar, licenciar y sacar el máximo partido a software de confianza — Foxit PDF & eSign, Mekko Graphics y más.',
+    },
+    nl: {
+      title: 'United Addins — De juiste software. De juiste partner.',
+      description:
+        'United Addins helpt organisaties betrouwbare software te vinden, te licentiëren en er het maximale uit te halen — Foxit PDF & eSign, Mekko Graphics en meer.',
+    },
   },
   foxit: {
     path: '/foxit',
@@ -44,6 +54,16 @@ export const PAGES = {
       title: 'Foxit PDF Editor, Editor+ & eSign — United Addins',
       description:
         'Licences, renouvellements et support pour Foxit PDF Editor, PDF Editor+ et Foxit eSign. Trouvez la bonne offre en 4 questions et composez votre devis en ligne.',
+    },
+    es: {
+      title: 'Foxit PDF Editor, Editor+ & eSign — United Addins',
+      description:
+        'Licencias, renovaciones y soporte para Foxit PDF Editor, PDF Editor+ y Foxit eSign. Encuentre el plan adecuado en 4 preguntas y prepare su presupuesto en línea.',
+    },
+    nl: {
+      title: 'Foxit PDF Editor, Editor+ & eSign — United Addins',
+      description:
+        'Licenties, verlengingen en support voor Foxit PDF Editor, PDF Editor+ en Foxit eSign. Vind het juiste abonnement in 4 vragen en stel uw offerte online samen.',
     },
   },
   mekko: {
@@ -63,6 +83,16 @@ export const PAGES = {
       description:
         'Marimekko, Bar Mekko, cascade et plus dans PowerPoint et Excel. Essayez le graphique interactif et obtenez vos licences Mekko Graphics auprès de United Addins.',
     },
+    es: {
+      title: 'Mekko Graphics para PowerPoint y Excel — United Addins',
+      description:
+        'Marimekko, Bar Mekko, cascada y más en PowerPoint y Excel. Pruebe el gráfico interactivo y obtenga licencias de Mekko Graphics con United Addins.',
+    },
+    nl: {
+      title: 'Mekko Graphics voor PowerPoint en Excel — United Addins',
+      description:
+        'Marimekko, Bar Mekko, watervaldiagrammen en meer in PowerPoint en Excel. Probeer de interactieve grafiek en koop Mekko Graphics-licenties bij United Addins.',
+    },
   },
   products: {
     path: '/products',
@@ -81,6 +111,16 @@ export const PAGES = {
       description:
         'Foxit, Mekko Graphics, PDF-XChange, Bluebeam Revu, NXPowerLite, progeCAD, SketchUp, MyDraw, MindManager, Project Plan 365 et Steelray Project Viewer — licences et devis auprès de United Addins.',
     },
+    es: {
+      title: 'Todos los productos — United Addins',
+      description:
+        'Foxit, Mekko Graphics, PDF-XChange, Bluebeam Revu, NXPowerLite, progeCAD, SketchUp, MyDraw, MindManager, Project Plan 365 y Steelray Project Viewer — licencias y presupuestos de United Addins.',
+    },
+    nl: {
+      title: 'Alle producten — United Addins',
+      description:
+        'Foxit, Mekko Graphics, PDF-XChange, Bluebeam Revu, NXPowerLite, progeCAD, SketchUp, MyDraw, MindManager, Project Plan 365 en Steelray Project Viewer — licenties en offertes van United Addins.',
+    },
   },
   // One page per additional product (see products.js).
   ...Object.fromEntries(
@@ -91,6 +131,8 @@ export const PAGES = {
         en: { title: `${p.name} — ${p.en.tagline} | United Addins`, description: p.en.lead },
         de: { title: `${p.name} — ${p.de.tagline} | United Addins`, description: p.de.lead },
         fr: { title: `${p.name} — ${p.fr.tagline} | United Addins`, description: p.fr.lead },
+        es: { title: `${p.name} — ${p.es.tagline} | United Addins`, description: p.es.lead },
+        nl: { title: `${p.name} — ${p.nl.tagline} | United Addins`, description: p.nl.lead },
       },
     ])
   ),
@@ -111,6 +153,16 @@ export const PAGES = {
       description:
         'Distributeur agréé Foxit depuis 2012 et partenaire Mekko Graphics. Expertise produit, accompagnement licences et un seul interlocuteur pour plusieurs éditeurs.',
     },
+    es: {
+      title: 'Sobre United Addins — Distribución de software pensada para su empresa',
+      description:
+        'Distribuidor autorizado de Foxit desde 2012 y partner de Mekko Graphics. Experiencia en producto, asesoramiento en licencias y un único contacto de confianza para varios fabricantes.',
+    },
+    nl: {
+      title: 'Over United Addins — Softwaredistributie rond uw organisatie',
+      description:
+        'Geautoriseerd Foxit-distributeur sinds 2012 en Mekko Graphics-partner. Productkennis, licentieadvies en één vertrouwd aanspreekpunt voor meerdere leveranciers.',
+    },
   },
   contact: {
     path: '/contact',
@@ -128,6 +180,16 @@ export const PAGES = {
       title: 'Demander un devis — United Addins',
       description:
         'Choisissez vos produits et le nombre de licences — nouvel achat, renouvellement, mise à niveau ou postes supplémentaires — et recevez un devis sur mesure de United Addins.',
+    },
+    es: {
+      title: 'Solicitar presupuesto — United Addins',
+      description:
+        'Elija sus productos y el número de licencias — nueva compra, renovación, actualización o puestos adicionales — y reciba un presupuesto a medida de United Addins.',
+    },
+    nl: {
+      title: 'Offerte aanvragen — United Addins',
+      description:
+        'Kies uw producten en het aantal licenties — nieuwe aankoop, verlenging, upgrade of extra gebruikers — en ontvang een offerte op maat van United Addins.',
     },
   },
 }

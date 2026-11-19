@@ -1,0 +1,111 @@
+// Dutch copy for the products in products.js, keyed by slug. Same shape as `en` there.
+export const PRODUCTS_NL = {
+  'pdf-xchange': {
+    tagline: 'Snelle, uitgebreide PDF-bewerking voor Windows',
+    lead: 'PDF-XChange Editor bundelt alles wat u nodig hebt om PDF-documenten te maken, bewerken, verbeteren en converteren in één toepassing — met gratis ingebouwde OCR. Kies Editor, Editor Plus of PRO (Editor Plus met PDF-Tools en de Standard virtuele printer), allemaal verkocht als eeuwigdurende licentie.',
+    features: [
+      ['PDF’s bewerken', 'Wijzig tekst, afbeeldingen en pagina’s direct in de PDF.'],
+      ['Review en markeringen', 'Opmerkingen, markeringen, stempels en meetgereedschap.'],
+      ['OCR inbegrepen', 'Maak van gescande documenten doorzoekbare, selecteerbare tekst.'],
+      ['Eeuwigdurende licentie', 'Eenmalig betalen en onbeperkt gebruiken — geen abonnement.'],
+    ],
+    platforms: 'Windows',
+    note: 'PDF-editor voor Windows · eeuwigdurend',
+  },
+  bluebeam: {
+    tagline: 'Bouwsoftware gemaakt voor samenwerking',
+    lead: 'Bluebeam Revu is de PDF-werkomgeving waarmee architecten, ingenieurs en bouwbedrijven tekeningen markeren, meten en controleren — en er samen aan werken op desktop, in de browser en mobiel. Van tekeningbeheer en ontwerpreview tot hoeveelheden, RFI’s, submittals en opleverlijsten.',
+    features: [
+      ['Markeren en meten', 'Toonaangevende markeer- en meettools voor bouwtekeningen.'],
+      ['Hoeveelheden bepalen', 'Meet lengtes, oppervlakken en aantallen direct op de tekening.'],
+      ['Realtime samenwerken', 'Markeer samen dezelfde tekeningen vanaf elk apparaat.'],
+      ['Bouwworkflows', 'Ontwerpreview, RFI’s, submittals, opleverlijsten en afronding.'],
+    ],
+    platforms: 'Windows, web, iOS en Android',
+    note: 'PDF-markering voor de bouw',
+  },
+  nxpowerlite: {
+    tagline: 'Eenvoudige, krachtige en offline bestandscompressie',
+    lead: 'NXPowerLite Desktop verkleint PDF-, PowerPoint-, Word-, Excel-, JPEG-, PNG- en TIFF-bestanden en behoudt daarbij hun oorspronkelijke formaat en extensie — ontvangers openen ze gewoon, zonder NXPowerLite. Comprimeren gebeurt offline, op uw eigen computer.',
+    features: [
+      ['Zelfde formaat, kleiner bestand', 'Bestanden blijven .pdf, .pptx, .docx, .xlsx, .jpg enz. — geen zip.'],
+      ['Batchcompressie', 'Comprimeer tot 10.000 bestanden in één keer.'],
+      ['Outlook-bijlagen', 'Comprimeer bijlagen automatisch bij het verzenden.'],
+      ['Eeuwigdurende licentie', 'Eenmalige betaling per gebruiker, geen abonnement.'],
+    ],
+    platforms: 'Windows en macOS',
+    note: 'Bestandscompressie · eeuwigdurend',
+  },
+  progecad: {
+    tagline: 'AutoCAD®-compatibele 2D/3D-CAD voor Windows',
+    lead: 'progeCAD Professional is een betaalbaar alternatief voor AutoCAD® dat native met DWG-bestanden werkt en vertrouwde commando’s gebruikt, zodat uw team vanaf dag één productief is. Eeuwigdurende licentie, geen jaarabonnement. Voor Mac biedt Progesoft iCADMac.',
+    features: [
+      ['Native DWG', 'Open, bewerk en bewaar DWG-bestanden van alle AutoCAD®-versies.'],
+      ['Direct aan de slag', 'Commando’s, menu’s en sneltoetsen zoals in AutoCAD.'],
+      ['2D en 3D', 'Tekenen, annoteren, 3D-modelleren en renderen in één tool.'],
+      ['Eeuwigdurende licentie', 'Eenmalig kopen — geen jaarabonnement.'],
+    ],
+    platforms: 'Windows (Mac: iCADMac)',
+    note: 'DWG-CAD voor Windows · eeuwigdurend',
+  },
+  sketchup: {
+    tagline: '3D-modellering voor architectuur, interieur en bouw',
+    lead: 'SketchUp maakt 3D-ontwerpen intuïtief: schets uw ideeën, modelleer gebouwen en ruimtes en zet ze om in documentatie en presentaties. Abonnementen: SketchUp Go (web en iPad), Pro (voegt de desktopmodeler en LayOut toe) en Studio (voegt Revit-import, puntenwolken en fotorealistische rendering toe).',
+    features: [
+      ['Intuïtief 3D-modelleren', 'Duw, trek en vorm uw modellen snel.'],
+      ['LayOut', '2D-documentatie en presentatiebladen vanuit het model (Pro en Studio).'],
+      ['3D Warehouse', 'Miljoenen kant-en-klare modellen plus honderden extensies.'],
+      ['Desktop, web en iPad', 'Werk waar uw project u ook brengt.'],
+    ],
+    platforms: 'Desktop, web en iPad',
+    note: '3D-modellering — Go, Pro, Studio',
+  },
+  mydraw: {
+    tagline: 'Diagrammen, stroomschema’s en mindmaps — een alternatief voor Visio®',
+    lead: 'MyDraw is geavanceerde, gebruiksvriendelijke diagramsoftware voor stroomschema’s, organigrammen, mindmaps, stambomen, Venndiagrammen, workflows en meer. Het opent en bewaart Visio-tekeningen en -sjablonen en is verkrijgbaar als eenmalige aankoop of als abonnement.',
+    features: [
+      ['Veel soorten diagrammen', 'Stroomschema’s, organigrammen, mindmaps, oorzaak-gevolg, datastromen en meer.'],
+      ['Visio-bestanden', 'Open en bewaar Visio-tekeningen en -sjablonen.'],
+      ['Export naar PDF en afbeelding', 'Druk diagrammen af of deel ze als PDF en afbeelding.'],
+      ['Flexibele licenties', 'Eeuwigdurende licentie, abonnement of bedrijfslicentie.'],
+    ],
+    platforms: 'Windows, macOS en web',
+    note: 'Diagrammen, Visio-compatibel',
+  },
+  mindmanager: {
+    tagline: 'Van ideeën naar plannen, van plannen naar actie',
+    lead: 'MindManager zet ideeën, informatie en plannen om in heldere visuele kaarten — mindmaps, conceptkaarten, stroomschema’s, tijdlijnen en Gantt-diagrammen. De edities lopen van MindManager Essentials op het web tot Professional en Enterprise, plus MindManager voor Microsoft Teams.',
+    features: [
+      ['Mindmaps en conceptkaarten', 'Leg ideeën vast en orden informatie visueel.'],
+      ['Projectplanning', 'Tijdlijnen, Gantt-diagrammen en proceskaarten op één plek.'],
+      ['Stroomschema’s en workflows', 'Breng processen en beslissingen helder in beeld.'],
+      ['Integraties', 'Werkt met Microsoft Teams, SharePoint, Jira en meer.'],
+    ],
+    platforms: 'Windows, macOS en web',
+    note: 'Mindmapping en visuele planning',
+  },
+  'project-plan-365': {
+    tagline: 'Open, bewerk en deel Microsoft Project-bestanden — op al uw apparaten',
+    lead: 'Project Plan 365 opent, bewerkt en bewaart Microsoft Project-bestanden (.mpp) zonder importeren of exporteren. De planningsengine berekent kosten, einddata, kritieke paden en overbelaste resources — voor klassieke of Agile planning, op pc, Mac, mobiel en web.',
+    features: [
+      ['Microsoft Project-bestanden', 'Open, bewerk en bewaar .mpp-bestanden native.'],
+      ['Volledige planning', 'Gantt-diagrammen, kritiek pad, resources, dashboards en rapporten.'],
+      ['Alle apparaten', 'Windows, Mac, iOS, Android en web.'],
+      ['Cloud en samenwerking', 'OneDrive, SharePoint, Google Drive, Dropbox, Box en meer.'],
+    ],
+    platforms: 'Windows, macOS, iOS, Android en web',
+    note: 'MS Project-bestanden overal bewerken',
+  },
+  'steelray-project-viewer': {
+    tagline: 'Uw planning in beeld — zonder Microsoft Project',
+    lead: 'Met Steelray Project Viewer openen mensen die een planning alleen hoeven te bekijken Microsoft Project-bestanden (.mpp) — met dezelfde belangrijkste weergaven en gegevens als Project, maar zonder een Project-licentie voor iedereen. Bestanden zijn alleen-lezen, dus niemand wijzigt de planning per ongeluk. De Ultimate-editie opent ook Primavera P6-bestanden (.xer).',
+    features: [
+      ['.mpp-bestanden openen', 'Geen import of upload — open Microsoft Project-bestanden direct.'],
+      ['Vertrouwde weergaven', 'Dezelfde belangrijkste weergaven en gegevens als Microsoft Project.'],
+      ['Geavanceerd afdrukken', 'Afdrukvoorbeeld, schalen, paginaformaat, stand en kopteksten.'],
+      ['Zoeken en navigeren', 'Vind taken, resources en data met één klik.'],
+    ],
+    platforms: 'Desktop-app',
+    note: 'Viewer voor MS Project-bestanden',
+  },
+}

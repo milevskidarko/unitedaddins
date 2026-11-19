@@ -114,6 +114,72 @@ const T = {
     disclaimer: 'Étude commandée par Foxit (2022). Les résultats reposent sur une organisation composite modélisée et ne garantissent pas des résultats individuels.',
     study: 'Lire l’étude',
   },
+  es: {
+    eyebrow: 'Socio destacado',
+    title: 'Impulse su negocio con',
+    lead: 'La alternativa líder a Adobe Acrobat para crear, editar, convertir, firmar y gestionar PDF de forma segura en ordenador, móvil y web — con licencias y soporte de United Addins.',
+    features: ['Crear, editar y convertir', 'Smart Redact (Editor+)', 'Asistente de IA', 'Flujos de firma eSign'],
+    finder: '¿No sabe qué plan elegir? Responda 4 preguntas',
+    badge: 'El más completo',
+    mobile: 'App móvil',
+    products: [
+      {
+        text: 'Edición profesional de PDF para Windows, macOS y Web. Cree, edite, convierta, organice, rellene y firme PDF — con Asistente de IA integrado.',
+        note: 'Licencia perpetua disponible: compra única para Windows y macOS, sin Asistente de IA, DMS ni funciones en la nube.',
+      },
+      {
+        text: 'El paquete completo: todo lo de PDF Editor, más Smart Redact con IA y apps móviles para iOS y Android.',
+        note: 'Incluye Foxit eSign con 150 sobres al año.',
+      },
+      {
+        text: 'Firma electrónica independiente para particulares y equipos — plantillas reutilizables, flujos de firma, registros de auditoría y certificados de firma. Conforme a ESIGN, UETA y eIDAS.',
+        note: 'Essentials: 250 sobres/año, 10 plantillas · Business: sobres y plantillas ilimitados (a partir de 5 usuarios).',
+      },
+    ],
+    add: 'Añadir al presupuesto',
+    addPerpetual: 'Añadir como perpetua',
+    statsTitle: 'Valor empresarial demostrado',
+    statsSub: 'Estudio Forrester Total Economic Impact™ de Foxit PDF Editor',
+    roi: 'ROI',
+    payback: 'Amortización',
+    founded: 'Fundación de Foxit',
+    mo: 'meses',
+    disclaimer: 'Estudio encargado por Foxit (2022). Los resultados se basan en una organización compuesta modelada y no garantizan resultados individuales.',
+    study: 'Leer el estudio',
+  },
+  nl: {
+    eyebrow: 'Uitgelichte partner',
+    title: 'Versterk uw bedrijf met',
+    lead: 'Hét alternatief voor Adobe Acrobat om PDF’s te maken, bewerken, converteren, ondertekenen en veilig te beheren op desktop, mobiel en web — met licenties en support van United Addins.',
+    features: ['Maken, bewerken en converteren', 'Smart Redact (Editor+)', 'AI-assistent', 'eSign-workflows'],
+    finder: 'Twijfelt u over het abonnement? Beantwoord 4 vragen',
+    badge: 'Meest compleet',
+    mobile: 'Mobiele app',
+    products: [
+      {
+        text: 'Professionele PDF-bewerking voor Windows, macOS en Web. PDF’s maken, bewerken, converteren, ordenen, invullen en ondertekenen — met ingebouwde AI-assistent.',
+        note: 'Eeuwigdurende licentie beschikbaar: eenmalige aankoop voor Windows en macOS, zonder AI-assistent, DMS of cloudfuncties.',
+      },
+      {
+        text: 'Het complete pakket: alles uit PDF Editor, plus Smart Redact met AI en mobiele apps voor iOS en Android.',
+        note: 'Inclusief Foxit eSign met 150 enveloppen per jaar.',
+      },
+      {
+        text: 'Zelfstandige elektronische handtekeningen voor particulieren en teams — herbruikbare sjablonen, ondertekeningsworkflows, audittrails en handtekeningcertificaten. In lijn met ESIGN, UETA en eIDAS.',
+        note: 'Essentials: 250 enveloppen/jaar, 10 sjablonen · Business: onbeperkt enveloppen en sjablonen (vanaf 5 gebruikers).',
+      },
+    ],
+    add: 'Toevoegen aan offerte',
+    addPerpetual: 'Eeuwigdurend toevoegen',
+    statsTitle: 'Bewezen bedrijfswaarde',
+    statsSub: 'Forrester Total Economic Impact™-studie van Foxit PDF Editor',
+    roi: 'ROI',
+    payback: 'Terug­verdien­tijd', // soft hyphens: must fit the column on phones
+    founded: 'Foxit opgericht',
+    mo: 'mnd',
+    disclaimer: 'Studie in opdracht van Foxit (2022). De resultaten zijn gebaseerd op een gemodelleerde samengestelde organisatie en bieden geen garantie voor individuele resultaten.',
+    study: 'Lees de studie',
+  },
 }
 
 export default function Foxit({ onAddToQuote }) {

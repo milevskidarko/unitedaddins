@@ -8,13 +8,15 @@
 //   Without one, the tile shows `mark` (initials) — NXPowerLite, SketchUp and Steelray publish no
 //   usable square icon on their sites; ask the vendor (partner portal / press kit) for one.
 // Copy checked against each vendor's website (18 Nov 2026). No prices or versions on purpose.
-// French copy lives in products.fr.js.
+// French, Spanish and Dutch copy live in products.fr.js, products.es.js and products.nl.js.
 import { PRODUCTS_FR } from './products.fr.js'
+import { PRODUCTS_ES } from './products.es.js'
+import { PRODUCTS_NL } from './products.nl.js'
 
 export const CATEGORIES = {
-  docs: { en: 'Documents & PDF', de: 'Dokumente & PDF', fr: 'Documents et PDF' },
-  design: { en: 'Design, CAD & diagrams', de: 'Design, CAD & Diagramme', fr: 'Design, CAO et diagrammes' },
-  plan: { en: 'Planning & projects', de: 'Planung & Projekte', fr: 'Planification et projets' },
+  docs: { en: 'Documents & PDF', de: 'Dokumente & PDF', fr: 'Documents et PDF', es: 'Documentos y PDF', nl: 'Documenten en PDF' },
+  design: { en: 'Design, CAD & diagrams', de: 'Design, CAD & Diagramme', fr: 'Design, CAO et diagrammes', es: 'Diseño, CAD y diagramas', nl: 'Ontwerp, CAD en diagrammen' },
+  plan: { en: 'Planning & projects', de: 'Planung & Projekte', fr: 'Planification et projets', es: 'Planificación y proyectos', nl: 'Planning en projecten' },
 }
 
 export const PRODUCTS = [
@@ -327,4 +329,6 @@ export const productBySlug = (slug) => PRODUCTS.find((p) => p.slug === slug)
 
 PRODUCTS.forEach((p) => {
   p.fr = PRODUCTS_FR[p.slug]
+  p.es = PRODUCTS_ES[p.slug]
+  p.nl = PRODUCTS_NL[p.slug]
 })

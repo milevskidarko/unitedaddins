@@ -79,6 +79,50 @@ const T = {
     contractSigned: 'Contrat signé',
     via: 'via Foxit eSign · à l’instant',
   },
+  es: {
+    title: [
+      ['El', 'software', 'adecuado.'],
+      ['El', 'socio', { accent: 'adecuado.' }],
+    ],
+    pill: 'Socio en licencias y distribución de software',
+    lead: 'Ayudamos a las organizaciones a encontrar, licenciar y sacar el máximo partido a soluciones de software de confianza — desde PDF y firma electrónica hasta visualización de datos de nivel consultoría.',
+    explore: 'Descubra nuestras soluciones',
+    talk: 'Hable con nuestro equipo',
+    trust: [
+      ['Seguro y fiable', 'Nivel empresarial'],
+      ['Licencias flexibles', 'Para equipos de cualquier tamaño'],
+      ['Soporte experto', 'Cuando nos necesite'],
+    ],
+    contract: 'Contrato de servicio.pdf',
+    signed: 'Firmado',
+    market: 'Cuota de mercado.pptx',
+    quoteSent: 'Solicitud de presupuesto enviada',
+    quoteText: 'Foxit PDF Editor+ × 25 licencias',
+    contractSigned: 'Contrato firmado',
+    via: 'con Foxit eSign · ahora mismo',
+  },
+  nl: {
+    title: [
+      ['De', 'juiste', 'software.'],
+      ['De', 'juiste', { accent: 'partner.' }],
+    ],
+    pill: 'Partner in softwarelicenties en -distributie',
+    lead: 'Wij helpen organisaties betrouwbare softwareoplossingen te vinden, te licentiëren en er het maximale uit te halen — van PDF en e-handtekening tot datavisualisatie op consultancyniveau.',
+    explore: 'Ontdek onze oplossingen',
+    talk: 'Spreek met ons team',
+    trust: [
+      ['Veilig en betrouwbaar', 'Zakelijk niveau'],
+      ['Flexibele licenties', 'Voor elke teamgrootte'],
+      ['Deskundige support', 'Wanneer u ons nodig hebt'],
+    ],
+    contract: 'Servicecontract.pdf',
+    signed: 'Ondertekend',
+    market: 'Marktaandeel.pptx',
+    quoteSent: 'Offerteaanvraag verzonden',
+    quoteText: 'Foxit PDF Editor+ × 25 licenties',
+    contractSigned: 'Contract ondertekend',
+    via: 'via Foxit eSign · zojuist',
+  },
 }
 const TRUST_ICONS = [Shield, Bolt, Headset]
 

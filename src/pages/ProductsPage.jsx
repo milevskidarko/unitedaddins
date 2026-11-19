@@ -41,6 +41,30 @@ const T = {
     helpCta: 'Demandez à notre équipe',
     legal: 'Tous les noms de produits sont des marques de leurs propriétaires respectifs.',
   },
+  es: {
+    eyebrow: 'Productos',
+    title: 'Software que',
+    accent: 'licenciamos y respaldamos',
+    lead: 'Desde PDF y firma electrónica hasta CAD, diagramas y planificación de proyectos — un solo socio para licencias, renovaciones y asesoramiento.',
+    featured: 'Nuestros socios principales',
+    foxit: 'PDF Editor, PDF Editor+ y eSign — distribuidor desde 2012.',
+    mekko: 'Marimekko, Bar Mekko y más en PowerPoint y Excel.',
+    help: '¿No sabe qué producto le conviene?',
+    helpCta: 'Pregunte a nuestro equipo',
+    legal: 'Todos los nombres de productos son marcas comerciales de sus respectivos propietarios.',
+  },
+  nl: {
+    eyebrow: 'Producten',
+    title: 'Software die wij',
+    accent: 'leveren en ondersteunen',
+    lead: 'Van PDF en e-handtekening tot CAD, diagrammen en projectplanning — één partner voor licenties, verlengingen en advies.',
+    featured: 'Onze kernpartners',
+    foxit: 'PDF Editor, PDF Editor+ en eSign — distributeur sinds 2012.',
+    mekko: 'Marimekko, Bar Mekko en meer in PowerPoint en Excel.',
+    help: 'Weet u niet welk product past?',
+    helpCta: 'Vraag het ons team',
+    legal: 'Alle productnamen zijn handelsmerken van hun respectieve eigenaars.',
+  },
 }
 
 // Foxit and Mekko Graphics keep their own pages; shown here as cards like the others.

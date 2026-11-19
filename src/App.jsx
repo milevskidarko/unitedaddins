@@ -86,6 +86,8 @@ function Layout() {
         <Routes>
           <Route path="/de/*" element={<PageRoutes />} />
           <Route path="/fr/*" element={<PageRoutes />} />
+          <Route path="/es/*" element={<PageRoutes />} />
+          <Route path="/nl/*" element={<PageRoutes />} />
           <Route path="/*" element={<PageRoutes />} />
         </Routes>
       </main>
@@ -94,7 +96,7 @@ function Layout() {
   )
 }
 
-// Same pages under / (English), /de (German) and /fr (French). The layout stays mounted when the
+// Same pages under / (English), /de (German), /fr (French), /es (Spanish) and /nl (Dutch). The layout stays mounted when the
 // language changes, so a quote in progress is kept.
 function PageRoutes() {
   return (

@@ -14,6 +14,14 @@ const T = {
     label: 'Ce que nous couvrons',
     words: ['Modifier', 'Convertir', 'Caviarder', 'eSign', 'Marimekko', 'Bar Mekko', 'Cascade', 'Licences', 'Renouvellements', 'Mises à niveau', 'Support'],
   },
+  es: {
+    label: 'Lo que cubrimos',
+    words: ['Editar', 'Convertir', 'Censurar', 'eSign', 'Marimekko', 'Bar Mekko', 'Cascada', 'Licencias', 'Renovaciones', 'Actualizaciones', 'Soporte'],
+  },
+  nl: {
+    label: 'Wat wij bieden',
+    words: ['Bewerken', 'Converteren', 'Redigeren', 'eSign', 'Marimekko', 'Bar Mekko', 'Waterval', 'Licenties', 'Verlengingen', 'Upgrades', 'Support'],
+  },
 }
 
 // Endless, slowly scrolling band of what we cover. The list is rendered twice so the

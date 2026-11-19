@@ -4,7 +4,7 @@
 // Environment variables (Vercel → Project → Settings → Environment Variables):
 //   RESEND_API_KEY          required  – from resend.com (domain unitedaddins.com verified there)
 //   QUOTE_FROM              optional  – sender, default "United Addins Website <quotes@unitedaddins.com>"
-//   QUOTE_TO                optional  – recipient, default sales@unitedaddins.com
+//   QUOTE_TO                optional  – recipient, default salesemea@unitedaddins.com
 //   TURNSTILE_SECRET_KEY    optional  – from Cloudflare Turnstile; when set, every request must pass the check
 //   VITE_TURNSTILE_SITE_KEY (client)  – the matching public site key, used by the form
 //
@@ -87,7 +87,7 @@ ${rows
     headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       from: process.env.QUOTE_FROM || 'United Addins Website <quotes@unitedaddins.com>',
-      to: [process.env.QUOTE_TO || 'sales@unitedaddins.com'],
+      to: [process.env.QUOTE_TO || 'salesemea@unitedaddins.com'],
       reply_to: isEmail(replyTo) ? replyTo : email,
       subject,
       html,

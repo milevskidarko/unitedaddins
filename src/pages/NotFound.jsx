@@ -5,6 +5,8 @@ const T = {
   en: { title: 'Page not found', text: 'The page you are looking for does not exist or has moved.', home: 'Back to home', contact: 'Contact us' },
   de: { title: 'Seite nicht gefunden', text: 'Die gesuchte Seite existiert nicht oder wurde verschoben.', home: 'Zur Startseite', contact: 'Kontakt' },
   fr: { title: 'Page introuvable', text: 'La page que vous cherchez n’existe pas ou a été déplacée.', home: 'Retour à l’accueil', contact: 'Nous contacter' },
+  es: { title: 'Página no encontrada', text: 'La página que busca no existe o se ha movido.', home: 'Volver al inicio', contact: 'Contáctenos' },
+  nl: { title: 'Pagina niet gevonden', text: 'De pagina die u zoekt bestaat niet of is verplaatst.', home: 'Terug naar de startpagina', contact: 'Neem contact op' },
 }
 
 export default function NotFound() {

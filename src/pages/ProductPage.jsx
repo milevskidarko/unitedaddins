@@ -57,6 +57,40 @@ const T = {
     all: 'Tous les produits',
     trademark: (name, vendor) => `${name} est une marque de ${vendor}.`,
   },
+  es: {
+    add: 'Añadir al presupuesto',
+    vendor: 'Web del fabricante',
+    platforms: 'Plataformas',
+    by: 'de',
+    featuresTitle: 'Lo que obtiene',
+    whyTitle: '¿Por qué comprar a través de',
+    whyEnd: '?',
+    why: [
+      [Key, 'La licencia adecuada', 'Le ayudamos a elegir la edición y el tipo de licencia que encajan — sin nada que no necesite.'],
+      [Handshake, 'Un contacto, varios fabricantes', 'Foxit, Mekko Graphics y más con un solo socio, en un solo presupuesto.'],
+      [Headset, 'Renovaciones y puestos', 'Controlamos sus renovaciones y añadimos licencias cuando su equipo crece.'],
+    ],
+    more: 'Más productos:',
+    all: 'Todos los productos',
+    trademark: (name, vendor) => `${name} es una marca comercial de ${vendor}.`,
+  },
+  nl: {
+    add: 'Toevoegen aan offerte',
+    vendor: 'Website van de leverancier',
+    platforms: 'Platforms',
+    by: 'door',
+    featuresTitle: 'Wat u krijgt',
+    whyTitle: 'Waarom kopen via',
+    whyEnd: '?',
+    why: [
+      [Key, 'De juiste licentie', 'Wij helpen u de editie en het licentietype te kiezen die passen — zonder overbodige extra’s.'],
+      [Handshake, 'Eén contact, veel leveranciers', 'Foxit, Mekko Graphics en meer bij één partner, op één offerte.'],
+      [Headset, 'Verlengingen en gebruikers', 'Wij houden verlengingen bij en voegen licenties toe als uw team groeit.'],
+    ],
+    more: 'Meer producten:',
+    all: 'Alle producten',
+    trademark: (name, vendor) => `${name} is een handelsmerk van ${vendor}.`,
+  },
 }
 
 export default function ProductPage({ slug }) {

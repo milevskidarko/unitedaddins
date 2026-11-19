@@ -1,0 +1,111 @@
+// Spanish copy for the products in products.js, keyed by slug. Same shape as `en` there.
+export const PRODUCTS_ES = {
+  'pdf-xchange': {
+    tagline: 'Edición de PDF rápida y completa para Windows',
+    lead: 'PDF-XChange Editor reúne en una sola aplicación todo lo necesario para crear, editar, mejorar y convertir documentos PDF, con OCR gratuito integrado. Elija Editor, Editor Plus o PRO (Editor Plus con PDF-Tools y la impresora virtual Standard), todos vendidos con licencia perpetua.',
+    features: [
+      ['Editar PDF', 'Cambie textos, imágenes y páginas directamente en el PDF.'],
+      ['Revisión y anotaciones', 'Comentarios, resaltados, sellos y herramientas de medición.'],
+      ['OCR incluido', 'Convierta documentos escaneados en texto que se puede buscar y seleccionar.'],
+      ['Licencia perpetua', 'Pague una vez y úselo sin límite de tiempo, sin suscripción.'],
+    ],
+    platforms: 'Windows',
+    note: 'Editor PDF para Windows · perpetuo',
+  },
+  bluebeam: {
+    tagline: 'Software de construcción pensado para colaborar',
+    lead: 'Bluebeam Revu es el espacio de trabajo PDF que usan arquitectos, ingenieros y constructoras para anotar, medir y revisar planos, y trabajar juntos en ellos desde el ordenador, el navegador y el móvil. Desde la gestión de planos y la revisión de diseño hasta mediciones, RFI, submittals y listas de pendientes.',
+    features: [
+      ['Anotaciones y mediciones', 'Herramientas de referencia para anotar y medir planos.'],
+      ['Mediciones y cantidades', 'Mida longitudes, superficies y cantidades directamente en los planos.'],
+      ['Colaboración en tiempo real', 'Anoten juntos los mismos planos desde cualquier dispositivo.'],
+      ['Flujos de obra', 'Revisión de diseño, RFI, submittals, listas de pendientes y cierre.'],
+    ],
+    platforms: 'Windows, web, iOS y Android',
+    note: 'Anotación PDF para construcción',
+  },
+  nxpowerlite: {
+    tagline: 'Compresión de archivos sencilla, potente y sin conexión',
+    lead: 'NXPowerLite Desktop reduce el tamaño de archivos PDF, PowerPoint, Word, Excel, JPEG, PNG y TIFF manteniendo su formato y extensión originales: los destinatarios los abren con normalidad, sin NXPowerLite. La compresión se realiza sin conexión, en su propio ordenador.',
+    features: [
+      ['Mismo formato, archivo más ligero', 'Los archivos siguen siendo .pdf, .pptx, .docx, .xlsx, .jpg, etc., sin zip.'],
+      ['Compresión por lotes', 'Comprima hasta 10.000 archivos de una vez.'],
+      ['Adjuntos de Outlook', 'Comprima automáticamente los adjuntos al enviar.'],
+      ['Licencia perpetua', 'Pago único por usuario, sin suscripción.'],
+    ],
+    platforms: 'Windows y macOS',
+    note: 'Compresión de archivos · perpetuo',
+  },
+  progecad: {
+    tagline: 'CAD 2D/3D compatible con AutoCAD® para Windows',
+    lead: 'progeCAD Professional es una alternativa económica a AutoCAD® que trabaja de forma nativa con archivos DWG y usa comandos conocidos: su equipo es productivo desde el primer día. Licencia perpetua, sin suscripción anual. Para Mac, Progesoft ofrece iCADMac.',
+    features: [
+      ['DWG nativo', 'Abra, edite y guarde archivos DWG de todas las versiones de AutoCAD®.'],
+      ['Sin curva de aprendizaje', 'Comandos, menús y atajos como en AutoCAD.'],
+      ['2D y 3D', 'Dibujo, anotación, modelado 3D y renderizado en una sola herramienta.'],
+      ['Licencia perpetua', 'Compre una vez, sin suscripción anual.'],
+    ],
+    platforms: 'Windows (Mac: iCADMac)',
+    note: 'CAD DWG para Windows · perpetuo',
+  },
+  sketchup: {
+    tagline: 'Modelado 3D para arquitectura, interiorismo y construcción',
+    lead: 'SketchUp hace que el diseño 3D sea intuitivo: esboce sus ideas, modele edificios y espacios y conviértalos en documentación y presentaciones. Planes: SketchUp Go (web e iPad), Pro (añade el modelador de escritorio y LayOut) y Studio (añade importación de Revit, nubes de puntos y renderizado fotorrealista).',
+    features: [
+      ['Modelado 3D intuitivo', 'Empuje, tire y dé forma a sus modelos rápidamente.'],
+      ['LayOut', 'Documentación 2D y láminas de presentación a partir del modelo (Pro y Studio).'],
+      ['3D Warehouse', 'Millones de modelos listos para usar, además de cientos de extensiones.'],
+      ['Escritorio, web e iPad', 'Trabaje allí donde le lleve su proyecto.'],
+    ],
+    platforms: 'Escritorio, web e iPad',
+    note: 'Modelado 3D — Go, Pro, Studio',
+  },
+  mydraw: {
+    tagline: 'Diagramas, diagramas de flujo y mapas mentales: una alternativa a Visio®',
+    lead: 'MyDraw es un software de diagramas avanzado y fácil de usar para diagramas de flujo, organigramas, mapas mentales, árboles genealógicos, diagramas de Venn, flujos de trabajo y más. Abre y guarda dibujos y plantillas de Visio, y está disponible con pago único o por suscripción.',
+    features: [
+      ['Muchos tipos de diagramas', 'Diagramas de flujo, organigramas, mapas mentales, causa-efecto, flujo de datos y más.'],
+      ['Archivos de Visio', 'Abra y guarde dibujos y plantillas de Visio.'],
+      ['Exportar a PDF e imagen', 'Imprima o comparta sus diagramas en PDF y como imagen.'],
+      ['Licencias flexibles', 'Licencia perpetua, suscripción o licencia corporativa.'],
+    ],
+    platforms: 'Windows, macOS y web',
+    note: 'Diagramas, compatible con Visio',
+  },
+  mindmanager: {
+    tagline: 'De las ideas a los planes, de los planes a la acción',
+    lead: 'MindManager convierte ideas, información y planes en mapas visuales claros: mapas mentales, mapas conceptuales, diagramas de flujo, cronogramas y diagramas de Gantt. Las ediciones van desde MindManager Essentials en la web hasta Professional y Enterprise, además de MindManager para Microsoft Teams.',
+    features: [
+      ['Mapas mentales y conceptuales', 'Capture ideas y organice la información de forma visual.'],
+      ['Planificación de proyectos', 'Cronogramas, diagramas de Gantt y mapas de procesos en un solo lugar.'],
+      ['Diagramas de flujo y procesos', 'Represente con claridad procesos y decisiones.'],
+      ['Integraciones', 'Funciona con Microsoft Teams, SharePoint, Jira y más.'],
+    ],
+    platforms: 'Windows, macOS y web',
+    note: 'Mapas mentales y planificación visual',
+  },
+  'project-plan-365': {
+    tagline: 'Abra, edite y comparta archivos de Microsoft Project en todos sus dispositivos',
+    lead: 'Project Plan 365 abre, edita y guarda archivos de Microsoft Project (.mpp) sin importar ni exportar. Su motor de planificación calcula costes, fechas de finalización, rutas críticas y sobreasignación de recursos, para una planificación clásica o Agile, en PC, Mac, móvil y web.',
+    features: [
+      ['Archivos de Microsoft Project', 'Abra, edite y guarde archivos .mpp de forma nativa.'],
+      ['Planificación completa', 'Diagramas de Gantt, ruta crítica, recursos, paneles e informes.'],
+      ['Todos los dispositivos', 'Windows, Mac, iOS, Android y web.'],
+      ['Nube y colaboración', 'OneDrive, SharePoint, Google Drive, Dropbox, Box y más.'],
+    ],
+    platforms: 'Windows, macOS, iOS, Android y web',
+    note: 'Edite archivos de MS Project en cualquier lugar',
+  },
+  'steelray-project-viewer': {
+    tagline: 'Su planificación a la vista, sin Microsoft Project',
+    lead: 'Steelray Project Viewer permite a quienes solo necesitan consultar una planificación abrir archivos de Microsoft Project (.mpp), con las mismas vistas y datos principales que Project, pero sin una licencia de Project para cada persona. Los archivos son de solo lectura: nadie modifica la planificación por error. La edición Ultimate también abre archivos de Primavera P6 (.xer).',
+    features: [
+      ['Abrir archivos .mpp', 'Sin importar ni subir: abra directamente archivos de Microsoft Project.'],
+      ['Vistas conocidas', 'Las mismas vistas y datos principales que Microsoft Project.'],
+      ['Impresión avanzada', 'Vista previa, escala, tamaño de página, orientación y encabezados.'],
+      ['Buscar y navegar', 'Encuentre tareas, recursos y fechas con un clic.'],
+    ],
+    platforms: 'Aplicación de escritorio',
+    note: 'Visor de archivos de MS Project',
+  },
+}

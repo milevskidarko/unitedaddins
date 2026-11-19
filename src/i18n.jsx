@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { PAGES, SITE, LANGS, OG_LOCALES, localize, langFromPath, pageKeyFromPath } from './seo.js'
 
-// Language comes from the URL: /de/... is German, /fr/... French, everything else English.
+// Language comes from the URL: /de/... is German, /fr/... French, /es/... Spanish, /nl/... Dutch, everything else English.
 // Each component keeps its own strings next to its markup: const T = { en: {...}, de: {...} }
 
 const LangContext = createContext('en')
