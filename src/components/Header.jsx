@@ -5,7 +5,7 @@ import ThemeToggle from './ThemeToggle.jsx'
 import LangSwitch from './LangSwitch.jsx'
 import { L, useT } from '../i18n.jsx'
 import { stripLang } from '../seo.js'
-import { Arrow, Chevron, Menu, Close, Doc, Chart, Key, Headset, Handshake, Cubes, Files, Ruler, Calendar } from './Icons.jsx'
+import { Arrow, Chevron, Menu, Close, Doc, Chart, Headset, Handshake, Cubes, Files, Ruler, Calendar } from './Icons.jsx'
 import { CATEGORIES, PRODUCTS } from '../products.js'
 import './Header.css'
 
@@ -17,6 +17,7 @@ const catItems = (lang) =>
     title: label[lang],
     text: PRODUCTS.filter((p) => p.category === key).map((p) => p.name).join(', '),
     href: `/products#${key}`,
+    cat: true, // category titles in capitals, like on /products
   }))
 
 const T = {
@@ -29,7 +30,6 @@ const T = {
           { icon: Chart, title: 'Mekko Graphics', text: 'Charts in PowerPoint & Excel', href: '/mekko-graphics' },
           ...catItems('en'),
           { icon: Cubes, title: 'All products', text: 'Everything we license, on one page', href: '/products' },
-          { icon: Key, title: 'Find your plan', text: '4 questions, the right Foxit plan', href: '/foxit#plan' },
         ],
       },
       {
@@ -64,7 +64,6 @@ const T = {
           { icon: Chart, title: 'Mekko Graphics', text: 'Diagramme in PowerPoint & Excel', href: '/mekko-graphics' },
           ...catItems('de'),
           { icon: Cubes, title: 'Alle Produkte', text: 'Unser gesamtes Angebot auf einer Seite', href: '/products' },
-          { icon: Key, title: 'Plan finden', text: '4 Fragen, der passende Foxit-Plan', href: '/foxit#plan' },
         ],
       },
       {
@@ -98,7 +97,6 @@ const T = {
           { icon: Chart, title: 'Mekko Graphics', text: 'Graphiques dans PowerPoint et Excel', href: '/mekko-graphics' },
           ...catItems('fr'),
           { icon: Cubes, title: 'Tous les produits', text: 'Toute notre offre sur une seule page', href: '/products' },
-          { icon: Key, title: 'Trouver votre offre', text: '4 questions, la bonne offre Foxit', href: '/foxit#plan' },
         ],
       },
       {
@@ -132,7 +130,6 @@ const T = {
           { icon: Chart, title: 'Mekko Graphics', text: 'Gráficos en PowerPoint y Excel', href: '/mekko-graphics' },
           ...catItems('es'),
           { icon: Cubes, title: 'Todos los productos', text: 'Toda nuestra oferta en una sola página', href: '/products' },
-          { icon: Key, title: 'Encuentre su plan', text: '4 preguntas, el plan Foxit adecuado', href: '/foxit#plan' },
         ],
       },
       {
@@ -166,7 +163,6 @@ const T = {
           { icon: Chart, title: 'Mekko Graphics', text: 'Grafieken in PowerPoint en Excel', href: '/mekko-graphics' },
           ...catItems('nl'),
           { icon: Cubes, title: 'Alle producten', text: 'Ons volledige aanbod op één pagina', href: '/products' },
-          { icon: Key, title: 'Vind uw abonnement', text: '4 vragen, het juiste Foxit-abonnement', href: '/foxit#plan' },
         ],
       },
       {
@@ -253,7 +249,7 @@ export default function Header() {
                           <L key={it.title} to={it.href} className="drop__item">
                             <span className="drop__icon"><it.icon /></span>
                             <span>
-                              <strong>{it.title}</strong>
+                              <strong className={it.cat ? 'is-cat' : undefined}>{it.title}</strong>
                               <small>{it.text}</small>
                             </span>
                           </L>
@@ -307,7 +303,7 @@ export default function Header() {
                         <L key={it.title} to={it.href} onClick={close} className="drawer__subitem">
                           <span className="drop__icon"><it.icon /></span>
                           <span>
-                            <strong>{it.title}</strong>
+                            <strong className={it.cat ? 'is-cat' : undefined}>{it.title}</strong>
                             <small>{it.text}</small>
                           </span>
                         </L>

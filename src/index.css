@@ -229,3 +229,7 @@ p { margin: 0; }
 .notfound__actions { margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 
 :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+/* Product category titles (Documents & PDF, Design, CAD & diagrams, Planning & projects …) in capitals
+   in the header menu and the "Explore by need" cards — same as the headings on /products (not in the footer). */
+.is-cat, .need strong { text-transform: uppercase; letter-spacing: 0.02em; }

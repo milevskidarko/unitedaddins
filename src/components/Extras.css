@@ -184,3 +184,60 @@
   .ctypes--3 { grid-template-columns: minmax(0, 1fr); }
   .vids__play { width: 56px; height: 56px; }
 }
+
+
+/* Mekko chart type viewer (MekkoMore): list of types + big chart image, like mekkographics.com */
+.chartv {
+  margin-top: clamp(24px, 3vw, 36px);
+  display: grid;
+  grid-template-columns: minmax(180px, 230px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.chartv__menu { display: flex; flex-direction: column; gap: 6px; }
+.chartv__tab {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: inherit;
+  font: inherit; font-size: 14.5px; font-weight: 600; text-align: left;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.chartv__tab::before { content: ''; width: 10px; height: 10px; border-radius: 3px; background: var(--c); flex-shrink: 0; }
+.chartv__tab:hover { border-color: color-mix(in srgb, var(--c) 60%, var(--line)); }
+.chartv__tab.is-active { border-color: var(--c); background: color-mix(in srgb, var(--c) 12%, var(--surface)); }
+.chartv__stage {
+  padding: clamp(18px, 2.4vw, 28px);
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.chartv__name { font-size: clamp(20px, 2vw, 24px); letter-spacing: -0.01em; }
+.chartv__text { margin-top: 6px; color: var(--muted); font-size: 15px; line-height: 1.5; }
+/* The charts have dark text on white, so they always sit on white (also in dark mode). */
+.chartv__img {
+  margin-top: 18px;
+  aspect-ratio: 16 / 9.5;
+  display: grid; place-items: center;
+  padding: clamp(10px, 2vw, 20px);
+  border-radius: 14px;
+  background: #fff;
+}
+.chartv__img img { max-width: 100%; max-height: 100%; object-fit: contain; animation: chartv-in .35s ease; }
+@keyframes chartv-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .chartv__img img { animation: none; } }
+
+/* Mekko product tour video, at the bottom of the Mekko page */
+.mvid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+.mvid .xtra__source { margin-top: 14px; }
+
+@media (max-width: 900px) {
+  .chartv { grid-template-columns: minmax(0, 1fr); }
+  .chartv__menu { flex-direction: row; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
+  .chartv__tab { flex-shrink: 0; white-space: nowrap; }
+  .mvid { grid-template-columns: minmax(0, 1fr); }
+}

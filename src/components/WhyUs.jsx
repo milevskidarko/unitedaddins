@@ -293,7 +293,6 @@ export default function WhyUs({ compact = false }) {
                   <span key={p} className="orbit__chip" style={{ '--a': `${(i * 360) / orbit.length}deg` }}><b>{p}</b></span>
                 ))}
               </div>
-              <L to="/foxit#united-addins" className="case__link cases__more" data-reveal>{t.casesMore} <Arrow /></L>
             </div>
             <div className="bento__stat">
               <small>{t.expertise.statLabel}</small>
@@ -392,6 +391,7 @@ export default function WhyUs({ compact = false }) {
                   </article>
                 ))}
               </div>
+              <L to="/foxit#united-addins" className="case__link cases__more" data-reveal>{t.casesMore} <Arrow /></L>
             </div>
           </>
         )}
