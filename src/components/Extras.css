@@ -36,6 +36,7 @@
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 12px;
 }
+.ctypes--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .ctype {
   padding: 18px;
   border-radius: 16px;
@@ -77,4 +78,109 @@
   .cmp thead th:not(:first-child), .cmp td { width: 25%; }
   .ctypes { grid-template-columns: minmax(0, 1fr); }
   .xtra__foot .btn { width: 100%; height: auto; min-height: 44px; padding-block: 10px; white-space: normal; text-align: center; }
+}
+
+/* Foxit videos (FoxitVideos) */
+.vids {
+  margin-top: clamp(24px, 3vw, 36px);
+  display: grid;
+  grid-template-columns: minmax(200px, 260px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.vids__menu { display: flex; flex-direction: column; gap: 6px; }
+.vids__tab {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: inherit;
+  font: inherit; font-size: 14.5px; font-weight: 600; text-align: left;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.vids__tab:hover { border-color: color-mix(in srgb, var(--orange, #ff5f1f) 45%, var(--line)); }
+.vids__tab.is-active {
+  border-color: var(--orange, #ff5f1f);
+  background: color-mix(in srgb, var(--orange, #ff5f1f) 9%, var(--surface));
+}
+.vids__num {
+  display: inline-grid; place-items: center; flex-shrink: 0;
+  width: 24px; height: 24px; border-radius: 50%;
+  font-size: 12px; font-weight: 700;
+  background: color-mix(in srgb, var(--orange, #ff5f1f) 14%, transparent);
+  color: var(--orange-text, #e14e12);
+}
+.vids__player {
+  position: relative; aspect-ratio: 16 / 9;
+  border-radius: 20px; overflow: hidden;
+  background: #0b0b14;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.vids__player iframe, .vids__poster { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.vids__poster { padding: 0; cursor: pointer; background: #0b0b14; }
+.vids__poster img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s, opacity .3s; opacity: .92; }
+.vids__poster:hover img { transform: scale(1.02); opacity: 1; }
+.vids__play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  display: grid; place-items: center;
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--orange, #ff5f1f); color: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  transition: transform .2s;
+}
+.vids__poster:hover .vids__play { transform: translate(-50%, -50%) scale(1.07); }
+.vids__play svg { width: 30px; height: 30px; margin-left: 4px; }
+.vids__poster:focus-visible { outline: 3px solid var(--orange, #ff5f1f); outline-offset: -3px; }
+.vids__desc { margin-top: 12px; font-size: 14.5px; color: var(--muted); }
+.vids__desc strong { color: var(--ink); }
+.vids + .xtra__source { margin-top: 10px; }
+
+/* United Addins in Foxit articles (FoxitPartner) */
+.stories {
+  margin-top: clamp(24px, 3vw, 36px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.story {
+  display: flex; flex-direction: column;
+  padding: clamp(20px, 2.4vw, 28px);
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.story__source { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--orange-text, #e14e12); }
+.story__headline { margin-top: 8px; font-size: clamp(19px, 1.8vw, 23px); line-height: 1.25; letter-spacing: -0.01em; }
+.story__stats { margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.story__stats div { padding: 8px 12px; border-radius: 12px; background: color-mix(in srgb, var(--orange, #ff5f1f) 8%, transparent); }
+.story__stats dt { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+.story__stats dd { margin: 2px 0 0; font-size: 12.5px; color: var(--muted); }
+.story__summary { margin-top: 14px; font-size: 15px; line-height: 1.5; }
+.story__quote { margin: 14px 0 0; padding-left: 14px; border-left: 3px solid var(--orange, #ff5f1f); }
+.story__quote blockquote { margin: 0; font-size: 15px; line-height: 1.5; font-style: italic; }
+.story__quote figcaption { margin-top: 4px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.story__quote--text { border-left-color: var(--line); }
+.story__quote--text blockquote { font-style: normal; color: var(--muted); }
+.story__link {
+  margin-top: auto; padding-top: 18px;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-weight: 700; font-size: 14.5px;
+  color: var(--orange-text, #e14e12); text-decoration: none;
+}
+.story__link:hover { text-decoration: underline; }
+.story__link svg { width: 16px; height: 16px; }
+
+@media (max-width: 900px) {
+  .stories { grid-template-columns: minmax(0, 1fr); }
+  .vids { grid-template-columns: minmax(0, 1fr); }
+  .vids__menu { flex-direction: row; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
+  .vids__tab { flex-shrink: 0; white-space: nowrap; }
+}
+@media (max-width: 560px) {
+  .ctypes--3 { grid-template-columns: minmax(0, 1fr); }
+  .vids__play { width: 56px; height: 56px; }
 }

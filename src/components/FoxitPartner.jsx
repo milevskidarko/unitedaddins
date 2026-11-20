@@ -1,0 +1,209 @@
+import { Arrow } from './Icons.jsx'
+import { L, useT } from '../i18n.jsx'
+import './Extras.css'
+
+// Excerpts from Foxit's own articles that name United Addins (checked Nov 2026). Quotes are verbatim in
+// the original English in every language; "…" marks left-out words. The partner tier named in the articles
+// ("platinum distributor" 2017, "Gold Foxit Partner" 2019) is left out on purpose, like elsewhere on the site.
+const STORIES = [
+  {
+    key: 'mps',
+    href: 'https://cdn01.foxitsoftware.com/pub/foxit/casestudy/en_us/MotorPresseStuttgart.pdf',
+    company: 'Motor Presse Stuttgart',
+    stats: ['~650', '900', '2017'],
+    quotes: [
+      ['Thanks to United ADDins … Motor Presse Stuttgart came into contact with Foxit Software.', null],
+      ['We were very pleased to be able to help Motor Presse Stuttgart to replace Adobe Acrobat and therefore reduce their license costs.', 'Borivoje Bogatinov, United Addins'],
+      ['Our users are satisfied. They’re very happy to be able to edit documents now.', 'Achim Schäfer, Head of IT Systems, Motor Presse Stuttgart'],
+    ],
+  },
+  {
+    key: 'miele',
+    href: 'https://www.foxit.com/blog/if-you-need-pdf-software-find-out-why-miele-made-the-move-to-phantompdf/',
+    company: 'Miele',
+    stats: ['1,200', null, '2019'],
+    quotes: [
+      ['United ADDIns worked closely with Miele to determine the company’s PDF software requirements, identify the best solution for them, and manage the integration of Foxit’s PDF software with Miele’s IT infrastructure.', null],
+      ['For the few questions that have come up, the United ADDIns team was responsive, answering every question immediately …', 'Helmut Meissner, IT Architect, Miele'],
+      ['That’s the way a software rollout should be done.', 'Helmut Meissner, IT Architect, Miele'],
+    ],
+  },
+]
+
+const T = {
+  en: {
+    thou: ',',
+    eyebrow: 'United Addins & Foxit',
+    title: 'Your Foxit partner',
+    accent: 'since 2012',
+    lead: 'United Addins has been an authorized Foxit distributor since 2012. Here is what Foxit itself has published about projects we brought to Foxit and helped roll out.',
+    stories: {
+      mps: {
+        source: 'Foxit case study',
+        headline: 'Motor Presse Stuttgart moves from Adobe Acrobat to Foxit',
+        stats: ['users', 'PCs across two companies', 'rollout completed'],
+        summary: 'The publisher of “auto, motor und sport” met Foxit through United Addins. The rollout went smoothly — no training sessions were required.',
+      },
+      miele: {
+        source: 'Foxit blog',
+        headline: 'Why Miele made the move to Foxit',
+        stats: ['users at Miele', null, 'published'],
+        summary: 'United Addins defined Miele’s PDF requirements, chose the solution and integrated Foxit with Miele’s IT infrastructure.',
+      },
+    },
+    read: 'Read the full article on foxit.com',
+    quotesNote: 'Quotes in the original English. Product then called Foxit PhantomPDF, today Foxit PDF Editor.',
+    cta: 'Planning your own Foxit rollout? Talk to us',
+    newTab: '(opens in a new tab)',
+  },
+  de: {
+    thou: '.',
+    eyebrow: 'United Addins & Foxit',
+    title: 'Ihr Foxit-Partner',
+    accent: 'seit 2012',
+    lead: 'United Addins ist seit 2012 autorisierter Foxit-Distributor. Das hat Foxit selbst über Projekte veröffentlicht, die wir zu Foxit gebracht und bei der Einführung begleitet haben.',
+    stories: {
+      mps: {
+        source: 'Foxit-Fallstudie',
+        headline: 'Motor Presse Stuttgart wechselt von Adobe Acrobat zu Foxit',
+        stats: ['Nutzer', 'PCs in zwei Unternehmen', 'Einführung abgeschlossen'],
+        summary: 'Der Verlag von „auto, motor und sport“ kam über United Addins zu Foxit. Die Einführung verlief reibungslos — Schulungen waren nicht nötig.',
+      },
+      miele: {
+        source: 'Foxit-Blog',
+        headline: 'Warum Miele zu Foxit gewechselt ist',
+        stats: ['Nutzer bei Miele', null, 'veröffentlicht'],
+        summary: 'United Addins hat Mieles PDF-Anforderungen ermittelt, die Lösung ausgewählt und Foxit in Mieles IT-Infrastruktur integriert.',
+      },
+    },
+    read: 'Ganzen Artikel auf foxit.com lesen',
+    quotesNote: 'Zitate im englischen Original. Das Produkt hieß damals Foxit PhantomPDF, heute Foxit PDF Editor.',
+    cta: 'Sie planen Ihre eigene Foxit-Einführung? Sprechen Sie uns an',
+    newTab: '(öffnet in neuem Tab)',
+  },
+  fr: {
+    thou: ' ',
+    eyebrow: 'United Addins & Foxit',
+    title: 'Votre partenaire Foxit',
+    accent: 'depuis 2012',
+    lead: 'United Addins est distributeur agréé Foxit depuis 2012. Voici ce que Foxit a publié sur des projets que nous lui avons apportés et accompagnés.',
+    stories: {
+      mps: {
+        source: 'Étude de cas Foxit',
+        headline: 'Motor Presse Stuttgart passe d’Adobe Acrobat à Foxit',
+        stats: ['utilisateurs', 'PC dans deux sociétés', 'déploiement terminé'],
+        summary: 'L’éditeur d’« auto, motor und sport » a découvert Foxit grâce à United Addins. Le déploiement s’est fait sans accroc — aucune formation n’a été nécessaire.',
+      },
+      miele: {
+        source: 'Blog Foxit',
+        headline: 'Pourquoi Miele est passé à Foxit',
+        stats: ['utilisateurs chez Miele', null, 'publication'],
+        summary: 'United Addins a défini les besoins PDF de Miele, choisi la solution et intégré Foxit à son infrastructure informatique.',
+      },
+    },
+    read: 'Lire l’article complet sur foxit.com',
+    quotesNote: 'Citations en anglais d’origine. Le produit s’appelait alors Foxit PhantomPDF, aujourd’hui Foxit PDF Editor.',
+    cta: 'Vous préparez votre propre déploiement Foxit ? Parlons-en',
+    newTab: '(s’ouvre dans un nouvel onglet)',
+  },
+  es: {
+    thou: '.',
+    eyebrow: 'United Addins & Foxit',
+    title: 'Su socio de Foxit',
+    accent: 'desde 2012',
+    lead: 'United Addins es distribuidor autorizado de Foxit desde 2012. Esto es lo que la propia Foxit ha publicado sobre proyectos que le llevamos y ayudamos a implantar.',
+    stories: {
+      mps: {
+        source: 'Caso de éxito de Foxit',
+        headline: 'Motor Presse Stuttgart pasa de Adobe Acrobat a Foxit',
+        stats: ['usuarios', 'PC en dos empresas', 'implantación completada'],
+        summary: 'La editorial de «auto, motor und sport» conoció Foxit a través de United Addins. La implantación fue fluida — no hizo falta formación.',
+      },
+      miele: {
+        source: 'Blog de Foxit',
+        headline: 'Por qué Miele se pasó a Foxit',
+        stats: ['usuarios en Miele', null, 'publicado'],
+        summary: 'United Addins definió los requisitos PDF de Miele, eligió la solución e integró Foxit en su infraestructura informática.',
+      },
+    },
+    read: 'Leer el artículo completo en foxit.com',
+    quotesNote: 'Citas en el inglés original. El producto se llamaba entonces Foxit PhantomPDF; hoy, Foxit PDF Editor.',
+    cta: '¿Planifica su propia implantación de Foxit? Hable con nosotros',
+    newTab: '(se abre en una pestaña nueva)',
+  },
+  nl: {
+    thou: '.',
+    eyebrow: 'United Addins & Foxit',
+    title: 'Uw Foxit-partner',
+    accent: 'sinds 2012',
+    lead: 'United Addins is sinds 2012 geautoriseerd Foxit-distributeur. Dit heeft Foxit zelf gepubliceerd over projecten die wij bij Foxit brachten en hielpen uitrollen.',
+    stories: {
+      mps: {
+        source: 'Foxit-casestudy',
+        headline: 'Motor Presse Stuttgart stapt over van Adobe Acrobat naar Foxit',
+        stats: ['gebruikers', 'pc’s in twee bedrijven', 'uitrol afgerond'],
+        summary: 'De uitgever van „auto, motor und sport” leerde Foxit kennen via United Addins. De uitrol verliep soepel — trainingen waren niet nodig.',
+      },
+      miele: {
+        source: 'Foxit-blog',
+        headline: 'Waarom Miele overstapte op Foxit',
+        stats: ['gebruikers bij Miele', null, 'gepubliceerd'],
+        summary: 'United Addins bepaalde de PDF-eisen van Miele, koos de oplossing en integreerde Foxit in de IT-infrastructuur van Miele.',
+      },
+    },
+    read: 'Lees het volledige artikel op foxit.com',
+    quotesNote: 'Citaten in het oorspronkelijke Engels. Het product heette toen Foxit PhantomPDF, nu Foxit PDF Editor.',
+    cta: 'Plant u uw eigen Foxit-uitrol? Neem contact op',
+    newTab: '(opent in een nieuw tabblad)',
+  },
+}
+
+export default function FoxitPartner() {
+  const t = useT(T)
+  return (
+    <section className="section xtra" id="united-addins">
+      <div className="container">
+        <span className="eyebrow" data-reveal>{t.eyebrow}</span>
+        <h2 className="section-title xtra__title" data-reveal style={{ '--d': '0.06s' }}>
+          {t.title} <span className="accent grad-text">{t.accent}</span>
+        </h2>
+        <p className="section-lead" data-reveal style={{ '--d': '0.1s' }}>{t.lead}</p>
+
+        <div className="stories">
+          {STORIES.map((s, i) => {
+            const st = t.stories[s.key]
+            return (
+              <article key={s.key} className="story spot" data-reveal style={{ '--d': `${0.12 + i * 0.06}s` }}>
+                <p className="story__source">{st.source} · {s.company}</p>
+                <h3 className="story__headline">{st.headline}</h3>
+                <dl className="story__stats">
+                  {s.stats.map((n, j) => n && (
+                    <div key={j}>
+                      <dt>{n.replace(',', t.thou)}</dt>
+                      <dd>{st.stats[j]}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <p className="story__summary">{st.summary}</p>
+                {s.quotes.map(([q, who]) => (
+                  <figure key={q} className={`story__quote ${who ? '' : 'story__quote--text'}`}>
+                    <blockquote lang="en">“{q}”</blockquote>
+                    {who && <figcaption>— {who}</figcaption>}
+                  </figure>
+                ))}
+                <a href={s.href} target="_blank" rel="noopener noreferrer" className="story__link">
+                  {t.read} <Arrow /><span className="sr-only">{t.newTab}</span>
+                </a>
+              </article>
+            )
+          })}
+        </div>
+
+        <div className="xtra__foot">
+          <L to="/contact#quote" className="btn btn-primary btn-sm">{t.cta} <Arrow /></L>
+          <p className="xtra__source">{t.quotesNote}</p>
+        </div>
+      </div>
+    </section>
+  )
+}

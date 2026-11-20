@@ -2,7 +2,7 @@ import { useT } from '../i18n.jsx'
 import './Extras.css'
 
 // Extra Mekko Graphics info, from mekkographics.com (Nov 2026):
-// chart types and enhancements from /product/features/ (Gantt = #tab-id-8), customer numbers from /customers/.
+// chart types and enhancements from /product/features/ (Gantt = #tab-id-8), customer numbers from /customers/. Slide tools (Harvey balls, agenda slides…) are Windows only.
 const DOTS = ['#ff6b6b', '#ffc145', '#36cf7a', '#4f7cff', '#a78bfa']
 const STATS = ['7', '50%', '75%', '20']
 const CUSTOMERS = 'PepsiCo, Microsoft, Dell, Intel, Starbucks, Nestlé, Philips, Toyota, Vodafone, Novartis'
@@ -25,7 +25,7 @@ const T = {
       ['Pie / Doughnut', 'The size of each segment relative to the total.'],
     ],
     plusLabel: 'Enhancements & productivity',
-    plus: ['Axis breaks', 'CAGR columns', 'Growth & average lines', 'Regression lines', 'Excel linking', 'Chart gallery (250+ charts)', 'Preference Manager', 'Co-authoring'],
+    plus: ['Axis breaks', 'CAGR columns', 'Growth & average lines', 'Regression lines', 'Excel linking', 'Chart gallery (250+ charts)', 'Preference Manager', 'Co-authoring', 'Excel PivotTable linking', 'Smart Color & palettes', 'Harvey balls', 'Agenda slides', 'Boxes & value chains'],
     trusted: 'Trusted by',
     stats: ['of the top 10 consulting firms', 'of Fortune 100 companies', 'of the top 25 private equity firms', 'years of charting for clients'],
     customers: `Customers include ${CUSTOMERS}.`,
@@ -48,7 +48,7 @@ const T = {
       ['Kreis / Ring', 'Die Größe jedes Segments im Verhältnis zur Summe.'],
     ],
     plusLabel: 'Erweiterungen & Produktivität',
-    plus: ['Achsenunterbrechungen', 'CAGR-Spalten', 'Wachstums- & Durchschnittslinien', 'Regressionslinien', 'Excel-Verknüpfung', 'Diagrammgalerie (250+ Diagramme)', 'Preference Manager', 'Gemeinsames Bearbeiten'],
+    plus: ['Achsenunterbrechungen', 'CAGR-Spalten', 'Wachstums- & Durchschnittslinien', 'Regressionslinien', 'Excel-Verknüpfung', 'Diagrammgalerie (250+ Diagramme)', 'Preference Manager', 'Gemeinsames Bearbeiten', 'Verknüpfung mit Excel-PivotTables', 'Smart Color & Farbpaletten', 'Harvey Balls', 'Agenda-Folien', 'Boxen & Wertschöpfungsketten'],
     trusted: 'Im Einsatz bei',
     stats: ['der Top-10-Beratungsunternehmen', 'der Fortune-100-Unternehmen', 'der Top-25-Private-Equity-Firmen', 'Jahre Diagramme für Kunden'],
     customers: `Zu den Kunden gehören ${CUSTOMERS}.`,
@@ -71,7 +71,7 @@ const T = {
       ['Secteurs / Anneau', 'La taille de chaque segment par rapport au total.'],
     ],
     plusLabel: 'Enrichissements et productivité',
-    plus: ['Ruptures d’axe', 'Colonnes de TCAC', 'Lignes de croissance et de moyenne', 'Droites de régression', 'Liaison avec Excel', 'Galerie de graphiques (250+)', 'Preference Manager', 'Co-édition'],
+    plus: ['Ruptures d’axe', 'Colonnes de TCAC', 'Lignes de croissance et de moyenne', 'Droites de régression', 'Liaison avec Excel', 'Galerie de graphiques (250+)', 'Preference Manager', 'Co-édition', 'Liaison aux tableaux croisés Excel', 'Smart Color et palettes', 'Harvey balls', 'Diapositives d’agenda', 'Encadrés et chaînes de valeur'],
     trusted: 'Ils lui font confiance',
     stats: ['des 10 premiers cabinets de conseil', 'des entreprises du Fortune 100', 'des 25 premiers fonds de private equity', 'ans de graphiques pour nos clients'],
     customers: `Parmi les clients : ${CUSTOMERS}.`,
@@ -94,7 +94,7 @@ const T = {
       ['Circular / Anillo', 'El tamaño de cada segmento en relación con el total.'],
     ],
     plusLabel: 'Mejoras y productividad',
-    plus: ['Cortes de eje', 'Columnas de TCAC', 'Líneas de crecimiento y media', 'Líneas de regresión', 'Vinculación con Excel', 'Galería de gráficos (250+)', 'Preference Manager', 'Coautoría'],
+    plus: ['Cortes de eje', 'Columnas de TCAC', 'Líneas de crecimiento y media', 'Líneas de regresión', 'Vinculación con Excel', 'Galería de gráficos (250+)', 'Preference Manager', 'Coautoría', 'Vinculación con tablas dinámicas de Excel', 'Smart Color y paletas', 'Harvey balls', 'Diapositivas de agenda', 'Cuadros y cadenas de valor'],
     trusted: 'Confían en él',
     stats: ['de las 10 principales consultoras', 'de las empresas del Fortune 100', 'de las 25 principales firmas de capital privado', 'años creando gráficos para sus clientes'],
     customers: `Entre sus clientes: ${CUSTOMERS}.`,
@@ -117,7 +117,7 @@ const T = {
       ['Cirkel / Ring', 'De grootte van elk segment ten opzichte van het totaal.'],
     ],
     plusLabel: 'Uitbreidingen en productiviteit',
-    plus: ['Asonderbrekingen', 'CAGR-kolommen', 'Groei- en gemiddeldelijnen', 'Regressielijnen', 'Koppeling met Excel', 'Grafiekgalerij (250+ grafieken)', 'Preference Manager', 'Co-authoring'],
+    plus: ['Asonderbrekingen', 'CAGR-kolommen', 'Groei- en gemiddeldelijnen', 'Regressielijnen', 'Koppeling met Excel', 'Grafiekgalerij (250+ grafieken)', 'Preference Manager', 'Co-authoring', 'Koppeling met Excel-draaitabellen', 'Smart Color & paletten', 'Harvey balls', 'Agendadia’s', 'Kaders & waardeketens'],
     trusted: 'Vertrouwd door',
     stats: ['van de top 10 adviesbureaus', 'van de Fortune 100-bedrijven', 'van de top 25 private-equityfirma’s', 'jaar grafieken voor klanten'],
     customers: `Klanten zijn onder meer ${CUSTOMERS}.`,

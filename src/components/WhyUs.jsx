@@ -43,6 +43,7 @@ const T = {
       ['Deploy & grow', 'Fast licensing, onboarding and ongoing support.'],
     ],
     casesLabel: 'Featured in Foxit case studies',
+    casesMore: 'Read the quotes on the Foxit page',
     cases: [
       {
         stat: '~650 users',
@@ -89,6 +90,7 @@ const T = {
       ['Einführen & wachsen', 'Schnelle Lizenzierung, Einführung und laufender Support.'],
     ],
     casesLabel: 'Vorgestellt in Foxit-Fallstudien',
+    casesMore: 'Zitate auf der Foxit-Seite lesen',
     cases: [
       {
         stat: '~650 Nutzer',
@@ -135,6 +137,7 @@ const T = {
       ['Déployer et évoluer', 'Licences rapides, mise en route et support continu.'],
     ],
     casesLabel: 'Présent dans les études de cas Foxit',
+    casesMore: 'Lire les citations sur la page Foxit',
     cases: [
       {
         stat: '~650 utilisateurs',
@@ -181,6 +184,7 @@ const T = {
       ['Implantar y crecer', 'Licencias rápidas, puesta en marcha y soporte continuo.'],
     ],
     casesLabel: 'Presentes en casos de éxito de Foxit',
+    casesMore: 'Leer las citas en la página de Foxit',
     cases: [
       {
         stat: '~650 usuarios',
@@ -227,6 +231,7 @@ const T = {
       ['Implementeren en groeien', 'Snelle licenties, implementatie en doorlopende support.'],
     ],
     casesLabel: 'Uitgelicht in Foxit-casestudy’s',
+    casesMore: 'Lees de citaten op de Foxit-pagina',
     cases: [
       {
         stat: '~650 gebruikers',
@@ -288,6 +293,7 @@ export default function WhyUs({ compact = false }) {
                   <span key={p} className="orbit__chip" style={{ '--a': `${(i * 360) / orbit.length}deg` }}><b>{p}</b></span>
                 ))}
               </div>
+              <L to="/foxit#united-addins" className="case__link cases__more" data-reveal>{t.casesMore} <Arrow /></L>
             </div>
             <div className="bento__stat">
               <small>{t.expertise.statLabel}</small>
