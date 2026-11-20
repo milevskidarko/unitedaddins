@@ -2,8 +2,8 @@ import { Arrow } from './Icons.jsx'
 import { L, useT } from '../i18n.jsx'
 import './Extras.css'
 
-// Excerpts from Foxit's own articles that name United Addins (checked Nov 2026). Quotes are verbatim in
-// the original English in every language; "…" marks left-out words. The partner tier named in the articles
+// Excerpts from Foxit's own articles that name United Addins (checked Nov 2026). Quotes are verbatim in English;
+// the other languages show translations (the note says so); "…" marks left-out words. The partner tier named in the articles
 // ("platinum distributor" 2017, "Gold Foxit Partner" 2019) is left out on purpose, like elsewhere on the site.
 const STORIES = [
   {
@@ -58,6 +58,36 @@ const T = {
   },
   de: {
     thou: '.',
+    quotes: {
+      'mps': [
+        [
+          'Dank United Addins … kam Motor Presse Stuttgart mit Foxit Software in Kontakt.',
+          null
+        ],
+        [
+          'Wir haben uns sehr gefreut, Motor Presse Stuttgart dabei helfen zu können, Adobe Acrobat abzulösen und damit die Lizenzkosten zu senken.',
+          'Borivoje Bogatinov, United Addins'
+        ],
+        [
+          'Unsere Anwender sind zufrieden. Sie freuen sich sehr, Dokumente jetzt bearbeiten zu können.',
+          'Achim Schäfer, Leiter IT-Systeme, Motor Presse Stuttgart'
+        ]
+      ],
+      'miele': [
+        [
+          'United Addins arbeitete eng mit Miele zusammen, um die Anforderungen des Unternehmens an PDF-Software zu ermitteln, die beste Lösung zu finden und die Integration der PDF-Software von Foxit in die IT-Infrastruktur von Miele zu steuern.',
+          null
+        ],
+        [
+          'Bei den wenigen Fragen, die aufkamen, reagierte das Team von United Addins schnell und beantwortete jede Frage sofort …',
+          'Helmut Meissner, IT-Architekt, Miele'
+        ],
+        [
+          'So sollte die Einführung einer Software ablaufen.',
+          'Helmut Meissner, IT-Architekt, Miele'
+        ]
+      ]
+    },
     eyebrow: 'United Addins & Foxit',
     title: 'Ihr Foxit-Partner',
     accent: 'seit 2012',
@@ -77,12 +107,42 @@ const T = {
       },
     },
     read: 'Ganzen Artikel auf foxit.com lesen',
-    quotesNote: 'Zitate im englischen Original. Das Produkt hieß damals Foxit PhantomPDF, heute Foxit PDF Editor.',
+    quotesNote: 'Zitate aus dem englischen Original übersetzt. Das Produkt hieß damals Foxit PhantomPDF, heute Foxit PDF Editor.',
     cta: 'Sie planen Ihre eigene Foxit-Einführung? Sprechen Sie uns an',
     newTab: '(öffnet in neuem Tab)',
   },
   fr: {
     thou: ' ',
+    quotes: {
+      'mps': [
+        [
+          'Grâce à United Addins … Motor Presse Stuttgart est entré en contact avec Foxit Software.',
+          null
+        ],
+        [
+          'Nous avons été très heureux d’aider Motor Presse Stuttgart à remplacer Adobe Acrobat et ainsi à réduire ses coûts de licence.',
+          'Borivoje Bogatinov, United Addins'
+        ],
+        [
+          'Nos utilisateurs sont satisfaits. Ils sont ravis de pouvoir désormais modifier des documents.',
+          'Achim Schäfer, responsable des systèmes informatiques, Motor Presse Stuttgart'
+        ]
+      ],
+      'miele': [
+        [
+          'United Addins a travaillé en étroite collaboration avec Miele pour définir ses besoins en logiciel PDF, identifier la meilleure solution et piloter l’intégration du logiciel PDF de Foxit dans l’infrastructure informatique de Miele.',
+          null
+        ],
+        [
+          'Pour les quelques questions qui se sont posées, l’équipe United Addins a été réactive et a répondu immédiatement à chacune …',
+          'Helmut Meissner, architecte informatique, Miele'
+        ],
+        [
+          'C’est ainsi que devrait se dérouler un déploiement logiciel.',
+          'Helmut Meissner, architecte informatique, Miele'
+        ]
+      ]
+    },
     eyebrow: 'United Addins & Foxit',
     title: 'Votre partenaire Foxit',
     accent: 'depuis 2012',
@@ -102,12 +162,42 @@ const T = {
       },
     },
     read: 'Lire l’article complet sur foxit.com',
-    quotesNote: 'Citations en anglais d’origine. Le produit s’appelait alors Foxit PhantomPDF, aujourd’hui Foxit PDF Editor.',
+    quotesNote: 'Citations traduites de l’original anglais. Le produit s’appelait alors Foxit PhantomPDF, aujourd’hui Foxit PDF Editor.',
     cta: 'Vous préparez votre propre déploiement Foxit ? Parlons-en',
     newTab: '(s’ouvre dans un nouvel onglet)',
   },
   es: {
     thou: '.',
+    quotes: {
+      'mps': [
+        [
+          'Gracias a United Addins … Motor Presse Stuttgart entró en contacto con Foxit Software.',
+          null
+        ],
+        [
+          'Nos alegró mucho poder ayudar a Motor Presse Stuttgart a sustituir Adobe Acrobat y, con ello, reducir sus costes de licencias.',
+          'Borivoje Bogatinov, United Addins'
+        ],
+        [
+          'Nuestros usuarios están satisfechos. Están encantados de poder editar documentos ahora.',
+          'Achim Schäfer, responsable de sistemas informáticos, Motor Presse Stuttgart'
+        ]
+      ],
+      'miele': [
+        [
+          'United Addins colaboró estrechamente con Miele para determinar sus requisitos de software PDF, identificar la mejor solución y gestionar la integración del software PDF de Foxit en la infraestructura informática de Miele.',
+          null
+        ],
+        [
+          'Ante las pocas preguntas que surgieron, el equipo de United Addins respondió con rapidez y contestó cada pregunta de inmediato …',
+          'Helmut Meissner, arquitecto de TI, Miele'
+        ],
+        [
+          'Así es como debe hacerse una implantación de software.',
+          'Helmut Meissner, arquitecto de TI, Miele'
+        ]
+      ]
+    },
     eyebrow: 'United Addins & Foxit',
     title: 'Su socio de Foxit',
     accent: 'desde 2012',
@@ -127,12 +217,42 @@ const T = {
       },
     },
     read: 'Leer el artículo completo en foxit.com',
-    quotesNote: 'Citas en el inglés original. El producto se llamaba entonces Foxit PhantomPDF; hoy, Foxit PDF Editor.',
+    quotesNote: 'Citas traducidas del original en inglés. El producto se llamaba entonces Foxit PhantomPDF; hoy, Foxit PDF Editor.',
     cta: '¿Planifica su propia implantación de Foxit? Hable con nosotros',
     newTab: '(se abre en una pestaña nueva)',
   },
   nl: {
     thou: '.',
+    quotes: {
+      'mps': [
+        [
+          'Dankzij United Addins … kwam Motor Presse Stuttgart in contact met Foxit Software.',
+          null
+        ],
+        [
+          'We waren erg blij dat we Motor Presse Stuttgart konden helpen Adobe Acrobat te vervangen en zo de licentiekosten te verlagen.',
+          'Borivoje Bogatinov, United Addins'
+        ],
+        [
+          'Onze gebruikers zijn tevreden. Ze zijn erg blij dat ze nu documenten kunnen bewerken.',
+          'Achim Schäfer, hoofd IT-systemen, Motor Presse Stuttgart'
+        ]
+      ],
+      'miele': [
+        [
+          'United Addins werkte nauw samen met Miele om de eisen voor PDF-software te bepalen, de beste oplossing te vinden en de integratie van de PDF-software van Foxit in de IT-infrastructuur van Miele te begeleiden.',
+          null
+        ],
+        [
+          'Bij de paar vragen die opkwamen, reageerde het team van United Addins snel en beantwoordde elke vraag meteen …',
+          'Helmut Meissner, IT-architect, Miele'
+        ],
+        [
+          'Zo hoort een software-uitrol te gaan.',
+          'Helmut Meissner, IT-architect, Miele'
+        ]
+      ]
+    },
     eyebrow: 'United Addins & Foxit',
     title: 'Uw Foxit-partner',
     accent: 'sinds 2012',
@@ -152,7 +272,7 @@ const T = {
       },
     },
     read: 'Lees het volledige artikel op foxit.com',
-    quotesNote: 'Citaten in het oorspronkelijke Engels. Het product heette toen Foxit PhantomPDF, nu Foxit PDF Editor.',
+    quotesNote: 'Citaten vertaald uit het Engelse origineel. Het product heette toen Foxit PhantomPDF, nu Foxit PDF Editor.',
     cta: 'Plant u uw eigen Foxit-uitrol? Neem contact op',
     newTab: '(opent in een nieuw tabblad)',
   },
@@ -185,9 +305,9 @@ export default function FoxitPartner() {
                   ))}
                 </dl>
                 <p className="story__summary">{st.summary}</p>
-                {s.quotes.map(([q, who]) => (
+                {(t.quotes?.[s.key] || s.quotes).map(([q, who]) => (
                   <figure key={q} className={`story__quote ${who ? '' : 'story__quote--text'}`}>
-                    <blockquote lang="en">“{q}”</blockquote>
+                    <blockquote lang={t.quotes ? undefined : 'en'}>“{q}”</blockquote>
                     {who && <figcaption>— {who}</figcaption>}
                   </figure>
                 ))}
