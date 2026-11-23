@@ -13,6 +13,8 @@ const T = {
     featured: 'Our core partners',
     foxit: 'PDF Editor, PDF Editor+ and eSign — distributor since 2012.',
     mekko: 'Marimekko, Bar Mekko and more in PowerPoint & Excel.',
+    presentations: 'Presentations',
+    ee: 'Agendas, Harvey balls, alignment and slide checks in PowerPoint.',
     help: 'Not sure which product fits?',
     helpCta: 'Ask our team',
     legal: 'All product names are trademarks of their respective owners.',
@@ -25,6 +27,8 @@ const T = {
     featured: 'Unsere Kernpartner',
     foxit: 'PDF Editor, PDF Editor+ und eSign — Distributor seit 2012.',
     mekko: 'Marimekko, Bar Mekko und mehr in PowerPoint & Excel.',
+    presentations: 'Präsentationen',
+    ee: 'Agenden, Harvey Balls, Ausrichtung und Folienprüfung in PowerPoint.',
     help: 'Unsicher, welches Produkt passt?',
     helpCta: 'Fragen Sie unser Team',
     legal: 'Alle Produktnamen sind Marken ihrer jeweiligen Inhaber.',
@@ -37,6 +41,8 @@ const T = {
     featured: 'Nos partenaires principaux',
     foxit: 'PDF Editor, PDF Editor+ et eSign — distributeur depuis 2012.',
     mekko: 'Marimekko, Bar Mekko et plus dans PowerPoint et Excel.',
+    presentations: 'Présentations',
+    ee: 'Agendas, Harvey balls, alignement et vérification des diapositives dans PowerPoint.',
     help: 'Vous ne savez pas quel produit choisir ?',
     helpCta: 'Demandez à notre équipe',
     legal: 'Tous les noms de produits sont des marques de leurs propriétaires respectifs.',
@@ -49,6 +55,8 @@ const T = {
     featured: 'Nuestros socios principales',
     foxit: 'PDF Editor, PDF Editor+ y eSign — distribuidor desde 2012.',
     mekko: 'Marimekko, Bar Mekko y más en PowerPoint y Excel.',
+    presentations: 'Presentaciones',
+    ee: 'Agendas, Harvey balls, alineación y revisión de diapositivas en PowerPoint.',
     help: '¿No sabe qué producto le conviene?',
     helpCta: 'Pregunte a nuestro equipo',
     legal: 'Todos los nombres de productos son marcas comerciales de sus respectivos propietarios.',
@@ -61,6 +69,8 @@ const T = {
     featured: 'Onze kernpartners',
     foxit: 'PDF Editor, PDF Editor+ en eSign — distributeur sinds 2012.',
     mekko: 'Marimekko, Bar Mekko en meer in PowerPoint en Excel.',
+    presentations: 'Presentaties',
+    ee: 'Agenda’s, Harvey balls, uitlijnen en diacontrole in PowerPoint.',
     help: 'Weet u niet welk product past?',
     helpCta: 'Vraag het ons team',
     legal: 'Alle productnamen zijn handelsmerken van hun respectieve eigenaars.',
@@ -70,6 +80,7 @@ const T = {
 // Foxit and Mekko Graphics keep their own pages; shown here as cards like the others.
 const FOXIT = { name: 'Foxit PDF Editor & eSign', vendor: 'Foxit', tone: '#ff5f1f', mark: 'Fx' }
 const MEKKO = { name: 'Mekko Graphics', vendor: 'Mekko Graphics', tone: '#121e4d', mark: 'MG' }
+const EE = { name: 'Efficient Elements', vendor: 'Efficient Elements GmbH', tone: '#0f8f7e', mark: 'EE' }
 
 export default function ProductsPage() {
   const t = useT(T)
@@ -90,6 +101,14 @@ export default function ProductsPage() {
           <div className="pgrid pgrid--featured">
             <ProductCard product={FOXIT} href="/foxit" text={t.foxit} />
             <ProductCard product={MEKKO} href="/mekko-graphics" text={t.mekko} delay={0.06} />
+          </div>
+
+          {/* Efficient Elements has its own page but is not a core partner: own section under Foxit and Mekko. */}
+          <div id="presentations" className="pcat">
+            <h2 className="prod__h2" data-reveal>{t.presentations}</h2>
+            <div className="pgrid">
+              <ProductCard product={EE} href="/efficient-elements" text={t.ee} />
+            </div>
           </div>
 
           {Object.entries(CATEGORIES).map(([key, label]) => (

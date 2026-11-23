@@ -30,6 +30,10 @@ export const Calendar = (p) => (
 export const Chart = (p) => (
   <svg {...base} {...p}><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg>
 )
+// Presentation slide (Efficient Elements).
+export const Slides = (p) => (
+  <svg {...base} {...p}><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M12 16v4M8 20h8M7 12l3-3 2 2 4-4" /></svg>
+)
 export const Cubes = (p) => (
   <svg {...base} {...p}><path d="m12 2 8 4.5v9L12 20l-8-4.5v-9z" /><path d="m4 6.5 8 4.5 8-4.5M12 11v9" /></svg>
 )

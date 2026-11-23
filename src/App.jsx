@@ -6,6 +6,7 @@ import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
 import FoxitPage from './pages/FoxitPage.jsx'
 import MekkoPage from './pages/MekkoPage.jsx'
+import EfficientElementsPage from './pages/EfficientElementsPage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import ProductsPage from './pages/ProductsPage.jsx'
@@ -104,6 +105,7 @@ function PageRoutes() {
       <Route index element={<Home />} />
       <Route path="foxit" element={<FoxitPage />} />
       <Route path="mekko-graphics" element={<MekkoPage />} />
+      <Route path="efficient-elements" element={<EfficientElementsPage />} />
       <Route path="products" element={<ProductsPage />} />
       {PRODUCTS.map((p) => (
         <Route key={p.slug} path={p.slug} element={<ProductPage key={p.slug} slug={p.slug} />} />

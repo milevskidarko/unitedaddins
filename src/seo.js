@@ -94,32 +94,60 @@ export const PAGES = {
         'Marimekko, Bar Mekko, watervaldiagrammen en meer in PowerPoint en Excel. Probeer de interactieve grafiek en koop Mekko Graphics-licenties bij United Addins.',
     },
   },
+  ee: {
+    path: '/efficient-elements',
+    en: {
+      title: 'Efficient Elements for PowerPoint — United Addins',
+      description:
+        'The PowerPoint add-in for agendas, slide libraries, Harvey balls, alignment and presentation checks. Try the interactive demo and get Efficient Elements licenses from United Addins.',
+    },
+    de: {
+      title: 'Efficient Elements für PowerPoint — United Addins',
+      description:
+        'Das PowerPoint-Add-in für Agenden, Folienbibliotheken, Harvey Balls, Ausrichtung und Präsentationsprüfung. Testen Sie die interaktive Demo und erhalten Sie Efficient-Elements-Lizenzen von United Addins.',
+    },
+    fr: {
+      title: 'Efficient Elements pour PowerPoint — United Addins',
+      description:
+        'Le complément PowerPoint pour agendas, bibliothèques de diapositives, Harvey balls, alignement et vérification des présentations. Essayez la démo interactive et obtenez vos licences Efficient Elements auprès de United Addins.',
+    },
+    es: {
+      title: 'Efficient Elements para PowerPoint — United Addins',
+      description:
+        'El complemento de PowerPoint para agendas, bibliotecas de diapositivas, Harvey balls, alineación y revisión de presentaciones. Pruebe la demo interactiva y obtenga licencias de Efficient Elements con United Addins.',
+    },
+    nl: {
+      title: 'Efficient Elements voor PowerPoint — United Addins',
+      description:
+        'De PowerPoint-invoegtoepassing voor agenda’s, diabibliotheken, Harvey balls, uitlijnen en presentatiecontrole. Probeer de interactieve demo en koop Efficient Elements-licenties bij United Addins.',
+    },
+  },
   products: {
     path: '/products',
     en: {
       title: 'All products — United Addins',
       description:
-        'Foxit, Mekko Graphics, PDF-XChange, Bluebeam Revu, NXPowerLite, progeCAD, SketchUp, MyDraw, MindManager, Project Plan 365 and Steelray Project Viewer — licensing and quotes from United Addins.',
+        'Foxit, Mekko Graphics, Efficient Elements, PDF-XChange, Bluebeam Revu, NXPowerLite, progeCAD, SketchUp, MyDraw, MindManager, Project Plan 365 and Steelray Project Viewer — licensing and quotes from United Addins.',
     },
     de: {
       title: 'Alle Produkte — United Addins',
       description:
-        'Foxit, Mekko Graphics, PDF-XChange, Bluebeam Revu, NXPowerLite, progeCAD, SketchUp, MyDraw, MindManager, Project Plan 365 und Steelray Project Viewer — Lizenzen und Angebote von United Addins.',
+        'Foxit, Mekko Graphics, Efficient Elements, PDF-XChange, Bluebeam Revu, NXPowerLite, progeCAD, SketchUp, MyDraw, MindManager, Project Plan 365 und Steelray Project Viewer — Lizenzen und Angebote von United Addins.',
     },
     fr: {
       title: 'Tous les produits — United Addins',
       description:
-        'Foxit, Mekko Graphics, PDF-XChange, Bluebeam Revu, NXPowerLite, progeCAD, SketchUp, MyDraw, MindManager, Project Plan 365 et Steelray Project Viewer — licences et devis auprès de United Addins.',
+        'Foxit, Mekko Graphics, Efficient Elements, PDF-XChange, Bluebeam Revu, NXPowerLite, progeCAD, SketchUp, MyDraw, MindManager, Project Plan 365 et Steelray Project Viewer — licences et devis auprès de United Addins.',
     },
     es: {
       title: 'Todos los productos — United Addins',
       description:
-        'Foxit, Mekko Graphics, PDF-XChange, Bluebeam Revu, NXPowerLite, progeCAD, SketchUp, MyDraw, MindManager, Project Plan 365 y Steelray Project Viewer — licencias y presupuestos de United Addins.',
+        'Foxit, Mekko Graphics, Efficient Elements, PDF-XChange, Bluebeam Revu, NXPowerLite, progeCAD, SketchUp, MyDraw, MindManager, Project Plan 365 y Steelray Project Viewer — licencias y presupuestos de United Addins.',
     },
     nl: {
       title: 'Alle producten — United Addins',
       description:
-        'Foxit, Mekko Graphics, PDF-XChange, Bluebeam Revu, NXPowerLite, progeCAD, SketchUp, MyDraw, MindManager, Project Plan 365 en Steelray Project Viewer — licenties en offertes van United Addins.',
+        'Foxit, Mekko Graphics, Efficient Elements, PDF-XChange, Bluebeam Revu, NXPowerLite, progeCAD, SketchUp, MyDraw, MindManager, Project Plan 365 en Steelray Project Viewer — licenties en offertes van United Addins.',
     },
   },
   // One page per additional product (see products.js).

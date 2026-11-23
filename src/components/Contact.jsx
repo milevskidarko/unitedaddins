@@ -23,6 +23,7 @@ const PRODUCTS = [
   { name: 'Foxit PDF Editor+', tone: 'violet' },
   { name: 'Foxit eSign', tone: 'blue' },
   { name: 'Mekko Graphics', tone: 'navy' },
+  { name: 'Efficient Elements', color: '#0f8f7e' },
   // Further products (products.js): listed under "More products" so the core ones stay up front.
   ...MORE_PRODUCTS.map((p) => ({ name: p.name, color: p.tone, more: true, notes: { en: p.en.note, de: p.de.note, fr: p.fr.note, es: p.es.note, nl: p.nl.note } })),
 ]
@@ -35,7 +36,7 @@ const TYPE_FIELDS = {
     { name: 'reference', type: 'text' },
   ],
   Upgrade: [
-    { name: 'currentPlan', type: 'select', options: ['Foxit PDF Editor', 'Foxit PDF Editor+', 'Foxit eSign', 'Mekko Graphics', ...MORE_PRODUCTS.map((p) => p.name), 'other'] },
+    { name: 'currentPlan', type: 'select', options: ['Foxit PDF Editor', 'Foxit PDF Editor+', 'Foxit eSign', 'Mekko Graphics', 'Efficient Elements', ...MORE_PRODUCTS.map((p) => p.name), 'other'] },
     { name: 'reference', type: 'text' },
   ],
   'Add seats': [
@@ -85,6 +86,7 @@ const T = {
       'Foxit PDF Editor+': '+ mobile, Smart Redact, eSign',
       'Foxit eSign': 'Templates, bulk send, audit trails',
       'Mekko Graphics': 'Add-in for PowerPoint & Excel',
+      'Efficient Elements': 'Add-in for PowerPoint',
     },
     perpetualNote: 'Windows & macOS · one-time license',
     moreProducts: (n) => `More products (${n})`,
@@ -146,6 +148,7 @@ const T = {
       'Foxit PDF Editor+': '+ Mobil, Smart Redact, eSign',
       'Foxit eSign': 'Vorlagen, Massenversand, Prüfprotokolle',
       'Mekko Graphics': 'Add-in für PowerPoint & Excel',
+      'Efficient Elements': 'Add-in für PowerPoint',
     },
     perpetualNote: 'Windows & macOS · Einmallizenz',
     moreProducts: (n) => `Weitere Produkte (${n})`,
@@ -207,6 +210,7 @@ const T = {
       'Foxit PDF Editor+': '+ mobile, Smart Redact, eSign',
       'Foxit eSign': 'Modèles, envoi en masse, pistes d’audit',
       'Mekko Graphics': 'Complément pour PowerPoint et Excel',
+      'Efficient Elements': 'Complément pour PowerPoint',
     },
     perpetualNote: 'Windows et macOS · licence à achat unique',
     moreProducts: (n) => `Autres produits (${n})`,
@@ -268,6 +272,7 @@ const T = {
       'Foxit PDF Editor+': '+ móvil, Smart Redact, eSign',
       'Foxit eSign': 'Plantillas, envío masivo, registros de auditoría',
       'Mekko Graphics': 'Complemento para PowerPoint y Excel',
+      'Efficient Elements': 'Complemento para PowerPoint',
     },
     perpetualNote: 'Windows y macOS · licencia de pago único',
     moreProducts: (n) => `Más productos (${n})`,
@@ -329,6 +334,7 @@ const T = {
       'Foxit PDF Editor+': '+ mobiel, Smart Redact, eSign',
       'Foxit eSign': 'Sjablonen, bulkverzending, audittrails',
       'Mekko Graphics': 'Invoegtoepassing voor PowerPoint en Excel',
+      'Efficient Elements': 'Invoegtoepassing voor PowerPoint',
     },
     perpetualNote: 'Windows en macOS · eenmalige licentie',
     moreProducts: (n) => `Meer producten (${n})`,

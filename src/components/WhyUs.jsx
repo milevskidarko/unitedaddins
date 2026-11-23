@@ -4,8 +4,8 @@ import Leader from './Leader.jsx'
 import { L, useLang, useT } from '../i18n.jsx'
 import { CATEGORIES, PRODUCTS } from '../products.js'
 
-// "N → 1": Foxit + Mekko Graphics + every other vendor in products.js.
-const VENDOR_COUNT = 2 + new Set(PRODUCTS.map((p) => p.vendor)).size
+// "N → 1": Foxit + Mekko Graphics + Efficient Elements + every other vendor in products.js.
+const VENDOR_COUNT = 3 + new Set(PRODUCTS.map((p) => p.vendor)).size
 import './WhyUs.css'
 
 // Only verified facts in the numbers: Foxit distributor since 2012 (confirmed by owner) and ~650 users at
@@ -256,11 +256,11 @@ const CASES = [
 export default function WhyUs({ compact = false }) {
   const t = useT(T)
   const lang = useLang()
-  // Orbit chips: the same entries as the Products menu — Foxit, Mekko Graphics and the
+  // Orbit chips: the same entries as the Products menu — Foxit, Mekko Graphics, Efficient Elements and the
   // product categories (full names, wrapping onto two lines where needed).
   const categories = Object.values(CATEGORIES).map((c) => c[lang] || c.en)
-  const orbit = ['Foxit PDF Editor & eSign', 'Mekko Graphics', ...categories]
-  const merge = [['Foxit', 'foxit'], ['Mekko Graphics'], ...categories.map((c) => [c, 'cat'])]
+  const orbit = ['Foxit PDF Editor & eSign', 'Mekko Graphics', 'Efficient Elements', ...categories]
+  const merge = [['Foxit', 'foxit'], ['Mekko Graphics'], ['Efficient Elements'], ...categories.map((c) => [c, 'cat'])]
   const H = compact ? 'h2' : 'h1'
   const Hc = compact ? 'h3' : 'h2'
 

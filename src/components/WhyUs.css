@@ -200,7 +200,9 @@
 .bento__a .bento__stat { padding-top: 12px; }
 .bento__a .orbit { flex: 1; min-height: 300px; }
 
-/* Orbit: the areas we cover (Foxit, Mekko, product categories) circle around the expertise badge */
+/* Orbit: the areas we cover (Foxit, Mekko, Efficient Elements, product categories).
+   Six chips: ring and chip sizes are set so neighbours never touch while it spins (tested 320px–1920px). */
+/* Orbit: circle around the expertise badge */
 .orbit {
   position: relative;
   height: clamp(200px, 22vw, 260px);
@@ -210,7 +212,7 @@
 }
 .orbit__ring {
   position: absolute;
-  width: min(72%, 280px);
+  width: min(82%, 300px);
   aspect-ratio: 1;
   border-radius: 50%;
   border: 1px dashed rgba(143, 188, 255, 0.35);
@@ -231,7 +233,7 @@
 .orbit__core svg { width: 30px; height: 30px; }
 .orbit__spin {
   position: absolute;
-  width: min(72%, 280px);
+  width: min(82%, 300px);
   aspect-ratio: 1;
   animation: orbit 28s linear infinite;
 }
@@ -247,10 +249,10 @@
   /* Full names ("Foxit PDF Editor & eSign", "Design, CAD & diagrams") wrap onto two lines
      so the chips stay inside the card on phones. */
   width: max-content;
-  max-width: 128px;
-  padding: 6px 12px;
+  max-width: 116px;
+  padding: 5px 10px;
   border-radius: 14px;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 1.25;
   text-align: center;
@@ -385,7 +387,7 @@
 @media (max-width: 700px) {
   .bento { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'a' 'b' 'c' 'd'; gap: 14px; }
   .why-card { padding: 22px 18px; }
-  .orbit__chip b { font-size: 11.5px; padding: 5px 10px; max-width: 108px; }
+  .orbit__chip b { font-size: 11px; padding: 4px 8px; max-width: 94px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .why-card.is-visible .seats span:nth-child(-n + 30) { background: linear-gradient(135deg, #60a5fa, #7c5cff); }
