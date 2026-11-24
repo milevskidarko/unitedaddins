@@ -10,7 +10,7 @@ const T = {
     title: 'Software we',
     accent: 'license & support',
     lead: 'From PDF and eSign to CAD, diagrams and project planning — one partner for licensing, renewals and advice.',
-    featured: 'Our core partners',
+    featured: 'Our core partner',
     foxit: 'PDF Editor, PDF Editor+ and eSign — distributor since 2012.',
     mekko: 'Marimekko, Bar Mekko and more in PowerPoint & Excel.',
     presentations: 'Presentations',
@@ -24,7 +24,7 @@ const T = {
     title: 'Software, die wir',
     accent: 'lizenzieren & betreuen',
     lead: 'Von PDF und eSign über CAD und Diagramme bis zur Projektplanung — ein Partner für Lizenzen, Verlängerungen und Beratung.',
-    featured: 'Unsere Kernpartner',
+    featured: 'Unser Kernpartner',
     foxit: 'PDF Editor, PDF Editor+ und eSign — Distributor seit 2012.',
     mekko: 'Marimekko, Bar Mekko und mehr in PowerPoint & Excel.',
     presentations: 'Präsentationen',
@@ -38,7 +38,7 @@ const T = {
     title: 'Les logiciels que nous',
     accent: 'proposons et accompagnons',
     lead: 'Du PDF et de la signature électronique à la CAO, aux diagrammes et à la gestion de projets — un seul partenaire pour les licences, les renouvellements et le conseil.',
-    featured: 'Nos partenaires principaux',
+    featured: 'Notre partenaire principal',
     foxit: 'PDF Editor, PDF Editor+ et eSign — distributeur depuis 2012.',
     mekko: 'Marimekko, Bar Mekko et plus dans PowerPoint et Excel.',
     presentations: 'Présentations',
@@ -52,7 +52,7 @@ const T = {
     title: 'Software que',
     accent: 'licenciamos y respaldamos',
     lead: 'Desde PDF y firma electrónica hasta CAD, diagramas y planificación de proyectos — un solo socio para licencias, renovaciones y asesoramiento.',
-    featured: 'Nuestros socios principales',
+    featured: 'Nuestro socio principal',
     foxit: 'PDF Editor, PDF Editor+ y eSign — distribuidor desde 2012.',
     mekko: 'Marimekko, Bar Mekko y más en PowerPoint y Excel.',
     presentations: 'Presentaciones',
@@ -66,7 +66,7 @@ const T = {
     title: 'Software die wij',
     accent: 'leveren en ondersteunen',
     lead: 'Van PDF en e-handtekening tot CAD, diagrammen en projectplanning — één partner voor licenties, verlengingen en advies.',
-    featured: 'Onze kernpartners',
+    featured: 'Onze kernpartner',
     foxit: 'PDF Editor, PDF Editor+ en eSign — distributeur sinds 2012.',
     mekko: 'Marimekko, Bar Mekko en meer in PowerPoint en Excel.',
     presentations: 'Presentaties',
@@ -100,7 +100,6 @@ export default function ProductsPage() {
           <h2 className="prod__h2" data-reveal>{t.featured}</h2>
           <div className="pgrid pgrid--featured">
             <ProductCard product={FOXIT} href="/foxit" text={t.foxit} />
-            <ProductCard product={MEKKO} href="/mekko-graphics" text={t.mekko} delay={0.06} />
           </div>
 
           {/* Presentations: Mekko Graphics and Efficient Elements together (header menu and home link here). */}

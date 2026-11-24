@@ -191,7 +191,7 @@
 /* Category anchors (/products#docs …) land below the fixed header. */
 .pcat { scroll-margin-top: 96px; }
 
-/* Products page: section headings ("Our core partners", "Documents & PDF" …) in capitals. */
+/* Products page: section headings ("Our core partner", "Documents & PDF" …) in capitals. */
 .prod--list .prod__h2 { text-transform: uppercase; letter-spacing: 0.02em; }
 
 /* Long German/Dutch words in product cards break instead of running out of the card. */
