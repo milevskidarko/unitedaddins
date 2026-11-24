@@ -89,13 +89,17 @@ export default function Partners() {
           <div className="partners__brands">
             <h2 className="partners__title">{t.title}<br /><span className="accent grad-text">{t.accent}</span></h2>
             <div className="partners__logos">
-              {/* Official logos as published on foxit.com and mekkographics.com (Nov 2026). Mekko: main
-                  lockup only, without the "an insightsoftware company" tagline. */}
+              {/* Official logos as published on foxit.com and mindmanager.com (Nov 2026). progesoft.com has
+                  no progeCAD wordmark, so progeCAD is its app icon + name. All three stay in one row. */}
               <L to="/foxit" className="brand brand--foxit">
                 <img src="/partners/foxit.svg" alt="Foxit" width="125" height="52" />
               </L>
-              <L to="/mekko-graphics" className="brand brand--mekko">
-                <img src="/partners/mekko-graphics.svg" alt="Mekko Graphics" width="326" height="68" />
+              <L to="/mindmanager" className="brand brand--mm">
+                <img src="/partners/mindmanager.svg" alt="MindManager" width="236" height="31" />
+              </L>
+              <L to="/progecad" className="brand brand--progecad" aria-label="progeCAD">
+                <img src="/product-icons/progecad.png" alt="" width="180" height="180" />
+                <span aria-hidden="true">proge<b>CAD</b></span>
               </L>
             </div>
             <p className="partners__cred">

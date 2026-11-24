@@ -29,19 +29,24 @@
   border-radius: 3px;
   background: var(--blue);
 }
-.partners__logos { display: flex; align-items: center; }
+.partners__logos { display: flex; flex-wrap: nowrap; align-items: center; min-width: 0; }
 .brand {
   display: flex;
   align-items: center;
   height: 96px;
-  padding-inline: clamp(22px, 3.6vw, 56px);
+  padding-inline: clamp(18px, 2.4vw, 36px);
   border-left: 1px solid var(--line);
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 .brand:hover { transform: translateY(-2px); }
 .brand img { display: block; width: auto; max-width: 100%; object-fit: contain; }
 .brand--foxit img { height: clamp(44px, 4.4vw, 60px); }
-.brand--mekko img { height: clamp(36px, 3.6vw, 50px); }
+.brand--mm img { height: clamp(22px, 2.2vw, 30px); }
+/* progeCAD: app icon + name (no official wordmark). */
+.brand--progecad { gap: 10px; }
+.brand--progecad img { height: clamp(34px, 3.2vw, 44px); }
+.brand--progecad span { font-size: clamp(20px, 2vw, 26px); font-weight: 500; letter-spacing: -0.01em; color: #2b2b2b; white-space: nowrap; }
+.brand--progecad b { font-weight: 800; color: #c8102e; }
 
 .partners__needs { padding-top: clamp(22px, 3vw, 32px); border-top: 1px solid var(--line); }
 .partners__label { font-weight: 700; font-size: 15px; margin-bottom: 14px; }
@@ -89,9 +94,12 @@
 @media (max-width: 760px) {
   .partners__brands { flex-direction: column; align-items: flex-start; gap: 20px; }
   .partners__logos { width: 100%; }
-  .brand { flex: 1; justify-content: center; height: 76px; padding-inline: 16px; }
-  .brand--foxit img { height: clamp(34px, 10vw, 44px); }
-  .brand--mekko img { height: clamp(26px, 8vw, 36px); }
+  .brand { flex: 1 1 0; min-width: 0; justify-content: center; height: 64px; padding-inline: 10px; }
+  .brand--foxit img { height: clamp(24px, 7vw, 36px); }
+  .brand--mm img { height: auto; width: 100%; max-width: 150px; }
+  .brand--progecad { gap: 5px; }
+  .brand--progecad img { height: clamp(20px, 6vw, 30px); }
+  .brand--progecad span { font-size: clamp(12px, 3.6vw, 18px); }
   .brand:first-child { border-left: 0; padding-left: 0; justify-content: flex-start; }
 }
 
