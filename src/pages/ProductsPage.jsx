@@ -103,11 +103,12 @@ export default function ProductsPage() {
             <ProductCard product={MEKKO} href="/mekko-graphics" text={t.mekko} delay={0.06} />
           </div>
 
-          {/* Efficient Elements has its own page but is not a core partner: own section under Foxit and Mekko. */}
+          {/* Presentations: Mekko Graphics and Efficient Elements together (header menu and home link here). */}
           <div id="presentations" className="pcat">
             <h2 className="prod__h2" data-reveal>{t.presentations}</h2>
             <div className="pgrid">
-              <ProductCard product={EE} href="/efficient-elements" text={t.ee} />
+              <ProductCard product={MEKKO} href="/mekko-graphics" text={t.mekko} />
+              <ProductCard product={EE} href="/efficient-elements" text={t.ee} delay={0.06} />
             </div>
           </div>
 

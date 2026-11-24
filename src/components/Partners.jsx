@@ -1,9 +1,9 @@
-import { Arrow, Doc, Chart, Key, Check, Files, Ruler, Calendar, Slides } from './Icons.jsx'
+import { Arrow, Doc, Key, Check, Files, Ruler, Calendar, Slides } from './Icons.jsx'
 import { L, useLang, useT } from '../i18n.jsx'
 import { CATEGORIES, PRODUCTS } from '../products.js'
 import './Partners.css'
 
-// `needs` in T: PDF & eSign, data visualization, presentations (Efficient Elements), licensing. The product categories
+// `needs` in T: PDF & eSign, presentations (Mekko Graphics + Efficient Elements), licensing. The product categories
 // (Documents & PDF, Design, Planning) go in between and link to their section on /products.
 const CAT_ICONS = { docs: Files, design: Ruler, plan: Calendar }
 
@@ -17,8 +17,7 @@ const T = {
     label: 'Explore by need',
     needs: [
       ['PDF & eSign', 'Create, edit, protect and sign documents.'],
-      ['Data visualization', 'Marimekko, Bar Mekko, waterfall and more.'],
-      ['Presentations', 'Efficient Elements — agendas, Harvey balls and slide checks.'],
+      ['Presentations', 'Mekko Graphics, Efficient Elements'],
       ['Licensing & renewals', 'New licenses, renewals, upgrades and added seats.'],
     ],
   },
@@ -29,8 +28,7 @@ const T = {
     label: 'Nach Bedarf entdecken',
     needs: [
       ['PDF & eSign', 'Dokumente erstellen, bearbeiten, schützen und signieren.'],
-      ['Datenvisualisierung', 'Marimekko, Bar Mekko, Wasserfall und mehr.'],
-      ['Präsentationen', 'Efficient Elements — Agenden, Harvey Balls und Folienprüfung.'],
+      ['Präsentationen', 'Mekko Graphics, Efficient Elements'],
       ['Lizenzen & Verlängerungen', 'Neue Lizenzen, Verlängerungen, Upgrades und Lizenzerweiterungen.'],
     ],
   },
@@ -41,8 +39,7 @@ const T = {
     label: 'Explorer par besoin',
     needs: [
       ['PDF et eSign', 'Créer, modifier, protéger et signer des documents.'],
-      ['Visualisation de données', 'Marimekko, Bar Mekko, cascade et plus.'],
-      ['Présentations', 'Efficient Elements — agendas, Harvey balls et vérification des diapositives.'],
+      ['Présentations', 'Mekko Graphics, Efficient Elements'],
       ['Licences et renouvellements', 'Nouvelles licences, renouvellements, mises à niveau et postes supplémentaires.'],
     ],
   },
@@ -53,8 +50,7 @@ const T = {
     label: 'Explorar por necesidad',
     needs: [
       ['PDF y eSign', 'Cree, edite, proteja y firme documentos.'],
-      ['Visualización de datos', 'Marimekko, Bar Mekko, cascada y más.'],
-      ['Presentaciones', 'Efficient Elements — agendas, Harvey balls y revisión de diapositivas.'],
+      ['Presentaciones', 'Mekko Graphics, Efficient Elements'],
       ['Licencias y renovaciones', 'Nuevas licencias, renovaciones, actualizaciones y puestos adicionales.'],
     ],
   },
@@ -65,8 +61,7 @@ const T = {
     label: 'Ontdek per behoefte',
     needs: [
       ['PDF en eSign', 'Documenten maken, bewerken, beveiligen en ondertekenen.'],
-      ['Datavisualisatie', 'Marimekko, Bar Mekko, watervaldiagrammen en meer.'],
-      ['Presentaties', 'Efficient Elements — agenda’s, Harvey balls en diacontrole.'],
+      ['Presentaties', 'Mekko Graphics, Efficient Elements'],
       ['Licenties en verlengingen', 'Nieuwe licenties, verlengingen, upgrades en extra gebruikers.'],
     ],
   },
@@ -75,11 +70,10 @@ const T = {
 export default function Partners() {
   const t = useT(T)
   const lang = useLang()
-  const [pdf, dataviz, slides, licensing] = t.needs
+  const [pdf, slides, licensing] = t.needs
   const cards = [
     [Doc, '/foxit', ...pdf],
-    [Chart, '/mekko-graphics', ...dataviz],
-    [Slides, '/efficient-elements', ...slides],
+    [Slides, '/products#presentations', ...slides],
     ...Object.entries(CATEGORIES).map(([key, label]) => [
       CAT_ICONS[key],
       `/products#${key}`,

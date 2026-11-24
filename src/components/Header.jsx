@@ -5,7 +5,7 @@ import ThemeToggle from './ThemeToggle.jsx'
 import LangSwitch from './LangSwitch.jsx'
 import { L, useT } from '../i18n.jsx'
 import { stripLang } from '../seo.js'
-import { Arrow, Chevron, Menu, Close, Doc, Chart, Headset, Handshake, Cubes, Files, Ruler, Calendar, Slides } from './Icons.jsx'
+import { Arrow, Chevron, Menu, Close, Doc, Headset, Handshake, Cubes, Files, Ruler, Calendar, Slides } from './Icons.jsx'
 import { CATEGORIES, PRODUCTS } from '../products.js'
 import './Header.css'
 
@@ -19,6 +19,15 @@ const catItems = (lang) =>
     href: `/products#${key}`,
     cat: true, // category titles in capitals, like on /products
   }))
+// Mekko Graphics and Efficient Elements share one "Presentations" entry → its section on /products.
+const PRES = { en: 'Presentations', de: 'Präsentationen', fr: 'Présentations', es: 'Presentaciones', nl: 'Presentaties' }
+const presItem = (lang) => ({
+  icon: Slides,
+  title: PRES[lang],
+  text: 'Mekko Graphics, Efficient Elements',
+  href: '/products#presentations',
+  cat: true,
+})
 
 const T = {
   en: {
@@ -27,8 +36,7 @@ const T = {
         label: 'Products',
         items: [
           { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'Edit, protect and sign PDFs', href: '/foxit' },
-          { icon: Chart, title: 'Mekko Graphics', text: 'Charts in PowerPoint & Excel', href: '/mekko-graphics' },
-          { icon: Slides, title: 'Efficient Elements', text: 'Slide tools for PowerPoint', href: '/efficient-elements' },
+          presItem('en'),
           ...catItems('en'),
           { icon: Cubes, title: 'All products', text: 'Everything we license, on one page', href: '/products' },
         ],
@@ -62,8 +70,7 @@ const T = {
         label: 'Produkte',
         items: [
           { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'PDFs bearbeiten, schützen und signieren', href: '/foxit' },
-          { icon: Chart, title: 'Mekko Graphics', text: 'Diagramme in PowerPoint & Excel', href: '/mekko-graphics' },
-          { icon: Slides, title: 'Efficient Elements', text: 'Folien-Werkzeuge für PowerPoint', href: '/efficient-elements' },
+          presItem('de'),
           ...catItems('de'),
           { icon: Cubes, title: 'Alle Produkte', text: 'Unser gesamtes Angebot auf einer Seite', href: '/products' },
         ],
@@ -96,8 +103,7 @@ const T = {
         label: 'Produits',
         items: [
           { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'Modifier, protéger et signer des PDF', href: '/foxit' },
-          { icon: Chart, title: 'Mekko Graphics', text: 'Graphiques dans PowerPoint et Excel', href: '/mekko-graphics' },
-          { icon: Slides, title: 'Efficient Elements', text: 'Outils de diapositives pour PowerPoint', href: '/efficient-elements' },
+          presItem('fr'),
           ...catItems('fr'),
           { icon: Cubes, title: 'Tous les produits', text: 'Toute notre offre sur une seule page', href: '/products' },
         ],
@@ -130,8 +136,7 @@ const T = {
         label: 'Productos',
         items: [
           { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'Edite, proteja y firme PDF', href: '/foxit' },
-          { icon: Chart, title: 'Mekko Graphics', text: 'Gráficos en PowerPoint y Excel', href: '/mekko-graphics' },
-          { icon: Slides, title: 'Efficient Elements', text: 'Herramientas de diapositivas para PowerPoint', href: '/efficient-elements' },
+          presItem('es'),
           ...catItems('es'),
           { icon: Cubes, title: 'Todos los productos', text: 'Toda nuestra oferta en una sola página', href: '/products' },
         ],
@@ -164,8 +169,7 @@ const T = {
         label: 'Producten',
         items: [
           { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'PDF’s bewerken, beveiligen en ondertekenen', href: '/foxit' },
-          { icon: Chart, title: 'Mekko Graphics', text: 'Grafieken in PowerPoint en Excel', href: '/mekko-graphics' },
-          { icon: Slides, title: 'Efficient Elements', text: 'Diatools voor PowerPoint', href: '/efficient-elements' },
+          presItem('nl'),
           ...catItems('nl'),
           { icon: Cubes, title: 'Alle producten', text: 'Ons volledige aanbod op één pagina', href: '/products' },
         ],
