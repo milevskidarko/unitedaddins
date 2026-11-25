@@ -29,10 +29,14 @@
   border-radius: 3px;
   background: var(--blue);
 }
-.partners__logos { display: flex; flex-wrap: nowrap; align-items: center; min-width: 0; }
+/* Logos fill the rest of the row in equal-width, centred cells so spacing and dividers are even. */
+.partners__logos { flex: 1 1 auto; display: flex; flex-wrap: nowrap; align-items: center; min-width: 0; }
 .brand {
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 96px;
   padding-inline: clamp(18px, 2.4vw, 36px);
   border-left: 1px solid var(--line);
