@@ -30,7 +30,11 @@
   padding: 4px;
   border-radius: 8px;
   color: #fff;
-  font-size: clamp(10px, 1.2vw, 13px);
+  font-size: clamp(9px, 1.2vw, 13px);
+  line-height: 1.15;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: anywhere;
   font-weight: 700;
   text-align: center;
   overflow: hidden;

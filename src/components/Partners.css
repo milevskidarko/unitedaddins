@@ -94,10 +94,15 @@
 @media (max-width: 900px) {
   .needs { grid-template-columns: minmax(0, 1fr); }
 }
-@media (max-width: 760px) {
+/* Four logos next to the title don't fit below ~960px: title on top, logos in a full-width row. */
+@media (max-width: 960px) {
   .partners__brands { flex-direction: column; align-items: flex-start; gap: 20px; }
   .partners__logos { width: 100%; }
-  .brand { flex: 1 1 0; min-width: 0; justify-content: center; height: 64px; padding-inline: 10px; }
+  .brand { flex: 1 1 0; min-width: 0; justify-content: center; }
+  .brand:first-child { border-left: 0; padding-left: 0; }
+}
+@media (max-width: 760px) {
+  .brand { height: 64px; padding-inline: 10px; }
   .brand--foxit img { height: clamp(24px, 7vw, 36px); }
   .brand--mm img { height: auto; width: 100%; max-width: 150px; }
   .brand--progecad { gap: 5px; }
@@ -106,7 +111,20 @@
   .brand--bluebeam { gap: 5px; }
   .brand--bluebeam img { height: clamp(18px, 5.4vw, 28px); }
   .brand--bluebeam span { font-size: clamp(12px, 3.6vw, 18px); }
-  .brand:first-child { border-left: 0; padding-left: 0; justify-content: flex-start; }
+}
+/* Phones: one row of four is too small to read, so 2 × 2. */
+@media (max-width: 560px) {
+  .partners__logos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .brand { height: 60px; padding-inline: 8px; border-left: 0; }
+  .brand:first-child { padding-left: 8px; }
+  .brand:nth-child(even) { border-left: 1px solid var(--line); }
+  .brand:nth-child(n + 3) { border-top: 1px solid var(--line); }
+  .brand--foxit img { height: 32px; }
+  .brand--mm img { max-width: 140px; }
+  .brand--progecad img { height: 26px; }
+  .brand--progecad span { font-size: 17px; }
+  .brand--bluebeam img { height: 24px; }
+  .brand--bluebeam span { font-size: 17px; }
 }
 
 .need { --spot: rgba(36, 73, 232, 0.07); }
