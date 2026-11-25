@@ -1,4 +1,4 @@
-import { Arrow, Doc, Key, Check, Files, Ruler, Calendar, Slides } from './Icons.jsx'
+import { Arrow, Doc, Key, Files, Ruler, Calendar, Slides } from './Icons.jsx'
 import { L, useLang, useT } from '../i18n.jsx'
 import { CATEGORIES, PRODUCTS } from '../products.js'
 import './Partners.css'
@@ -11,9 +11,6 @@ const T = {
   en: {
     title: 'Our trusted',
     accent: 'partners',
-    // Confirmed by United Addins (Nov 2026): Foxit distributor since 2012.
-    // case study. Partner tier (Gold/Platinum) is intentionally not stated until Foxit confirms it.
-    cred: <>Authorized distributor for <strong>Foxit</strong> (since 2012) and <strong>Mekko Graphics</strong></>,
     label: 'Explore by need',
     needs: [
       ['PDF & eSign', 'Create, edit, protect and sign documents.'],
@@ -24,7 +21,6 @@ const T = {
   de: {
     title: 'Unsere starken',
     accent: 'Partner',
-    cred: <>Autorisierter Distributor für <strong>Foxit</strong> (seit 2012) und <strong>Mekko Graphics</strong></>,
     label: 'Nach Bedarf entdecken',
     needs: [
       ['PDF & eSign', 'Dokumente erstellen, bearbeiten, schützen und signieren.'],
@@ -35,7 +31,6 @@ const T = {
   fr: {
     title: 'Nos partenaires',
     accent: 'de confiance',
-    cred: <>Distributeur agréé <strong>Foxit</strong> (depuis 2012) et <strong>Mekko Graphics</strong></>,
     label: 'Explorer par besoin',
     needs: [
       ['PDF et eSign', 'Créer, modifier, protéger et signer des documents.'],
@@ -46,7 +41,6 @@ const T = {
   es: {
     title: 'Nuestros socios',
     accent: 'de confianza',
-    cred: <>Distribuidor autorizado de <strong>Foxit</strong> (desde 2012) y <strong>Mekko Graphics</strong></>,
     label: 'Explorar por necesidad',
     needs: [
       ['PDF y eSign', 'Cree, edite, proteja y firme documentos.'],
@@ -57,7 +51,6 @@ const T = {
   nl: {
     title: 'Onze vertrouwde',
     accent: 'partners',
-    cred: <>Geautoriseerd distributeur van <strong>Foxit</strong> (sinds 2012) en <strong>Mekko Graphics</strong></>,
     label: 'Ontdek per behoefte',
     needs: [
       ['PDF en eSign', 'Documenten maken, bewerken, beveiligen en ondertekenen.'],
@@ -90,7 +83,7 @@ export default function Partners() {
             <h2 className="partners__title">{t.title}<br /><span className="accent grad-text">{t.accent}</span></h2>
             <div className="partners__logos">
               {/* Official logos as published on foxit.com and mindmanager.com (Nov 2026). progesoft.com has
-                  no progeCAD wordmark, so progeCAD is its app icon + name. All three stay in one row. */}
+                  no progeCAD wordmark, so progeCAD is its app icon + name; Bluebeam likewise. All four stay in one row. */}
               <L to="/foxit" className="brand brand--foxit">
                 <img src="/partners/foxit.svg" alt="Foxit" width="125" height="52" />
               </L>
@@ -101,11 +94,11 @@ export default function Partners() {
                 <img src="/product-icons/progecad.png" alt="" width="180" height="180" />
                 <span aria-hidden="true">proge<b>CAD</b></span>
               </L>
+              <L to="/bluebeam" className="brand brand--bluebeam" aria-label="Bluebeam">
+                <img src="/product-icons/bluebeam.svg" alt="" width="42" height="43" />
+                <span aria-hidden="true">bluebeam</span>
+              </L>
             </div>
-            <p className="partners__cred">
-              <Check />
-              <span>{t.cred}</span>
-            </p>
           </div>
 
           <div className="partners__needs">

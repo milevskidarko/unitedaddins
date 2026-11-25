@@ -47,6 +47,9 @@
 .brand--progecad img { height: clamp(34px, 3.2vw, 44px); }
 .brand--progecad span { font-size: clamp(20px, 2vw, 26px); font-weight: 500; letter-spacing: -0.01em; color: #2b2b2b; white-space: nowrap; }
 .brand--progecad b { font-weight: 800; color: #c8102e; }
+.brand--bluebeam { gap: 10px; }
+.brand--bluebeam img { height: clamp(30px, 2.8vw, 40px); }
+.brand--bluebeam span { font-size: clamp(20px, 2vw, 26px); font-weight: 700; letter-spacing: -0.02em; color: #0067b1; white-space: nowrap; }
 
 .partners__needs { padding-top: clamp(22px, 3vw, 32px); border-top: 1px solid var(--line); }
 .partners__label { font-weight: 700; font-size: 15px; margin-bottom: 14px; }
@@ -100,47 +103,15 @@
   .brand--progecad { gap: 5px; }
   .brand--progecad img { height: clamp(20px, 6vw, 30px); }
   .brand--progecad span { font-size: clamp(12px, 3.6vw, 18px); }
+  .brand--bluebeam { gap: 5px; }
+  .brand--bluebeam img { height: clamp(18px, 5.4vw, 28px); }
+  .brand--bluebeam span { font-size: clamp(12px, 3.6vw, 18px); }
   .brand:first-child { border-left: 0; padding-left: 0; justify-content: flex-start; }
 }
 
 .need { --spot: rgba(36, 73, 232, 0.07); }
 .partners__title .accent { font-size: 1.25em; }
 .partners__card { box-shadow: 0 40px 80px -40px rgba(6, 11, 36, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.6) inset; }
-
-/* Credential line next to the partner logos */
-.partners__cred {
-  margin-left: auto;
-  max-width: 260px;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  font-size: 13.5px;
-  line-height: 1.45;
-  color: var(--ink-2);
-  background: #f3f6ff;
-  border: 1px solid #e0e7fb;
-}
-.partners__cred svg {
-  flex-shrink: 0;
-  width: 22px;
-  height: 22px;
-  padding: 4px;
-  border-radius: 50%;
-  background: var(--blue);
-  color: #fff;
-  stroke-width: 3;
-}
-.partners__cred strong { color: var(--ink); }
-@media (max-width: 1100px) {
-  .partners__brands { flex-wrap: wrap; }
-  .partners__cred { margin-left: 0; max-width: none; flex-basis: 100%; }
-}
-/* Phones: the brands block is a column, so flex-basis would set the HEIGHT. Use width instead. */
-@media (max-width: 760px) {
-  .partners__cred { flex-basis: auto; width: 100%; max-width: 100%; min-width: 0; }
-}
 
 /* Small phones: long words ("Datenvisualisierung") need the room the arrow takes. */
 @media (max-width: 400px) {
