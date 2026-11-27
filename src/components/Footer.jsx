@@ -18,6 +18,7 @@ const T = {
     build: 'Let’s build',
     quote: 'your quote.',
     talk: 'Talk to our team',
+    request: 'Send us your request',
     badge: 'Authorized Foxit & Mekko Graphics distributor',
     cols: [
       { title: 'Products', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Efficient Elements', '/efficient-elements'], ...PRODUCT_LINKS, ['All products', '/products']] },
@@ -34,6 +35,7 @@ const T = {
     build: 'Stellen wir',
     quote: 'Ihr Angebot zusammen.',
     talk: 'Sprechen Sie mit uns',
+    request: 'Anfrage senden',
     badge: 'Autorisierter Foxit- & Mekko-Graphics-Distributor',
     cols: [
       { title: 'Produkte', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Efficient Elements', '/efficient-elements'], ...PRODUCT_LINKS, ['Alle Produkte', '/products']] },
@@ -50,6 +52,7 @@ const T = {
     build: 'Composons',
     quote: 'votre devis.',
     talk: 'Parlez à notre équipe',
+    request: 'Envoyer une demande',
     badge: 'Distributeur agréé Foxit et Mekko Graphics',
     cols: [
       { title: 'Produits', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Efficient Elements', '/efficient-elements'], ...PRODUCT_LINKS, ['Tous les produits', '/products']] },
@@ -66,6 +69,7 @@ const T = {
     build: 'Preparemos',
     quote: 'su presupuesto.',
     talk: 'Hable con nuestro equipo',
+    request: 'Enviar una solicitud',
     badge: 'Distribuidor autorizado de Foxit y Mekko Graphics',
     cols: [
       { title: 'Productos', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Efficient Elements', '/efficient-elements'], ...PRODUCT_LINKS, ['Todos los productos', '/products']] },
@@ -82,6 +86,7 @@ const T = {
     build: 'Laten we',
     quote: 'uw offerte opstellen.',
     talk: 'Spreek met ons team',
+    request: 'Aanvraag versturen',
     badge: 'Geautoriseerd distributeur van Foxit en Mekko Graphics',
     cols: [
       { title: 'Producten', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Efficient Elements', '/efficient-elements'], ...PRODUCT_LINKS, ['Alle producten', '/products']] },
@@ -120,14 +125,14 @@ export default function Footer() {
             {t.build} <L to="/contact#quote" className="accent grad-text">{t.quote}</L>
           </p>
           <div className="footer__cta-actions">
-            <a href={`mailto:${SALES_EMAIL}`} className="footer__mail">
+            <L to="/contact#quote" className="footer__mail">
               <span className="footer__mail-ic"><Mail /></span>
               <span>
                 <small>{t.talk}</small>
-                <strong>{SALES_EMAIL}</strong>
+                <strong>{t.request}</strong>
               </span>
               <Arrow className="footer__mail-arrow" />
-            </a>
+            </L>
           </div>
         </div>
 

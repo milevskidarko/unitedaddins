@@ -15,6 +15,25 @@ const T = {
   nl: { tagline: 'De juiste software. De juiste partner.', home: 'United Addins startpagina' },
 }
 
+// The bare mark in one color (white by default), for placing on a colored background.
+export function LogoMark({ color = '#fff', className }) {
+  const id = useId().replace(/:/g, '')
+  return (
+    <svg className={className} viewBox="0 0 64 44" aria-hidden="true">
+      <defs>
+        <mask id={`${id}m`} maskUnits="userSpaceOnUse" x="-10" y="-10" width="90" height="70">
+          <rect x="-10" y="-10" width="90" height="70" fill="#fff" />
+          <path d={A} fill="none" stroke="#000" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round" />
+        </mask>
+      </defs>
+      <g fill="none" stroke={color} strokeWidth="9" strokeLinecap="round" strokeLinejoin="round">
+        <path d={U} mask={`url(#${id}m)`} />
+        <path d={A} />
+      </g>
+    </svg>
+  )
+}
+
 export default function Logo({ light = false, tagline = false }) {
   const t = useT(T)
   // Unique ids: the logo appears twice on the page (header + footer).

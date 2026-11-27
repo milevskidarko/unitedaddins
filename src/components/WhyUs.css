@@ -366,6 +366,11 @@
   color: #e6ecff;
   animation: hub 2.4s ease-in-out infinite;
 }
+.merge__hub svg {
+  width: 26px;
+  height: auto;
+  margin-top: 2px;
+}
 @keyframes hub { 50% { transform: scale(1.08); } }
 
 .why__more { margin-top: clamp(32px, 4vw, 48px); display: flex; justify-content: center; }

@@ -1,5 +1,6 @@
 import { Award, Key, Headset, Handshake, Arrow } from './Icons.jsx'
 import CountUp from './CountUp.jsx'
+import { LogoMark } from './Logo.jsx'
 import Leader from './Leader.jsx'
 import { L, useLang, useT } from '../i18n.jsx'
 import { CATEGORIES, PRODUCTS } from '../products.js'
@@ -345,7 +346,7 @@ export default function WhyUs({ compact = false }) {
                   return <path key={label} className={`merge__line ${i % 2 ? 'merge__line--2' : ''}`} d={`M0 ${y} C50 ${y} 50 50 100 50`} />
                 })}
               </svg>
-              <span className="merge__hub">UA</span>
+              <span className="merge__hub" role="img" aria-label="United Addins"><LogoMark /></span>
             </div>
             <div className="bento__stat">
               <strong className="bento__num bento__num--sm">{VENDOR_COUNT} → 1</strong>
