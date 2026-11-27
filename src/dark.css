@@ -39,7 +39,6 @@
   background: rgba(7, 12, 34, 0.78);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 10px 30px -20px rgba(0, 0, 0, 0.8);
 }
-[data-theme='dark'] .logo__u { stroke: #4f7cff; }
 [data-theme='dark'] .nav__link:hover,
 [data-theme='dark'] .has-drop:hover > .nav__link,
 [data-theme='dark'] .has-drop:focus-within > .nav__link { background: rgba(123, 155, 255, 0.12); }

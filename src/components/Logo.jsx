@@ -1,10 +1,17 @@
 import { useId } from 'react'
 import { L, useT } from '../i18n.jsx'
 
-// "Interlock" mark: the A passes through the U with a clean gap (cut with a mask, so it
-// works on any background). Same geometry as brand/united-addins-mark.svg.
-const U = 'M6 6v16a12 12 0 0 0 24 0V6'
-const A = 'M26 38 40 6h4l14 32'
+// "Interlock" mark, traced from the brand artwork: the A's left leg is a ribbon that sweeps
+// over the U (cut apart by a slit) and folds into the bottom of the U; the A's crossbar is
+// split from the ribbon by the same slit. Filled shapes, same geometry as
+// brand/united-addins-mark.svg and public/favicon.svg.
+const VIEWBOX = '243 155 595 339'
+// U: left arm + bowl (its right end tucks under the ribbon), and the cut-off right arm.
+const U = 'M246 203.5A46 46 0 0 1 338 203.5V339C338 370 360 395 394 395C420 395 440 390 457 380L470 400 430 482.6A148 148 0 0 1 246 339Z'
+const U_ARM = 'M450 345.3V202A42 42 0 0 1 492 160H551Z'
+// A: ribbon, flat top, right leg and crossbar in one outline.
+const A =
+  'M428.4 440L563.3 192.4Q581.5 159 619.5 159H634.3Q672.3 159 689 193.1L835.2 491.5H767.2Q737.2 491.5 724 464.6L702.7 421H567.8L603.2 356H670.8L624.9 260.7L517.4 456.6Q499.2 490 461.2 490H395Q370 490 352 484C385 478 421.2 453.2 428.4 440Z'
 
 // One slogan everywhere (same as the home page headline).
 const T = {
@@ -17,17 +24,11 @@ const T = {
 
 // The bare mark in one color (white by default), for placing on a colored background.
 export function LogoMark({ color = '#fff', className }) {
-  const id = useId().replace(/:/g, '')
   return (
-    <svg className={className} viewBox="0 0 64 44" aria-hidden="true">
-      <defs>
-        <mask id={`${id}m`} maskUnits="userSpaceOnUse" x="-10" y="-10" width="90" height="70">
-          <rect x="-10" y="-10" width="90" height="70" fill="#fff" />
-          <path d={A} fill="none" stroke="#000" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round" />
-        </mask>
-      </defs>
-      <g fill="none" stroke={color} strokeWidth="9" strokeLinecap="round" strokeLinejoin="round">
-        <path d={U} mask={`url(#${id}m)`} />
+    <svg className={className} viewBox={VIEWBOX} aria-hidden="true">
+      <g fill={color}>
+        <path d={U} />
+        <path d={U_ARM} />
         <path d={A} />
       </g>
     </svg>
@@ -45,37 +46,23 @@ export default function Logo({ light = false, tagline = false }) {
       aria-label={t.home}
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
     >
-      <svg className="logo__mark" viewBox="0 0 64 44" aria-hidden="true">
+      <svg className="logo__mark" viewBox={VIEWBOX} aria-hidden="true">
         <defs>
-          <linearGradient id={`${id}g`} x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#60a5fa" />
-            <stop offset="0.5" stopColor="#3b5bff" />
-            <stop offset="1" stopColor="#7c5cff" />
+          <linearGradient id={`${id}gu`} gradientUnits="userSpaceOnUse" x1="260" y1="170" x2="420" y2="480">
+            <stop offset="0" stopColor="#2f6dff" />
+            <stop offset="1" stopColor="#4a35e8" />
           </linearGradient>
-          <mask id={`${id}m`} maskUnits="userSpaceOnUse" x="-10" y="-10" width="90" height="70">
-            <rect x="-10" y="-10" width="90" height="70" fill="#fff" />
-            <path d={A} fill="none" stroke="#000" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round" />
-          </mask>
+          <linearGradient id={`${id}ga`} gradientUnits="userSpaceOnUse" x1="560" y1="160" x2="840" y2="490">
+            <stop offset="0" stopColor="#49c6ff" />
+            <stop offset="0.5" stopColor="#4062ff" />
+            <stop offset="1" stopColor="#a63cf4" />
+          </linearGradient>
         </defs>
-        <path
-          className="logo__u"
-          pathLength="1"
-          d={U}
-          fill="none"
-          stroke={light ? '#4f7cff' : '#2449e8'}
-          strokeWidth="9"
-          strokeLinecap="round"
-          mask={`url(#${id}m)`}
-        />
-        <path
-          pathLength="1"
-          d={A}
-          fill="none"
-          stroke={`url(#${id}g)`}
-          strokeWidth="9"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
+        <g className="logo__draw logo__u" fill={`url(#${id}gu)`}>
+          <path d={U} />
+          <path d={U_ARM} />
+        </g>
+        <path className="logo__draw logo__a" d={A} fill={`url(#${id}ga)`} />
       </svg>
       <span className="logo__text">
         <strong>United Addins</strong>

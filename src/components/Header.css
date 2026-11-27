@@ -38,19 +38,17 @@
 }
 .header--scrolled .header__progress { opacity: 1; }
 
-/* Logo mark draws itself once on load */
-.header .logo__mark path {
-  stroke-dasharray: 1;
-  animation: logoDraw 1.2s var(--ease) both;
-}
-.header .logo__mark path + path { animation-delay: 0.25s; }
-@keyframes logoDraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+/* Logo mark slides in once on load: U first, then the A sweeps over it */
+.header .logo__mark .logo__draw { animation: logoIn 0.8s var(--ease) both; }
+.header .logo__mark .logo__u { --from: translateX(-8%); }
+.header .logo__mark .logo__a { --from: translateX(8%); animation-delay: 0.2s; }
+@keyframes logoIn { from { opacity: 0; transform: var(--from); } to { opacity: 1; transform: none; } }
 .logo:hover .logo__mark { transform: rotate(-4deg) scale(1.04); }
 .logo__mark { transition: transform 0.4s var(--ease); }
 
 /* Logo */
 .logo { display: inline-flex; align-items: center; gap: 12px; flex-shrink: 0; }
-.logo__mark { width: 48px; height: auto; }
+.logo__mark { width: 56px; height: auto; }
 .logo__text { display: flex; flex-direction: column; line-height: 1.15; }
 .logo__text strong { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
 .logo__text small { font-size: 12px; color: var(--muted); font-weight: 500; }
@@ -197,7 +195,7 @@
 }
 @media (max-width: 560px) {
   .header .header__cta { display: none; }
-  .logo__mark { width: 40px; }
+  .logo__mark { width: 46px; }
   .logo__text strong { font-size: 18px; }
 }
 @media (min-width: 1025px) {
@@ -283,7 +281,6 @@
 }
 .header--on-dark:not(.header--scrolled):not(.header--open) .lang-switch a { color: #b6c4ec; }
 .header--on-dark:not(.header--scrolled):not(.header--open) .lang-switch a.is-active { background: #fff; color: #0b1640; }
-.header--on-dark:not(.header--scrolled):not(.header--open) .logo__u { stroke: #4f7cff; }
 
 @media (max-width: 1180px) and (min-width: 1025px) {
   .header__cta { display: none; }
