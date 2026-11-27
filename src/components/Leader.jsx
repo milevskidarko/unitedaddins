@@ -1,4 +1,5 @@
 import { LinkedIn, Arrow } from './Icons.jsx'
+import { BrandMark } from './Logo.jsx'
 import { L, useT } from '../i18n.jsx'
 
 // Company message on the About page (United Addins as a company, not one person).
@@ -60,21 +61,7 @@ export default function Leader() {
       <div className="leader__photo leader__photo--mark" aria-hidden="true">
         {/* Same mark as the logo (Logo.jsx), on the dark disc. */}
         <span>
-          <svg viewBox="-4 -4 72 52">
-            <defs>
-              <linearGradient id="leaderMarkG" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stopColor="#60a5fa" />
-                <stop offset="0.5" stopColor="#3b5bff" />
-                <stop offset="1" stopColor="#7c5cff" />
-              </linearGradient>
-              <mask id="leaderMarkM" maskUnits="userSpaceOnUse" x="-10" y="-10" width="90" height="70">
-                <rect x="-10" y="-10" width="90" height="70" fill="#fff" />
-                <path d="M26 38 40 6h4l14 32" fill="none" stroke="#000" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round" />
-              </mask>
-            </defs>
-            <path d="M6 6v16a12 12 0 0 0 24 0V6" fill="none" stroke="#4f7cff" strokeWidth="9" strokeLinecap="round" mask="url(#leaderMarkM)" />
-            <path d="M26 38 40 6h4l14 32" fill="none" stroke="url(#leaderMarkG)" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <BrandMark />
         </span>
       </div>
       <div className="leader__body">
