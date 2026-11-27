@@ -14,7 +14,9 @@ const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || ''
 // FormSubmit sends straight to salesemea@ (the address is public on the site anyway). The old
 // alias '29844412…' was most likely the developer's test inbox (a test landed there, Nov 2026).
 // Can be overridden in .env.local (VITE_FORM_EMAIL=you@example.com) for local testing.
-const FALLBACK_ENDPOINT = `https://formsubmit.co/ajax/${import.meta.env.VITE_FORM_EMAIL || SALES_EMAIL}`
+// Only in `npm run dev`: a production build (e.g. for upload to cPanel) always sends to sales,
+// even when .env.local is present on the machine that builds it.
+const FALLBACK_ENDPOINT = `https://formsubmit.co/ajax/${(import.meta.env.DEV && import.meta.env.VITE_FORM_EMAIL) || SALES_EMAIL}`
 
 // Product names are the same in every language (they are also the keys of the quote).
 const PRODUCTS = [
