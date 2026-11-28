@@ -14,7 +14,7 @@ export const PRODUCTS_FR = {
   },
   bluebeam: {
     tagline: 'Le logiciel de construction pensé pour la collaboration',
-    lead: 'Bluebeam Revu est l’espace de travail PDF qu’utilisent architectes, ingénieurs et entreprises de construction pour annoter, mesurer et vérifier les plans — et y travailler ensemble sur ordinateur, dans le navigateur et sur mobile. De la gestion des plans et la revue de conception aux métrés, RFI, soumissions et listes de réserves.',
+    lead: 'Bluebeam Revu est l’espace de travail PDF qu’utilisent architectes, ingénieurs et entreprises de construction pour annoter, mesurer et vérifier les plans — et y travailler ensemble sur ordinateur, dans le navigateur et sur mobile. De la gestion des plans et de la revue de conception aux métrés, RFI, soumissions et listes de réserves.',
     features: [
       ['Annotations et mesures', 'Outils d’annotation et de mesure de référence pour les plans.'],
       ['Métrés', 'Mesurez longueurs, surfaces et quantités directement sur les plans.'],

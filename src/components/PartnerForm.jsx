@@ -157,7 +157,7 @@ const T = {
     step1: '1. Tipo de colaboración',
     types: {
       Reseller: ['Revendedor', 'Vende software a sus propios clientes.'],
-      'IT services / integrator': ['Servicios IT', 'Implanta y da soporte a software para sus clientes.'],
+      'IT services / integrator': ['Servicios de TI', 'Implanta y da soporte a software para sus clientes.'],
       'Referral partner': ['Recomendación', 'Nos recomienda — nosotros nos encargamos de la venta.'],
       'Software vendor': ['Fabricante de software', 'Desarrolla software y quiere que lo distribuyamos.'],
     },

@@ -62,7 +62,7 @@ export const PRODUCTS_PL = {
   },
   mydraw: {
     tagline: 'Diagramy, schematy blokowe i mapy myśli — alternatywa dla Visio®',
-    lead: 'MyDraw to zaawansowane, a zarazem proste w obsłudze oprogramowanie do diagramów: schematów blokowych, schematów organizacyjnych, map myśli, drzew genealogicznych, diagramów Venna, przepływów pracy i innych. Otwiera i zapisuje rysunki oraz szablony Visio, dostępne jednorazowo lub w subskrypcji.',
+    lead: 'MyDraw to zaawansowane, a zarazem proste w obsłudze oprogramowanie do diagramów: schematów blokowych, schematów organizacyjnych, map myśli, drzew genealogicznych, diagramów Venna, przepływów pracy i innych. Otwiera i zapisuje rysunki oraz szablony Visio; dostępny w zakupie jednorazowym lub w subskrypcji.',
     features: [
       ['Wiele typów diagramów', 'Schematy blokowe, organizacyjne, mapy myśli, diagramy przyczynowo-skutkowe, przepływy danych i inne.'],
       ['Pliki Visio', 'Otwieraj i zapisuj rysunki oraz szablony Visio.'],

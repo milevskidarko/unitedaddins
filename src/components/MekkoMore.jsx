@@ -87,7 +87,7 @@ const T = {
       ['Circular / Anillo', 'El tamaño de cada segmento en relación con el total.'],
     ],
     trusted: 'Datos de clientes',
-    stats: ['de las 10 principales consultoras usan Mekko Graphics', 'de las empresas del Fortune 100 usan Mekko Graphics', 'de las 25 principales firmas de capital privado usan Mekko Graphics', 'años en que los clientes confían en Mekko Graphics para sus gráficos'],
+    stats: ['de las 10 principales consultoras usan Mekko Graphics', 'de las empresas del Fortune 100 usan Mekko Graphics', 'de las 25 principales firmas de capital privado usan Mekko Graphics', 'años que los clientes llevan confiando en Mekko Graphics para sus gráficos'],
     source: 'Fuente: mekkographics.com.',
   },
   nl: {
@@ -127,7 +127,7 @@ const T = {
       ['Torta / Ciambella', 'La dimensione di ogni segmento rispetto al totale.'],
     ],
     trusted: 'I clienti in cifre',
-    stats: ['Società di consulenza della top 10 che usano Mekko Graphics', 'Quota delle aziende Fortune 100 che usano Mekko Graphics', 'Quota delle prime 25 società di private equity che usano Mekko Graphics', 'Anni in cui i clienti si affidano a Mekko Graphics per i loro grafici'],
+    stats: ['delle prime 10 società di consulenza usano Mekko Graphics', 'delle aziende Fortune 100 usa Mekko Graphics', 'delle prime 25 società di private equity usa Mekko Graphics', 'anni di fiducia dei clienti in Mekko Graphics per i loro grafici'],
     source: 'Fonte: mekkographics.com.',
   },
   pl: {
@@ -147,7 +147,7 @@ const T = {
       ['Kołowy / pierścieniowy', 'Wielkość każdego segmentu względem całości.'],
     ],
     trusted: 'Fakty o klientach',
-    stats: ['Firmy doradcze z pierwszej dziesiątki, które używają Mekko Graphics', 'Odsetek firm z listy Fortune 100 używających Mekko Graphics', 'Odsetek 25 największych funduszy private equity używających Mekko Graphics', 'Tyle lat klienci powierzają Mekko Graphics swoje wykresy'],
+    stats: ['z 10 największych firm doradczych korzysta z Mekko Graphics', 'firm z listy Fortune 100 korzysta z Mekko Graphics', 'spośród 25 największych funduszy private equity korzysta z Mekko Graphics', 'lat klienci powierzają Mekko Graphics swoje wykresy'],
     source: 'Źródło: mekkographics.com.',
   },
 }

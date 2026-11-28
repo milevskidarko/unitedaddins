@@ -167,7 +167,7 @@ const T = {
     title: 'Tutto ciò che serve',
     accent: 'per slide professionali',
     groups: [
-      ['Agenda e libreria di slide', 'Agende che si aggiornano da sole, più le slide, gli elementi e le mappe di ogni paese del tuo team — collegabili ai dati di Excel.'],
+      ['Agenda e libreria di slide', 'Agende che si aggiornano da sole, le slide e gli elementi del tuo team e le mappe di ogni paese — collegabili ai dati di Excel.'],
       ['Smart Elements', 'Simboli di stato per slide in stile consulenza, da impostare con un clic.'],
       ['Allineamento e layout', 'Allinea, aggancia, impila, ridimensiona e distanzia gli oggetti con precisione, senza fatica.'],
       ['Colori', 'I colori aziendali a un clic di distanza, e qualsiasi colore convertito nella palette.'],
@@ -203,7 +203,7 @@ const T = {
       ['Szablony i udostępnianie', 'Zarządzaj własnymi szablonami i szablonami klientów; wysyłaj e-mailem lub zapisuj wybrane slajdy jako PPTX lub PDF.'],
     ],
     trusted: 'Warto wiedzieć',
-    stats: ['oszczędności na użytkownika tygodniowo średnio, według Efficient Elements', 'reguł w Check Presentations', 'języków interfejsu, w trybie Basic lub Expert', 'dni bezpłatnego okresu próbnego dla Windows i macOS'],
+    stats: ['oszczędzane średnio przez każdego użytkownika co tydzień, według Efficient Elements', 'reguł w Check Presentations', 'języków interfejsu, w trybie Basic lub Expert', 'dni bezpłatnego okresu próbnego dla Windows i macOS'],
     source: 'Źródło: efficient-elements.com. Liczba 2 godzin pochodzi od producenta i opiera się na badaniu efektywności Siemensa (2010). Na macOS zestaw funkcji różni się od wersji dla Windows.',
     licTitle: 'Licencje przez United Addins',
     lic: [

@@ -149,7 +149,7 @@ const T = {
       ['Il', 'partner', { accent: 'giusto.' }],
     ],
     pill: 'Partner per licenze e distribuzione software',
-    lead: 'Aiutiamo le organizzazioni a trovare, acquistare in licenza e sfruttare al meglio soluzioni software affidabili — dal PDF e la firma elettronica alla visualizzazione dei dati di livello consulenziale.',
+    lead: 'Aiutiamo le organizzazioni a trovare, acquistare in licenza e sfruttare al meglio soluzioni software affidabili — dal PDF e dalla firma elettronica alla visualizzazione dei dati di livello consulenziale.',
     explore: 'Scopri le nostre soluzioni',
     talk: 'Parla con il nostro team',
     trust: [

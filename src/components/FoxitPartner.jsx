@@ -366,7 +366,7 @@ const T = {
     eyebrow: 'United Addins & Foxit',
     title: 'Twój partner Foxit',
     accent: 'od 2012 roku',
-    lead: 'United Addins jest autoryzowanym dystrybutorem Foxit od 2012 roku. Oto co sam Foxit opublikował o projektach, które przynieśliśmy do Foxit i pomogliśmy wdrożyć.',
+    lead: 'United Addins jest autoryzowanym dystrybutorem Foxit od 2012 roku. Oto, co sam Foxit opublikował o projektach, które przynieśliśmy do Foxit i pomogliśmy wdrożyć.',
     stories: {
       mps: {
         source: 'Case study Foxit',

@@ -280,7 +280,7 @@ const T = {
       head: ['Attività', 'Avanzamento', 'Stato'],
       rows: ['Analisi di mercato', 'Modello di prezzo', 'Integrazione IT', 'Formazione'],
       ball: (n) => `Avanzamento ${n * 25}% — fai clic per cambiare`,
-      light: ['In linea', 'A rischio', 'Fuori controllo'],
+      light: ['In linea', 'A rischio', 'In ritardo'],
       lightHint: 'fai clic per cambiare',
     },
     check: {
@@ -311,7 +311,7 @@ const T = {
     file: 'Aktualizacja projektu.pptx',
     tabs: { align: 'Wyrównaj', smart: 'Smart Elements', check: 'Sprawdź' },
     align: {
-      caption: 'Nierówne pola? Wyrównaj, ujednolić rozmiar i rozmieść je — każde jednym kliknięciem.',
+      caption: 'Nierówne pola? Wyrównaj, ujednolij rozmiar i rozmieść je — każde jednym kliknięciem.',
       top: 'Wyrównaj do góry',
       size: 'Ten sam rozmiar',
       spread: 'Równe odstępy',

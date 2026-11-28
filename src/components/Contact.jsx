@@ -297,7 +297,7 @@ const T = {
     perpetual: 'Perpetua (una tantum)',
     fewer: 'Meno licenze',
     more: 'Più licenze',
-    number: (p) => `Numero di licenze ${p}`,
+    number: (p) => `Numero di licenze per ${p}`,
     step2: '2. I tuoi dati',
     none: 'Nessun prodotto selezionato.',
     notSure: 'Non sei sicuro? Trova il tuo piano →',
@@ -330,8 +330,9 @@ const T = {
       ['Licencje i wdrożenie', 'Dostarczamy licencje i pomagamy w szybkim starcie.'],
     ],
     legend: '1. Produkty i licencje',
-    // Polish has three plural forms; the form shows the count next to it, so "licencja / licencje" reads fine.
     unit: ['licencja', 'licencje'],
+    // Polish has three plural forms: 1 licencja, 2–4 licencje (not 12–14), otherwise licencji.
+    plural: (n) => (n === 1 ? 'licencja' : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 'licencje' : 'licencji'),
     notes: {
       'Foxit PDF Editor': 'Windows, macOS, Web',
       'Foxit PDF Editor+': '+ mobilne, Smart Redact, eSign',
@@ -347,7 +348,7 @@ const T = {
     perpetual: 'Wieczysta (jednorazowo)',
     fewer: 'Mniej licencji',
     more: 'Więcej licencji',
-    number: (p) => `Liczba licencji ${p}`,
+    number: (p) => `Liczba licencji dla ${p}`,
     step2: '2. Twoje dane',
     none: 'Nie wybrano jeszcze produktów.',
     notSure: 'Nie wiesz, co wybrać? Znajdź swój plan →',
@@ -393,7 +394,7 @@ export default function Contact({ quote, setQuote }) {
   const visibleProducts = PRODUCTS.filter((p) => !p.more || showMore || items[p.name])
   const noteFor = (p) => (p.source ? (p.source[lang] || p.source.en).note : t.notes[p.name])
   const isPerpetual = (p) => p.perpetual && quote.perpetual
-  const unitFor = (n) => t.unit[n === 1 ? 0 : 1]
+  const unitFor = (n) => (t.plural ? t.plural(n) : t.unit[n === 1 ? 0 : 1])
   const summary = selected
     .map((p) => `${p.name}${isPerpetual(p) ? ` (${t.perpetual})` : ''} × ${items[p.name]} ${unitFor(items[p.name])}`)
     .join(', ')

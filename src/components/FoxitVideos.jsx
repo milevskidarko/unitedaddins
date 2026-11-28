@@ -106,7 +106,7 @@ const T = {
     videos: [
       ['Wprowadzenie', 'Przegląd wstążki, obszaru roboczego i podstawowych narzędzi edycji.'],
       ['Edycja tekstu i obrazów', 'Zmieniaj tekst, obrazy i układ bezpośrednio w pliku PDF.'],
-      ['Konwersja i OCR', 'Zamieniaj PDF na Word, Excel i inne formaty — i przeszukuj skany.'],
+      ['Konwersja i OCR', 'Zamieniaj PDF na Word, Excel i inne formaty — i zamieniaj skany w tekst do wyszukiwania.'],
       ['Asystent AI', 'Streszczaj, tłumacz i automatyzuj pracę z Foxit AI.'],
       ['Ochrona i anonimizacja', 'Hasła, uprawnienia i trwałe usuwanie poufnych treści.'],
     ],

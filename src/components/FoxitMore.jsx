@@ -131,7 +131,7 @@ const T = {
       ['AI Assistant', 'Chatta con i tuoi documenti, ottieni riassunti, spostati con i segnalibri AI, ascolta con Smart Podcast e genera immagini direttamente nel documento. 300 crediti AI gratuiti al mese su ogni account.'],
       ['Smart Redact', 'L’AI trova e rimuove i dati personali sensibili nei tuoi documenti. Incluso in PDF Editor+.'],
       ['Gestione documentale (DMS)', 'Inclusa in PDF Editor e PDF Editor+: spazi di lavoro condivisi, controllo delle versioni, blocco check-in/check-out e archiviazione cloud illimitata.'],
-      ['eSign integrato', 'PDF Editor+ include Foxit eSign con 150 buste all’anno per firme e flussi di approvazione; PDF Editor include compila e firma.'],
+      ['eSign integrato', 'PDF Editor+ include Foxit eSign con 150 buste all’anno per firme e flussi di approvazione; PDF Editor include compilazione e firma.'],
       ['Collaborazione', 'Condivisione in tempo reale, commenti e revisioni condivise — tutti lavorano sullo stesso documento.'],
       ['Sicurezza', 'Crittografia AES-256, protezione con password e oscuramento, oltre al single sign-on tramite OAuth 2.0 e Microsoft Entra ID.'],
     ],

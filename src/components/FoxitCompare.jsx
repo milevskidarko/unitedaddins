@@ -130,7 +130,7 @@ const T = {
   },
   it: {
     eyebrow: 'Foxit vs. Adobe',
-    title: 'Funzione per funzione con',
+    title: 'Confronto funzione per funzione con',
     accent: 'Acrobat Pro',
     lead: 'Foxit PDF Editor+ copre il lavoro quotidiano sui PDF di Adobe Acrobat Pro — e aggiunge funzioni che Acrobat Pro non include, a un prezzo per utente più basso.',
     feature: 'Funzione',
@@ -152,7 +152,7 @@ const T = {
   },
   pl: {
     eyebrow: 'Foxit vs. Adobe',
-    title: 'Funkcja w funkcję z',
+    title: 'Porównanie funkcji z',
     accent: 'Acrobat Pro',
     lead: 'Foxit PDF Editor+ obejmuje codzienną pracę z PDF, którą oferuje Adobe Acrobat Pro — i dodaje funkcje, których Acrobat Pro nie ma, w niższej cenie za użytkownika.',
     feature: 'Funkcja',

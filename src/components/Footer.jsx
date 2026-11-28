@@ -107,7 +107,7 @@ const T = {
     badge: 'Distributore autorizzato Foxit e Mekko Graphics',
     cols: [
       { title: 'Prodotti', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Efficient Elements', '/efficient-elements'], ...PRODUCT_LINKS, ['Tutti i prodotti', '/products']] },
-      { title: 'Soluzioni', links: [['Modifica PDF', '/foxit'], ['eSign', '/foxit#esign'], ['Presentazioni', '/products#presentations'], ...catLinks('it'), ['Trova il tuo piano', '/foxit#plan'], ['Licenze multiple', '/contact']] },
+      { title: 'Soluzioni', links: [['Modifica PDF', '/foxit'], ['eSign', '/foxit#esign'], ['Presentazioni', '/products#presentations'], ...catLinks('it'), ['Trova il tuo piano', '/foxit#plan'], ['Licenze a volume', '/contact']] },
       { title: 'Azienda', links: [['Chi siamo', '/about'], ['Partner', '/#partners'], ['Diventa partner', '/partners'], ['Richiedi un preventivo', '/contact']] },
     ],
     rights: 'Tutti i diritti riservati.',
@@ -116,7 +116,7 @@ const T = {
     linkedin: 'United Addins su LinkedIn',
   },
   pl: {
-    ready: 'Gotowi, kiedy Ty jesteś.',
+    ready: 'Jesteśmy gotowi, gdy Ty będziesz.',
     build: 'Przygotujmy',
     quote: 'Twoją wycenę.',
     talk: 'Porozmawiaj z naszym zespołem',
