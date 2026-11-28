@@ -6,7 +6,7 @@ import './Products.css'
 export function Mark({ product, size = 'md' }) {
   if (product.logo) {
     return (
-      <span className={`pmark pmark--${size} pmark--logo`} style={{ '--tone': product.tone }} aria-hidden="true">
+      <span className={`pmark pmark--${size} pmark--logo${product.wide ? " pmark--wide" : ""}`} style={{ '--tone': product.tone }} aria-hidden="true">
         <img src={product.logo} alt="" loading="lazy" />
       </span>
     )

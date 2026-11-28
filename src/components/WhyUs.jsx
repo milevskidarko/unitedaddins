@@ -430,7 +430,7 @@ export default function WhyUs({ compact = false }) {
             <div className="merge" aria-hidden="true" style={{ '--n': merge.length }}>
               <ul className="merge__list">
                 {merge.map(([label, mod]) => (
-                  <li key={label}><span className={`merge__node ${mod ? `merge__node--${mod}` : ''}`}>{label}</span></li>
+                  <li key={label}><span className={`merge__node ${mod ? `merge__node--${mod}` : ''}`}>{mod === 'foxit' ? <img src="/partners/foxit.svg" alt="" width="125" height="52" /> : label}</span></li>
                 ))}
               </ul>
               {/* Lines from the middle of each row to the hub; stretched to fit, stroke width kept. */}

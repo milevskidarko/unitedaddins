@@ -257,7 +257,7 @@ export default function Foxit({ onAddToQuote }) {
           <div data-reveal>
             <span className="eyebrow">{t.eyebrow}</span>
             <h1 className="section-title">
-              {t.title} <span className="foxit__word">Foxit</span>
+              {t.title} <img className="foxit__logo" src="/partners/foxit.svg" alt="Foxit" width="125" height="52" />
             </h1>
             <p className="section-lead">{t.lead}</p>
           </div>

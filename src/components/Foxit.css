@@ -5,11 +5,8 @@
   align-items: end;
   margin-bottom: clamp(36px, 5vw, 56px);
 }
-.foxit__word {
-  font-style: italic;
-  color: var(--orange-text);
-  letter-spacing: -0.04em;
-}
+/* The official Foxit logo in place of the word, sized to the heading text. */
+.foxit__logo { display: inline-block; height: 1.05em; width: auto; vertical-align: -0.16em; }
 .foxit__features {
   list-style: none;
   margin: 0;

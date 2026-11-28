@@ -7,7 +7,6 @@ import '@fontsource/plus-jakarta-sans/latin-500.css'
 import '@fontsource/plus-jakarta-sans/latin-600.css'
 import '@fontsource/plus-jakarta-sans/latin-700.css'
 import '@fontsource/plus-jakarta-sans/latin-800.css'
-import '@fontsource/plus-jakarta-sans/latin-800-italic.css' // "Foxit" wordmark
 import '@fontsource/instrument-serif/latin-400-italic.css'
 import '@fontsource/plus-jakarta-sans/latin-ext-400.css'
 import '@fontsource/plus-jakarta-sans/latin-ext-500.css'

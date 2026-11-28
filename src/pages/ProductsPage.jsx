@@ -106,7 +106,7 @@ const T = {
 }
 
 // Foxit and Mekko Graphics keep their own pages; shown here as cards like the others.
-const FOXIT = { name: 'Foxit PDF Editor & eSign', vendor: 'Foxit', tone: '#ff5f1f', mark: 'Fx' }
+const FOXIT = { name: 'Foxit PDF Editor & eSign', vendor: 'Foxit', tone: '#ff5f1f', mark: 'Fx', logo: '/partners/foxit.svg', wide: true }
 const MEKKO = { name: 'Mekko Graphics', vendor: 'Mekko Graphics', tone: '#121e4d', mark: 'MG' }
 const EE = { name: 'Efficient Elements', vendor: 'Efficient Elements GmbH', tone: '#0f8f7e', mark: 'EE' }
 

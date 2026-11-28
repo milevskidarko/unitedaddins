@@ -338,7 +338,8 @@
   line-height: 1.25;
   color: #e6ecff;
 }
-.merge__node--foxit { color: #ff8a5c; font-style: italic; }
+.merge__node--foxit { display: inline-flex; padding-block: 3px; }
+.merge__node--foxit img { display: block; height: 15px; width: auto; }
 .merge__node--cat { color: #b6c4ec; font-weight: 600; }
 .merge__lines { width: 100%; height: 100%; overflow: visible; }
 .merge__line {
