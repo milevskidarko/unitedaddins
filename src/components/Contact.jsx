@@ -1,22 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { Arrow, Check, Mail } from './Icons.jsx'
 import { L, useT, useLang } from '../i18n.jsx'
 import { PRODUCTS as MORE_PRODUCTS } from '../products.js'
+import { SALES_EMAIL, TURNSTILE_SITE_KEY, CONFETTI, sendForm, useTurnstile } from '../sendForm.js'
 import './Contact.css'
-
-const SALES_EMAIL = 'salesemea@unitedaddins.com'
-
-// Quote requests go to our own Vercel function (/api/quote → Resend e-mail, protected by
-// Cloudflare Turnstile). Until that is configured (no RESEND_API_KEY on Vercel, or local
-// `npm run dev` without functions), requests fall back to FormSubmit as before.
-const API_ENDPOINT = '/api/quote'
-const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || ''
-// FormSubmit sends straight to salesemea@ (the address is public on the site anyway). The old
-// alias '29844412…' was most likely the developer's test inbox (a test landed there, Nov 2026).
-// Can be overridden in .env.local (VITE_FORM_EMAIL=you@example.com) for local testing.
-// Only in `npm run dev`: a production build (e.g. for upload to cPanel) always sends to sales,
-// even when .env.local is present on the machine that builds it.
-const FALLBACK_ENDPOINT = `https://formsubmit.co/ajax/${(import.meta.env.DEV && import.meta.env.VITE_FORM_EMAIL) || SALES_EMAIL}`
 
 // Product names are the same in every language (they are also the keys of the quote).
 const PRODUCTS = [
@@ -27,32 +14,11 @@ const PRODUCTS = [
   { name: 'Mekko Graphics', tone: 'navy' },
   { name: 'Efficient Elements', color: '#0f8f7e' },
   // Further products (products.js): listed under "More products" so the core ones stay up front.
-  ...MORE_PRODUCTS.map((p) => ({ name: p.name, color: p.tone, more: true, notes: { en: p.en.note, de: p.de.note, fr: p.fr.note, es: p.es.note, nl: p.nl.note } })),
+  ...MORE_PRODUCTS.map((p) => ({ name: p.name, color: p.tone, more: true, source: p })),
 ]
-// Request types: the key is what the sales team receives (always English).
-const TYPE_KEYS = ['New purchase', 'Renewal', 'Upgrade', 'Add seats']
-const TYPE_FIELDS = {
-  'New purchase': [],
-  Renewal: [
-    { name: 'expiryDate', type: 'date' },
-    { name: 'reference', type: 'text' },
-  ],
-  Upgrade: [
-    { name: 'currentPlan', type: 'select', options: ['Foxit PDF Editor', 'Foxit PDF Editor+', 'Foxit eSign', 'Mekko Graphics', 'Efficient Elements', ...MORE_PRODUCTS.map((p) => p.name), 'other'] },
-    { name: 'reference', type: 'text' },
-  ],
-  'Add seats': [
-    { name: 'currentSeats', type: 'number' },
-    { name: 'reference', type: 'text' },
-  ],
-}
-// Labels in the e-mail to the sales team (English).
-const FIELD_LABELS = {
-  expiryDate: 'Current subscription expires',
-  reference: 'Order / license reference',
-  currentPlan: 'Current plan',
-  currentSeats: 'Licenses they have now',
-}
+// The web form is for new purchases only: renewals, upgrades and added seats come from existing
+// customers, who contact their account manager directly (feedback from sales, Nov 2026).
+const REQUEST_TYPE = 'New purchase'
 const MAX_SEATS = 9999
 
 const T = {
@@ -61,7 +27,7 @@ const T = {
     title: 'Let’s find the right software for',
     accent: 'your team.',
     lead: 'Pick your products and number of licenses — we’ll come back with a tailored quote.',
-    list: ['Subscription and perpetual licensing for any team size', 'Renewals, upgrades and added seats', 'Advice on the right plan for your needs'],
+    list: ['Subscription and perpetual licensing for any team size', 'One contact for Foxit, Mekko Graphics and more', 'Advice on the right plan for your needs'],
     nextLabel: 'What happens next',
     // No response times promised on purpose — add one only if the team commits to it.
     next: [
@@ -69,20 +35,8 @@ const T = {
       ['You get a tailored quote', 'Clear pricing for your team, with options if there is a better fit.'],
       ['Licensing & onboarding', 'We deliver your licenses and help you get up and running.'],
     ],
-    types: {
-      'New purchase': { label: 'New purchase', hint: 'Buying licenses for the first time.', legend: 'Products & licenses', unit: ['license', 'licenses'] },
-      Renewal: { label: 'Renewal', hint: 'Renew your existing subscription — we will review your current terms.', legend: 'Products to renew', unit: ['license to renew', 'licenses to renew'] },
-      Upgrade: { label: 'Upgrade', hint: 'Move to a higher plan, for example from PDF Editor to PDF Editor+.', legend: 'Upgrade to', unit: ['license to upgrade', 'licenses to upgrade'] },
-      'Add seats': { label: 'Add seats', hint: 'Add licenses to the subscription you already have.', legend: 'Products & additional licenses', unit: ['additional license', 'additional licenses'] },
-    },
-    fields: {
-      expiryDate: 'Current subscription expires',
-      reference: 'Order or license reference (optional)',
-      currentPlan: 'Current plan',
-      currentSeats: 'Licenses you have now',
-      other: 'Other / not sure',
-      select: 'Select',
-    },
+    legend: '1. Products & licenses',
+    unit: ['license', 'licenses'],
     notes: {
       'Foxit PDF Editor': 'Windows, macOS, Web',
       'Foxit PDF Editor+': '+ mobile, Smart Redact, eSign',
@@ -99,8 +53,7 @@ const T = {
     fewer: 'Fewer licenses',
     more: 'More licenses',
     number: (p) => `Number of ${p} licenses`,
-    step1: '1. Request type',
-    step3: '3. Your details',
+    step2: '2. Your details',
     none: 'No products selected yet.',
     notSure: 'Not sure? Find your plan →',
     firstName: 'First name',
@@ -124,27 +77,15 @@ const T = {
     title: 'Finden wir die richtige Software für',
     accent: 'Ihr Team.',
     lead: 'Wählen Sie Produkte und Anzahl der Lizenzen — wir melden uns mit einem individuellen Angebot.',
-    list: ['Abonnement- und Dauerlizenzen für jede Teamgröße', 'Verlängerungen, Upgrades und zusätzliche Lizenzen', 'Beratung zum passenden Plan für Ihren Bedarf'],
+    list: ['Abonnement- und Dauerlizenzen für jede Teamgröße', 'Ein Ansprechpartner für Foxit, Mekko Graphics und mehr', 'Beratung zum passenden Plan für Ihren Bedarf'],
     nextLabel: 'So geht es weiter',
     next: [
       ['Wir prüfen Ihre Anfrage', 'Ein Lizenzspezialist prüft Produkte, Lizenzanzahl und Ihre aktuelle Umgebung.'],
       ['Sie erhalten ein individuelles Angebot', 'Klare Preise für Ihr Team — mit Alternativen, falls es eine bessere Lösung gibt.'],
       ['Lizenzierung & Einführung', 'Wir liefern Ihre Lizenzen und helfen Ihnen beim Start.'],
     ],
-    types: {
-      'New purchase': { label: 'Neukauf', hint: 'Sie kaufen zum ersten Mal Lizenzen.', legend: 'Produkte & Lizenzen', unit: ['Lizenz', 'Lizenzen'] },
-      Renewal: { label: 'Verlängerung', hint: 'Verlängern Sie Ihr bestehendes Abonnement — wir prüfen Ihre aktuellen Konditionen.', legend: 'Zu verlängernde Produkte', unit: ['Lizenz zu verlängern', 'Lizenzen zu verlängern'] },
-      Upgrade: { label: 'Upgrade', hint: 'Wechsel in einen höheren Plan, z. B. von PDF Editor zu PDF Editor+.', legend: 'Upgrade auf', unit: ['Lizenz für Upgrade', 'Lizenzen für Upgrade'] },
-      'Add seats': { label: 'Mehr Lizenzen', hint: 'Fügen Sie Ihrem bestehenden Abonnement Lizenzen hinzu.', legend: 'Produkte & zusätzliche Lizenzen', unit: ['zusätzliche Lizenz', 'zusätzliche Lizenzen'] },
-    },
-    fields: {
-      expiryDate: 'Aktuelles Abonnement läuft ab am',
-      reference: 'Bestell- oder Lizenznummer (optional)',
-      currentPlan: 'Aktueller Plan',
-      currentSeats: 'Aktuelle Anzahl Lizenzen',
-      other: 'Anderer / unsicher',
-      select: 'Auswählen',
-    },
+    legend: '1. Produkte & Lizenzen',
+    unit: ['Lizenz', 'Lizenzen'],
     notes: {
       'Foxit PDF Editor': 'Windows, macOS, Web',
       'Foxit PDF Editor+': '+ Mobil, Smart Redact, eSign',
@@ -161,8 +102,7 @@ const T = {
     fewer: 'Weniger Lizenzen',
     more: 'Mehr Lizenzen',
     number: (p) => `Anzahl der Lizenzen für ${p}`,
-    step1: '1. Art der Anfrage',
-    step3: '3. Ihre Angaben',
+    step2: '2. Ihre Angaben',
     none: 'Noch keine Produkte ausgewählt.',
     notSure: 'Unsicher? Plan finden →',
     firstName: 'Vorname',
@@ -186,27 +126,15 @@ const T = {
     title: 'Trouvons le bon logiciel pour',
     accent: 'votre équipe.',
     lead: 'Choisissez vos produits et le nombre de licences — nous revenons vers vous avec un devis sur mesure.',
-    list: ['Abonnements et licences perpétuelles pour toutes les tailles d’équipe', 'Renouvellements, mises à niveau et postes supplémentaires', 'Conseils sur l’offre adaptée à vos besoins'],
+    list: ['Abonnements et licences perpétuelles pour toutes les tailles d’équipe', 'Un seul interlocuteur pour Foxit, Mekko Graphics et plus', 'Conseils sur l’offre adaptée à vos besoins'],
     nextLabel: 'Les étapes suivantes',
     next: [
       ['Nous étudions votre demande', 'Un spécialiste des licences vérifie vos produits, le nombre de postes et votre configuration actuelle.'],
       ['Vous recevez un devis sur mesure', 'Des prix clairs pour votre équipe, avec des alternatives s’il existe une meilleure option.'],
       ['Licences et mise en route', 'Nous livrons vos licences et vous aidons à démarrer.'],
     ],
-    types: {
-      'New purchase': { label: 'Nouvel achat', hint: 'Vous achetez des licences pour la première fois.', legend: 'Produits et licences', unit: ['licence', 'licences'] },
-      Renewal: { label: 'Renouvellement', hint: 'Renouvelez votre abonnement existant — nous examinerons vos conditions actuelles.', legend: 'Produits à renouveler', unit: ['licence à renouveler', 'licences à renouveler'] },
-      Upgrade: { label: 'Mise à niveau', hint: 'Passez à une offre supérieure, par exemple de PDF Editor à PDF Editor+.', legend: 'Mise à niveau vers', unit: ['licence à mettre à niveau', 'licences à mettre à niveau'] },
-      'Add seats': { label: 'Postes supplémentaires', hint: 'Ajoutez des licences à votre abonnement existant.', legend: 'Produits et licences supplémentaires', unit: ['licence supplémentaire', 'licences supplémentaires'] },
-    },
-    fields: {
-      expiryDate: 'Expiration de l’abonnement actuel',
-      reference: 'Référence de commande ou de licence (facultatif)',
-      currentPlan: 'Offre actuelle',
-      currentSeats: 'Nombre de licences actuel',
-      other: 'Autre / je ne sais pas',
-      select: 'Choisir',
-    },
+    legend: '1. Produits et licences',
+    unit: ['licence', 'licences'],
     notes: {
       'Foxit PDF Editor': 'Windows, macOS, Web',
       'Foxit PDF Editor+': '+ mobile, Smart Redact, eSign',
@@ -223,8 +151,7 @@ const T = {
     fewer: 'Moins de licences',
     more: 'Plus de licences',
     number: (p) => `Nombre de licences ${p}`,
-    step1: '1. Type de demande',
-    step3: '3. Vos coordonnées',
+    step2: '2. Vos coordonnées',
     none: 'Aucun produit sélectionné.',
     notSure: 'Vous hésitez ? Trouver votre offre →',
     firstName: 'Prénom',
@@ -248,27 +175,15 @@ const T = {
     title: 'Encontremos el software adecuado para',
     accent: 'su equipo.',
     lead: 'Elija sus productos y el número de licencias — le enviaremos un presupuesto a medida.',
-    list: ['Licencias por suscripción y perpetuas para equipos de cualquier tamaño', 'Renovaciones, actualizaciones y puestos adicionales', 'Asesoramiento sobre el plan adecuado para sus necesidades'],
+    list: ['Licencias por suscripción y perpetuas para equipos de cualquier tamaño', 'Un solo contacto para Foxit, Mekko Graphics y más', 'Asesoramiento sobre el plan adecuado para sus necesidades'],
     nextLabel: 'Próximos pasos',
     next: [
       ['Revisamos su solicitud', 'Un especialista en licencias comprueba sus productos, puestos y configuración actual.'],
       ['Recibe un presupuesto a medida', 'Precios claros para su equipo, con alternativas si hay una opción mejor.'],
       ['Licencias y puesta en marcha', 'Le entregamos las licencias y le ayudamos a empezar.'],
     ],
-    types: {
-      'New purchase': { label: 'Nueva compra', hint: 'Compra licencias por primera vez.', legend: 'Productos y licencias', unit: ['licencia', 'licencias'] },
-      Renewal: { label: 'Renovación', hint: 'Renueve su suscripción actual — revisaremos sus condiciones vigentes.', legend: 'Productos a renovar', unit: ['licencia a renovar', 'licencias a renovar'] },
-      Upgrade: { label: 'Actualización', hint: 'Pase a un plan superior, por ejemplo de PDF Editor a PDF Editor+.', legend: 'Actualizar a', unit: ['licencia a actualizar', 'licencias a actualizar'] },
-      'Add seats': { label: 'Más puestos', hint: 'Añada licencias a la suscripción que ya tiene.', legend: 'Productos y licencias adicionales', unit: ['licencia adicional', 'licencias adicionales'] },
-    },
-    fields: {
-      expiryDate: 'Vencimiento de la suscripción actual',
-      reference: 'Referencia de pedido o licencia (opcional)',
-      currentPlan: 'Plan actual',
-      currentSeats: 'Licencias que tiene ahora',
-      other: 'Otro / no estoy seguro',
-      select: 'Seleccionar',
-    },
+    legend: '1. Productos y licencias',
+    unit: ['licencia', 'licencias'],
     notes: {
       'Foxit PDF Editor': 'Windows, macOS, Web',
       'Foxit PDF Editor+': '+ móvil, Smart Redact, eSign',
@@ -285,8 +200,7 @@ const T = {
     fewer: 'Menos licencias',
     more: 'Más licencias',
     number: (p) => `Número de licencias de ${p}`,
-    step1: '1. Tipo de solicitud',
-    step3: '3. Sus datos',
+    step2: '2. Sus datos',
     none: 'Aún no ha seleccionado productos.',
     notSure: '¿No está seguro? Encuentre su plan →',
     firstName: 'Nombre',
@@ -310,27 +224,15 @@ const T = {
     title: 'Laten we de juiste software vinden voor',
     accent: 'uw team.',
     lead: 'Kies uw producten en het aantal licenties — wij komen terug met een offerte op maat.',
-    list: ['Abonnementen en eeuwigdurende licenties voor elke teamgrootte', 'Verlengingen, upgrades en extra gebruikers', 'Advies over het juiste abonnement voor uw behoeften'],
+    list: ['Abonnementen en eeuwigdurende licenties voor elke teamgrootte', 'Eén aanspreekpunt voor Foxit, Mekko Graphics en meer', 'Advies over het juiste abonnement voor uw behoeften'],
     nextLabel: 'Zo gaat het verder',
     next: [
       ['Wij bekijken uw aanvraag', 'Een licentiespecialist controleert uw producten, aantal gebruikers en huidige situatie.'],
       ['U ontvangt een offerte op maat', 'Duidelijke prijzen voor uw team, met alternatieven als er een betere optie is.'],
       ['Licenties en implementatie', 'Wij leveren uw licenties en helpen u op weg.'],
     ],
-    types: {
-      'New purchase': { label: 'Nieuwe aankoop', hint: 'U koopt voor het eerst licenties.', legend: 'Producten en licenties', unit: ['licentie', 'licenties'] },
-      Renewal: { label: 'Verlenging', hint: 'Verleng uw bestaande abonnement — wij bekijken uw huidige voorwaarden.', legend: 'Te verlengen producten', unit: ['licentie te verlengen', 'licenties te verlengen'] },
-      Upgrade: { label: 'Upgrade', hint: 'Stap over naar een hoger abonnement, bijvoorbeeld van PDF Editor naar PDF Editor+.', legend: 'Upgrade naar', unit: ['licentie te upgraden', 'licenties te upgraden'] },
-      'Add seats': { label: 'Extra gebruikers', hint: 'Voeg licenties toe aan uw bestaande abonnement.', legend: 'Producten en extra licenties', unit: ['extra licentie', 'extra licenties'] },
-    },
-    fields: {
-      expiryDate: 'Huidig abonnement verloopt op',
-      reference: 'Order- of licentienummer (optioneel)',
-      currentPlan: 'Huidig abonnement',
-      currentSeats: 'Huidig aantal licenties',
-      other: 'Anders / weet ik niet',
-      select: 'Kiezen',
-    },
+    legend: '1. Producten en licenties',
+    unit: ['licentie', 'licenties'],
     notes: {
       'Foxit PDF Editor': 'Windows, macOS, Web',
       'Foxit PDF Editor+': '+ mobiel, Smart Redact, eSign',
@@ -347,8 +249,7 @@ const T = {
     fewer: 'Minder licenties',
     more: 'Meer licenties',
     number: (p) => `Aantal licenties voor ${p}`,
-    step1: '1. Soort aanvraag',
-    step3: '3. Uw gegevens',
+    step2: '2. Uw gegevens',
     none: 'Nog geen producten geselecteerd.',
     notSure: 'Twijfelt u? Vind uw abonnement →',
     firstName: 'Voornaam',
@@ -367,69 +268,111 @@ const T = {
     again: 'Nog een aanvraag versturen',
     explore: 'Terug naar de startpagina',
   },
+  it: {
+    eyebrow: 'Componi il tuo preventivo',
+    title: 'Troviamo il software giusto per',
+    accent: 'il tuo team.',
+    lead: 'Scegli i prodotti e il numero di licenze — ti risponderemo con un preventivo su misura.',
+    list: ['Licenze in abbonamento e perpetue per team di ogni dimensione', 'Un unico referente per Foxit, Mekko Graphics e altro', 'Consulenza sul piano più adatto alle tue esigenze'],
+    nextLabel: 'Cosa succede dopo',
+    next: [
+      ['Esaminiamo la tua richiesta', 'Uno specialista delle licenze verifica prodotti, numero di utenti e configurazione attuale.'],
+      ['Ricevi un preventivo su misura', 'Prezzi chiari per il tuo team, con alternative se esiste una soluzione migliore.'],
+      ['Licenze e avvio', 'Consegniamo le licenze e ti aiutiamo a partire.'],
+    ],
+    legend: '1. Prodotti e licenze',
+    unit: ['licenza', 'licenze'],
+    notes: {
+      'Foxit PDF Editor': 'Windows, macOS, Web',
+      'Foxit PDF Editor+': '+ mobile, Smart Redact, eSign',
+      'Foxit eSign': 'Modelli, invio massivo, audit trail',
+      'Mekko Graphics': 'Componente aggiuntivo per PowerPoint ed Excel',
+      'Efficient Elements': 'Componente aggiuntivo per PowerPoint',
+    },
+    perpetualNote: 'Windows e macOS · licenza una tantum',
+    moreProducts: (n) => `Altri prodotti (${n})`,
+    fewerProducts: 'Meno prodotti',
+    licenseType: 'tipo di licenza',
+    subscription: 'Abbonamento',
+    perpetual: 'Perpetua (una tantum)',
+    fewer: 'Meno licenze',
+    more: 'Più licenze',
+    number: (p) => `Numero di licenze ${p}`,
+    step2: '2. I tuoi dati',
+    none: 'Nessun prodotto selezionato.',
+    notSure: 'Non sei sicuro? Trova il tuo piano →',
+    firstName: 'Nome',
+    lastName: 'Cognome',
+    email: 'E-mail aziendale',
+    company: 'Azienda',
+    message: 'Messaggio (facoltativo)',
+    submit: 'Richiedi un preventivo',
+    sending: 'Invio in corso…',
+    pickProduct: 'Seleziona almeno un prodotto per il preventivo.',
+    verify: 'Un momento — stiamo verificando che tu non sia un robot.',
+    error: `Qualcosa è andato storto. Riprova o scrivici a ${SALES_EMAIL}.`,
+    doneTitle: 'Grazie!',
+    doneText: 'Abbiamo ricevuto la tua richiesta di preventivo. Uno specialista delle licenze ti risponderà via e-mail.',
+    doneSummary: 'La tua richiesta',
+    again: 'Invia un’altra richiesta',
+    explore: 'Torna alla home',
+  },
+  pl: {
+    eyebrow: 'Przygotuj wycenę',
+    title: 'Znajdźmy odpowiednie oprogramowanie dla',
+    accent: 'Twojego zespołu.',
+    lead: 'Wybierz produkty i liczbę licencji — przygotujemy dla Ciebie indywidualną wycenę.',
+    list: ['Licencje subskrypcyjne i wieczyste dla zespołów każdej wielkości', 'Jeden kontakt dla Foxit, Mekko Graphics i innych', 'Doradztwo w wyborze planu dopasowanego do Twoich potrzeb'],
+    nextLabel: 'Co dalej',
+    next: [
+      ['Analizujemy zapytanie', 'Specjalista ds. licencji sprawdza produkty, liczbę stanowisk i obecne środowisko.'],
+      ['Otrzymujesz indywidualną wycenę', 'Przejrzyste ceny dla Twojego zespołu, z alternatywami, jeśli istnieje lepsze rozwiązanie.'],
+      ['Licencje i wdrożenie', 'Dostarczamy licencje i pomagamy w szybkim starcie.'],
+    ],
+    legend: '1. Produkty i licencje',
+    // Polish has three plural forms; the form shows the count next to it, so "licencja / licencje" reads fine.
+    unit: ['licencja', 'licencje'],
+    notes: {
+      'Foxit PDF Editor': 'Windows, macOS, Web',
+      'Foxit PDF Editor+': '+ mobilne, Smart Redact, eSign',
+      'Foxit eSign': 'Szablony, wysyłka masowa, ścieżki audytu',
+      'Mekko Graphics': 'Dodatek do PowerPoint i Excel',
+      'Efficient Elements': 'Dodatek do PowerPoint',
+    },
+    perpetualNote: 'Windows i macOS · licencja jednorazowa',
+    moreProducts: (n) => `Więcej produktów (${n})`,
+    fewerProducts: 'Mniej produktów',
+    licenseType: 'typ licencji',
+    subscription: 'Subskrypcja',
+    perpetual: 'Wieczysta (jednorazowo)',
+    fewer: 'Mniej licencji',
+    more: 'Więcej licencji',
+    number: (p) => `Liczba licencji ${p}`,
+    step2: '2. Twoje dane',
+    none: 'Nie wybrano jeszcze produktów.',
+    notSure: 'Nie wiesz, co wybrać? Znajdź swój plan →',
+    firstName: 'Imię',
+    lastName: 'Nazwisko',
+    email: 'Służbowy e-mail',
+    company: 'Firma',
+    message: 'Wiadomość (opcjonalnie)',
+    submit: 'Poproś o wycenę',
+    sending: 'Wysyłanie…',
+    pickProduct: 'Wybierz co najmniej jeden produkt do wyceny.',
+    verify: 'Chwileczkę — sprawdzamy, czy nie jesteś robotem.',
+    error: `Coś poszło nie tak. Spróbuj ponownie lub napisz do nas na ${SALES_EMAIL}.`,
+    doneTitle: 'Dziękujemy!',
+    doneText: 'Otrzymaliśmy Twoje zapytanie o wycenę. Specjalista ds. licencji odpowie Ci e-mailem.',
+    doneSummary: 'Twoje zapytanie',
+    again: 'Wyślij kolejne zapytanie',
+    explore: 'Wróć na stronę główną',
+  },
 }
 
-// Loads Cloudflare Turnstile once and renders the (mostly invisible) check into `el`.
-let turnstileScript
-function useTurnstile(enabled, lang) {
-  const ref = useRef(null)
-  const widget = useRef(null)
-  const [token, setToken] = useState('')
-  useEffect(() => {
-    if (!enabled || !TURNSTILE_SITE_KEY || !ref.current) return
-    let cancelled = false
-    turnstileScript ||= new Promise((resolve, reject) => {
-      const s = document.createElement('script')
-      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
-      s.async = true
-      s.onload = resolve
-      s.onerror = reject
-      document.head.appendChild(s)
-    })
-    turnstileScript
-      .then(() => {
-        if (cancelled || !ref.current || !window.turnstile) return
-        widget.current = window.turnstile.render(ref.current, {
-          sitekey: TURNSTILE_SITE_KEY,
-          theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light',
-          language: lang,
-          appearance: 'interaction-only',
-          callback: setToken,
-          'expired-callback': () => setToken(''),
-          'error-callback': () => setToken(''),
-        })
-      })
-      .catch(() => { /* blocked by an extension: the server decides */ })
-    return () => {
-      cancelled = true
-      if (widget.current != null && window.turnstile) window.turnstile.remove(widget.current)
-      widget.current = null
-      setToken('')
-    }
-  }, [enabled, lang])
-  const reset = () => {
-    setToken('')
-    if (widget.current != null && window.turnstile) window.turnstile.reset(widget.current)
-  }
-  return { ref, token, reset }
-}
-
-// A short burst of confetti behind the success check (skipped with reduced motion via CSS).
 function Confetti() {
-  const pieces = Array.from({ length: 28 }, (_, i) => {
-    const angle = (i / 28) * Math.PI * 2
-    const dist = 90 + ((i * 37) % 70)
-    return {
-      '--x': `${Math.cos(angle) * dist}px`,
-      '--y': `${Math.sin(angle) * dist - 30}px`,
-      '--r': `${(i * 67) % 360}deg`,
-      '--c': ['#2449e8', '#60a5fa', '#7c5cff', '#22c55e', '#ff5f1f', '#ffc145'][i % 6],
-      '--delay': `${(i % 5) * 0.03}s`,
-    }
-  })
   return (
     <span className="confetti" aria-hidden="true">
-      {pieces.map((style, i) => <i key={i} style={style} />)}
+      {CONFETTI.map((style, i) => <i key={i} style={style} />)}
     </span>
   )
 }
@@ -444,23 +387,19 @@ export default function Contact({ quote, setQuote }) {
   const turnstile = useTurnstile(!sent, lang)
 
   const items = quote.items
-  const typeKey = quote.type
-  const type = t.types[typeKey]
-  const fields = TYPE_FIELDS[typeKey]
   const selected = PRODUCTS.filter((p) => items[p.name])
   // Extra products are folded away unless opened or already picked (e.g. from a product page).
   const moreCount = PRODUCTS.filter((p) => p.more).length
   const visibleProducts = PRODUCTS.filter((p) => !p.more || showMore || items[p.name])
-  const noteFor = (p) => (p.notes ? p.notes[lang] || p.notes.en : t.notes[p.name])
+  const noteFor = (p) => (p.source ? (p.source[lang] || p.source.en).note : t.notes[p.name])
   const isPerpetual = (p) => p.perpetual && quote.perpetual
-  const unitFor = (n) => type.unit[n === 1 ? 0 : 1]
+  const unitFor = (n) => t.unit[n === 1 ? 0 : 1]
   const summary = selected
     .map((p) => `${p.name}${isPerpetual(p) ? ` (${t.perpetual})` : ''} × ${items[p.name]} ${unitFor(items[p.name])}`)
     .join(', ')
   // The sales team always gets the request in English.
-  const enType = T.en.types[typeKey]
   const summaryEn = selected
-    .map((p) => `${p.name}${isPerpetual(p) ? ' (perpetual)' : ''} × ${items[p.name]} ${enType.unit[items[p.name] === 1 ? 0 : 1]}`)
+    .map((p) => `${p.name}${isPerpetual(p) ? ' (perpetual)' : ''} × ${items[p.name]} ${T.en.unit[items[p.name] === 1 ? 0 : 1]}`)
     .join(', ')
   const perpetualProduct = selected.find((p) => p.perpetual)
 
@@ -486,22 +425,17 @@ export default function Contact({ quote, setQuote }) {
       setError(t.pickProduct)
       return
     }
-    if (TURNSTILE_SITE_KEY && window.turnstile && !turnstile.token) {
+    if (turnstile.pending()) {
       setError(t.verify)
       return
     }
 
     const details = {
-      'Request type': typeKey,
+      'Request type': REQUEST_TYPE,
       Products: summaryEn,
       ...(perpetualProduct && {
         [`${perpetualProduct.name} license`]: quote.perpetual ? 'Perpetual (one-time purchase)' : 'Subscription',
       }),
-      ...Object.fromEntries(
-        fields
-          .filter((f) => data[f.name])
-          .map((f) => [FIELD_LABELS[f.name], data[f.name] === 'other' ? 'Other / not sure' : data[f.name]])
-      ),
       'First name': data.firstName,
       'Last name': data.lastName,
       Email: data.email,
@@ -509,33 +443,21 @@ export default function Contact({ quote, setQuote }) {
       Message: data.message,
       Language: lang.toUpperCase(),
     }
-    const subject = `${typeKey} — ${summaryEn} (${data.company || data.email})`
 
     setSending(true)
     setError('')
     try {
-      let res = await fetch(API_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ subject, replyTo: data.email, details, turnstileToken: turnstile.token, website: data._honey }),
-      }).catch(() => null)
-      const isJson = res?.headers.get('content-type')?.includes('application/json')
-      let json = isJson ? await res.json().catch(() => ({})) : {}
-
-      // Our function is not deployed/configured yet → send through FormSubmit instead.
-      if (!res || !isJson || json.fallback) {
-        res = await fetch(FALLBACK_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ _subject: subject, _replyto: data.email, _template: 'table', _captcha: 'false', ...details }),
-        })
-        json = await res.json().catch(() => ({}))
-      }
-      if (!res.ok || json.success === 'false' || json.success === false || json.ok === false) throw new Error(json.message)
-
+      await sendForm({
+        kind: 'quote',
+        subject: `${REQUEST_TYPE} — ${summaryEn} (${data.company || data.email})`,
+        replyTo: data.email,
+        details,
+        turnstileToken: turnstile.token,
+        honey: data._honey,
+      })
       form.reset()
-      setSent({ type: type.label, summary })
-      setQuote({ items: {}, type: 'New purchase', perpetual: false })
+      setSent({ summary })
+      setQuote({ items: {}, perpetual: false })
     } catch {
       setError(t.error)
       turnstile.reset()
@@ -589,7 +511,7 @@ export default function Contact({ quote, setQuote }) {
                 <p>{t.doneText}</p>
                 {sent.summary && (
                   <div className="form__done-summary">
-                    <small>{t.doneSummary} · {sent.type}</small>
+                    <small>{t.doneSummary}</small>
                     <strong>{sent.summary}</strong>
                   </div>
                 )}
@@ -603,48 +525,7 @@ export default function Contact({ quote, setQuote }) {
             ) : (
               <>
                 <fieldset className="qb">
-                  <legend>{t.step1}</legend>
-                  <div className="qb__types" role="radiogroup" aria-label={t.step1}>
-                    {TYPE_KEYS.map((k) => (
-                      <button
-                        key={k}
-                        type="button"
-                        role="radio"
-                        aria-checked={typeKey === k}
-                        className={`qb__type ${typeKey === k ? 'is-active' : ''}`}
-                        onClick={() => setQuote((q) => ({ ...q, type: k }))}
-                      >
-                        {t.types[k].label}
-                      </button>
-                    ))}
-                  </div>
-                  <p className="qb__hint" key={typeKey}>{type.hint}</p>
-                  {fields.length > 0 && (
-                    <div className="qb__extra form__row" key={`f-${typeKey}`}>
-                      {fields.map((f) => (
-                        <label key={f.name}>
-                          <span>{t.fields[f.name]}</span>
-                          {f.type === 'select' ? (
-                            <select name={f.name} defaultValue="">
-                              <option value="" disabled>{t.fields.select}</option>
-                              {f.options.map((o) => <option key={o} value={o}>{o === 'other' ? t.fields.other : o}</option>)}
-                            </select>
-                          ) : (
-                            <input
-                              name={f.name}
-                              type={f.type}
-                              min={f.type === 'number' ? 1 : undefined}
-                              inputMode={f.type === 'number' ? 'numeric' : undefined}
-                            />
-                          )}
-                        </label>
-                      ))}
-                    </div>
-                  )}
-                </fieldset>
-
-                <fieldset className="qb">
-                  <legend>2. {type.legend}</legend>
+                  <legend>{t.legend}</legend>
                   <div className="qb__products">
                     {visibleProducts.map((p) => {
                       const on = Boolean(items[p.name])
@@ -683,7 +564,7 @@ export default function Contact({ quote, setQuote }) {
                             </div>
                           )}
                           {on && (
-                            <div className="qb__seats" title={type.unit[1]}>
+                            <div className="qb__seats" title={t.unit[1]}>
                               <button type="button" onClick={() => setSeats(p.name, items[p.name] - 1)} aria-label={t.fewer}>−</button>
                               <input
                                 type="number"
@@ -711,13 +592,13 @@ export default function Contact({ quote, setQuote }) {
                     {showMore ? t.fewerProducts : t.moreProducts(moreCount)}
                   </button>
                   <p className={`qb__summary ${summary ? 'has-items' : ''}`}>
-                    {summary ? <><strong>{type.label}:</strong> {summary}</> : t.none}
+                    {summary || t.none}
                     {' '}<L to="/foxit#plan">{t.notSure}</L>
                   </p>
                 </fieldset>
 
                 <fieldset className="qb">
-                  <legend>{t.step3}</legend>
+                  <legend>{t.step2}</legend>
                   <div className="qb__fields">
                     <div className="form__row">
                       <label>

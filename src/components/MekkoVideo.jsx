@@ -47,6 +47,22 @@ const T = {
     play: 'Video afspelen',
     note: 'Video van Mekko Graphics, in het Engels. Bij afspelen wordt YouTube geladen.',
   },
+  it: {
+    eyebrow: 'Guardalo in azione',
+    title: 'Mekko Graphics',
+    accent: 'tour del prodotto',
+    lead: 'Scopri come creare grafici più efficaci e risparmiare tempo con Mekko Graphics per Windows.',
+    play: 'Riproduci il video',
+    note: 'Video di Mekko Graphics, in inglese. La riproduzione carica YouTube.',
+  },
+  pl: {
+    eyebrow: 'Zobacz w działaniu',
+    title: 'Mekko Graphics',
+    accent: 'prezentacja produktu',
+    lead: 'Zobacz, jak tworzyć bardziej przekonujące wykresy i oszczędzać czas z Mekko Graphics dla Windows.',
+    play: 'Odtwórz wideo',
+    note: 'Wideo od Mekko Graphics, w języku angielskim. Odtworzenie wczytuje YouTube.',
+  },
 }
 
 export default function MekkoVideo() {

@@ -78,6 +78,7 @@
 [data-theme='dark'] .need__icon { background: #1a2656; }
 /* Dark wordmarks/icons would vanish on the dark card: lighten them while keeping hues. */
 [data-theme='dark'] .brand--mm img,
+[data-theme='dark'] .brand--mekko img,
 [data-theme='dark'] .brand--progecad img { filter: invert(1) hue-rotate(180deg) brightness(1.15); }
 [data-theme='dark'] .brand--progecad span { color: #e6e9f5; }
 [data-theme='dark'] .brand--progecad b { color: #ff4d6a; }
@@ -145,3 +146,10 @@
 [data-theme='dark'] .prod__why { background: var(--surface); border: 1px solid var(--line); }
 [data-theme='dark'] .pcard:hover { border-color: color-mix(in srgb, var(--tone) 55%, var(--line)); }
 [data-theme='dark'] .qb__more { border-color: #2c3a70; }
+[data-theme='dark'] .pchip { background: var(--surface-2); border-color: #26336a; color: var(--ink-2); }
+[data-theme='dark'] .pchip.is-on { border-color: #7b9bff; color: #b7c8ff; background: #16224f; }
+[data-theme='dark'] .partners__lead { background: linear-gradient(120deg, #2a1a12, var(--surface-2) 70%); border-color: #5a3420; }
+[data-theme='dark'] .partners__lead:hover { border-color: #8a4a26; }
+[data-theme='dark'] .partners__lead-body { border-color: #5a3420; }
+[data-theme='dark'] .partners__lead-body small,
+[data-theme='dark'] .partners__lead-arrow { color: #ff8a47; }

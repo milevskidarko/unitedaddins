@@ -83,6 +83,36 @@ const T = {
     play: 'Video afspelen',
     note: 'Video’s van Foxit, in het Engels. Bij afspelen wordt YouTube geladen.',
   },
+  it: {
+    eyebrow: 'Guardalo in azione',
+    title: 'Scopri',
+    accent: 'Foxit PDF Editor',
+    lead: 'Brevi video ufficiali di Foxit — guarda come si svolge il lavoro quotidiano prima di acquistare.',
+    videos: [
+      ['Introduzione', 'Un giro della barra multifunzione, dell’area di lavoro e degli strumenti di modifica principali.'],
+      ['Modifica testo e immagini', 'Cambia testo, immagini e layout direttamente nel PDF.'],
+      ['Conversione e OCR', 'Trasforma i PDF in Word, Excel e altro — e rendi ricercabili le scansioni.'],
+      ['AI Assistant', 'Riassumi, traduci e automatizza il lavoro con Foxit AI.'],
+      ['Protezione e oscuramento', 'Password, autorizzazioni e oscuramento definitivo dei contenuti sensibili.'],
+    ],
+    play: 'Riproduci il video',
+    note: 'Video di Foxit, in inglese. La riproduzione di un video carica YouTube.',
+  },
+  pl: {
+    eyebrow: 'Zobacz w działaniu',
+    title: 'Poznaj',
+    accent: 'Foxit PDF Editor',
+    lead: 'Krótkie oficjalne filmy Foxit — zobacz przed zakupem, jak wygląda codzienna praca.',
+    videos: [
+      ['Wprowadzenie', 'Przegląd wstążki, obszaru roboczego i podstawowych narzędzi edycji.'],
+      ['Edycja tekstu i obrazów', 'Zmieniaj tekst, obrazy i układ bezpośrednio w pliku PDF.'],
+      ['Konwersja i OCR', 'Zamieniaj PDF na Word, Excel i inne formaty — i przeszukuj skany.'],
+      ['Asystent AI', 'Streszczaj, tłumacz i automatyzuj pracę z Foxit AI.'],
+      ['Ochrona i anonimizacja', 'Hasła, uprawnienia i trwałe usuwanie poufnych treści.'],
+    ],
+    play: 'Odtwórz wideo',
+    note: 'Filmy od Foxit, w języku angielskim. Odtworzenie filmu wczytuje YouTube.',
+  },
 }
 
 export default function FoxitVideos() {

@@ -22,6 +22,14 @@ const T = {
     label: 'Wat wij bieden',
     words: ['Bewerken', 'Converteren', 'Redigeren', 'eSign', 'Marimekko', 'Bar Mekko', 'Waterval', 'Licenties', 'Verlengingen', 'Upgrades', 'Support'],
   },
+  it: {
+    label: 'Di cosa ci occupiamo',
+    words: ['Modifica', 'Conversione', 'Oscuramento', 'eSign', 'Marimekko', 'Bar Mekko', 'Cascata', 'Licenze', 'Rinnovi', 'Upgrade', 'Supporto'],
+  },
+  pl: {
+    label: 'Czym się zajmujemy',
+    words: ['Edycja', 'Konwersja', 'Anonimizacja', 'eSign', 'Marimekko', 'Bar Mekko', 'Wykres kaskadowy', 'Licencje', 'Odnowienia', 'Aktualizacje', 'Wsparcie'],
+  },
 }
 
 // Endless, slowly scrolling band of what we cover. The list is rendered twice so the

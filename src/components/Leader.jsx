@@ -52,6 +52,24 @@ const T = {
     team: 'Spreek met ons salesteam',
     newTab: '(opent in een nieuw tabblad)',
   },
+  it: {
+    eyebrow: 'Chi siamo',
+    name: 'United Addins',
+    role: 'La nostra promessa a ogni cliente',
+    text: 'In United Addins crediamo che le relazioni commerciali solide si basino su fiducia, trasparenza e impegno. Il nostro obiettivo è rendere l’acquisto di licenze software semplice e affidabile, assicurando a ogni cliente l’attenzione e il supporto che merita. Diamo valore a ogni partnership e ci assumiamo la responsabilità di mantenere le nostre promesse.',
+    linkedin: 'Seguici su LinkedIn',
+    team: 'Parla con il nostro team commerciale',
+    newTab: '(si apre in una nuova scheda)',
+  },
+  pl: {
+    eyebrow: 'Kim jesteśmy',
+    name: 'United Addins',
+    role: 'Nasza obietnica dla każdego klienta',
+    text: 'W United Addins wierzymy, że silne relacje biznesowe opierają się na zaufaniu, przejrzystości i zaangażowaniu. Naszym celem jest to, by licencjonowanie oprogramowania było proste i niezawodne, a każdy klient otrzymywał uwagę i wsparcie, na jakie zasługuje. Cenimy każde partnerstwo i bierzemy odpowiedzialność za dotrzymywanie obietnic.',
+    linkedin: 'Obserwuj nas na LinkedIn',
+    team: 'Porozmawiaj z naszym działem sprzedaży',
+    newTab: '(otwiera się w nowej karcie)',
+  },
 }
 
 export default function Leader() {

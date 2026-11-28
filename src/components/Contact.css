@@ -384,3 +384,28 @@
   .qb__toggle { flex-basis: 100%; }
   .qb__seats { order: 2; margin: 0 0 4px 40px; }
 }
+
+/* Partner form: partnership types may be long words ("Softwarehersteller"), so they can wrap. */
+.qb__types--wrap .qb__type { white-space: normal; line-height: 1.2; height: auto; min-height: 40px; padding-block: 6px; }
+@media (max-width: 760px) {
+  .qb__types--wrap { grid-template-columns: repeat(2, 1fr); }
+}
+/* Partner form: products of interest as toggle chips. */
+.pchips { clear: both; display: flex; flex-wrap: wrap; gap: 8px; }
+.pchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1.5px solid #dfe5f3;
+  background: #fbfcff;
+  color: var(--ink-2);
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.pchip:hover { border-color: #b9c8f5; color: var(--blue); }
+.pchip.is-on { border-color: var(--blue); background: color-mix(in srgb, var(--blue) 8%, var(--surface)); color: var(--blue); }
+.pchip svg { width: 14px; height: 14px; stroke-width: 3; }

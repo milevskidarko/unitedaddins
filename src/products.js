@@ -8,16 +8,21 @@
 //   Without one, the tile shows `mark` (initials) — NXPowerLite, SketchUp and Steelray publish no
 //   usable square icon on their sites; ask the vendor (partner portal / press kit) for one.
 // Copy checked against each vendor's website (18 Nov 2026). No prices or versions on purpose.
-// French, Spanish and Dutch copy live in products.fr.js, products.es.js and products.nl.js.
+// French, Spanish, Dutch, Italian and Polish copy live in products.fr.js, .es.js, .nl.js, .it.js and .pl.js.
 import { PRODUCTS_FR } from './products.fr.js'
 import { PRODUCTS_ES } from './products.es.js'
 import { PRODUCTS_NL } from './products.nl.js'
+import { PRODUCTS_IT } from './products.it.js'
+import { PRODUCTS_PL } from './products.pl.js'
 
 export const CATEGORIES = {
-  docs: { en: 'Documents & PDF', de: 'Dokumente & PDF', fr: 'Documents et PDF', es: 'Documentos y PDF', nl: 'Documenten en PDF' },
-  design: { en: 'Design, CAD & diagrams', de: 'Design, CAD & Diagramme', fr: 'Design, CAO et diagrammes', es: 'Diseño, CAD y diagramas', nl: 'Ontwerp, CAD en diagrammen' },
-  plan: { en: 'Planning & projects', de: 'Planung & Projekte', fr: 'Planification et projets', es: 'Planificación y proyectos', nl: 'Planning en projecten' },
+  docs: { en: 'Documents & PDF', de: 'Dokumente & PDF', fr: 'Documents et PDF', es: 'Documentos y PDF', nl: 'Documenten en PDF', it: 'Documenti e PDF', pl: 'Dokumenty i PDF' },
+  design: { en: 'Design, CAD & diagrams', de: 'Design, CAD & Diagramme', fr: 'Design, CAO et diagrammes', es: 'Diseño, CAD y diagramas', nl: 'Ontwerp, CAD en diagrammen', it: 'Design, CAD e diagrammi', pl: 'Projektowanie, CAD i diagramy' },
+  plan: { en: 'Planning & projects', de: 'Planung & Projekte', fr: 'Planification et projets', es: 'Planificación y proyectos', nl: 'Planning en projecten', it: 'Pianificazione e progetti', pl: 'Planowanie i projekty' },
 }
+
+// Mekko Graphics and Efficient Elements share one "Presentations" section (menu, home, /products).
+export const PRESENTATIONS = { en: 'Presentations', de: 'Präsentationen', fr: 'Présentations', es: 'Presentaciones', nl: 'Presentaties', it: 'Presentazioni', pl: 'Prezentacje' }
 
 export const PRODUCTS = [
   {
@@ -331,4 +336,6 @@ PRODUCTS.forEach((p) => {
   p.fr = PRODUCTS_FR[p.slug]
   p.es = PRODUCTS_ES[p.slug]
   p.nl = PRODUCTS_NL[p.slug]
+  p.it = PRODUCTS_IT[p.slug]
+  p.pl = PRODUCTS_PL[p.slug]
 })

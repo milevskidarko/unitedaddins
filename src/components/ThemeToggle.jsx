@@ -9,6 +9,8 @@ const T = {
   fr: { toDark: 'Activer le mode sombre', toLight: 'Activer le mode clair' },
   es: { toDark: 'Activar modo oscuro', toLight: 'Activar modo claro' },
   nl: { toDark: 'Donkere modus inschakelen', toLight: 'Lichte modus inschakelen' },
+  it: { toDark: 'Attiva la modalità scura', toLight: 'Attiva la modalità chiara' },
+  pl: { toDark: 'Włącz tryb ciemny', toLight: 'Włącz tryb jasny' },
 }
 
 const current = () => document.documentElement.dataset.theme || 'light'

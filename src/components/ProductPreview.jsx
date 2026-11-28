@@ -7,6 +7,8 @@ const T = {
   fr: { edit: 'Modifier', steps: ['Envoyé', 'Consulté', 'Signé'], sign: 'Signer ici' },
   es: { edit: 'Editar', steps: ['Enviado', 'Visto', 'Firmado'], sign: 'Firme aquí' },
   nl: { edit: 'Bewerken', steps: ['Verzonden', 'Bekeken', 'Ondertekend'], sign: 'Hier ondertekenen' },
+  it: { edit: 'Modifica', steps: ['Inviato', 'Visualizzato', 'Firmato'], sign: 'Firma qui' },
+  pl: { edit: 'Edytuj', steps: ['Wysłano', 'Wyświetlono', 'Podpisano'], sign: 'Podpisz tutaj' },
 }
 
 // Small, stylized (illustrative) UI previews — one per Foxit product — so the three

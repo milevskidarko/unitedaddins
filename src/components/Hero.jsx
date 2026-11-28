@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useRef } from 'react'
-import { Arrow, Shield, Bolt, Headset, Check, Sign, Key } from './Icons.jsx'
+import { Arrow, Shield, Bolt, Headset, Check, Sign, Key, Award, Handshake } from './Icons.jsx'
 import { L, useT, useLang } from '../i18n.jsx'
 import './Hero.css'
 
@@ -34,6 +34,10 @@ const T = {
     quoteText: 'Foxit PDF Editor+ × 25 licenses',
     contractSigned: 'Contract signed',
     via: 'via Foxit eSign · just now',
+    caseTitle: '~650 users on Foxit',
+    caseText: 'Motor Presse Stuttgart · case study',
+    sinceTitle: 'Since 2012',
+    sinceText: 'Authorized Foxit distributor',
   },
   de: {
     title: [
@@ -56,6 +60,10 @@ const T = {
     quoteText: 'Foxit PDF Editor+ × 25 Lizenzen',
     contractSigned: 'Vertrag signiert',
     via: 'mit Foxit eSign · gerade eben',
+    caseTitle: '~650 Nutzer auf Foxit',
+    caseText: 'Motor Presse Stuttgart · Fallstudie',
+    sinceTitle: 'Seit 2012',
+    sinceText: 'Autorisierter Foxit-Distributor',
   },
   fr: {
     title: [
@@ -78,6 +86,10 @@ const T = {
     quoteText: 'Foxit PDF Editor+ × 25 licences',
     contractSigned: 'Contrat signé',
     via: 'via Foxit eSign · à l’instant',
+    caseTitle: '~650 utilisateurs sur Foxit',
+    caseText: 'Motor Presse Stuttgart · étude de cas',
+    sinceTitle: 'Depuis 2012',
+    sinceText: 'Distributeur agréé Foxit',
   },
   es: {
     title: [
@@ -100,6 +112,10 @@ const T = {
     quoteText: 'Foxit PDF Editor+ × 25 licencias',
     contractSigned: 'Contrato firmado',
     via: 'con Foxit eSign · ahora mismo',
+    caseTitle: '~650 usuarios en Foxit',
+    caseText: 'Motor Presse Stuttgart · caso de éxito',
+    sinceTitle: 'Desde 2012',
+    sinceText: 'Distribuidor autorizado de Foxit',
   },
   nl: {
     title: [
@@ -122,6 +138,62 @@ const T = {
     quoteText: 'Foxit PDF Editor+ × 25 licenties',
     contractSigned: 'Contract ondertekend',
     via: 'via Foxit eSign · zojuist',
+    caseTitle: '~650 gebruikers op Foxit',
+    caseText: 'Motor Presse Stuttgart · casestudy',
+    sinceTitle: 'Sinds 2012',
+    sinceText: 'Geautoriseerd Foxit-distributeur',
+  },
+  it: {
+    title: [
+      ['Il', 'software', 'giusto.'],
+      ['Il', 'partner', { accent: 'giusto.' }],
+    ],
+    pill: 'Partner per licenze e distribuzione software',
+    lead: 'Aiutiamo le organizzazioni a trovare, acquistare in licenza e sfruttare al meglio soluzioni software affidabili — dal PDF e la firma elettronica alla visualizzazione dei dati di livello consulenziale.',
+    explore: 'Scopri le nostre soluzioni',
+    talk: 'Parla con il nostro team',
+    trust: [
+      ['Sicuro e affidabile', 'Livello enterprise'],
+      ['Licenze flessibili', 'Per team di ogni dimensione'],
+      ['Supporto esperto', 'Quando ti serve'],
+    ],
+    contract: 'Contratto di servizio.pdf',
+    signed: 'Firmato',
+    market: 'Quote di mercato.pptx',
+    quoteSent: 'Richiesta di preventivo inviata',
+    quoteText: 'Foxit PDF Editor+ × 25 licenze',
+    contractSigned: 'Contratto firmato',
+    via: 'con Foxit eSign · proprio ora',
+    caseTitle: '~650 utenti su Foxit',
+    caseText: 'Motor Presse Stuttgart · caso di studio',
+    sinceTitle: 'Dal 2012',
+    sinceText: 'Distributore autorizzato Foxit',
+  },
+  pl: {
+    title: [
+      ['Właściwe', 'oprogramowanie.'],
+      ['Właściwy', { accent: 'partner.' }],
+    ],
+    pill: 'Partner w licencjonowaniu i dystrybucji oprogramowania',
+    lead: 'Pomagamy organizacjom znaleźć, licencjonować i w pełni wykorzystać sprawdzone oprogramowanie — od PDF i podpisu elektronicznego po wizualizację danych na poziomie firm doradczych.',
+    explore: 'Poznaj nasze rozwiązania',
+    talk: 'Porozmawiaj z naszym zespołem',
+    trust: [
+      ['Bezpiecznie i niezawodnie', 'Klasa korporacyjna'],
+      ['Elastyczne licencje', 'Dla zespołów każdej wielkości'],
+      ['Eksperckie wsparcie', 'Kiedy go potrzebujesz'],
+    ],
+    contract: 'Umowa serwisowa.pdf',
+    signed: 'Podpisano',
+    market: 'Udział w rynku.pptx',
+    quoteSent: 'Wysłano zapytanie o wycenę',
+    quoteText: 'Foxit PDF Editor+ × 25 licencji',
+    contractSigned: 'Umowa podpisana',
+    via: 'przez Foxit eSign · przed chwilą',
+    caseTitle: '~650 użytkowników na Foxit',
+    caseText: 'Motor Presse Stuttgart · case study',
+    sinceTitle: 'Od 2012 roku',
+    sinceText: 'Autoryzowany dystrybutor Foxit',
   },
 }
 const TRUST_ICONS = [Shield, Bolt, Headset]
@@ -270,6 +342,23 @@ export default function Hero() {
               <small>{t.via}</small>
             </span>
             <Check className="chip__ok" />
+          </div>
+
+          {/* Facts from the case studies and "Why us" further down, floating with the windows. */}
+          <div className="glass chip chip--case float-e">
+            <span className="chip__ic chip__ic--green"><Award /></span>
+            <span>
+              <strong>{t.caseTitle}</strong>
+              <small>{t.caseText}</small>
+            </span>
+          </div>
+
+          <div className="glass chip chip--since float-f">
+            <span className="chip__ic chip__ic--navy"><Handshake /></span>
+            <span>
+              <strong>{t.sinceTitle}</strong>
+              <small>{t.sinceText}</small>
+            </span>
           </div>
         </div>
       </div>

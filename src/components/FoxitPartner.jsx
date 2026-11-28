@@ -276,6 +276,116 @@ const T = {
     cta: 'Plant u uw eigen Foxit-uitrol? Neem contact op',
     newTab: '(opent in een nieuw tabblad)',
   },
+  it: {
+    thou: '.',
+    quotes: {
+      'mps': [
+        [
+          'Grazie a United Addins … Motor Presse Stuttgart è entrata in contatto con Foxit Software.',
+          null
+        ],
+        [
+          'Siamo stati molto lieti di poter aiutare Motor Presse Stuttgart a sostituire Adobe Acrobat e quindi a ridurre i costi delle licenze.',
+          'Borivoje Bogatinov, United Addins'
+        ],
+        [
+          'I nostri utenti sono soddisfatti. Sono molto contenti di poter finalmente modificare i documenti.',
+          'Achim Schäfer, responsabile dei sistemi IT, Motor Presse Stuttgart'
+        ]
+      ],
+      'miele': [
+        [
+          'United Addins ha lavorato a stretto contatto con Miele per definire i requisiti del software PDF, individuare la soluzione migliore e gestire l’integrazione del software PDF di Foxit nell’infrastruttura IT di Miele.',
+          null
+        ],
+        [
+          'Per le poche domande emerse, il team di United Addins è stato reattivo e ha risposto subito a ogni domanda …',
+          'Helmut Meissner, IT Architect, Miele'
+        ],
+        [
+          'È così che dovrebbe svolgersi il rollout di un software.',
+          'Helmut Meissner, IT Architect, Miele'
+        ]
+      ]
+    },
+    eyebrow: 'United Addins & Foxit',
+    title: 'Il tuo partner Foxit',
+    accent: 'dal 2012',
+    lead: 'United Addins è distributore autorizzato Foxit dal 2012. Ecco cosa ha pubblicato Foxit stessa sui progetti che abbiamo portato a Foxit e aiutato a implementare.',
+    stories: {
+      mps: {
+        source: 'Caso di studio Foxit',
+        headline: 'Motor Presse Stuttgart passa da Adobe Acrobat a Foxit',
+        stats: ['utenti', 'PC in due aziende', 'rollout completato'],
+        summary: 'L’editore di “auto, motor und sport” ha conosciuto Foxit grazie a United Addins. Il rollout è andato liscio — non sono state necessarie sessioni di formazione.',
+      },
+      miele: {
+        source: 'Blog di Foxit',
+        headline: 'Perché Miele è passata a Foxit',
+        stats: ['utenti in Miele', null, 'pubblicato'],
+        summary: 'United Addins ha definito i requisiti PDF di Miele, scelto la soluzione e integrato Foxit nell’infrastruttura IT di Miele.',
+      },
+    },
+    read: 'Leggi l’articolo completo su foxit.com',
+    quotesNote: 'Citazioni tradotte dall’originale inglese. Il prodotto si chiamava allora Foxit PhantomPDF, oggi Foxit PDF Editor.',
+    cta: 'Stai pianificando il tuo rollout di Foxit? Parliamone',
+    newTab: '(si apre in una nuova scheda)',
+  },
+  pl: {
+    thou: ' ',
+    quotes: {
+      'mps': [
+        [
+          'Dzięki United Addins … Motor Presse Stuttgart nawiązało kontakt z Foxit Software.',
+          null
+        ],
+        [
+          'Bardzo się cieszymy, że mogliśmy pomóc Motor Presse Stuttgart zastąpić Adobe Acrobat, a tym samym obniżyć koszty licencji.',
+          'Borivoje Bogatinov, United Addins'
+        ],
+        [
+          'Nasi użytkownicy są zadowoleni. Bardzo się cieszą, że mogą teraz edytować dokumenty.',
+          'Achim Schäfer, kierownik systemów IT, Motor Presse Stuttgart'
+        ]
+      ],
+      'miele': [
+        [
+          'United Addins ściśle współpracowało z Miele, aby określić wymagania firmy wobec oprogramowania PDF, znaleźć najlepsze rozwiązanie i pokierować integracją oprogramowania PDF Foxit z infrastrukturą IT Miele.',
+          null
+        ],
+        [
+          'Przy kilku pytaniach, które się pojawiły, zespół United Addins reagował szybko i od razu na każde odpowiadał …',
+          'Helmut Meissner, architekt IT, Miele'
+        ],
+        [
+          'Tak właśnie powinno wyglądać wdrożenie oprogramowania.',
+          'Helmut Meissner, architekt IT, Miele'
+        ]
+      ]
+    },
+    eyebrow: 'United Addins & Foxit',
+    title: 'Twój partner Foxit',
+    accent: 'od 2012 roku',
+    lead: 'United Addins jest autoryzowanym dystrybutorem Foxit od 2012 roku. Oto co sam Foxit opublikował o projektach, które przynieśliśmy do Foxit i pomogliśmy wdrożyć.',
+    stories: {
+      mps: {
+        source: 'Case study Foxit',
+        headline: 'Motor Presse Stuttgart przechodzi z Adobe Acrobat na Foxit',
+        stats: ['użytkowników', 'komputerów w dwóch firmach', 'wdrożenie zakończone'],
+        summary: 'Wydawca magazynu „auto, motor und sport” poznał Foxit dzięki United Addins. Wdrożenie przebiegło sprawnie — szkolenia nie były potrzebne.',
+      },
+      miele: {
+        source: 'Blog Foxit',
+        headline: 'Dlaczego Miele przeszło na Foxit',
+        stats: ['użytkowników w Miele', null, 'publikacja'],
+        summary: 'United Addins określiło wymagania Miele dotyczące PDF, wybrało rozwiązanie i zintegrowało Foxit z infrastrukturą IT Miele.',
+      },
+    },
+    read: 'Przeczytaj cały artykuł na foxit.com',
+    quotesNote: 'Cytaty przetłumaczone z angielskiego oryginału. Produkt nazywał się wtedy Foxit PhantomPDF, dziś Foxit PDF Editor.',
+    cta: 'Planujesz własne wdrożenie Foxit? Porozmawiajmy',
+    newTab: '(otwiera się w nowej karcie)',
+  },
 }
 
 export default function FoxitPartner() {

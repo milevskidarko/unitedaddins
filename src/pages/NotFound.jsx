@@ -7,6 +7,8 @@ const T = {
   fr: { title: 'Page introuvable', text: 'La page que vous cherchez n’existe pas ou a été déplacée.', home: 'Retour à l’accueil', contact: 'Nous contacter' },
   es: { title: 'Página no encontrada', text: 'La página que busca no existe o se ha movido.', home: 'Volver al inicio', contact: 'Contáctenos' },
   nl: { title: 'Pagina niet gevonden', text: 'De pagina die u zoekt bestaat niet of is verplaatst.', home: 'Terug naar de startpagina', contact: 'Neem contact op' },
+  it: { title: 'Pagina non trovata', text: 'La pagina che cerchi non esiste o è stata spostata.', home: 'Torna alla home', contact: 'Contattaci' },
+  pl: { title: 'Nie znaleziono strony', text: 'Strona, której szukasz, nie istnieje lub została przeniesiona.', home: 'Wróć na stronę główną', contact: 'Skontaktuj się z nami' },
 }
 
 export default function NotFound() {

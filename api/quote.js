@@ -1,4 +1,5 @@
-// Vercel serverless function: receives a quote request from the contact form,
+// Vercel serverless function: receives a quote request (contact form) or a partner application
+// (partner form),
 // checks it is not a bot (Cloudflare Turnstile) and e-mails it to sales via Resend.
 //
 // Environment variables (Vercel → Project → Settings → Environment Variables):
@@ -60,15 +61,19 @@ export default async function handler(req, res) {
     .map(([k, v]) => [clean(k).slice(0, 80), clean(v)])
     .filter(([, v]) => v)
   const replyTo = clean(body.replyTo)
-  const products = rows.find(([k]) => k === 'Products')?.[1]
-  const email = rows.find(([k]) => k === 'Email')?.[1]
-  if (!products || !email || !isEmail(email)) {
-    return res.status(400).json({ ok: false, message: 'Missing products or e-mail' })
+  // body.kind: 'quote' (contact form, needs products) or 'partner' (partner form, needs the company).
+  const partner = body.kind === 'partner'
+  const field = (name) => rows.find(([k]) => k === name)?.[1]
+  const email = field('Email')
+  if (!field(partner ? 'Company' : 'Products') || !email || !isEmail(email)) {
+    return res.status(400).json({ ok: false, message: partner ? 'Missing company or e-mail' : 'Missing products or e-mail' })
   }
 
-  const subject = clean(body.subject).slice(0, 200) || 'Quote request'
+  const subject = clean(body.subject).slice(0, 200) || (partner ? 'Partner application' : 'Quote request')
+  const heading = partner ? 'New partner application' : 'New quote request'
+  const source = partner ? 'the partner form' : 'the quote form'
   const html = `<!doctype html><html><body style="font-family:Arial,sans-serif;color:#0b1640">
-<h2 style="margin:0 0 12px">New quote request</h2>
+<h2 style="margin:0 0 12px">${heading}</h2>
 <table cellpadding="8" cellspacing="0" style="border-collapse:collapse;font-size:14px">
 ${rows
   .map(
@@ -78,7 +83,7 @@ ${rows
   )
   .join('\n')}
 </table>
-<p style="font-size:12px;color:#5a6684">Sent from the quote form on unitedaddins.com — reply to answer the customer directly.</p>
+<p style="font-size:12px;color:#5a6684">Sent from ${source} on unitedaddins.com — reply to answer the customer directly.</p>
 </body></html>`
   const text = rows.map(([k, v]) => `${k}: ${v}`).join('\n')
 

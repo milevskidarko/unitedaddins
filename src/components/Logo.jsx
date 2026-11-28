@@ -20,6 +20,8 @@ const T = {
   fr: { tagline: 'Le bon logiciel. Le bon partenaire.', home: 'Accueil United Addins' },
   es: { tagline: 'El software adecuado. El socio adecuado.', home: 'Inicio de United Addins' },
   nl: { tagline: 'De juiste software. De juiste partner.', home: 'United Addins startpagina' },
+  it: { tagline: 'Il software giusto. Il partner giusto.', home: 'Home di United Addins' },
+  pl: { tagline: 'Właściwe oprogramowanie. Właściwy partner.', home: 'Strona główna United Addins' },
 }
 
 // The bare mark in one color (white by default), for placing on a colored background.

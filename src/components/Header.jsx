@@ -4,59 +4,27 @@ import Logo from './Logo.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
 import LangSwitch from './LangSwitch.jsx'
 import { L, useT } from '../i18n.jsx'
-import { stripLang } from '../seo.js'
-import { Arrow, Chevron, Menu, Close, Doc, Headset, Handshake, Cubes, Files, Ruler, Calendar, Slides } from './Icons.jsx'
-import { CATEGORIES, PRODUCTS } from '../products.js'
+import { LANGS, stripLang } from '../seo.js'
+import { Arrow, Chevron, Menu, Close, Doc, Sign, Headset, Handshake, Cubes, Files, Ruler, Calendar, Slides } from './Icons.jsx'
+import { CATEGORIES, PRESENTATIONS, PRODUCTS } from '../products.js'
 import './Header.css'
 
-// Products menu: one entry per category (Documents & PDF, Design, Planning) → its section on /products.
+// Products menu: PDF Editor and eSign as separate entries (they solve different problems), then
+// Presentations and one entry per category (Documents & PDF, Design, Planning) → its section on /products.
 const CAT_ICONS = { docs: Files, design: Ruler, plan: Calendar }
-const catItems = (lang) =>
-  Object.entries(CATEGORIES).map(([key, label]) => ({
-    icon: CAT_ICONS[key],
-    title: label[lang],
-    text: PRODUCTS.filter((p) => p.category === key).map((p) => p.name).join(', '),
-    href: `/products#${key}`,
-    cat: true, // category titles in capitals, like on /products
-  }))
-// Mekko Graphics and Efficient Elements share one "Presentations" entry → its section on /products.
-const PRES = { en: 'Presentations', de: 'Präsentationen', fr: 'Présentations', es: 'Presentaciones', nl: 'Presentaties' }
-const presItem = (lang) => ({
-  icon: Slides,
-  title: PRES[lang],
-  text: 'Mekko Graphics, Efficient Elements',
-  href: '/products#presentations',
-  cat: true,
-})
 
-const T = {
+// Menu strings per language; the menu itself is built the same way for every language below.
+const S = {
   en: {
-    nav: [
-      {
-        label: 'Products',
-        items: [
-          { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'Edit, protect and sign PDFs', href: '/foxit' },
-          presItem('en'),
-          ...catItems('en'),
-          { icon: Cubes, title: 'All products', text: 'Everything we license, on one page', href: '/products' },
-        ],
-      },
-      {
-        label: 'Partners',
-        items: [
-          { icon: Handshake, title: 'Our vendors', text: 'Foxit, Mekko Graphics and more', href: '/products' },
-          // The quote form requires a product, so partnership inquiries go by email instead.
-          {
-            icon: Cubes,
-            title: 'Become a partner',
-            text: 'Grow with United Addins',
-            href: 'mailto:salesemea@unitedaddins.com?subject=Partnership%20inquiry',
-          },
-        ],
-      },
-      { label: 'About', href: '/about' },
-      { label: 'Contact', href: '/contact' },
-    ],
+    products: 'Products',
+    pdf: ['PDF Editor', 'Foxit PDF Editor & Editor+ — edit, convert, protect'],
+    esign: ['eSign', 'Foxit eSign — signatures, templates, audit trails'],
+    all: ['All products', 'Everything we license, on one page'],
+    partners: 'Partners',
+    vendors: ['Our vendors', 'Foxit, Mekko Graphics and more'],
+    become: ['Become a partner', 'Resellers, IT services and referrals'],
+    about: 'About',
+    contact: 'Contact',
     cta: 'Contact Sales',
     open: 'Open menu',
     close: 'Close menu',
@@ -65,31 +33,15 @@ const T = {
     skip: 'Skip to content',
   },
   de: {
-    nav: [
-      {
-        label: 'Produkte',
-        items: [
-          { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'PDFs bearbeiten, schützen und signieren', href: '/foxit' },
-          presItem('de'),
-          ...catItems('de'),
-          { icon: Cubes, title: 'Alle Produkte', text: 'Unser gesamtes Angebot auf einer Seite', href: '/products' },
-        ],
-      },
-      {
-        label: 'Partner',
-        items: [
-          { icon: Handshake, title: 'Unsere Hersteller', text: 'Foxit, Mekko Graphics und mehr', href: '/products' },
-          {
-            icon: Cubes,
-            title: 'Partner werden',
-            text: 'Wachsen Sie mit United Addins',
-            href: 'mailto:salesemea@unitedaddins.com?subject=Partneranfrage',
-          },
-        ],
-      },
-      { label: 'Über uns', href: '/about' },
-      { label: 'Kontakt', href: '/contact' },
-    ],
+    products: 'Produkte',
+    pdf: ['PDF Editor', 'Foxit PDF Editor & Editor+ — bearbeiten, konvertieren, schützen'],
+    esign: ['eSign', 'Foxit eSign — Signaturen, Vorlagen, Prüfprotokolle'],
+    all: ['Alle Produkte', 'Unser gesamtes Angebot auf einer Seite'],
+    partners: 'Partner',
+    vendors: ['Unsere Hersteller', 'Foxit, Mekko Graphics und mehr'],
+    become: ['Partner werden', 'Reseller, IT-Dienstleister und Empfehlungen'],
+    about: 'Über uns',
+    contact: 'Kontakt',
     cta: 'Vertrieb kontaktieren',
     open: 'Menü öffnen',
     close: 'Menü schließen',
@@ -98,31 +50,15 @@ const T = {
     skip: 'Zum Inhalt springen',
   },
   fr: {
-    nav: [
-      {
-        label: 'Produits',
-        items: [
-          { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'Modifier, protéger et signer des PDF', href: '/foxit' },
-          presItem('fr'),
-          ...catItems('fr'),
-          { icon: Cubes, title: 'Tous les produits', text: 'Toute notre offre sur une seule page', href: '/products' },
-        ],
-      },
-      {
-        label: 'Partenaires',
-        items: [
-          { icon: Handshake, title: 'Nos éditeurs', text: 'Foxit, Mekko Graphics et plus', href: '/products' },
-          {
-            icon: Cubes,
-            title: 'Devenir partenaire',
-            text: 'Grandir avec United Addins',
-            href: 'mailto:salesemea@unitedaddins.com?subject=Demande%20de%20partenariat',
-          },
-        ],
-      },
-      { label: 'À propos', href: '/about' },
-      { label: 'Contact', href: '/contact' },
-    ],
+    products: 'Produits',
+    pdf: ['PDF Editor', 'Foxit PDF Editor et Editor+ — modifier, convertir, protéger'],
+    esign: ['eSign', 'Foxit eSign — signatures, modèles, pistes d’audit'],
+    all: ['Tous les produits', 'Toute notre offre sur une seule page'],
+    partners: 'Partenaires',
+    vendors: ['Nos éditeurs', 'Foxit, Mekko Graphics et plus'],
+    become: ['Devenir partenaire', 'Revendeurs, services IT et apporteurs d’affaires'],
+    about: 'À propos',
+    contact: 'Contact',
     cta: 'Contacter les ventes',
     open: 'Ouvrir le menu',
     close: 'Fermer le menu',
@@ -131,31 +67,15 @@ const T = {
     skip: 'Aller au contenu',
   },
   es: {
-    nav: [
-      {
-        label: 'Productos',
-        items: [
-          { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'Edite, proteja y firme PDF', href: '/foxit' },
-          presItem('es'),
-          ...catItems('es'),
-          { icon: Cubes, title: 'Todos los productos', text: 'Toda nuestra oferta en una sola página', href: '/products' },
-        ],
-      },
-      {
-        label: 'Socios',
-        items: [
-          { icon: Handshake, title: 'Nuestros fabricantes', text: 'Foxit, Mekko Graphics y más', href: '/products' },
-          {
-            icon: Cubes,
-            title: 'Conviértase en socio',
-            text: 'Crezca con United Addins',
-            href: 'mailto:salesemea@unitedaddins.com?subject=Solicitud%20de%20colaboraci%C3%B3n',
-          },
-        ],
-      },
-      { label: 'Sobre nosotros', href: '/about' },
-      { label: 'Contacto', href: '/contact' },
-    ],
+    products: 'Productos',
+    pdf: ['PDF Editor', 'Foxit PDF Editor y Editor+ — editar, convertir, proteger'],
+    esign: ['eSign', 'Foxit eSign — firmas, plantillas, registros de auditoría'],
+    all: ['Todos los productos', 'Toda nuestra oferta en una sola página'],
+    partners: 'Socios',
+    vendors: ['Nuestros fabricantes', 'Foxit, Mekko Graphics y más'],
+    become: ['Hágase partner', 'Revendedores, servicios IT y recomendaciones'],
+    about: 'Sobre nosotros',
+    contact: 'Contacto',
     cta: 'Contactar con ventas',
     open: 'Abrir menú',
     close: 'Cerrar menú',
@@ -164,31 +84,15 @@ const T = {
     skip: 'Ir al contenido',
   },
   nl: {
-    nav: [
-      {
-        label: 'Producten',
-        items: [
-          { icon: Doc, title: 'Foxit PDF Editor & eSign', text: 'PDF’s bewerken, beveiligen en ondertekenen', href: '/foxit' },
-          presItem('nl'),
-          ...catItems('nl'),
-          { icon: Cubes, title: 'Alle producten', text: 'Ons volledige aanbod op één pagina', href: '/products' },
-        ],
-      },
-      {
-        label: 'Partners',
-        items: [
-          { icon: Handshake, title: 'Onze leveranciers', text: 'Foxit, Mekko Graphics en meer', href: '/products' },
-          {
-            icon: Cubes,
-            title: 'Partner worden',
-            text: 'Groei met United Addins',
-            href: 'mailto:salesemea@unitedaddins.com?subject=Partnerschapsaanvraag',
-          },
-        ],
-      },
-      { label: 'Over ons', href: '/about' },
-      { label: 'Contact', href: '/contact' },
-    ],
+    products: 'Producten',
+    pdf: ['PDF Editor', 'Foxit PDF Editor en Editor+ — bewerken, converteren, beveiligen'],
+    esign: ['eSign', 'Foxit eSign — handtekeningen, sjablonen, audittrails'],
+    all: ['Alle producten', 'Ons volledige aanbod op één pagina'],
+    partners: 'Partners',
+    vendors: ['Onze leveranciers', 'Foxit, Mekko Graphics en meer'],
+    become: ['Partner worden', 'Resellers, IT-dienstverleners en doorverwijzers'],
+    about: 'Over ons',
+    contact: 'Contact',
     cta: 'Contact met sales',
     open: 'Menu openen',
     close: 'Menu sluiten',
@@ -196,7 +100,74 @@ const T = {
     main: 'Hoofdmenu',
     skip: 'Naar de inhoud',
   },
+  it: {
+    products: 'Prodotti',
+    pdf: ['PDF Editor', 'Foxit PDF Editor ed Editor+ — modifica, converti, proteggi'],
+    esign: ['eSign', 'Foxit eSign — firme, modelli, audit trail'],
+    all: ['Tutti i prodotti', 'Tutta la nostra offerta in una pagina'],
+    partners: 'Partner',
+    vendors: ['I nostri vendor', 'Foxit, Mekko Graphics e altro'],
+    become: ['Diventa partner', 'Rivenditori, servizi IT e segnalatori'],
+    about: 'Chi siamo',
+    contact: 'Contatti',
+    cta: 'Contatta le vendite',
+    open: 'Apri il menu',
+    close: 'Chiudi il menu',
+    help: 'Serve aiuto? Parla con il nostro team',
+    main: 'Menu principale',
+    skip: 'Vai al contenuto',
+  },
+  pl: {
+    products: 'Produkty',
+    pdf: ['PDF Editor', 'Foxit PDF Editor i Editor+ — edycja, konwersja, ochrona'],
+    esign: ['eSign', 'Foxit eSign — podpisy, szablony, ścieżki audytu'],
+    all: ['Wszystkie produkty', 'Cała nasza oferta na jednej stronie'],
+    partners: 'Partnerzy',
+    vendors: ['Nasi dostawcy', 'Foxit, Mekko Graphics i inni'],
+    become: ['Zostań partnerem', 'Resellerzy, usługi IT i polecenia'],
+    about: 'O nas',
+    contact: 'Kontakt',
+    cta: 'Poproś o wycenę',
+    open: 'Otwórz menu',
+    close: 'Zamknij menu',
+    help: 'Potrzebujesz pomocy? Porozmawiaj z naszym zespołem',
+    main: 'Menu główne',
+    skip: 'Przejdź do treści',
+  },
 }
+
+const buildNav = (lang, s) => ({
+  ...s,
+  nav: [
+    {
+      label: s.products,
+      items: [
+        { icon: Doc, title: s.pdf[0], text: s.pdf[1], href: '/foxit' },
+        { icon: Sign, title: s.esign[0], text: s.esign[1], href: '/foxit#esign' },
+        // Mekko Graphics and Efficient Elements share one "Presentations" entry → its section on /products.
+        { icon: Slides, title: PRESENTATIONS[lang], text: 'Mekko Graphics, Efficient Elements', href: '/products#presentations', cat: true },
+        ...Object.entries(CATEGORIES).map(([key, label]) => ({
+          icon: CAT_ICONS[key],
+          title: label[lang],
+          text: PRODUCTS.filter((p) => p.category === key).map((p) => p.name).join(', '),
+          href: `/products#${key}`,
+          cat: true, // category titles in capitals, like on /products
+        })),
+        { icon: Cubes, title: s.all[0], text: s.all[1], href: '/products' },
+      ],
+    },
+    {
+      label: s.partners,
+      items: [
+        { icon: Handshake, title: s.vendors[0], text: s.vendors[1], href: '/products' },
+        { icon: Cubes, title: s.become[0], text: s.become[1], href: '/partners' },
+      ],
+    },
+    { label: s.about, href: '/about' },
+    { label: s.contact, href: '/contact' },
+  ],
+})
+const T = Object.fromEntries(LANGS.map((l) => [l, buildNav(l, S[l])]))
 
 export default function Header() {
   const t = useT(T)
@@ -233,7 +204,7 @@ export default function Header() {
 
   const close = () => setOpen(false)
   // The About page starts with a dark section: light menu text until the header gets its background.
-  const onDark = /^\/((de|fr|es|nl)\/)?about\/?$/.test(pathname)
+  const onDark = stripLang(pathname).replace(/\/+$/, '') === '/about'
   const isCurrent = (href) => !href.includes('#') && !href.startsWith('mailto:') && stripLang(pathname) === href
 
   return (

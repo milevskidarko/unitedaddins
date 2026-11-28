@@ -180,6 +180,72 @@ const T = {
     disclaimer: 'Studie in opdracht van Foxit (2022). De resultaten zijn gebaseerd op een gemodelleerde samengestelde organisatie en bieden geen garantie voor individuele resultaten.',
     study: 'Lees de studie',
   },
+  it: {
+    eyebrow: 'Partner in evidenza',
+    title: 'Dai più forza alla tua attività con',
+    lead: 'L’alternativa leader ad Adobe Acrobat per creare, modificare, convertire, firmare e gestire in sicurezza i PDF su desktop, mobile e web — con licenze e supporto di United Addins.',
+    features: ['Crea, modifica e converti', 'Smart Redact (Editor+)', 'AI Assistant', 'Flussi di firma eSign'],
+    finder: 'Non sai quale piano scegliere? Rispondi a 4 domande',
+    badge: 'Il più completo',
+    mobile: 'App mobile',
+    products: [
+      {
+        text: 'Modifica PDF professionale per Windows, macOS e Web. Crea, modifica, converti, organizza, compila e firma PDF — con AI Assistant integrato.',
+        note: 'Disponibile anche con licenza perpetua: acquisto una tantum per Windows e macOS, senza AI Assistant, DMS e funzioni cloud.',
+      },
+      {
+        text: 'Il pacchetto completo: tutto ciò che offre PDF Editor, più Smart Redact basato sull’AI e le app mobili per iOS e Android.',
+        note: 'Include Foxit eSign con 150 buste all’anno.',
+      },
+      {
+        text: 'Firma elettronica autonoma per privati e team — modelli riutilizzabili, flussi di firma, audit trail e certificati di firma. Conforme a ESIGN, UETA ed eIDAS.',
+        note: 'Essentials: 250 buste/anno, 10 modelli · Business: buste e modelli illimitati (da 5 utenti).',
+      },
+    ],
+    add: 'Aggiungi al preventivo',
+    addPerpetual: 'Aggiungi perpetua',
+    statsTitle: 'Valore aziendale comprovato',
+    statsSub: 'Studio Forrester Total Economic Impact™ su Foxit PDF Editor',
+    roi: 'ROI',
+    payback: 'Tempo di ritorno',
+    founded: 'Foxit fondata',
+    mo: 'mesi',
+    disclaimer: 'Studio commissionato da Foxit (2022). I risultati si basano su un’organizzazione composita modellata e non garantiscono risultati individuali.',
+    study: 'Leggi lo studio',
+  },
+  pl: {
+    eyebrow: 'Wyróżniony partner',
+    title: 'Rozwijaj swój biznes z',
+    lead: 'Wiodąca alternatywa dla Adobe Acrobat do tworzenia, edycji, konwersji, podpisywania i bezpiecznego zarządzania plikami PDF na komputerze, urządzeniach mobilnych i w przeglądarce — z licencjami i wsparciem United Addins.',
+    features: ['Tworzenie, edycja i konwersja', 'Smart Redact (Editor+)', 'Asystent AI', 'Procesy eSign'],
+    finder: 'Nie wiesz, który plan wybrać? Odpowiedz na 4 pytania',
+    badge: 'Najpełniejszy',
+    mobile: 'Aplikacja mobilna',
+    products: [
+      {
+        text: 'Profesjonalna edycja PDF dla Windows, macOS i przeglądarki. Twórz, edytuj, konwertuj, porządkuj, wypełniaj i podpisuj pliki PDF — z wbudowanym Asystentem AI.',
+        note: 'Dostępna licencja wieczysta: jednorazowy zakup dla Windows i macOS, bez Asystenta AI, DMS i funkcji chmurowych.',
+      },
+      {
+        text: 'Kompletny pakiet: wszystko z PDF Editor, a do tego Smart Redact oparty na AI i aplikacje mobilne na iOS i Androida.',
+        note: 'Zawiera Foxit eSign ze 150 kopertami rocznie.',
+      },
+      {
+        text: 'Samodzielny podpis elektroniczny dla osób i zespołów — szablony wielokrotnego użytku, procesy podpisywania, ścieżki audytu i certyfikaty podpisu. Zgodny z ESIGN, UETA i eIDAS.',
+        note: 'Essentials: 250 kopert/rok, 10 szablonów · Business: nielimitowane koperty i szablony (od 5 użytkowników).',
+      },
+    ],
+    add: 'Dodaj do wyceny',
+    addPerpetual: 'Dodaj wieczystą',
+    statsTitle: 'Potwierdzona wartość biznesowa',
+    statsSub: 'Badanie Forrester Total Economic Impact™ dotyczące Foxit PDF Editor',
+    roi: 'ROI',
+    payback: 'Okres zwrotu',
+    founded: 'Założenie Foxit',
+    mo: 'mies.',
+    disclaimer: 'Badanie zlecone przez Foxit (2022). Wyniki opierają się na modelowej organizacji złożonej i nie gwarantują indywidualnych rezultatów.',
+    study: 'Przeczytaj badanie',
+  },
 }
 
 export default function Foxit({ onAddToQuote }) {
@@ -212,6 +278,7 @@ export default function Foxit({ onAddToQuote }) {
             return (
               <article
                 key={p.name}
+                id={p.preview === 'esign' ? 'esign' : undefined}
                 className={`product product--${p.tone} spot ${p.featured ? 'product--featured' : ''}`}
                 data-reveal
                 style={{ '--d': `${i * 0.08}s` }}

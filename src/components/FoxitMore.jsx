@@ -123,6 +123,52 @@ const T = {
     ],
     source: 'Bron: foxit.com/pdf-editor (nov. 2026). Mobiele apps (iOS en Android) horen bij PDF Editor+.',
   },
+  it: {
+    eyebrow: 'Dentro Foxit PDF Editor',
+    title: 'Più di un editor PDF —',
+    accent: 'un flusso documentale completo',
+    cards: [
+      ['AI Assistant', 'Chatta con i tuoi documenti, ottieni riassunti, spostati con i segnalibri AI, ascolta con Smart Podcast e genera immagini direttamente nel documento. 300 crediti AI gratuiti al mese su ogni account.'],
+      ['Smart Redact', 'L’AI trova e rimuove i dati personali sensibili nei tuoi documenti. Incluso in PDF Editor+.'],
+      ['Gestione documentale (DMS)', 'Inclusa in PDF Editor e PDF Editor+: spazi di lavoro condivisi, controllo delle versioni, blocco check-in/check-out e archiviazione cloud illimitata.'],
+      ['eSign integrato', 'PDF Editor+ include Foxit eSign con 150 buste all’anno per firme e flussi di approvazione; PDF Editor include compila e firma.'],
+      ['Collaborazione', 'Condivisione in tempo reale, commenti e revisioni condivise — tutti lavorano sullo stesso documento.'],
+      ['Sicurezza', 'Crittografia AES-256, protezione con password e oscuramento, oltre al single sign-on tramite OAuth 2.0 e Microsoft Entra ID.'],
+    ],
+    complianceLabel: 'Sicurezza e conformità',
+    integrationsLabel: 'Funziona con gli strumenti che usi già',
+    statsLabel: 'Foxit in cifre',
+    stats: [
+      ['700 mln+', 'utenti nel mondo'],
+      ['640.000+', 'organizzazioni'],
+      ['4,6', 'valutazione G2 da oltre 55.000 recensioni'],
+      ['94%', 'dei recensori Gartner consiglia Foxit'],
+    ],
+    source: 'Fonte: foxit.com/pdf-editor (nov. 2026). Le app mobili (iOS e Android) fanno parte di PDF Editor+.',
+  },
+  pl: {
+    eyebrow: 'Wewnątrz Foxit PDF Editor',
+    title: 'Więcej niż edytor PDF —',
+    accent: 'kompletny obieg dokumentów',
+    cards: [
+      ['Asystent AI', 'Rozmawiaj z dokumentami, otrzymuj streszczenia, poruszaj się dzięki zakładkom AI, słuchaj w Smart Podcast i generuj obrazy w miejscu. 300 darmowych kredytów AI miesięcznie na każdym koncie.'],
+      ['Smart Redact', 'AI wyszukuje i usuwa wrażliwe dane osobowe z Twoich dokumentów. W zestawie z PDF Editor+.'],
+      ['Zarządzanie dokumentami (DMS)', 'W PDF Editor i PDF Editor+: wspólne przestrzenie robocze, kontrola wersji, blokowanie check-in/check-out i nielimitowana przestrzeń w chmurze.'],
+      ['Wbudowany eSign', 'PDF Editor+ zawiera Foxit eSign ze 150 kopertami rocznie do podpisów i obiegu umów; PDF Editor oferuje wypełnianie i podpisywanie.'],
+      ['Współpraca', 'Udostępnianie na żywo, komentarze i wspólne recenzje — wszyscy pracują na tym samym dokumencie.'],
+      ['Bezpieczeństwo', 'Szyfrowanie AES-256, ochrona hasłem i anonimizacja, a także logowanie jednokrotne przez OAuth 2.0 i Microsoft Entra ID.'],
+    ],
+    complianceLabel: 'Bezpieczeństwo i zgodność',
+    integrationsLabel: 'Działa z narzędziami, których już używasz',
+    statsLabel: 'Foxit w liczbach',
+    stats: [
+      ['700 mln+', 'użytkowników na świecie'],
+      ['640 000+', 'organizacji'],
+      ['4,6', 'ocena w G2 z ponad 55 000 opinii'],
+      ['94%', 'recenzentów Gartnera poleca Foxit'],
+    ],
+    source: 'Źródło: foxit.com/pdf-editor (listopad 2026). Aplikacje mobilne (iOS i Android) są częścią PDF Editor+.',
+  },
 }
 
 export default function FoxitMore() {

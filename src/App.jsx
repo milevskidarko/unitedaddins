@@ -9,6 +9,7 @@ import MekkoPage from './pages/MekkoPage.jsx'
 import EfficientElementsPage from './pages/EfficientElementsPage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
+import PartnerPage from './pages/PartnerPage.jsx'
 import ProductsPage from './pages/ProductsPage.jsx'
 import ProductPage from './pages/ProductPage.jsx'
 import { PRODUCTS } from './products.js'
@@ -16,7 +17,7 @@ import NotFound from './pages/NotFound.jsx'
 import useReveal from './useReveal.js'
 import useSpotlight from './useSpotlight.js'
 import { LangProvider, useLang, usePageMeta } from './i18n.jsx'
-import { localize } from './seo.js'
+import { LANGS, localize } from './seo.js'
 
 
 // Scrolls to #section after navigation (also across pages), otherwise to the top.
@@ -65,7 +66,7 @@ function Layout() {
   usePageMeta()
   const lang = useLang()
   const navigate = useNavigate()
-  const [quote, setQuote] = useState({ items: {}, type: 'New purchase', perpetual: false })
+  const [quote, setQuote] = useState({ items: {}, perpetual: false })
 
   const addToQuote = (products, opts = {}) => {
     setQuote((q) => {
@@ -85,10 +86,9 @@ function Layout() {
       <Header />
       <main id="main">
         <Routes>
-          <Route path="/de/*" element={<PageRoutes />} />
-          <Route path="/fr/*" element={<PageRoutes />} />
-          <Route path="/es/*" element={<PageRoutes />} />
-          <Route path="/nl/*" element={<PageRoutes />} />
+          {LANGS.filter((l) => l !== 'en').map((l) => (
+            <Route key={l} path={`/${l}/*`} element={<PageRoutes />} />
+          ))}
           <Route path="/*" element={<PageRoutes />} />
         </Routes>
       </main>
@@ -97,7 +97,7 @@ function Layout() {
   )
 }
 
-// Same pages under / (English), /de (German), /fr (French), /es (Spanish) and /nl (Dutch). The layout stays mounted when the
+// Same pages under / (English) and /de, /fr, /es, /nl, /it, /pl (see LANGS in seo.js). The layout stays mounted when the
 // language changes, so a quote in progress is kept.
 function PageRoutes() {
   return (
@@ -112,6 +112,7 @@ function PageRoutes() {
       ))}
       <Route path="about" element={<AboutPage />} />
       <Route path="contact" element={<ContactPage />} />
+      <Route path="partners" element={<PartnerPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )

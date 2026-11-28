@@ -70,6 +70,7 @@
   color: var(--ink);
   font-weight: 500;
   font-size: 15px;
+  white-space: nowrap;
   transition: background 0.2s ease, color 0.2s ease;
 }
 .nav__link:hover,
@@ -220,7 +221,7 @@
 }
 .skip-link:focus { top: 12px; }
 
-/* Language switch: EN | DE | FR | ES | NL */
+/* Language switch: EN | DE | FR | ES | NL | IT | PL */
 .lang-switch {
   display: inline-flex;
   padding: 3px;
@@ -229,9 +230,9 @@
   background: color-mix(in srgb, var(--surface) 70%, transparent);
 }
 .lang-switch a {
-  min-width: 34px;
+  min-width: 31px;
   height: 32px;
-  padding: 0 7px;
+  padding: 0 5px;
   display: grid;
   place-items: center;
   border-radius: 999px;
@@ -244,8 +245,8 @@
 .lang-switch a:hover { color: var(--ink); }
 .lang-switch a.is-active { background: var(--ink); color: var(--bg); }
 .drawer__lang { align-self: center; margin-top: 24px; }
-/* 5 languages: 48px each still fits a 320px-wide phone. */
-.drawer__lang a { min-width: 48px; height: 40px; font-size: 14px; }
+/* 7 languages: 38px each still fits a 320px-wide phone (16px gutters). */
+.drawer__lang a { min-width: 38px; height: 40px; font-size: 14px; }
 
 /* Theme toggle: sun ↔ moon */
 .theme-toggle {
