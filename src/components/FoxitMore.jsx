@@ -38,7 +38,7 @@ const T = {
     cards: [
       ['KI-Assistent', 'Mit Dokumenten chatten, Zusammenfassungen erhalten, per KI-Lesezeichen navigieren, mit Smart Podcast zuhören und Bilder direkt erzeugen. 300 kostenlose KI-Credits pro Monat für jedes Konto.'],
       ['Smart Redact', 'KI findet und entfernt sensible personenbezogene Daten in Ihren Dokumenten. Enthalten in PDF Editor+.'],
-      ['Dokumentenmanagement (DMS)', 'Enthalten in PDF Editor und PDF Editor+: gemeinsame Arbeitsbereiche, Versionskontrolle, Check-in/Check-out-Sperre und unbegrenzter Cloud-Speicher.'],
+      ['Dokumenten­management (DMS)', 'Enthalten in PDF Editor und PDF Editor+: gemeinsame Arbeitsbereiche, Versionskontrolle, Check-in/Check-out-Sperre und unbegrenzter Cloud-Speicher.'],
       ['eSign integriert', 'PDF Editor+ enthält Foxit eSign mit 150 Umschlägen pro Jahr für Signatur- und Vertrags-Workflows; PDF Editor bietet Ausfüllen & Signieren.'],
       ['Zusammenarbeit', 'Live-Freigabe, Kommentare und gemeinsame Prüfungen — alle arbeiten am selben Dokument.'],
       ['Sicherheit', 'AES-256-Verschlüsselung, Passwortschutz und Schwärzen sowie Single Sign-on über OAuth 2.0 und Microsoft Entra ID.'],

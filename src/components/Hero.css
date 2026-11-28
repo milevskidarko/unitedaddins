@@ -381,6 +381,8 @@
   .chip small { font-size: 11px; }
   .chip--quote { right: 0; bottom: 20%; }
   .chip--sign { left: 0; bottom: 0; }
+  /* "oprogramowanie." is one long word: a little smaller so it fits a 375px phone. */
+  .hero__title--pl { font-size: 38px; }
   /* Phones: room for two chips only. The case study takes the quote chip's place. */
   .chip--case { right: 0; top: auto; bottom: 20%; }
   .chip--since, .chip--quote { display: none; }
