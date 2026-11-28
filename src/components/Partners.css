@@ -50,31 +50,31 @@
 .partners__lead-body span { font-size: 13px; line-height: 1.45; color: var(--muted); }
 .partners__lead-arrow { width: 20px; height: 20px; flex-shrink: 0; color: #e14f00; transition: transform 0.25s ease; }
 .partners__lead:hover .partners__lead-arrow { transform: translateX(4px); }
-/* Logos in equal-width, centred cells so spacing and dividers are even. */
-.partners__logos { display: flex; flex-wrap: nowrap; align-items: center; min-width: 0; }
+/* Logos and dividers (.brand-sep) are all flex items spread with space-between, so every
+   logo-to-divider gap is the same no matter how wide each logo is. */
+.partners__logos { display: flex; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: clamp(12px, 2vw, 28px); min-width: 0; }
 .brand {
-  flex: 1 1 0;
+  flex: 0 1 auto;
   min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 72px;
-  padding-inline: clamp(18px, 2.4vw, 36px);
-  border-left: 1px solid var(--line);
   transition: transform 0.3s ease, filter 0.3s ease;
 }
-.brand:first-child { border-left: 0; }
+.brand-sep { flex: none; align-self: stretch; width: 1px; background: var(--line); }
 .brand:hover { transform: translateY(-2px); }
 .brand img { display: block; width: auto; max-width: 100%; object-fit: contain; }
 .brand--foxit img { height: clamp(44px, 4.4vw, 60px); }
 .brand--mm img { height: clamp(22px, 2.2vw, 30px); }
 .brand--mekko img { height: clamp(26px, 2.5vw, 34px); }
 /* progeCAD: app icon + name (no official wordmark). */
-.brand--progecad { gap: 10px; }
-.brand--progecad img { height: clamp(34px, 3.2vw, 44px); }
+/* Icon-to-name gap matches the one inside the MindManager logo. progecad.png has ~14.4% empty
+   space on its left and right, so the negative margin trims it (otherwise the gaps look bigger). */
+.brand--progecad, .brand--bluebeam { gap: clamp(6px, 0.7vw, 8px); }
+.brand--progecad img { --h: clamp(34px, 3.2vw, 44px); height: var(--h); margin-inline: calc(var(--h) * -0.144); }
 .brand--progecad span { font-size: clamp(20px, 2vw, 26px); font-weight: 500; letter-spacing: -0.01em; color: #2b2b2b; white-space: nowrap; }
 .brand--progecad b { font-weight: 800; color: #c8102e; }
-.brand--bluebeam { gap: 10px; }
 .brand--bluebeam img { height: clamp(30px, 2.8vw, 40px); }
 .brand--bluebeam span { font-size: clamp(20px, 2vw, 26px); font-weight: 700; letter-spacing: -0.02em; color: #0067b1; white-space: nowrap; }
 
@@ -125,36 +125,36 @@
 @media (max-width: 960px) {
   .partners__brands { flex-direction: column; align-items: flex-start; gap: 20px; }
   .partners__lineup { width: 100%; }
-  .brand { flex: 1 1 0; min-width: 0; justify-content: center; }
-  .brand:first-child { border-left: 0; padding-left: 0; }
 }
 @media (max-width: 760px) {
-  .brand { height: 64px; padding-inline: 10px; }
+  .brand { height: 64px; }
   .brand--foxit img { height: clamp(24px, 7vw, 36px); }
-  .brand--mm img { height: auto; width: 100%; max-width: 150px; }
-  .brand--mekko img { height: auto; width: 100%; max-width: 140px; }
-  .brand--progecad { gap: 5px; }
-  .brand--progecad img { height: clamp(20px, 6vw, 30px); }
-  .brand--progecad span { font-size: clamp(12px, 3.6vw, 18px); }
-  .brand--bluebeam { gap: 5px; }
-  .brand--bluebeam img { height: clamp(18px, 5.4vw, 28px); }
-  .brand--bluebeam span { font-size: clamp(12px, 3.6vw, 18px); }
+  .brand--mm img { height: clamp(14px, 2.6vw, 22px); }
+  .brand--mekko img { height: clamp(18px, 3.4vw, 28px); }
+  .brand--progecad, .brand--bluebeam { gap: 5px; }
+  .brand--progecad img { --h: clamp(18px, 3.8vw, 30px); }
+  .brand--progecad span { font-size: clamp(12px, 2.4vw, 18px); }
+  .brand--bluebeam img { height: clamp(16px, 3.4vw, 28px); }
+  .brand--bluebeam span { font-size: clamp(12px, 2.4vw, 18px); }
 }
-/* Phones: one row of four is too small to read, so 2 × 2. */
+/* Phones: one row of four is too small to read, so 2 × 2 (dividers are borders here). */
 @media (max-width: 560px) {
-  .partners__logos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .brand { height: 60px; padding-inline: 8px; border-left: 0; }
-  .brand:first-child { padding-left: 8px; }
-  .brand:nth-child(even) { border-left: 1px solid var(--line); }
-  .brand:nth-child(n + 3) { border-top: 1px solid var(--line); }
+  /* Columns as wide as their logos, centred; left logos hug the divider from the left, right
+     logos from the right, so all four sit the same distance from the vertical line. */
+  .partners__logos { display: grid; grid-template-columns: auto auto; justify-content: center; gap: 0; }
+  .brand-sep { display: none; }
+  .brand { height: 60px; padding-inline: clamp(12px, 4vw, 18px); }
+  .brand:nth-of-type(odd) { justify-content: flex-end; }
+  .brand:nth-of-type(even) { justify-content: flex-start; border-left: 1px solid var(--line); }
+  .brand:nth-of-type(n + 3) { border-top: 1px solid var(--line); }
   .brand--foxit img { height: 32px; }
-  .brand--mm img { max-width: 140px; }
-  .brand--mekko img { max-width: 130px; }
+  .brand--mm img { height: auto; width: min(128px, 34vw); }
+  .brand--mekko img { height: auto; width: min(116px, 31vw); }
   .partners__lead { flex-wrap: wrap; gap: 12px 16px; }
   .partners__lead img { height: 38px; }
   .partners__lead-body { order: 3; flex-basis: 100%; padding-left: 0; border-left: 0; }
   .partners__lead-arrow { margin-left: auto; }
-  .brand--progecad img { height: 26px; }
+  .brand--progecad img { --h: 26px; }
   .brand--progecad span { font-size: 17px; }
   .brand--bluebeam img { height: 24px; }
   .brand--bluebeam span { font-size: 17px; }

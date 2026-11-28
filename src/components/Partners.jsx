@@ -1,11 +1,11 @@
-import { Arrow, Doc, Sign, Files, Ruler, Calendar, Slides } from './Icons.jsx'
+import { Arrow, Doc, Key, Files, Ruler, Calendar, Slides } from './Icons.jsx'
 import { L, useLang, useT } from '../i18n.jsx'
 import { CATEGORIES, PRESENTATIONS, PRODUCTS } from '../products.js'
 import './Partners.css'
 
 // Home: Foxit on its own as our core partner, the other vendors in a row below it. Then "explore by
-// need": PDF editing and eSign as separate needs (they solve different problems), Presentations
-// (Mekko Graphics + Efficient Elements) and the product categories, each linking to its page/section.
+// need": PDF & eSign, Presentations (Mekko Graphics + Efficient Elements), the product categories
+// and licensing, each linking to its page/section.
 const CAT_ICONS = { docs: Files, design: Ruler, plan: Calendar }
 
 const T = {
@@ -16,8 +16,8 @@ const T = {
     foxit: 'Authorized Foxit distributor since 2012',
     foxitText: 'PDF Editor, PDF Editor+ and eSign — licensing, onboarding and support.',
     label: 'Explore by need',
-    pdf: ['PDF editing', 'Create, edit, convert and protect PDFs.'],
-    esign: ['eSign', 'Send, sign and track agreements online.'],
+    pdf: ['PDF & eSign', 'Create, edit, protect and sign documents.'],
+    licensing: ['Licensing & renewals', 'New licenses, renewals, upgrades and added seats.'],
   },
   de: {
     title: 'Unsere starken',
@@ -26,8 +26,8 @@ const T = {
     foxit: 'Autorisierter Foxit-Distributor seit 2012',
     foxitText: 'PDF Editor, PDF Editor+ und eSign — Lizenzierung, Einführung und Support.',
     label: 'Nach Bedarf entdecken',
-    pdf: ['PDF-Bearbeitung', 'PDFs erstellen, bearbeiten, konvertieren und schützen.'],
-    esign: ['eSign', 'Verträge online versenden, signieren und nachverfolgen.'],
+    pdf: ['PDF & eSign', 'Dokumente erstellen, bearbeiten, schützen und signieren.'],
+    licensing: ['Lizenzen & Verlängerungen', 'Neue Lizenzen, Verlängerungen, Upgrades und Lizenzerweiterungen.'],
   },
   fr: {
     title: 'Nos partenaires',
@@ -36,8 +36,8 @@ const T = {
     foxit: 'Distributeur agréé Foxit depuis 2012',
     foxitText: 'PDF Editor, PDF Editor+ et eSign — licences, mise en route et support.',
     label: 'Explorer par besoin',
-    pdf: ['Édition PDF', 'Créer, modifier, convertir et protéger des PDF.'],
-    esign: ['eSign', 'Envoyer, signer et suivre vos accords en ligne.'],
+    pdf: ['PDF et eSign', 'Créer, modifier, protéger et signer des documents.'],
+    licensing: ['Licences et renouvellements', 'Nouvelles licences, renouvellements, mises à niveau et postes supplémentaires.'],
   },
   es: {
     title: 'Nuestros socios',
@@ -46,8 +46,8 @@ const T = {
     foxit: 'Distribuidor autorizado de Foxit desde 2012',
     foxitText: 'PDF Editor, PDF Editor+ y eSign — licencias, puesta en marcha y soporte.',
     label: 'Explorar por necesidad',
-    pdf: ['Edición de PDF', 'Cree, edite, convierta y proteja PDF.'],
-    esign: ['eSign', 'Envíe, firme y haga seguimiento de acuerdos en línea.'],
+    pdf: ['PDF y eSign', 'Cree, edite, proteja y firme documentos.'],
+    licensing: ['Licencias y renovaciones', 'Nuevas licencias, renovaciones, actualizaciones y puestos adicionales.'],
   },
   nl: {
     title: 'Onze vertrouwde',
@@ -56,8 +56,8 @@ const T = {
     foxit: 'Geautoriseerd Foxit-distributeur sinds 2012',
     foxitText: 'PDF Editor, PDF Editor+ en eSign — licenties, implementatie en support.',
     label: 'Ontdek per behoefte',
-    pdf: ['PDF bewerken', 'PDF’s maken, bewerken, converteren en beveiligen.'],
-    esign: ['eSign', 'Overeenkomsten online versturen, ondertekenen en volgen.'],
+    pdf: ['PDF en eSign', 'Documenten maken, bewerken, beveiligen en ondertekenen.'],
+    licensing: ['Licenties en verlengingen', 'Nieuwe licenties, verlengingen, upgrades en extra gebruikers.'],
   },
   it: {
     title: 'I nostri partner',
@@ -66,8 +66,8 @@ const T = {
     foxit: 'Distributore autorizzato Foxit dal 2012',
     foxitText: 'PDF Editor, PDF Editor+ ed eSign — licenze, avvio e supporto.',
     label: 'Esplora per esigenza',
-    pdf: ['Modifica PDF', 'Crea, modifica, converti e proteggi i PDF.'],
-    esign: ['eSign', 'Invia, firma e monitora accordi online.'],
+    pdf: ['PDF ed eSign', 'Crea, modifica, proteggi e firma documenti.'],
+    licensing: ['Licenze e rinnovi', 'Nuove licenze, rinnovi, aggiornamenti e postazioni aggiuntive.'],
   },
   pl: {
     title: 'Nasi zaufani',
@@ -76,8 +76,8 @@ const T = {
     foxit: 'Autoryzowany dystrybutor Foxit od 2012 roku',
     foxitText: 'PDF Editor, PDF Editor+ i eSign — licencje, wdrożenie i wsparcie.',
     label: 'Wybierz według potrzeb',
-    pdf: ['Edycja PDF', 'Twórz, edytuj, konwertuj i zabezpieczaj pliki PDF.'],
-    esign: ['eSign', 'Wysyłaj, podpisuj i śledź umowy online.'],
+    pdf: ['PDF i eSign', 'Twórz, edytuj, zabezpieczaj i podpisuj dokumenty.'],
+    licensing: ['Licencje i odnowienia', 'Nowe licencje, odnowienia, aktualizacje i dodatkowe stanowiska.'],
   },
 }
 
@@ -86,7 +86,6 @@ export default function Partners() {
   const lang = useLang()
   const cards = [
     [Doc, '/foxit', ...t.pdf],
-    [Sign, '/foxit#esign', ...t.esign],
     [Slides, '/products#presentations', PRESENTATIONS[lang], 'Mekko Graphics, Efficient Elements'],
     ...Object.entries(CATEGORIES).map(([key, label]) => [
       CAT_ICONS[key],
@@ -94,6 +93,7 @@ export default function Partners() {
       label[lang] || label.en,
       PRODUCTS.filter((p) => p.category === key).map((p) => p.name).join(', '),
     ]),
+    [Key, '/contact', ...t.licensing],
   ]
   return (
     <section className="partners" id="partners">
@@ -118,13 +118,16 @@ export default function Partners() {
                 <L to="/mekko-graphics" className="brand brand--mekko">
                   <img src="/partners/mekko-graphics.svg" alt="Mekko Graphics" width="326" height="68" />
                 </L>
+                <span className="brand-sep" aria-hidden="true" />
                 <L to="/mindmanager" className="brand brand--mm">
                   <img src="/partners/mindmanager.svg" alt="MindManager" width="236" height="31" />
                 </L>
+                <span className="brand-sep" aria-hidden="true" />
                 <L to="/progecad" className="brand brand--progecad" aria-label="progeCAD">
                   <img src="/product-icons/progecad.png" alt="" width="180" height="180" />
                   <span aria-hidden="true">proge<b>CAD</b></span>
                 </L>
+                <span className="brand-sep" aria-hidden="true" />
                 <L to="/bluebeam" className="brand brand--bluebeam" aria-label="Bluebeam">
                   <img src="/product-icons/bluebeam.svg" alt="" width="42" height="43" />
                   <span aria-hidden="true">bluebeam</span>

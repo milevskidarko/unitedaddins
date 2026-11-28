@@ -5,20 +5,19 @@ import ThemeToggle from './ThemeToggle.jsx'
 import LangSwitch from './LangSwitch.jsx'
 import { L, useT } from '../i18n.jsx'
 import { LANGS, stripLang } from '../seo.js'
-import { Arrow, Chevron, Menu, Close, Doc, Sign, Headset, Handshake, Cubes, Files, Ruler, Calendar, Slides } from './Icons.jsx'
+import { Arrow, Chevron, Menu, Close, Doc, Headset, Handshake, Cubes, Files, Ruler, Calendar, Slides } from './Icons.jsx'
 import { CATEGORIES, PRESENTATIONS, PRODUCTS } from '../products.js'
 import './Header.css'
 
-// Products menu: PDF Editor and eSign as separate entries (they solve different problems), then
-// Presentations and one entry per category (Documents & PDF, Design, Planning) → its section on /products.
+// Products menu: Foxit PDF Editor & eSign as one entry, then Presentations
+// and one entry per category (Documents & PDF, Design, Planning) → its section on /products.
 const CAT_ICONS = { docs: Files, design: Ruler, plan: Calendar }
 
 // Menu strings per language; the menu itself is built the same way for every language below.
 const S = {
   en: {
     products: 'Products',
-    pdf: ['PDF Editor', 'Foxit PDF Editor & Editor+ — edit, convert, protect'],
-    esign: ['eSign', 'Foxit eSign — signatures, templates, audit trails'],
+    foxit: ['Foxit PDF Editor & eSign', 'Edit, protect and sign PDFs'],
     all: ['All products', 'Everything we license, on one page'],
     partners: 'Partners',
     vendors: ['Our vendors', 'Foxit, Mekko Graphics and more'],
@@ -34,8 +33,7 @@ const S = {
   },
   de: {
     products: 'Produkte',
-    pdf: ['PDF Editor', 'Foxit PDF Editor & Editor+ — bearbeiten, konvertieren, schützen'],
-    esign: ['eSign', 'Foxit eSign — Signaturen, Vorlagen, Prüfprotokolle'],
+    foxit: ['Foxit PDF Editor & eSign', 'PDFs bearbeiten, schützen und signieren'],
     all: ['Alle Produkte', 'Unser gesamtes Angebot auf einer Seite'],
     partners: 'Partner',
     vendors: ['Unsere Hersteller', 'Foxit, Mekko Graphics und mehr'],
@@ -51,8 +49,7 @@ const S = {
   },
   fr: {
     products: 'Produits',
-    pdf: ['PDF Editor', 'Foxit PDF Editor et Editor+ — modifier, convertir, protéger'],
-    esign: ['eSign', 'Foxit eSign — signatures, modèles, pistes d’audit'],
+    foxit: ['Foxit PDF Editor & eSign', 'Modifier, protéger et signer des PDF'],
     all: ['Tous les produits', 'Toute notre offre sur une seule page'],
     partners: 'Partenaires',
     vendors: ['Nos éditeurs', 'Foxit, Mekko Graphics et plus'],
@@ -68,8 +65,7 @@ const S = {
   },
   es: {
     products: 'Productos',
-    pdf: ['PDF Editor', 'Foxit PDF Editor y Editor+ — editar, convertir, proteger'],
-    esign: ['eSign', 'Foxit eSign — firmas, plantillas, registros de auditoría'],
+    foxit: ['Foxit PDF Editor & eSign', 'Edite, proteja y firme PDF'],
     all: ['Todos los productos', 'Toda nuestra oferta en una sola página'],
     partners: 'Socios',
     vendors: ['Nuestros fabricantes', 'Foxit, Mekko Graphics y más'],
@@ -85,8 +81,7 @@ const S = {
   },
   nl: {
     products: 'Producten',
-    pdf: ['PDF Editor', 'Foxit PDF Editor en Editor+ — bewerken, converteren, beveiligen'],
-    esign: ['eSign', 'Foxit eSign — handtekeningen, sjablonen, audittrails'],
+    foxit: ['Foxit PDF Editor & eSign', 'PDF’s bewerken, beveiligen en ondertekenen'],
     all: ['Alle producten', 'Ons volledige aanbod op één pagina'],
     partners: 'Partners',
     vendors: ['Onze leveranciers', 'Foxit, Mekko Graphics en meer'],
@@ -102,8 +97,7 @@ const S = {
   },
   it: {
     products: 'Prodotti',
-    pdf: ['PDF Editor', 'Foxit PDF Editor ed Editor+ — modifica, converti, proteggi'],
-    esign: ['eSign', 'Foxit eSign — firme, modelli, audit trail'],
+    foxit: ['Foxit PDF Editor & eSign', 'Modifica, proteggi e firma i PDF'],
     all: ['Tutti i prodotti', 'Tutta la nostra offerta in una pagina'],
     partners: 'Partner',
     vendors: ['I nostri vendor', 'Foxit, Mekko Graphics e altro'],
@@ -119,8 +113,7 @@ const S = {
   },
   pl: {
     products: 'Produkty',
-    pdf: ['PDF Editor', 'Foxit PDF Editor i Editor+ — edycja, konwersja, ochrona'],
-    esign: ['eSign', 'Foxit eSign — podpisy, szablony, ścieżki audytu'],
+    foxit: ['Foxit PDF Editor & eSign', 'Edytuj, zabezpieczaj i podpisuj pliki PDF'],
     all: ['Wszystkie produkty', 'Cała nasza oferta na jednej stronie'],
     partners: 'Partnerzy',
     vendors: ['Nasi dostawcy', 'Foxit, Mekko Graphics i inni'],
@@ -142,8 +135,7 @@ const buildNav = (lang, s) => ({
     {
       label: s.products,
       items: [
-        { icon: Doc, title: s.pdf[0], text: s.pdf[1], href: '/foxit' },
-        { icon: Sign, title: s.esign[0], text: s.esign[1], href: '/foxit#esign' },
+        { icon: Doc, title: s.foxit[0], text: s.foxit[1], href: '/foxit' },
         // Mekko Graphics and Efficient Elements share one "Presentations" entry → its section on /products.
         { icon: Slides, title: PRESENTATIONS[lang], text: 'Mekko Graphics, Efficient Elements', href: '/products#presentations', cat: true },
         ...Object.entries(CATEGORIES).map(([key, label]) => ({

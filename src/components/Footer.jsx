@@ -22,7 +22,7 @@ const T = {
     badge: 'Authorized Foxit & Mekko Graphics distributor',
     cols: [
       { title: 'Products', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Efficient Elements', '/efficient-elements'], ...PRODUCT_LINKS, ['All products', '/products']] },
-      { title: 'Solutions', links: [['PDF editing', '/foxit'], ['eSign', '/foxit#esign'], ['Presentations', '/products#presentations'], ...catLinks('en'), ['Find your plan', '/foxit#plan'], ['Volume licensing', '/contact']] },
+      { title: 'Solutions', links: [['PDF & eSign', '/foxit'], ['Presentations', '/products#presentations'], ...catLinks('en'), ['Find your plan', '/foxit#plan'], ['Volume licensing', '/contact']] },
       { title: 'Company', links: [['About', '/about'], ['Partners', '/#partners'], ['Become a partner', '/partners'], ['Request a quote', '/contact']] },
     ],
     rights: 'All rights reserved.',
@@ -39,7 +39,7 @@ const T = {
     badge: 'Autorisierter Foxit- & Mekko-Graphics-Distributor',
     cols: [
       { title: 'Produkte', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Efficient Elements', '/efficient-elements'], ...PRODUCT_LINKS, ['Alle Produkte', '/products']] },
-      { title: 'Lösungen', links: [['PDF-Bearbeitung', '/foxit'], ['eSign', '/foxit#esign'], ['Präsentationen', '/products#presentations'], ...catLinks('de'), ['Plan finden', '/foxit#plan'], ['Volumenlizenzen', '/contact']] },
+      { title: 'Lösungen', links: [['PDF & eSign', '/foxit'], ['Präsentationen', '/products#presentations'], ...catLinks('de'), ['Plan finden', '/foxit#plan'], ['Volumenlizenzen', '/contact']] },
       { title: 'Unternehmen', links: [['Über uns', '/about'], ['Partner', '/#partners'], ['Partner werden', '/partners'], ['Angebot anfordern', '/contact']] },
     ],
     rights: 'Alle Rechte vorbehalten.',
@@ -56,7 +56,7 @@ const T = {
     badge: 'Distributeur agréé Foxit et Mekko Graphics',
     cols: [
       { title: 'Produits', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Efficient Elements', '/efficient-elements'], ...PRODUCT_LINKS, ['Tous les produits', '/products']] },
-      { title: 'Solutions', links: [['Édition PDF', '/foxit'], ['eSign', '/foxit#esign'], ['Présentations', '/products#presentations'], ...catLinks('fr'), ['Trouver votre offre', '/foxit#plan'], ['Licences en volume', '/contact']] },
+      { title: 'Solutions', links: [['PDF et eSign', '/foxit'], ['Présentations', '/products#presentations'], ...catLinks('fr'), ['Trouver votre offre', '/foxit#plan'], ['Licences en volume', '/contact']] },
       { title: 'Entreprise', links: [['À propos', '/about'], ['Partenaires', '/#partners'], ['Devenir partenaire', '/partners'], ['Demander un devis', '/contact']] },
     ],
     rights: 'Tous droits réservés.',
@@ -73,7 +73,7 @@ const T = {
     badge: 'Distribuidor autorizado de Foxit y Mekko Graphics',
     cols: [
       { title: 'Productos', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Efficient Elements', '/efficient-elements'], ...PRODUCT_LINKS, ['Todos los productos', '/products']] },
-      { title: 'Soluciones', links: [['Edición de PDF', '/foxit'], ['eSign', '/foxit#esign'], ['Presentaciones', '/products#presentations'], ...catLinks('es'), ['Encuentre su plan', '/foxit#plan'], ['Licencias por volumen', '/contact']] },
+      { title: 'Soluciones', links: [['PDF y eSign', '/foxit'], ['Presentaciones', '/products#presentations'], ...catLinks('es'), ['Encuentre su plan', '/foxit#plan'], ['Licencias por volumen', '/contact']] },
       { title: 'Empresa', links: [['Sobre nosotros', '/about'], ['Socios', '/#partners'], ['Hágase partner', '/partners'], ['Solicitar presupuesto', '/contact']] },
     ],
     rights: 'Todos los derechos reservados.',
@@ -90,7 +90,7 @@ const T = {
     badge: 'Geautoriseerd distributeur van Foxit en Mekko Graphics',
     cols: [
       { title: 'Producten', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Efficient Elements', '/efficient-elements'], ...PRODUCT_LINKS, ['Alle producten', '/products']] },
-      { title: 'Oplossingen', links: [['PDF bewerken', '/foxit'], ['eSign', '/foxit#esign'], ['Presentaties', '/products#presentations'], ...catLinks('nl'), ['Vind uw abonnement', '/foxit#plan'], ['Volumelicenties', '/contact']] },
+      { title: 'Oplossingen', links: [['PDF en eSign', '/foxit'], ['Presentaties', '/products#presentations'], ...catLinks('nl'), ['Vind uw abonnement', '/foxit#plan'], ['Volumelicenties', '/contact']] },
       { title: 'Bedrijf', links: [['Over ons', '/about'], ['Partners', '/#partners'], ['Partner worden', '/partners'], ['Offerte aanvragen', '/contact']] },
     ],
     rights: 'Alle rechten voorbehouden.',
@@ -107,7 +107,7 @@ const T = {
     badge: 'Distributore autorizzato Foxit e Mekko Graphics',
     cols: [
       { title: 'Prodotti', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Efficient Elements', '/efficient-elements'], ...PRODUCT_LINKS, ['Tutti i prodotti', '/products']] },
-      { title: 'Soluzioni', links: [['Modifica PDF', '/foxit'], ['eSign', '/foxit#esign'], ['Presentazioni', '/products#presentations'], ...catLinks('it'), ['Trova il tuo piano', '/foxit#plan'], ['Licenze a volume', '/contact']] },
+      { title: 'Soluzioni', links: [['PDF ed eSign', '/foxit'], ['Presentazioni', '/products#presentations'], ...catLinks('it'), ['Trova il tuo piano', '/foxit#plan'], ['Licenze a volume', '/contact']] },
       { title: 'Azienda', links: [['Chi siamo', '/about'], ['Partner', '/#partners'], ['Diventa partner', '/partners'], ['Richiedi un preventivo', '/contact']] },
     ],
     rights: 'Tutti i diritti riservati.',
@@ -124,7 +124,7 @@ const T = {
     badge: 'Autoryzowany dystrybutor Foxit i Mekko Graphics',
     cols: [
       { title: 'Produkty', links: [['Foxit PDF Editor & eSign', '/foxit'], ['Mekko Graphics', '/mekko-graphics'], ['Efficient Elements', '/efficient-elements'], ...PRODUCT_LINKS, ['Wszystkie produkty', '/products']] },
-      { title: 'Rozwiązania', links: [['Edycja PDF', '/foxit'], ['eSign', '/foxit#esign'], ['Prezentacje', '/products#presentations'], ...catLinks('pl'), ['Znajdź swój plan', '/foxit#plan'], ['Licencje grupowe', '/contact']] },
+      { title: 'Rozwiązania', links: [['PDF i eSign', '/foxit'], ['Prezentacje', '/products#presentations'], ...catLinks('pl'), ['Znajdź swój plan', '/foxit#plan'], ['Licencje grupowe', '/contact']] },
       { title: 'Firma', links: [['O nas', '/about'], ['Partnerzy', '/#partners'], ['Zostań partnerem', '/partners'], ['Poproś o wycenę', '/contact']] },
     ],
     rights: 'Wszelkie prawa zastrzeżone.',

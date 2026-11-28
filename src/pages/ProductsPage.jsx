@@ -11,8 +11,7 @@ const T = {
     accent: 'license & support',
     lead: 'From PDF and eSign to CAD, diagrams and project planning — one partner for licensing, renewals and advice.',
     featured: 'Our core partner',
-    foxit: 'PDF Editor and PDF Editor+ — edit, convert and protect PDFs. Distributor since 2012.',
-    esign: 'Electronic signatures — templates, signing workflows and audit trails.',
+    foxit: 'PDF Editor, PDF Editor+ and eSign — distributor since 2012.',
     mekko: 'Marimekko, Bar Mekko and more in PowerPoint & Excel.',
     presentations: 'Presentations',
     ee: 'Agendas, Harvey balls, alignment and slide checks in PowerPoint.',
@@ -26,8 +25,7 @@ const T = {
     accent: 'lizenzieren & betreuen',
     lead: 'Von PDF und eSign über CAD und Diagramme bis zur Projektplanung — ein Partner für Lizenzen, Verlängerungen und Beratung.',
     featured: 'Unser Kernpartner',
-    foxit: 'PDF Editor und PDF Editor+ — PDFs bearbeiten, konvertieren und schützen. Distributor seit 2012.',
-    esign: 'Elektronische Signaturen — Vorlagen, Signatur-Workflows und Prüfprotokolle.',
+    foxit: 'PDF Editor, PDF Editor+ und eSign — Distributor seit 2012.',
     mekko: 'Marimekko, Bar Mekko und mehr in PowerPoint & Excel.',
     presentations: 'Präsentationen',
     ee: 'Agenden, Harvey Balls, Ausrichtung und Folienprüfung in PowerPoint.',
@@ -41,8 +39,7 @@ const T = {
     accent: 'proposons et accompagnons',
     lead: 'Du PDF et de la signature électronique à la CAO, aux diagrammes et à la gestion de projets — un seul partenaire pour les licences, les renouvellements et le conseil.',
     featured: 'Notre partenaire principal',
-    foxit: 'PDF Editor et PDF Editor+ — modifier, convertir et protéger vos PDF. Distributeur depuis 2012.',
-    esign: 'Signature électronique — modèles, circuits de signature et pistes d’audit.',
+    foxit: 'PDF Editor, PDF Editor+ et eSign — distributeur depuis 2012.',
     mekko: 'Marimekko, Bar Mekko et plus dans PowerPoint et Excel.',
     presentations: 'Présentations',
     ee: 'Agendas, Harvey balls, alignement et vérification des diapositives dans PowerPoint.',
@@ -56,8 +53,7 @@ const T = {
     accent: 'licenciamos y respaldamos',
     lead: 'Desde PDF y firma electrónica hasta CAD, diagramas y planificación de proyectos — un solo socio para licencias, renovaciones y asesoramiento.',
     featured: 'Nuestro socio principal',
-    foxit: 'PDF Editor y PDF Editor+ — edite, convierta y proteja PDF. Distribuidor desde 2012.',
-    esign: 'Firma electrónica — plantillas, flujos de firma y registros de auditoría.',
+    foxit: 'PDF Editor, PDF Editor+ y eSign — distribuidor desde 2012.',
     mekko: 'Marimekko, Bar Mekko y más en PowerPoint y Excel.',
     presentations: 'Presentaciones',
     ee: 'Agendas, Harvey balls, alineación y revisión de diapositivas en PowerPoint.',
@@ -71,8 +67,7 @@ const T = {
     accent: 'leveren en ondersteunen',
     lead: 'Van PDF en e-handtekening tot CAD, diagrammen en projectplanning — één partner voor licenties, verlengingen en advies.',
     featured: 'Onze kernpartner',
-    foxit: 'PDF Editor en PDF Editor+ — PDF’s bewerken, converteren en beveiligen. Distributeur sinds 2012.',
-    esign: 'Elektronische handtekeningen — sjablonen, ondertekeningsworkflows en audittrails.',
+    foxit: 'PDF Editor, PDF Editor+ en eSign — distributeur sinds 2012.',
     mekko: 'Marimekko, Bar Mekko en meer in PowerPoint en Excel.',
     presentations: 'Presentaties',
     ee: 'Agenda’s, Harvey balls, uitlijnen en diacontrole in PowerPoint.',
@@ -86,8 +81,7 @@ const T = {
     accent: 'forniamo e supportiamo',
     lead: 'Dal PDF e dalla firma elettronica a CAD, diagrammi e pianificazione di progetti — un unico partner per licenze, rinnovi e consulenza.',
     featured: 'Il nostro partner principale',
-    foxit: 'PDF Editor e PDF Editor+ — modifica, converti e proteggi i PDF. Distributore dal 2012.',
-    esign: 'Firma elettronica — modelli, flussi di firma e audit trail.',
+    foxit: 'PDF Editor, PDF Editor+ ed eSign — distributore dal 2012.',
     mekko: 'Marimekko, Bar Mekko e altro in PowerPoint ed Excel.',
     presentations: 'Presentazioni',
     ee: 'Agende, Harvey ball, allineamento e controllo delle slide in PowerPoint.',
@@ -101,8 +95,7 @@ const T = {
     accent: 'licencjonujemy i wspieramy',
     lead: 'Od PDF i podpisu elektronicznego po CAD, diagramy i planowanie projektów — jeden partner do licencji, odnowień i doradztwa.',
     featured: 'Nasz kluczowy partner',
-    foxit: 'PDF Editor i PDF Editor+ — edycja, konwersja i ochrona plików PDF. Dystrybutor od 2012 roku.',
-    esign: 'Podpis elektroniczny — szablony, procesy podpisywania i ścieżki audytu.',
+    foxit: 'PDF Editor, PDF Editor+ i eSign — dystrybutor od 2012 roku.',
     mekko: 'Marimekko, Bar Mekko i więcej w PowerPoint i Excel.',
     presentations: 'Prezentacje',
     ee: 'Agendy, Harvey balls, wyrównywanie i sprawdzanie slajdów w PowerPoint.',
@@ -113,8 +106,7 @@ const T = {
 }
 
 // Foxit and Mekko Graphics keep their own pages; shown here as cards like the others.
-const FOXIT = { name: 'Foxit PDF Editor', vendor: 'Foxit', tone: '#ff5f1f', mark: 'Fx' }
-const FOXIT_ESIGN = { name: 'Foxit eSign', vendor: 'Foxit', tone: '#2f7cf6', mark: 'eS' }
+const FOXIT = { name: 'Foxit PDF Editor & eSign', vendor: 'Foxit', tone: '#ff5f1f', mark: 'Fx' }
 const MEKKO = { name: 'Mekko Graphics', vendor: 'Mekko Graphics', tone: '#121e4d', mark: 'MG' }
 const EE = { name: 'Efficient Elements', vendor: 'Efficient Elements GmbH', tone: '#0f8f7e', mark: 'EE' }
 
@@ -136,7 +128,6 @@ export default function ProductsPage() {
           <h2 className="prod__h2" data-reveal>{t.featured}</h2>
           <div className="pgrid pgrid--featured">
             <ProductCard product={FOXIT} href="/foxit" text={t.foxit} />
-            <ProductCard product={FOXIT_ESIGN} href="/foxit#esign" text={t.esign} delay={0.06} />
           </div>
 
           {/* Presentations: Mekko Graphics and Efficient Elements together (header menu and home link here). */}
